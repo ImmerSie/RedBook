@@ -7,22 +7,35 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 /**
  *
  * @author Max
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Journal {
+    @XmlElement
     private int journalID;
+    @XmlElement
+    private int userID;
+    @XmlElement
     private Date dateCreated;
+    @XmlElement
     private Date lastModified;
+    @XmlElement
     private String title;
+    @XmlElement
     private String description;
+    
     private ArrayList<Entry> entries = new ArrayList<Entry>();
 
     public Journal() {
     }
 
-    public Journal(int journalID, Date dateCreated, Date lastModified, String title, String description) {
+    public Journal(int userID, int journalID, Date dateCreated, Date lastModified, String title, String description) {
+        this.userID = userID;
         this.journalID = journalID;
         this.dateCreated = dateCreated;
         this.lastModified = lastModified;
@@ -30,6 +43,14 @@ public class Journal {
         this.description = description;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    
     public Date getDateCreated() {
         return dateCreated;
     }

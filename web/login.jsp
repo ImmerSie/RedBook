@@ -1,6 +1,6 @@
 <%-- 
-    Document   : createUser
-    Created on : 05/09/2017, 4:00:21 PM
+    Document   : login
+    Created on : 09/09/2017, 10:08:01 PM
     Author     : Max
 --%>
 
@@ -9,16 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create User Account</title>
+        <title>Login</title>
     </head>
     <body>
-        <h1>Create User</h1>
-        <form action="newUser.jsp" method="post">
+        <h1>Login</h1>
+        <form action="journals.jsp" method="post">
             <table>
-                <tr>
-                    <td>Name: </td>
-                    <td><input type="text" name="name"></td>
-                </tr>
                 <tr>
                     <td>Email: </td>
                     <td><input type="email" name="email"></td>
@@ -29,7 +25,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Sign Up"></td>
+                    <td><input type="submit" value="Login"></td>
                 </tr>
             </table>
         </form>

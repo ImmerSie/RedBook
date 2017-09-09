@@ -34,6 +34,7 @@
                 accounts.updateXML(users, filePath);
                 
                 %><p>Welcome, <%= name %>!</p>
+                <p>Click <a href="index.html">here</a> to return to the landing page.</p>
             <% } else { %>
             <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
             <% } %>

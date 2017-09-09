@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class Entry {
     private int entryID;
+    private int journalID;
     private String title;
     private String content;
     private String flag;
@@ -25,13 +26,14 @@ public class Entry {
     public Entry() {
     }
 
-    public Entry(int entryID, String title, String content, String flag, Date dateCreated, Date dateModified) {
+    public Entry(int journalID, int entryID, String title, String content, String flag, Date dateCreated) {
         this.entryID = entryID;
+        this.journalID = journalID;
         this.title = title;
         this.content = content;
         this.flag = flag;
-        this.dateCreated = dateCreated;
-        this.dateModified = dateModified;
+        this.dateCreated = this.dateCreated;
+        this.dateModified = new Date();
     }
 
     public int getEntryID() {
@@ -41,6 +43,16 @@ public class Entry {
     public void setEntryID(int entryID) {
         this.entryID = entryID;
     }
+
+    public int getUserID() {
+        return journalID;
+    }
+
+    public void setUserID(int userID) {
+        this.journalID = userID;
+    }
+    
+    
 
     public String getContent() {
         return content;
@@ -108,7 +120,7 @@ public class Entry {
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
-        Entry oldEntry = new Entry(newID, this.title, this.content, this.flag, this.dateCreated, this.dateModified);
+        Entry oldEntry = new Entry(this.journalID, newID, this.title, this.content, this.flag, this.dateCreated);
         oldEntry.setComments(this.comments);
         oldEntry.setHistory(this.history);
         
@@ -117,6 +129,7 @@ public class Entry {
         this.content = entry.getContent();
         this.flag = entry.getFlag();
         this.dateCreated = entry.getDateCreated();
-        this.dateModified = entry.getDateModified();
+        this.dateModified = new Date();
+        this.comments = new ArrayList<Comment>();
     }
 }
