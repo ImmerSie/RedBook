@@ -7,19 +7,32 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Max
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Entry {
+    @XmlElement
     private int entryID;
+    @XmlElement
     private int journalID;
+    @XmlElement
     private String title;
+    @XmlElement
     private String content;
+    @XmlElement
     private String flag;
+    @XmlElement
     private Date dateCreated;
+    @XmlElement
     private Date dateModified;
+    
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private ArrayList<Entry> history = new ArrayList<Entry>();
 

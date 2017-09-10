@@ -10,11 +10,13 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="entries")
 public class Journal {
     @XmlElement
     private int journalID;
