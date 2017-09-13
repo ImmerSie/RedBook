@@ -7,9 +7,14 @@ and open the template in the editor.
 
 
 <entries>
-    <journalID>0</journalID>
-    <entryID>0</entryID>
-    <title>Created a new project today!</title>
-    <content>This is an entry about the programming that I did today.</content>
-    <flag></flag>
+    <entry>
+        <userID>0</userID>
+        <journalID>0</journalID>
+        <entryID>0</entryID>
+        <title>Created a new project today!</title>
+        <content>This is an entry about the programming that I did today.</content>
+        <flag>Visible</flag>
+        <dateCreated>01/09/2017</dateCreated>
+        <dateModified>01/09/2017</dateModified>
+    </entry>
 </entries>

@@ -26,10 +26,9 @@
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User user = (User) session.getAttribute("user");
-            if(user == null){
+            if(user == null || !(user.getEmail().equals(email))){
                 user = users.login(email, password);
             }
-                        
             if(user != null){
                 String name = request.getParameter("name");
                 int userID = accounts.getNewUserID();
@@ -42,7 +41,7 @@
                 <p>Click <a href="createJournal.jsp">here</a> to create a new journal</p>
                 <% if(user.getJournals().size() > 0){
                     for(Journal j : user.getJournals()){
-                        %><p>Journal: <%= j.getTitle()%></p><%
+                        %><p id="<%= j.getJournalID()%>" onClick="journalClick(this, <%= j.getJournalID()%>)">Journal: <%= j.getTitle()%></p><%
                     }
                 }
             } else { %>
@@ -50,3 +49,18 @@
             <% } %>
     </body>
 </html>
+
+<script type="text/javascript">
+   function journalClick(elmnt, journalID){
+       elmnt.style.color = 'red';
+       window.location = "../redbook/entries.jsp?id="+journalID;
+   }
+   
+    //$(document).ready(function(){  });
+    /** window.onload = function(){
+        function journalClick(Journal j){
+            window.location = "../entries.jsp";
+            console.log("hit click");
+        }
+    };**/
+</script>

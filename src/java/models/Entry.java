@@ -23,6 +23,8 @@ public class Entry {
     @XmlElement
     private int journalID;
     @XmlElement
+    private int userID;
+    @XmlElement
     private String title;
     @XmlElement
     private String content;
@@ -39,13 +41,14 @@ public class Entry {
     public Entry() {
     }
 
-    public Entry(int journalID, int entryID, String title, String content, String flag, Date dateCreated) {
+    public Entry(int userID, int journalID, int entryID, String title, String content, String flag, Date dateCreated) {
+        this.userID = userID;
         this.entryID = entryID;
         this.journalID = journalID;
         this.title = title;
         this.content = content;
         this.flag = flag;
-        this.dateCreated = this.dateCreated;
+        this.dateCreated = dateCreated;
         this.dateModified = new Date();
     }
 
@@ -58,14 +61,20 @@ public class Entry {
     }
 
     public int getUserID() {
-        return journalID;
+        return userID;
     }
 
     public void setUserID(int userID) {
-        this.journalID = userID;
+        this.userID = userID;
     }
     
-    
+    public int getJournalID() {
+        return journalID;
+    }
+
+    public void setJournalID(int journalID) {
+        this.journalID = journalID;
+    }
 
     public String getContent() {
         return content;
@@ -133,7 +142,7 @@ public class Entry {
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
-        Entry oldEntry = new Entry(this.journalID, newID, this.title, this.content, this.flag, this.dateCreated);
+        Entry oldEntry = new Entry(this.userID, this.journalID, newID, this.title, this.content, this.flag, this.dateCreated);
         oldEntry.setComments(this.comments);
         oldEntry.setHistory(this.history);
         
