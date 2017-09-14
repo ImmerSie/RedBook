@@ -26,7 +26,7 @@
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User user = (User) session.getAttribute("user");
-            if(user == null || !(user.getEmail().equals(email))){
+            if(user == null || (email != null && !(user.getEmail().equals(email)))){
                 user = users.login(email, password);
             }
             if(user != null){
