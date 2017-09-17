@@ -72,7 +72,7 @@
 
                         <!--                        <input type="submit" value="CreateUser">-->
                     </form>
-                  
+                    <p>Already have an account? </> <a href="">Click here</a>
                 </div>
             </div>
         </div>
