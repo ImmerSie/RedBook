@@ -26,8 +26,9 @@
     </head>
     <body>
         <div class="container">
+            <img id="redBook" src='redbook.png'/>
+                    <a class="title1" href="index.html"><span class="title">RedBook</span></a>
             <div class="row main"> 
-                <p>&nbsp;</p>
                  <p>&nbsp;</p>
                  <p>&nbsp;</p>
                  <div id="background">
@@ -74,7 +75,7 @@
 
                         <!--                        <input type="submit" value="CreateUser">-->
                     </form>
-                    <p>Already have an account? </> <a href="login.jsp">Click here</a>
+                    <p>Already have an account? </p> <a href="login.jsp">Click here</a>
                 </div>
             </div>
         </div>
