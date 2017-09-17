@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Create Entry</h1>
-        <form action="newEntry.jsp" method="post">
+        <form action="entries.jsp" method="post">
             <table>
                 <tr>
                     <td>Title: </td>
@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>Content </td>
-                    <td><input type="text" name="content"></td>
+                    <td><textarea name="content" rows="5"></textarea></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -29,5 +29,6 @@
                 </tr>
             </table>
         </form>
+        <a href="entries.jsp">Return to Entries</a>
     </body>
 </html>

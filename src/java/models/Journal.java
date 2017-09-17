@@ -31,8 +31,10 @@ public class Journal {
     @XmlElement
     private String description;
     
-    private ArrayList<Entry> entries = new ArrayList<Entry>();
-
+    @XmlElement(name="entry")
+    //private ArrayList<Entry> entries = new ArrayList<Entry>();
+    private Entries entries = new Entries();
+    
     public Journal() {
     }
 
@@ -94,7 +96,7 @@ public class Journal {
     }
 
     public ArrayList<Entry> getEntries() {
-        return entries;
+        return entries.getEntrys();
     }
     
     public Entry getEntry(int entryID){
@@ -106,11 +108,11 @@ public class Journal {
         return null;
     }
 
-    public void setEntries(ArrayList<Entry> entries) {
+    public void setEntries(Entries entries) {
         this.entries = entries;
     }
      
     public void addEntry(Entry entry){
-        entries.add(entry);
+        entries.getEntrys().add(entry);
     }
 }
