@@ -7,12 +7,27 @@ and open the template in the editor.
 <html>
     <head>
         <title>Landing Page</title>
+        <link href="styles.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Landing Page</div>
-        <a href="createUser.jsp">Create User</a>
-        <a href="login.jsp">Login</a>
+        <div id= "Navigation">
+           
+        <ul>
+            <li><a href="createUser.jsp">Create User</a></li>
+            <li><a href="login.jsp">Login</a></li>
+        </ul>
+        </div>
+        <div class="MainText">
+            <div class ="bold">Pen and paper no more </div>
+            <p class="subtext">
+                Record all your professional decisions, work, requirements and more!
+            </p>
+        </div>
+        <div id="background">
+            <img src="background.png" class="stretch" alt="" />
+        </div>
     </body>
+    
 </html>
