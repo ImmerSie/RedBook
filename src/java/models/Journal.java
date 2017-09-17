@@ -96,6 +96,15 @@ public class Journal {
     public ArrayList<Entry> getEntries() {
         return entries;
     }
+    
+    public Entry getEntry(int entryID){
+        for(Entry e : this.getEntries()){
+            if(e.getEntryID() == entryID){
+                return e;
+            }
+        }
+        return null;
+    }
 
     public void setEntries(ArrayList<Entry> entries) {
         this.entries = entries;

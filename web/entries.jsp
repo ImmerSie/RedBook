@@ -23,14 +23,14 @@
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
-        <h1>Entries</h1>
-        <h2><%= user.getName() %></h2>
-        <h3>Journal <%= journal.getTitle() %></h3>
+        <h1><%= journal.getTitle()%></h1>
+        <h2><%= journal.getDescription()%></h2>
+        <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
         <h3>Entries</h3>
         <%
             if(journal.getEntries().size() > 0){
                 for(Entry e : journal.getEntries()){
-                    %><p>Entry <%= e.getTitle()%></p><%
+        %><p id="<%= e.getEntryID() %>" onClick="entryClick(this, <%=e.getEntryID()%>)">Entry <%= e.getTitle()%></p><%
                 }
             }
             else{
@@ -38,5 +38,13 @@
             }
             %>
             <a href="createEntry.jsp">Create new entry</a>
+            <a href="journals.jsp">Return to Journals</a>
     </body>
 </html>
+
+<script type="text/javascript">
+    function entryClick(elmnt, entryID){
+       elmnt.style.color = 'red';
+       window.location = "../redbook/viewEntry.jsp?id="+entryID;
+   }
+</script>
