@@ -30,7 +30,9 @@
                 <p>&nbsp;</p>
                  <p>&nbsp;</p>
                  <p>&nbsp;</p>
-                 
+                 <div id="background">
+                      <img src="background.png" class="stretch" alt="" />
+                 </div>
                 <div class="main-login main-center">
                     <form class="form-horizontal" action="newUser.jsp" method="post">
                         <div class="form-group">
@@ -39,7 +41,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 
-                                    <input class="form-control" type="text" name="name" placeholder="Enter your Name">
+                                    <input class="form-control" type="text" name="name" placeholder="Enter your Name" required>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +52,7 @@
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input class="form-control" type="email" name="email" placeholder="Enter your Email"/>
+                                    <input class="form-control" type="email" name="email" placeholder="Enter your Email" required/>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +62,7 @@
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input class="form-control" type="password" name="password"placeholder="Enter your Password" />
+                                    <input class="form-control" type="password" name="password"placeholder="Enter your Password" required/>
                                 </div>
                             </div>
                         </div>
@@ -76,5 +78,6 @@
                 </div>
             </div>
         </div>
+
     </body>
 </html>

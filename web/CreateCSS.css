@@ -18,9 +18,18 @@ and open the template in the editor.
 
 body, html{
     height: 100%;
-    background-repeat: no-repeat;
-    background-color: #93163A;
+    
     font-family: 'Oxygen', sans-serif;
+    
+}
+
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
 }
 
 .main{
@@ -100,3 +109,4 @@ input::-webkit-input-placeholder {
     border-radius: 5px; 
 
 }
+
