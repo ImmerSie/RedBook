@@ -95,12 +95,12 @@ public class Journal {
         this.journalID = journalID;
     }
 
-    public ArrayList<Entry> getEntries() {
-        return entries.getEntrys();
+    public Entries getEntries() {
+        return entries;
     }
     
     public Entry getEntry(int entryID){
-        for(Entry e : this.getEntries()){
+        for(Entry e : this.getEntries().getEntries()){
             if(e.getEntryID() == entryID){
                 return e;
             }
@@ -113,6 +113,6 @@ public class Journal {
     }
      
     public void addEntry(Entry entry){
-        entries.getEntrys().add(entry);
+        entries.getEntries().add(entry);
     }
 }

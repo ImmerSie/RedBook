@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="models.Entries"%>
 <%@page import="java.util.Date"%>
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
@@ -34,6 +35,8 @@
            if(parameter != null){
                Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
                session.setAttribute("journal", journal);
+               Entries journalEntries = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+               journal.setEntries(journalEntries);
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
@@ -52,12 +55,12 @@
                 Date dateModified = new Date();
                 Entry entry = new Entry(userID, journalID, entryID, title, content, "visible", dateModified);
                 journal.addEntry(entry);
-                entryApp.updateXML(journal, filePath);
+                entryApp.updateXML(journal.getEntries(), filePath);
             }
-            if(journal.getEntries().size() > 0)
+            if(journal.getEntries().getEntries().size() > 0)
             { %>
                 <table>
-                    <% for(Entry e : journal.getEntries()){ %>
+                    <% for(Entry e : journal.getEntries().getEntries()){ %>
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
                         <td><%= e.getTitle() %></td>
                         <td><%= e.getContentSnippet()%></td>

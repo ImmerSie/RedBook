@@ -22,7 +22,7 @@ public class Entries implements Serializable{
     @XmlElement(name="entry")
     private ArrayList<Entry> entryList = new ArrayList<Entry>();
 
-    public ArrayList<Entry> getEntrys() {
+    public ArrayList<Entry> getEntries() {
         return entryList;
     }
 
