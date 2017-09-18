@@ -20,11 +20,10 @@ ul li:first-child{
 
 li a {
     display: block;
-    color: black;
+    color: #494949;
     text-align: center;
-    padding: 14px 16px;
+    padding: 15px 15px 15px 15px;
     margin-top: 10%;
-    margin-right: 5px;
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: bold;
@@ -34,19 +33,19 @@ li a {
     width:100px;
 }
 
+li {
+    display: inline;
+    float: right;
+    padding: 5px;
+}
+
 .logo{
     margin-top:10px;
     margin-left: 5px;
-   
     height: 50px;
     width: 160px;
     display: inline;
     float: left;
-}
-
-li {
-    display: inline;
-    float: right;
 }
 
 #titleName{
@@ -76,8 +75,10 @@ body{
     top:50%;
     left:25%;
     position:absolute;
-    
-    
+    ont-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: bold;
+   
 }
 
 
@@ -104,4 +105,7 @@ body{
     font-size: 18px;
     padding-left: 25px;
     width:80%;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: normal;
 }

@@ -9,16 +9,16 @@ and open the template in the editor.
     width: 160px;
 }
 
-h1 {
-    font-size: 30px; 
-    font-style: bold;
-    text-align: center;
-    color: white;
+.icon{
+    height: 10%;
+    weight: 10%;
 }
 
-#Navigation{
-    width: 100%;
-    position: fixed;
+.backButton{
+    margin-align: left;
+    height: 10%;
+    weight: 10%;
+    padding-left: 10%;
 }
 
 body{
@@ -30,22 +30,24 @@ body{
     color: #93163A;
     height:100%;
     width:100%;
-   font-family: sans-serif;
 }
 
 table {background-color: white;
        padding-top: 100px;
-       padding-right: 50px;
+       padding-right: 70px;
        padding-bottom: 100px;
-       padding-left: 50px;
+       padding-left: 70px;
        margin-top: 20px;
        text-align:center; 
        font-family: 'Helvetica Neue';
        font-style: normal;
        font-weight: normal;
+       font-size: 10px;
+       text-decoration: underline;
        color: #93163A;
        margin-left:auto; 
        margin-right:auto; 
+       border-radius: 20px;
 }
 
 #background {
