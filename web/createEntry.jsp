@@ -44,22 +44,24 @@
         </p>
 
         <form action="entries.jsp" method="post">
-            <table>
-                <tr>
-                    <td id="date"> Insert date here </td>
-                    <td id="X"><a href="entries.jsp"> X </a></td>
-                <tr></tr>
-                <td><h2> Entry Title: </h2></td>
-                <tr></tr>
-                    <td><input type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Save" id="saveBtn"></td>
-                </tr>
-            </table>
+            <div class="table">
+                <table>
+                    <tr>
+                        <td id="date"> Insert date here </td>
+                        <td id="X"><a href="entries.jsp"> X </a></td>
+                    <tr></tr>
+                    <td><h2> Entry Title: </h2></td>
+                    <tr></tr>
+                        <td><input type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Save" id="saveBtn"></td>
+                    </tr>
+                </table>
+            </div>
         </form>
         <a href="entries.jsp">Return to Entries</a>
     </body>

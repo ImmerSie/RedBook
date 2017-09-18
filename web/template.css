@@ -9,11 +9,13 @@ and open the template in the editor.
 */
 
 .logo{
+    margin-top: 2px;
     height: 30px;
     width: 140px;
 }
 
 .icon{
+    margin-top: 3px;
     height: 10%;
     weight: 10%;
 }
@@ -102,7 +104,7 @@ nav[role="side"] li a:hover{
 
 /* END SIDE NAVIGATION */
 
-table {background-color: white;
+.table {background-color: white;
        padding-top: 10px;
        padding-right: 50px;
        padding-bottom: 30px;
@@ -115,7 +117,19 @@ table {background-color: white;
        color: black;
        margin-top: 0px;
        margin-left: 300px; 
-       margin-right: auto; 
+       margin-right: 150px; 
+}
+
+#journalAddTable{
+    background-color: transparent;
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 120px;
+    margin-left: 500px;
+    margin-right: auto;
+    font-size: 20px;
 }
 
 body{
