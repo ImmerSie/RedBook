@@ -53,7 +53,7 @@
 <script type="text/javascript">
    function journalClick(elmnt, journalID){
        elmnt.style.color = 'red';
-       window.location = "../redbook/entries.jsp?id="+journalID;
+       window.location = "../RedBook/entries.jsp?id="+journalID;
    }
    
     //$(document).ready(function(){  });
