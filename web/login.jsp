@@ -8,12 +8,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="authenticateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
     </head>
     <body>
-        <h1>Login</h1>
-        <form action="journals.jsp" method="post">
+        <img src="WhtLogo.png" class="logo" alt="Logo">
+            <h1>Login</h1>
+            <form action="journals.jsp" method="post">
             <table>
                 <tr>
                     <td>Email: </td>

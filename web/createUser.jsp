@@ -8,12 +8,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="authenticateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <title>Create User Account</title>
     </head>
+    
     <body>
-        <h1>Create User</h1>
-        <form action="newUser.jsp" method="post">
+        <img src="WhtLogo.png" class="logo" alt="Logo">
+            <h1>Create User</h1>
+            <form action="newUser.jsp" method="post">
             <table>
                 <tr>
                     <td>Name: </td>
@@ -33,5 +37,9 @@
                 </tr>
             </table>
         </form>
+            
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="" />
+        </div>
     </body>
 </html>
