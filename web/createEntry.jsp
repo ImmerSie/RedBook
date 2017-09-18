@@ -13,7 +13,15 @@
         <title>Create Entry</title>
     </head>
     <body>
-<<<<<<< HEAD
+        <nav role="side">
+            <ul>
+                <p></p>
+                <li><a href="entries.jsp"> Dashboard </a></li>
+                <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
+            </ul>
+        </nav> 
+        
         <nav role="main">
             <div id= "topNav">
             <ul>
@@ -27,13 +35,6 @@
             </div>
         </nav>
         
-        <nav role="side">
-            <ul>
-                <li><a href="entries.jsp"> Dashboard </a></li>
-                <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
-            </ul>
-        </nav>        
         <h1></h1>  
         
         <p>
@@ -42,29 +43,21 @@
             <a/>        
         </p>
 
-        <form action="newEntry.jsp" method="post">
-=======
-        <h1>Create Entry</h1>
         <form action="entries.jsp" method="post">
->>>>>>> EntryInit
             <table>
                 <tr>
-                    <td> Insert date here </td>
+                    <td id="date"> Insert date here </td>
+                    <td id="X"><a href="entries.jsp"> X </a></td>
                 <tr></tr>
                 <td><h2> Entry Title: </h2></td>
                 <tr></tr>
                     <td><input type="text" name="title"></td>
                 </tr>
                 <tr>
-<<<<<<< HEAD
-                    <td><input type="text" name="content" placeholder="Begin typing here..." id="entryContent"></td>
-=======
-                    <td>Content </td>
-                    <td><textarea name="content" rows="5"></textarea></td>
->>>>>>> EntryInit
+                    <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Create Entry"></td>
+                    <td><input type="submit" value="Save" id="saveBtn"></td>
                 </tr>
             </table>
         </form>

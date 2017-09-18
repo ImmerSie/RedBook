@@ -104,18 +104,18 @@ nav[role="side"] li a:hover{
 
 table {background-color: white;
        padding-top: 10px;
-       padding-right: 100px;
-       padding-bottom: 80px;
-       padding-left: 100px;
-       margin-top: 20px;
-       text-align:center; 
+       padding-right: 50px;
+       padding-bottom: 30px;
+       padding-left: 50px;
+       text-align: center; 
        font-family: 'Helvetica Neue';
        font-style: normal;
        font-weight: normal;
        font-size: 20px;
        color: black;
-       margin-left:auto; 
-       margin-right:auto; 
+       margin-top: 0px;
+       margin-left: 300px; 
+       margin-right: auto; 
 }
 
 body{
@@ -135,13 +135,53 @@ h1{
 
 h2{
     text-align: center;
-    padding-top: 30px 0px 0px 0px;
+    padding-top: 0px 0px 0px 0px;
+    font-size: 25px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
 
 }
 
 #entryContent{
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
+}
+
+#date{
+    text-align: left; 
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+#X{
+    text-align: right; 
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#X a:link{
+    text-decoration: none;
+}
+
+#X a:hover{
+    color: #93163A;
+    font-weight: 700;
+}
+
+#saveBtn{
+    text-align: center; 
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    margin-align: right;
 }
 
 .backButton{
