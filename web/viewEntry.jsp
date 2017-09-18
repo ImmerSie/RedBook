@@ -11,24 +11,71 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Entry</title>
+        <title>Entry</title>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script>
+            $(function(){
+               $("$viewDialog").dialog(); 
+            });
+        </script>
     </head>
     <body>
-        <h1>View Entry</h1>
-        <% Journal journal = (Journal) session.getAttribute("journal");
-           String parameter = request.getParameter("id");
-           if(parameter != null){
-               Entry entry = journal.getEntry(Integer.parseInt(parameter));
-               session.setAttribute("entry", entry);
-           }
-           Entry entry = (Entry) session.getAttribute("entry");
-        %>
-        <p>Title: <%= entry.getTitle()%></p>
-        <p>Content: <%= entry.getContent()%></p>
-        <p>Flag: <%= entry.getFlag()%></p>
-        <p>Date Created: <%= entry.getDateCreated()%></p>
-        <p>Date Modified: <%= entry.getDateModified()%></p>
-  
-        </br><a href="entries.jsp">Return to Entries</a>
+        <div id="viewDialog" title="Entry">
+            <%  String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
+            <jsp:useBean id="entryApp" class="controllers.EntryController" scope="application">
+                <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
+            </jsp:useBean>
+            <% Journal journal = (Journal) session.getAttribute("journal");
+                String parameter = request.getParameter("id");
+                if(parameter != null){
+                    Entry entry = journal.getEntry(Integer.parseInt(parameter));
+                    session.setAttribute("entry", entry);
+                }
+                Entry entry = (Entry) session.getAttribute("entry");
+            if(request.getParameter("mode") != null)
+            { %>
+                <h1>Edit Entry</h1>
+                <form action="viewEntry.jsp" method="POST">
+                    <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
+                    <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
+                    <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
+                    <p>Date Created: <%= entry.getDateCreated()%></p>
+                    <p>Date Modified: <%= entry.getDateModified()%></p>
+                    <input type="submit" value="Save Entry" name="Save Entry">
+                    <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                    <input type="hidden" name="modified" value="modified" id="modified">
+                </form>
+            <% }
+            else
+            { 
+                if(request.getParameter("modified") != null){
+                    String title = request.getParameter("entryTitle");
+                    String content = request.getParameter("entryContent");
+                    String flag = request.getParameter("entryFlag");
+
+                    Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, flag, entry.getDateCreated());
+                    entry.addToHistory(newEntry);
+                    entryApp.saveEntries();  
+                } %>
+                <h1>View Entry</h1>
+
+                <p>Title: <%= entry.getTitle()%></p>
+                <p>Content: <%= entry.getContent()%></p>
+                <p>Flag: <%= entry.getFlag()%></p>
+                <p>Date Created: <%= entry.getDateCreated()%></p>
+                <p>Date Modified: <%= entry.getDateModified()%></p>  
+                <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
+            <% } %>
+            </br><a href="entries.jsp">Return to Entries</a>
+        </div>
     </body>
 </html>
+
+<script type="text/javascript">
+    function editMode(elmnt, entryID){
+       elmnt.style.color = 'red';
+       var currentURL = window.location.href;
+       window.location = currentURL + "&mode=edit";
+   }
+</script>

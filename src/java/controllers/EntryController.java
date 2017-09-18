@@ -13,6 +13,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import models.Entries;
+import models.Entry;
 import models.Journal;
 
 /**
@@ -21,36 +23,37 @@ import models.Journal;
  */
 public class EntryController implements Serializable{
     private String filePath;
-    private Journal journal;
-
+    //private Journal journal;
+    private Entries entries;
+    
     public EntryController() {
     }
 
-    public EntryController(String filePath, Journal journal) {
+    public EntryController(String filePath, Entries entries) {
         super();
         this.filePath = filePath;
-        this.journal = journal;
+        this.entries = entries;
     }
     
     public void setFilePath(String filePath) throws Exception{
         this.filePath = filePath;
         
-        JAXBContext jc = JAXBContext.newInstance(Journal.class);
+        JAXBContext jc = JAXBContext.newInstance(Entries.class);
         Unmarshaller u = jc.createUnmarshaller();
         
         FileInputStream fin = new FileInputStream(filePath);
-        journal = (Journal) u.unmarshal(fin);
+        entries = (Entries) u.unmarshal(fin);
         fin.close();
     }
     
-    public void updateXML(Journal journal, String filePath) throws Exception{
-        this.journal = journal;
+    public void updateXML(Entries entries, String filePath) throws Exception{
+        this.entries = entries;
         this.filePath = filePath;
-        JAXBContext jc = JAXBContext.newInstance(Journal.class);
+        JAXBContext jc = JAXBContext.newInstance(Entries.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         FileOutputStream fout = new FileOutputStream(filePath);
-        m.marshal(journal, fout);
+        m.marshal(entries, fout);
         fout.close();
     }
     
@@ -59,13 +62,13 @@ public class EntryController implements Serializable{
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         FileOutputStream fout = new FileOutputStream(filePath);
-        m.marshal(journal, fout);
+        m.marshal(entries, fout);
         fout.close();
     }
     
     public int getNewEntryID(){
-        if(journal.getEntries().size() > 0){
-            int finalID = journal.getEntries().get(journal.getEntries().size() - 1).getEntryID();
+        if(entries.getEntries().size() > 0){
+            int finalID = entries.getEntries().get(entries.getEntries().size() - 1).getEntryID();
             return finalID + 1;
         }
         else{
@@ -73,11 +76,21 @@ public class EntryController implements Serializable{
         }
     }
     
-    public Journal getJournal(){
-        return journal;
+    public Entries getEntries(){
+        return entries;
     }
     
-    public void setJournal(Journal journal){
-        this.journal = journal;
+    public Entries getEntriesForJournal(int userID, int journalID){
+        Entries journalEntries = new Entries();
+        for(Entry e : entries.getEntries()){
+            if(e.getUserID() == userID && e.getJournalID() == journalID){
+                journalEntries.addEntry(e);
+            }
+        }
+        return journalEntries;
+    }
+    
+    public void setEntries(Entries entries){
+        this.entries = entries;
     }
 }

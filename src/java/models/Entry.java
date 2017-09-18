@@ -35,6 +35,7 @@ public class Entry {
     @XmlElement
     private Date dateModified;
     
+    @XmlElement(name="comment")
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private ArrayList<Entry> history = new ArrayList<Entry>();
 
@@ -78,6 +79,16 @@ public class Entry {
 
     public String getContent() {
         return content;
+    }
+    
+    public String getContentSnippet(){
+        if(content.length() > 103){
+            String snippet = content.substring(0, 100);
+            return snippet + "...";
+        }
+        else{
+            return content;
+        }
     }
 
     public void setContent(String content) {

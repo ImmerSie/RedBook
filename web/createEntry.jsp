@@ -13,6 +13,7 @@
         <title>Create Entry</title>
     </head>
     <body>
+<<<<<<< HEAD
         <nav role="main">
             <div id= "topNav">
             <ul>
@@ -42,6 +43,10 @@
         </p>
 
         <form action="newEntry.jsp" method="post">
+=======
+        <h1>Create Entry</h1>
+        <form action="entries.jsp" method="post">
+>>>>>>> EntryInit
             <table>
                 <tr>
                     <td> Insert date here </td>
@@ -51,12 +56,18 @@
                     <td><input type="text" name="title"></td>
                 </tr>
                 <tr>
+<<<<<<< HEAD
                     <td><input type="text" name="content" placeholder="Begin typing here..." id="entryContent"></td>
+=======
+                    <td>Content </td>
+                    <td><textarea name="content" rows="5"></textarea></td>
+>>>>>>> EntryInit
                 </tr>
                 <tr>
                     <td><input type="submit" value="Create Entry"></td>
                 </tr>
             </table>
         </form>
+        <a href="entries.jsp">Return to Entries</a>
     </body>
 </html>

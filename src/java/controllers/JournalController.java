@@ -13,6 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import models.Journal;
 import models.User;
 
 /**
@@ -71,6 +72,15 @@ public class JournalController implements Serializable{
         else{
             return 1;
         }
+    }
+    
+    public Journal getJournalFromID(int journalID){
+        for(Journal j : user.getJournals()){
+            if(j.getJournalID() == journalID){
+                return j;
+            }
+        }
+        return null;
     }
     
     public User getUser(){

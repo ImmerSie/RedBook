@@ -29,7 +29,8 @@ public class User implements Serializable{
     private String password;
     @XmlElement
     private Date dateCreated;
-
+    
+    @XmlElement(name="journal")
     private ArrayList<Journal> journals = new ArrayList<Journal>();
     public User() {
     }
