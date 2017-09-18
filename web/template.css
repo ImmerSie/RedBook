@@ -1,0 +1,152 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/09/2017, 4:43:21 PM
+    Author     : SophiePapworth
+*/
+
+.logo{
+    height: 30px;
+    width: 140px;
+}
+
+.icon{
+    height: 10%;
+    weight: 10%;
+}
+
+/* START TOP NAVIGATION */
+nav[role="main"] ul{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+nav[role="main"] li a {
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #93163A;
+    width:100px;
+}
+
+nav[role="main"] li {
+    display: inline;
+    float: right;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 0px;
+}
+
+#usersName{
+    padding-top: 8px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 100;
+    color: #93163A
+}
+
+#topNav{
+    width: 100%;
+    position: fixed;
+}
+
+/* END TOP NAVIGATION */
+
+/* START SIDE NAVIGATION */
+nav[role="side"] ul{
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    background-color: #C5B5B9;
+    width: 180px;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    left: 0;
+}
+
+nav[role="side"] li a{
+    display: block;
+    color: white;
+    padding: 10px 16px 16px 16px;
+    text-decoration: none;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: lighter;
+    text-decoration: none;
+}
+
+nav[role="side"] li a:hover{
+    color: #93163A;
+    font-weight: bold;
+}
+
+/* END SIDE NAVIGATION */
+
+table {background-color: white;
+       padding-top: 10px;
+       padding-right: 100px;
+       padding-bottom: 80px;
+       padding-left: 100px;
+       margin-top: 20px;
+       text-align:center; 
+       font-family: 'Helvetica Neue';
+       font-style: normal;
+       font-weight: normal;
+       font-size: 20px;
+       color: black;
+       margin-left:auto; 
+       margin-right:auto; 
+}
+
+body{
+    background-color: lightblue;
+    margin: 5px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: bold;
+    color: black;
+    height:100%;
+    width:100%;
+}
+
+h1{
+    padding-top: 30px;
+}
+
+h2{
+    text-align: center;
+    padding-top: 30px 0px 0px 0px;
+
+}
+
+#entryContent{
+    width: 500px;
+    height: 500px;
+}
+
+.backButton{
+    margin-align: left;
+    height: 10%;
+    weight: 10%;
+    padding-left: 17%;
+}
