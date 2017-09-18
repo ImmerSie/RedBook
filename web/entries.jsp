@@ -82,6 +82,6 @@
 <script type="text/javascript">
     function entryClick(elmnt, entryID){
        elmnt.style.color = 'red';
-       window.location = "../redbook/viewEntry.jsp?id="+entryID;
+       window.location = "../RedBook/viewEntry.jsp?id="+entryID;
    }
 </script>
