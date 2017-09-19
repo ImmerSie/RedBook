@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
     </head>
@@ -41,6 +42,29 @@
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
+        
+        <nav role="side">
+            <ul>
+                <p></p>
+                <li><a href="entries.jsp"> Dashboard </a></li>
+                <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
+            </ul>
+        </nav> 
+        
+        <nav role="main">
+            <div id= "topNav">
+            <ul>
+                <li><a href="index.html"> Logout </a></li>
+                <li><img src="userIcon.png" class="icon"></li>
+                <li><div id="usersName"> <%= user.getName() %> </div></li>
+                <a href="index.html">
+                    <img src="RedLogo.png" class="logo" alt="Logo">
+                </a>
+            </ul>
+            </div>
+        </nav>
+        
         <h1><%= journal.getTitle()%></h1>
         <h2><%= journal.getDescription()%></h2>
         <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
@@ -85,7 +109,7 @@
 <script type="text/javascript">
     function entryClick(elmnt, entryID){
        elmnt.style.color = 'red';
-       window.location = "../redbook/viewEntry.jsp?id="+entryID;
+       window.location = "../RedBook/viewEntry.jsp?id="+entryID;
    }
    function hide(){
        var currentURL = window.location.href;

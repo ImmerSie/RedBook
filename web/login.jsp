@@ -8,24 +8,47 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
     </head>
     <body>
-        <h1>Login</h1>
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="TEST" />
+        </div>
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logo" alt="Logo">
+        </a>
+        <p>
+            <a href="index.html">
+                <img src="backArrow.png" class="backButton" alt="Go Back">
+            <a/>
+        </p>
+        
         <form action="journals.jsp" method="post">
             <table>
                 <tr>
-                    <td>Email: </td>
+                    <td>
+                        <img src="emailIcon.png" class="Icon" alt="Icon">
+                    </td>
                     <td><input type="email" name="email"></td>
                 </tr>
                 <tr>
-                    <td>Password: </td>
+                    <td>
+                        <img src="passwordIcon.png" class="Icon" alt="Icon">
+                    </td>
                     <td><input type="password" name="password"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Login"></td>
+                    <td colspan="2">
+                        <input type="submit" class="Button" value="Login">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="createUser.jsp"> Not a user yet? Click here.</a>
+                    </td>
                 </tr>
             </table>
         </form>

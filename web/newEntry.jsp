@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>New Entry</title>
     </head>
@@ -36,7 +37,7 @@
             journal.addEntry(entry);
             entries.updateXML(journal, filePath);
 
-            %><p>New entry  <%= title %> created!</p>
+            %><p>New entry  <%= title %> successfully created.</p>
              <p>Click <a href="entries.jsp">here</a> to return to the journals page.</p>
     </body>
 </html>
