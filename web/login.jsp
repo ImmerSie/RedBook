@@ -41,7 +41,9 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2"><input type="submit" value="Login"></td>
+                    <td colspan="2">
+                        <input type="submit" class="Button" value="Login">
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">

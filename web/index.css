@@ -109,3 +109,17 @@ body{
     font-style: normal;
     font-weight: normal;
 }
+
+.Button {
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    background-color: #93163A; 
+    padding:5px 15px; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+
+}
