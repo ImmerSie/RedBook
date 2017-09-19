@@ -34,10 +34,19 @@
                 users.addUser(user);
                 accounts.updateXML(users, filePath);
                 
-                %><p>Welcome, <%= name %>!</p>
+                %>
+                <p>Welcome, <%= name %>!</p>
                 <p>Click <a href="createJournal.html">here</a> to create your first journal.</p>
             <% } else { %>
             <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
             <% } %>
+            
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
+        
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
     </body>
 </html>

@@ -13,8 +13,7 @@
         <title>Logout</title>
         <%session.invalidate();%>
     </head>
-    <body>
-        
+    <body>      
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
@@ -30,10 +29,8 @@
                     <p></p>
             </table>
         </div>
-        
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
-        </div> 
-        
+        </div>  
     </body>
 </html>
