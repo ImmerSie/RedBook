@@ -14,6 +14,9 @@
     </head>
     
     <body>
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="TEST" />
+        </div>
         <a href="index.html">
             <img src="WhtLogo.png" class="logo" alt="Logo">
         </a>

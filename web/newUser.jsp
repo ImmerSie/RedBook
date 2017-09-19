@@ -10,8 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome!</title>
+        <title> Welcome!</title>
     </head>
     <body>
         <% 
@@ -34,7 +35,7 @@
                 accounts.updateXML(users, filePath);
                 
                 %><p>Welcome, <%= name %>!</p>
-                <p>Click <a href="index.html">here</a> to return to the landing page.</p>
+                <p>Click <a href="createJournal.html">here</a> to create your first journal.</p>
             <% } else { %>
             <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
             <% } %>

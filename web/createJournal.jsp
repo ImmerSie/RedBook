@@ -13,6 +13,9 @@
         <title>Create Journal</title>
     </head>
     <body>
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="TEST" />
+        </div>        
         <nav role="side">
             <ul>
                 <p></p>

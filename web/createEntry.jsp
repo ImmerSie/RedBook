@@ -63,6 +63,11 @@
                 </table>
             </div>
         </form>
+        
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div>
+        
         <a href="entries.jsp">Return to Entries</a>
     </body>
 </html>

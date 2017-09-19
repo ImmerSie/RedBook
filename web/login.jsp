@@ -44,7 +44,9 @@
                     <td colspan="2"><input type="submit" value="Login"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"> Forgotten your password? Click here. </td>
+                    <td colspan="2">
+                        <a href="createUser.jsp"> Not a user yet? Click here.</a>
+                    </td>
                 </tr>
             </table>
         </form>
