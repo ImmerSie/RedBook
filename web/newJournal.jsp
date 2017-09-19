@@ -23,6 +23,7 @@
         </jsp:useBean>
         <%
             User user = (User) session.getAttribute("user");
+            journals.setUser(user);
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             int userID = user.getUserID();
@@ -31,7 +32,7 @@
             Date dateModified = new Date();
             Journal journal = new Journal(userID, journalID, dateCreated, dateModified, title, description);
             user.addJournal(journal);
-            journals.updateXML(user, filePath);
+            journals.saveJournals();
 
             %><p>New journal  <%= title %> created!</p>
              <p>Click <a href="journals.jsp">here</a> to return to the journals page.</p>

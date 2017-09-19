@@ -31,6 +31,7 @@
             <jsp:setProperty name="userApp" property="filePath" value="<%=filePath3%>"/>
         </jsp:useBean>
         <% User user = (User) session.getAttribute("user");
+           journalApp.setUser(user);
            String parameter = request.getParameter("id");
            if(parameter != null){
                Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
@@ -44,6 +45,7 @@
         <h2><%= journal.getDescription()%></h2>
         <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
         <h3>Entries</h3>
+        <button type="button" onClick="hide()">Hide</button>
         <%
             if(request.getParameter("title") != null){
                 String title = request.getParameter("title");
@@ -79,9 +81,20 @@
     </body>
 </html>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script type="text/javascript">
     function entryClick(elmnt, entryID){
        elmnt.style.color = 'red';
        window.location = "../redbook/viewEntry.jsp?id="+entryID;
+   }
+   function hide(){
+       var currentURL = window.location.href;
+        if(currentURL.indexOf('viewEntry') > 0){
+            currentURL = currentURL.substring(0, currentURL.indexOf('viewEntry'));
+            currentURL + "hideEntry.jsp";
+        }
+       $.get(currentURL);
+       //var eApp = "";
+        //eApp.hideEntry();
    }
 </script>

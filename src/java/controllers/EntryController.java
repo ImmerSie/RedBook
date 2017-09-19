@@ -93,4 +93,9 @@ public class EntryController implements Serializable{
     public void setEntries(Entries entries){
         this.entries = entries;
     }
+    
+    public void hideEntry(){
+        int x = 5 + 9;
+        System.out.println("Hidden");
+    }
 }

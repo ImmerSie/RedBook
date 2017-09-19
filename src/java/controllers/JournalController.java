@@ -55,7 +55,7 @@ public class JournalController implements Serializable{
         fout.close();
     }
     
-    public void saveUsers() throws JAXBException, IOException{
+    public void saveJournals() throws JAXBException, IOException{
         JAXBContext jc = JAXBContext.newInstance(User.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
