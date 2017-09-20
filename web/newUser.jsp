@@ -15,6 +15,11 @@
         <title> Welcome!</title>
     </head>
     <body>
+        
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
+        
         <%
             String filePath = application.getRealPath("WEB-INF/users.xml");
         %>
@@ -42,10 +47,6 @@
         <% } else { %>
         <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
         <% }%>
-
-        <a href="index.html">
-            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
-        </a>
 
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />

@@ -106,7 +106,7 @@
                         <tr></tr>
                         <td id="entryTitle" colspan="5"> <%= entry.getTitle()%></td>
                         <tr></tr>
-                        <td id="entryContent" colspan="5"><%= entry.getContent()%></td>
+                        <td id="content" colspan="5"><%= entry.getContent()%></td>
 
                     <% } %>
                     </tr>

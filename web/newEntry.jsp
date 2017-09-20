@@ -17,6 +17,11 @@
         <title>New Entry</title>
     </head>
     <body>
+        
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
+        
         <% 
             String filePath = application.getRealPath("WEB-INF/entries.xml");
         %>
@@ -39,7 +44,9 @@
 
             %><p>New entry  <%= title %> successfully created.</p>
              <p>Click <a href="entries.jsp">here</a> to return to the journals page.</p>
-    
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
     
     </body>
 </html>

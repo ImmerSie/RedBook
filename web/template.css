@@ -150,15 +150,54 @@ nav[role="side"] li a:hover{
     font-size: 14px;
 }
 
+#noEntries{
+    background-color: transparent;
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 80px;
+    margin-left: 500px;
+    margin-right: auto;
+    font-size: 20px;
+    border: none;
+}
+
+.entryList{
+    background-color: #93163A;
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 80px;
+    margin-left: 180px;
+    margin-right: auto;
+    font-size: 14px;
+    border-bottom: 0.2px solid white;
+    border-top: 1px solid white;
+}
+
+.entryList tr{
+    padding-left: 10px;
+    height: 30px;
+}
+
+.entryList tr:hover{
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    font-weight: bold;
+}
+
 #entryTitle{
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: bold;
     text-decoration: underline;
     font-size: 20px;
+    padding-top: 10px;
 }
 
-#entryContent{
+#content{
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 200;
@@ -191,8 +230,30 @@ h2{
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 500;
-
 }
+
+h3{
+    text-align: center;
+    padding-top: 0px 0px 0px 0px;
+    font-size: 18px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    color: white;
+}
+
+h4{
+    text-align: center;
+    padding-top: 0px 0px 0px 0px;
+    font-size: 10px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 200;
+    color: white;
+}
+
 
 #entryContent{
     width: 700px;
@@ -248,7 +309,6 @@ h2{
     color: white;
     font-weight: 700;
 }
-
 
 #saveBtn{
     text-align: center; 

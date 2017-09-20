@@ -66,11 +66,14 @@
         </nav>
         
             <h1><%= journal.getTitle()%></h1>
-            <h1><%= journal.getDescription()%></h1>
-        <div id="entriesTable">    
+            <h3><%= journal.getDescription()%></h3>
+            <h4>
+                <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
+            </h4>
+        <div style="overflow-x:auto;">
+            <div class="entryList">    
             <table>
-        <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
-        <button type="button" onClick="hide()">Hide</button>
+        
         <%
             if(request.getParameter("title") != null){
                 String title = request.getParameter("title");
@@ -92,18 +95,22 @@
                         <td><%= e.getTitle() %></td>
                         <td><%= e.getContentSnippet()%></td>
                         <td><%= e.getFlag() %></td>
+                        <td>    
+                            <button type="button" onClick="hide()">Hide</button>
+                        </td>
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>
+                        </table>
+                    </div>
+                </div>
                     <% } %>
             
             <% }
             else{
-                %><p>You have no entries</p><%
+            %><div id="noEntries">You have no entries</div><%
             }
             %>
-                </table>
-            </div>
-    
+
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div>        

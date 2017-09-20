@@ -84,8 +84,6 @@
             <img src="DBackground.png" class="stretch" alt="background" />
         </div> 
             
-
-        
         <h1></h1>  
         
     </body>

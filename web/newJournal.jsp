@@ -16,6 +16,11 @@
         <title>Journal Created</title>
     </head>
     <body>
+        
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
+        
         <%
             String filePath = application.getRealPath("WEB-INF/journals.xml");
         %>
@@ -40,5 +45,9 @@
         <%  String redirectURL = "journals.jsp";
             response.sendRedirect(redirectURL);
         %> 
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
+    
     </body>
 </html>
