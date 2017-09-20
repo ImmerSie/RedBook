@@ -60,13 +60,9 @@
         </nav>
             
             <h1>Journals</h1>
-                
-                    <div id="addJournal">    
-                        <a href="createJournal.jsp"> + </a>
-                    </div>
-            
-                <div id="journalAddTable">
-                    <tr>
+                <div id="addJournal">    
+                    <a href="createJournal.jsp"> + </a>
+                </div>
                 <p id="journalIcon">
                 <% if(user.getJournals().size() > 0){
                     for(Journal j : user.getJournals()){
@@ -77,8 +73,7 @@
             } else { %>
                 </p><p>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</p>
             <% } %>
-                    </tr>
-                </div>
+            
             
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />

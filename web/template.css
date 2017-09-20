@@ -138,34 +138,6 @@ nav[role="side"] li a:hover{
     font-size: 20px;
 }
 
-#entriesTable{
-    background-color: transparent;
-    color: white;
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: 500;
-    margin-top: 80px;
-    margin-left: 300px;
-    margin-right: auto;
-    font-size: 14px;
-}
-
-#entryTitle{
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 20px;
-}
-
-#entryContent{
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 15px;
-    text-align: left;
-}
-
 body{
     background-color: lightblue;
     margin: 5px;

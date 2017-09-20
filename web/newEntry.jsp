@@ -39,7 +39,5 @@
 
             %><p>New entry  <%= title %> successfully created.</p>
              <p>Click <a href="entries.jsp">here</a> to return to the journals page.</p>
-    
-    
     </body>
 </html>
