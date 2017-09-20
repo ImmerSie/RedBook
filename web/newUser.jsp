@@ -36,7 +36,7 @@
                 
                 %>
                 <p>Welcome, <%= name %>!</p>
-                <p>Click <a href="createJournal.html">here</a> to create your first journal.</p>
+                <p>Click <a href="journals.jsp">here</a> to create your first journal.</p>
             <% } else { %>
             <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
             <% } %>
