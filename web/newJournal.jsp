@@ -16,7 +16,7 @@
         <title>Journal Created</title>
     </head>
     <body>
-        <% 
+        <%
             String filePath = application.getRealPath("WEB-INF/journals.xml");
         %>
         <jsp:useBean id="journals" class="controllers.JournalController" scope="application">
@@ -35,7 +35,10 @@
             user.addJournal(journal);
             journals.saveJournals();
 
-            %><p>New journal  <%= title %> created!</p>
-             <p>Click <a href="journals.jsp">here</a> to return to the journals page.</p>
+        %><p>New journal  <%= title%> created!</p>
+        <p>Redirecting you to the journals page... </p>
+        <%  String redirectURL = "journals.jsp";
+            response.sendRedirect(redirectURL);
+        %> 
     </body>
 </html>

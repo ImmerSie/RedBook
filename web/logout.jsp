@@ -17,16 +17,19 @@
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
-        
+
         <div id="journalAddTable">
             <table>
                 <tr>
                     <td> You have successfully logged out. </td>
                 </tr>
                 <tr>
-                    <td> Click <a href="index.html">here</a> to return to the homepage. </td>
+                    <td>Redirecting you to the home page now...</td>
+                    <%  String redirectURL = "index.html";
+                        response.sendRedirect(redirectURL);
+                    %> 
                 </tr>
-                    <p></p>
+                <p></p>
             </table>
         </div>
         <div id="background">
