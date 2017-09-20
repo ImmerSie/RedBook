@@ -65,10 +65,11 @@
             </div>
         </nav>
         
-        <h1><%= journal.getTitle()%></h1>
-        <h2><%= journal.getDescription()%></h2>
+            <h1><%= journal.getTitle()%></h1>
+            <h1><%= journal.getDescription()%></h1>
+        <div id="entriesTable">    
+            <table>
         <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
-        <h3>Entries</h3>
         <button type="button" onClick="hide()">Hide</button>
         <%
             if(request.getParameter("title") != null){
@@ -85,7 +86,7 @@
             }
             if(journal.getEntries().getEntries().size() > 0)
             { %>
-                <table>
+
                     <% for(Entry e : journal.getEntries().getEntries()){ %>
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
                         <td><%= e.getTitle() %></td>
@@ -94,14 +95,19 @@
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>
                     <% } %>
-                </table>              
+            
             <% }
             else{
                 %><p>You have no entries</p><%
             }
             %>
-            <a href="createEntry.jsp">Create new entry</a>
-            <a href="journals.jsp">Return to Journals</a>
+                </table>
+            </div>
+    
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div>        
+    
     </body>
 </html>
 
