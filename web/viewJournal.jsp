@@ -48,11 +48,9 @@
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
-        <p>Title: <%= journal.getTitle()%></p>
-        <p>Content: <%= journal.getDescription() %>></p>
-        <p>Date Created: <%= journal.getDateCreated()%></p>
-        <p>Date Modified: <%= journal.getLastModified()%></p>
-  
-        </br><a href="entries.jsp">Return to Entries</a>
-    </body>
+        <p><h3>Title: <%= journal.getTitle()%></h3></p>
+        <p><h3>Content: <%= journal.getDescription() %></h3></p>
+        <p><h4>Date Created: <%= journal.getDateCreated()%></h4></p>
+        <p><h4>Date Modified: <%= journal.getLastModified()%></h4></p>
+      </body>
 </html>

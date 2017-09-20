@@ -107,7 +107,7 @@
             
             <% }
             else{
-            %><div id="noEntries">You have no entries</div><%
+            %><p><h3>You have no entries</h3></p><%
             }
             %>
 

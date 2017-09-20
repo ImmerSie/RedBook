@@ -40,8 +40,8 @@
             user.addJournal(journal);
             journals.saveJournals();
 
-        %><p>New journal  <%= title%> created!</p>
-        <p>Redirecting you to the journals page... </p>
+    %><p><h3>New journal  <%= title%> created!</h3></p>
+    <p><h3>Redirecting you to the journals page... </h3></p>
         <%  String redirectURL = "journals.jsp";
             response.sendRedirect(redirectURL);
         %> 

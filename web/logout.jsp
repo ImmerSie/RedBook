@@ -17,7 +17,6 @@
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
-
         <div id="journalAddTable">
             <table>
                 <tr>

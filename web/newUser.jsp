@@ -45,7 +45,7 @@
             response.sendRedirect(redirectURL);
         %> 
         <% } else { %>
-        <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
+        <p><h3>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
         <% }%>
 
         <div id="background">
