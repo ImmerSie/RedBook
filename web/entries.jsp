@@ -98,10 +98,6 @@
                             <td>
                                 <button type="button" onClick="viewHidden()"> See Hidden </button>
                             </td>
-                            <td>
-                                <button type="button" onClick="hideEntries()"> Hide </button>
-                            </td>
-
                         </tr>
                     </table>
                 </div>     
@@ -111,7 +107,7 @@
                     <table>
                     <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
-                        <td></td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getTitle() %></td>
                         <td></td><td></td>
                         <td> insert date of creation or last modification </td>

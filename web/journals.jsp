@@ -87,7 +87,7 @@
                     }
                 }
             } else { %>
-                </p><p>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</p>
+            </p><p><h3>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
             <% } %>
             
             
