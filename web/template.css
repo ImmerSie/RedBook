@@ -153,6 +153,23 @@ nav[role="side"] li a:hover{
     font-size: 20px;
 }
 
+.journalTitle{
+    position:absolute;
+      top:36%;
+      left:0; 
+      right:0;
+      text-align:center;
+      strong {display:block;}
+    
+}
+
+.journal{
+    margin:auto;
+    height:auto;
+    text-align: center;
+    position:relative;
+}
+
 #entriesTable{
     background-color: transparent;
     color: white;
