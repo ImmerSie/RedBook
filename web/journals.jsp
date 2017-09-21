@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%-- 
     Document   : journals
     Created on : 09/09/2017, 10:13:34 PM
@@ -48,7 +49,7 @@
                 userApp.saveUsers();
                 
             %>
-        <nav role="side">
+            <nav role="side">
             <ul>
                 <p></p>
                 <li><a href="entries.jsp"> Dashboard </a></li>
@@ -71,9 +72,13 @@
         </nav>
             
             <h1>Journals</h1>
-                <div id="addJournal">    
-                    <a href="createJournal.jsp"> + </a>
-                </div>
+                
+            <div id="addJournal">    
+                <a href="createJournal.jsp"> + </a>
+            </div>
+            
+            <div id="journalAddTable">
+                <tr>
                 <p id="journalIcon">
                 <% if(user.getJournals().size() > 0){
                     for(Journal j : user.getJournals()){

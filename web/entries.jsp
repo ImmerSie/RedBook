@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <link href="template.css" rel="stylesheet" type="text/css"/> -->
+        <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -67,9 +67,11 @@
         </nav>
         
         <h1><%= journal.getTitle()%></h1>
-        <h2><%= journal.getDescription()%></h2>
-        <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
-        <h3>Entries</h3>
+        <h3><%= journal.getDescription()%></h3>
+        <h4>
+            <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
+        </h4>
+
         <button type="button" onClick="makeRequest()">Hide</button>
         <%
             if(request.getParameter("title") != null){
@@ -86,24 +88,54 @@
             }
             if(entryApp.getNonHiddenEntries().getEntries().size() > 0)
             { %>
-                <table>
-                    <% for(Entry e : entryApp.getNonHiddenEntries().getEntries()){ %>
-                    <tr>
-                        <td><input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>"></td>
-                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getTitle() %></td>
-                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getContentSnippet()%></td>
+                <% for(Entry e : journal.getEntries().getEntries()){ %>
+                    <div id="entriesMenu"
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="createEntry.jsp" id="X"> + <a/> 
+                                </td>
+                                
+                                <td>
+                                    <button type="button" onClick="viewHidden()"> See Hidden </button>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>     
+                    
+                    <div style="overflow-x:auto;">
+                    <div class="entryList">    
+                    <table>
+                    <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
+                        <td></td>
+                        <td><%= e.getTitle() %></td>
+                        <td></td><td></td>
+                        <td> insert date of creation or last modification </td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getFlag() %></td>
+                         <td></td><td></td><td>
+                        <td>    
+                            <button type="button" onClick="hide()">Hide</button>
+                        </td>
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>
+                        </table>
+                    </div>
+                </div>
                     <% } %>
-                </table>              
+            
             <% }
             else{
-                %><p>You have no entries</p><%
+            %><p><h3>You have no entries.</h3></p>
+                <p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p><%
             }
             %>
-            <a href="createEntry.jsp">Create new entry</a>
-            <a href="journals.jsp">Return to Journals</a>
+
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div>        
+    
     </body>
 </html>
 

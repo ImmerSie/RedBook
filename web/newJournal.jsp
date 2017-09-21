@@ -16,7 +16,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Journal Created</title>
     </head>
-    <body>
+    <body>        
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
         <%
             if(session.getAttribute("journalApp") == null){
                 String filePath2 = application.getRealPath("WEB-INF/journals.xml"); %>
@@ -38,7 +41,14 @@
             user.addJournal(journal);
             journalApp.saveJournals();
 
-            %><p>New journal  <%= title %> created!</p>
-             <p>Click <a href="journals.jsp">here</a> to return to the journals page.</p>
+    %><p><h3>New journal  <%= title%> created!</h3></p>
+    <p><h3>Redirecting you to the journals page... </h3></p>
+        <%  String redirectURL = "journals.jsp";
+            response.sendRedirect(redirectURL);
+        %> 
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
+    
     </body>
 </html>

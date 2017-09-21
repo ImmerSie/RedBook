@@ -17,7 +17,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>New Entry</title>
     </head>
-    <body>
+    <body>  
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
         <%
             EntryController entryApp = (EntryController) session.getAttribute("entryApp");
             User user = (User) session.getAttribute("user");
@@ -33,7 +36,11 @@
             journal.addEntry(entry);
             entryApp.saveEntries();
 
-            %><p>New entry  <%= title %> successfully created.</p>
-             <p>Click <a href="entries.jsp">here</a> to return to the journals page.</p>
+        %><p><h3>New entry  <%= title %> successfully created.</h3></p>
+            <p><h3>Click <a href="entries.jsp">here</a> to return to the journals page.</h3></p>
+        
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div>
     </body>
 </html>

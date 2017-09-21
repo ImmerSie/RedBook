@@ -15,7 +15,12 @@
         <title> Welcome!</title>
     </head>
     <body>
-        <% 
+        
+        <a href="index.html">
+            <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
+        </a>
+        
+        <%
             String filePath = application.getRealPath("WEB-INF/users.xml");
         %>
         <jsp:useBean id="userApp" class="controllers.LoginController" scope="application">
@@ -24,8 +29,8 @@
         <%
             Users users = userApp.getUsers();
             String email = request.getParameter("email");
-            
-            if(users.getUser(email) == null){
+
+            if (users.getUser(email) == null) {
                 String name = request.getParameter("name");
                 String password = request.getParameter("password");
                 int userID = userApp.getNewUserID();
@@ -33,11 +38,17 @@
                 session.setAttribute("user", user);
                 users.addUser(user);
                 userApp.updateXML(users, filePath);
-                
-                %><p>Welcome, <%= name %>!</p>
-                <p>Click <a href="createJournal.jsp">here</a> to create your first journal.</p>
+                %>
+                <p>Redirecting you to the journals page... </p>
+                <%  String redirectURL = "journals.jsp";
+                    response.sendRedirect(redirectURL);
+                %> 
             <% } else { %>
-            <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
-            <% } %>
+            <p><h3>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
+            <% }%>
+
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
     </body>
 </html>
