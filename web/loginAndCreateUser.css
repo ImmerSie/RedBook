@@ -24,7 +24,7 @@ and open the template in the editor.
 body{
     background-color: #93163A;
     margin: 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     color: #93163A;
@@ -39,7 +39,7 @@ table {background-color: white;
        padding-left: 70px;
        margin-top: 20px;
        text-align:center; 
-       font-family: 'Helvetica Neue';
+       font-family: 'Open Sans';
        font-style: normal;
        font-weight: normal;
        font-size: 10px;
