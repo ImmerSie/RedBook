@@ -88,25 +88,28 @@
             }
             if(entryApp.getNonHiddenEntries().getEntries().size() > 0)
             { %>
-                <% for(Entry e : journal.getEntries().getEntries()){ %>
-                    <div id="entriesMenu"
-                        <table>
-                            <tr>
-                                <td>
-                                    <a href="createEntry.jsp" id="X"> + <a/> 
-                                </td>
-                                
-                                <td>
-                                    <button type="button" onClick="viewHidden()"> See Hidden </button>
-                                </td>
+                <div id="entriesMenu"
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="createEntry.jsp" id="X"> + <a/> 
+                            </td>
 
-                            </tr>
-                        </table>
-                    </div>     
-                    
+                            <td>
+                                <button type="button" onClick="viewHidden()"> See Hidden </button>
+                            </td>
+                            <td>
+                                <button type="button" onClick="hideEntries()"> Hide </button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>     
+                <% for(Entry e : entryApp.getNonHiddenEntries().getEntries()){ %> 
                     <div style="overflow-x:auto;">
                     <div class="entryList">    
                     <table>
+                    <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
                         <td></td>
                         <td><%= e.getTitle() %></td>

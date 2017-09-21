@@ -27,8 +27,8 @@ function getXMLHttpRequest() {
 	return xmlHttpReq;
 }
 
-function makeRequest() {
-        var jsonEntries = []
+function hideEntries() {
+        var jsonEntries = [];
         var checkedEntries = document.getElementsByClassName("entryCheck");
         for(var i = 0; i < checkedEntries.length; i++){
             if(checkedEntries.item(i).checked === true){
