@@ -43,6 +43,7 @@ public class EntryController implements Serializable{
         
         FileInputStream fin = new FileInputStream(filePath);
         entries = (Entries) u.unmarshal(fin);
+        int x = 5 + 9;
         fin.close();
     }
     
@@ -90,12 +91,47 @@ public class EntryController implements Serializable{
         return journalEntries;
     }
     
+    public Entry getEntryByID(int entryID){
+        Entries journalEntries = new Entries();
+        for(Entry e : entries.getEntries()){
+            if(e.getEntryID() == entryID){
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public Entries getNonHiddenEntries(int userID, int journalID){
+        Entries journalEntries = new Entries();
+        if(entries.getEntries().size() > 0){
+            for(Entry e : entries.getEntries()){
+                if(e.getUserID() == userID && e.getJournalID() == journalID && e.getFlag().equals("visible")){
+                    journalEntries.addEntry(e);
+                }
+            }
+        }        
+        return journalEntries;
+    }
+    
+    public Entries getNonHiddenEntries(){
+        Entries journalEntries = new Entries();
+        if(entries.getEntries().size() > 0){
+            for(Entry e : entries.getEntries()){
+                if(e.getFlag().equals("visible")){
+                    journalEntries.addEntry(e);
+                }
+            }
+        }
+        return journalEntries;
+    }
+    
     public void setEntries(Entries entries){
         this.entries = entries;
     }
-    
-    public void hideEntry(){
-        int x = 5 + 9;
+        
+    public void hideEntry(int entryID){
+        Entry entry = getEntryByID(entryID);
+        entry.setFlag("hidden");
         System.out.println("Hidden");
     }
 }

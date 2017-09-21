@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="controllers.JournalController"%>
 <%@page import="models.User"
         import="models.Journal"
         import="java.util.Date"%>
@@ -16,24 +17,26 @@
         <title>Journal Created</title>
     </head>
     <body>
-        <% 
-            String filePath = application.getRealPath("WEB-INF/journals.xml");
-        %>
-        <jsp:useBean id="journals" class="controllers.JournalController" scope="application">
-            <jsp:setProperty name="journals" property="filePath" value="<%=filePath%>"/>
-        </jsp:useBean>
         <%
+            if(session.getAttribute("journalApp") == null){
+                String filePath2 = application.getRealPath("WEB-INF/journals.xml"); %>
+                <jsp:useBean id="journalApp" class="controllers.JournalController" scope="session">
+                    <jsp:setProperty name="journalApp" property="filePath" value="<%=filePath2%>"/>
+                </jsp:useBean>
+            <% }
+            
+            JournalController journalApp = (JournalController) session.getAttribute("journalApp");
             User user = (User) session.getAttribute("user");
-            journals.setUser(user);
+            journalApp.setUser(user);
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             int userID = user.getUserID();
-            int journalID = journals.getNewJournalID();
+            int journalID = journalApp.getNewJournalID();
             Date dateCreated = new Date();
             Date dateModified = new Date();
             Journal journal = new Journal(userID, journalID, dateCreated, dateModified, title, description);
             user.addJournal(journal);
-            journals.saveJournals();
+            journalApp.saveJournals();
 
             %><p>New journal  <%= title %> created!</p>
              <p>Click <a href="journals.jsp">here</a> to return to the journals page.</p>

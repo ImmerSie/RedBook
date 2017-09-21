@@ -4,6 +4,9 @@
     Author     : Max
 --%>
 
+<%@page import="controllers.EntryController"%>
+<%@page import="controllers.JournalController"%>
+<%@page import="controllers.LoginController"%>
 <%@page import="models.Entries"%>
 <%@page import="java.util.Date"%>
 <%@page import="models.Entry"%>
@@ -13,32 +16,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <!-- <link href="template.css" rel="stylesheet" type="text/css"/> -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script type="text/javascript" language="javascript" src="entries.js"></script>
     </head>
     <body>
-        <%  String filePath = application.getRealPath("WEB-INF/entries.xml");
-            String filePath2 = application.getRealPath("WEB-INF/journals.xml");
-            String filePath3 = application.getRealPath("Web-INF/users.xml");
-        %>
-        <jsp:useBean id="entryApp" class="controllers.EntryController" scope="application">
-            <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
-        </jsp:useBean>
-        <jsp:useBean id="journalApp" class="controllers.JournalController" scope="application">
-            <jsp:setProperty name="journalApp" property="filePath" value="<%=filePath2%>"/>
-        </jsp:useBean>
-        <jsp:useBean id="userApp" class="controllers.LoginController" scope="application">
-            <jsp:setProperty name="userApp" property="filePath" value="<%=filePath3%>"/>
-        </jsp:useBean>
-        <% User user = (User) session.getAttribute("user");
+        <%  if(session.getAttribute("entryApp") == null){
+            String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
+                <jsp:useBean id="entryApp" class="controllers.EntryController" scope="session">
+                    <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
+                </jsp:useBean>
+        <% }
+            EntryController entryApp = (EntryController) session.getAttribute("entryApp");
+        
+           LoginController userApp = (LoginController) application.getAttribute("userApp");
+           JournalController journalApp = (JournalController) session.getAttribute("journalApp");
+           User user = (User) session.getAttribute("user");
            journalApp.setUser(user);
            String parameter = request.getParameter("id");
            if(parameter != null){
                Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
                session.setAttribute("journal", journal);
-               Entries journalEntries = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
-               journal.setEntries(journalEntries);
+               entryApp.setEntries(journal.getEntries());
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
@@ -69,7 +70,7 @@
         <h2><%= journal.getDescription()%></h2>
         <p>Created: <%= journal.getDateCreated()%>   Modified: <%= journal.getLastModified() %></p>
         <h3>Entries</h3>
-        <button type="button" onClick="hide()">Hide</button>
+        <button type="button" onClick="makeRequest()">Hide</button>
         <%
             if(request.getParameter("title") != null){
                 String title = request.getParameter("title");
@@ -81,15 +82,16 @@
                 Date dateModified = new Date();
                 Entry entry = new Entry(userID, journalID, entryID, title, content, "visible", dateModified);
                 journal.addEntry(entry);
-                entryApp.updateXML(journal.getEntries(), filePath);
+                entryApp.saveEntries();
             }
-            if(journal.getEntries().getEntries().size() > 0)
+            if(entryApp.getNonHiddenEntries().getEntries().size() > 0)
             { %>
                 <table>
-                    <% for(Entry e : journal.getEntries().getEntries()){ %>
-                    <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
-                        <td><%= e.getTitle() %></td>
-                        <td><%= e.getContentSnippet()%></td>
+                    <% for(Entry e : entryApp.getNonHiddenEntries().getEntries()){ %>
+                    <tr>
+                        <td><input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>"></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getTitle() %></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getContentSnippet()%></td>
                         <td><%= e.getFlag() %></td>
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>
@@ -105,20 +107,14 @@
     </body>
 </html>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script type="text/javascript">
     function entryClick(elmnt, entryID){
        elmnt.style.color = 'red';
-       window.location = "../RedBook/viewEntry.jsp?id="+entryID;
-   }
-   function hide(){
        var currentURL = window.location.href;
-        if(currentURL.indexOf('viewEntry') > 0){
-            currentURL = currentURL.substring(0, currentURL.indexOf('viewEntry'));
-            currentURL + "hideEntry.jsp";
+        if(currentURL.indexOf('entries') > 0){
+            currentURL = currentURL.substring(0, currentURL.indexOf('entries'));
+            currentURL = currentURL + "viewEntry.jsp";
         }
-       $.get(currentURL);
-       //var eApp = "";
-        //eApp.hideEntry();
+       window.location = currentURL + "?id=" + entryID;
    }
 </script>

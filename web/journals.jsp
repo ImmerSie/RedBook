@@ -4,6 +4,8 @@
     Author     : Max
 --%>
 
+<%@page import="controllers.JournalController"%>
+<%@page import="controllers.LoginController"%>
 <%@page import="models.Journal"%>
 <%@page import="models.User"%>
 <%@page import="models.Users"%>
@@ -17,13 +19,22 @@
     </head>
     <body>
         <% 
-            String filePath = application.getRealPath("WEB-INF/users.xml");
-        %>
-        <jsp:useBean id="accounts" class="controllers.LoginController" scope="application">
-            <jsp:setProperty name="accounts" property="filePath" value="<%=filePath%>"/>
-        </jsp:useBean>
-        <%
-            Users users = accounts.getUsers();
+            if(application.getAttribute("userApp") == null){
+                String filePath = application.getRealPath("WEB-INF/users.xml"); %>
+                <jsp:useBean id="userApp" class="controllers.LoginController" scope="application">
+                    <jsp:setProperty name="userApp" property="filePath" value="<%=filePath%>"/>
+                </jsp:useBean>
+            <% }
+            LoginController userApp = (LoginController) application.getAttribute("userApp");
+            if(session.getAttribute("journalApp") == null){
+                String filePath2 = application.getRealPath("WEB-INF/journals.xml"); %>
+                <jsp:useBean id="journalApp" class="controllers.JournalController" scope="session">
+                    <jsp:setProperty name="journalApp" property="filePath" value="<%=filePath2%>"/>
+                </jsp:useBean>
+            <% }
+            JournalController journalApp = (JournalController) session.getAttribute("journalApp");
+
+            Users users = userApp.getUsers();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User user = (User) session.getAttribute("user");
@@ -32,9 +43,9 @@
             }
             if(user != null){
                 String name = request.getParameter("name");
-                int userID = accounts.getNewUserID();
+                int userID = userApp.getNewUserID();
                 session.setAttribute("user", user);
-                accounts.updateXML(users, filePath);
+                userApp.saveUsers();
                 
             %>
         <nav role="side">
@@ -88,15 +99,12 @@
 
 <script type="text/javascript">
    function journalClick(elmnt, journalID){
-       elmnt.style.color = 'red';
-       window.location = "../RedBook/entries.jsp?id="+journalID;
-   }
-   
-    //$(document).ready(function(){  });
-    /** window.onload = function(){
-        function journalClick(Journal j){
-            window.location = "../entries.jsp";
-            console.log("hit click");
+        elmnt.style.color = 'red';
+        var currentURL = window.location.href;
+        if(currentURL.indexOf('journal') > 0){
+            currentURL = currentURL.substring(0, currentURL.indexOf('journal'));
+            currentURL = currentURL + "entries.jsp";
         }
-    };**/
+       window.location = currentURL + "?id="+journalID;
+   }
 </script>

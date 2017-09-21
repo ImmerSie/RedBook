@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="entriesHis")
 public class Entry {
     @XmlElement
     private int entryID;
@@ -37,7 +38,8 @@ public class Entry {
     
     @XmlElement(name="comment")
     private ArrayList<Comment> comments = new ArrayList<Comment>();
-    private ArrayList<Entry> history = new ArrayList<Entry>();
+    @XmlElement(name="entryHis")
+    private ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
 
     public Entry() {
     }
@@ -139,11 +141,11 @@ public class Entry {
         comments.add(comment);
     }
 
-    public ArrayList<Entry> getHistory() {
+    public ArrayList<EntryHistory> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<Entry> history) {
+    public void setHistory(ArrayList<EntryHistory> history) {
         this.history = history;
     }
     
@@ -153,9 +155,8 @@ public class Entry {
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
-        Entry oldEntry = new Entry(this.userID, this.journalID, newID, this.title, this.content, this.flag, this.dateCreated);
+        EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, new Date());
         oldEntry.setComments(this.comments);
-        oldEntry.setHistory(this.history);
         
         history.add(oldEntry);
         this.title = entry.getTitle();
@@ -163,6 +164,6 @@ public class Entry {
         this.flag = entry.getFlag();
         this.dateCreated = entry.getDateCreated();
         this.dateModified = new Date();
-        this.comments = new ArrayList<Comment>();
+        this.comments = entry.getComments();
     }
 }

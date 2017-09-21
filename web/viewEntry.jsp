@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,17 +23,21 @@
     </head>
     <body>
         <div id="viewDialog" title="Entry">
-            <%  String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
-            <jsp:useBean id="entryApp" class="controllers.EntryController" scope="application">
-                <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
+            <%  String filePath = application.getRealPath("WEB-INF/entriesHistory.xml");
+            %>
+            <jsp:useBean id="entryHisApp" class="controllers.EntryHistoryController" scope="session">
+                <jsp:setProperty name="entryHisApp" property="filePath" value="<%=filePath%>"/>
             </jsp:useBean>
-            <% Journal journal = (Journal) session.getAttribute("journal");
+            <% 
+                EntryController entryApp = (EntryController) session.getAttribute("entryApp");
+                Journal journal = (Journal) session.getAttribute("journal");
                 String parameter = request.getParameter("id");
                 if(parameter != null){
                     Entry entry = journal.getEntry(Integer.parseInt(parameter));
                     session.setAttribute("entry", entry);
                 }
                 Entry entry = (Entry) session.getAttribute("entry");
+                entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
                 <h1>Edit Entry</h1>
@@ -57,6 +62,7 @@
                     Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, flag, entry.getDateCreated());
                     entry.addToHistory(newEntry);
                     entryApp.saveEntries();  
+                    entryHisApp.saveEntryHistory();
                 } %>
                 <h1>View Entry</h1>
 
