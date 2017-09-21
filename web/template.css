@@ -126,13 +126,28 @@ nav[role="side"] li a:hover{
        margin-right: 150px; 
 }
 
+#entriesMenu{
+    background-color: #494949;
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-left: 180px;
+    margin-right: auto;
+    font-size: 16px;
+    padding-bottom: 0px;
+    height: 45px;
+}
+
+
 #journalAddTable{
     background-color: transparent;
     color: white;
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 500;
-    margin-top: 120px;
+    margin-top: 50px;
     margin-left: 500px;
     margin-right: auto;
     font-size: 20px;
@@ -169,7 +184,7 @@ nav[role="side"] li a:hover{
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 500;
-    margin-top: 80px;
+    margin-top: 0px;
     margin-left: 180px;
     margin-right: auto;
     font-size: 14px;
@@ -183,8 +198,8 @@ nav[role="side"] li a:hover{
 }
 
 .entryList tr:hover{
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
     font-weight: bold;
 }
 
@@ -283,6 +298,11 @@ h4{
 
 #X a:hover{
     color: #93163A;
+    font-weight: 700;
+}
+
+#X a:visited{
+    color: white;
     font-weight: 700;
 }
 

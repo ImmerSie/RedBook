@@ -70,9 +70,7 @@
             <h4>
                 <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
             </h4>
-        <div style="overflow-x:auto;">
-            <div class="entryList">    
-            <table>
+
         
         <%
             if(request.getParameter("title") != null){
@@ -91,10 +89,32 @@
             { %>
 
                     <% for(Entry e : journal.getEntries().getEntries()){ %>
+                    <div id="entriesMenu"
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="createEntry.jsp" id="X"> + <a/> 
+                                </td>
+                                
+                                <td>
+                                    <button type="button" onClick="viewHidden()"> See Hidden </button>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>     
+                    
+                    <div style="overflow-x:auto;">
+                    <div class="entryList">    
+                    <table>
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
+                        <td></td>
                         <td><%= e.getTitle() %></td>
-                        <td><%= e.getContentSnippet()%></td>
+                        <td></td><td></td>
+                        <td> insert date of creation or last modification </td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getFlag() %></td>
+                         <td></td><td></td><td>
                         <td>    
                             <button type="button" onClick="hide()">Hide</button>
                         </td>
@@ -107,7 +127,8 @@
             
             <% }
             else{
-            %><p><h3>You have no entries</h3></p><%
+            %><p><h3>You have no entries.</h3></p>
+                <p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p><%
             }
             %>
 
