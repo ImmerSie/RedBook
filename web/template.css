@@ -47,7 +47,7 @@ nav[role="main"] li a {
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     text-decoration: none;
@@ -66,7 +66,7 @@ nav[role="main"] li {
 
 #usersName{
     padding-top: 8px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     color: #93163A
@@ -97,7 +97,7 @@ nav[role="side"] li a{
     color: white;
     padding: 10px 16px 16px 16px;
     text-decoration: none;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: lighter;
     text-decoration: none;
@@ -116,7 +116,7 @@ nav[role="side"] li a:hover{
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
-       font-family: 'Helvetica Neue';
+       font-family: 'Open Sans';
        font-style: normal;
        font-weight: normal;
        font-size: 20px;
@@ -129,7 +129,7 @@ nav[role="side"] li a:hover{
 #entriesMenu{
     background-color: #494949;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 50px;
@@ -140,11 +140,10 @@ nav[role="side"] li a:hover{
     height: 45px;
 }
 
-
 #journalAddTable{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 50px;
@@ -173,7 +172,7 @@ nav[role="side"] li a:hover{
 #entriesTable{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 80px;
@@ -185,7 +184,7 @@ nav[role="side"] li a:hover{
 #noEntries{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 80px;
@@ -198,7 +197,7 @@ nav[role="side"] li a:hover{
 .entryList{
     background-color: #93163A;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 0px;
@@ -221,7 +220,7 @@ nav[role="side"] li a:hover{
 }
 
 #entryTitle{
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     text-decoration: underline;
@@ -230,7 +229,7 @@ nav[role="side"] li a:hover{
 }
 
 #content{
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 200;
     font-size: 15px;
@@ -240,7 +239,7 @@ nav[role="side"] li a:hover{
 body{
     background-color: lightblue;
     margin: 5px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     color: black;
@@ -259,7 +258,7 @@ h2{
     padding-top: 0px 0px 0px 0px;
     font-size: 25px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
 }
@@ -269,7 +268,7 @@ h3{
     padding-top: 0px 0px 0px 0px;
     font-size: 18px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
     color: white;
@@ -280,7 +279,7 @@ h4{
     padding-top: 0px 0px 0px 0px;
     font-size: 10px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 200;
     color: white;
@@ -298,7 +297,7 @@ h4{
 
 #date{
     text-align: left; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     font-size: 15px;
@@ -306,7 +305,7 @@ h4{
 
 #X{
     text-align: right; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     font-size: 20px;
@@ -330,7 +329,7 @@ h4{
 #addJournal{
     text-align: right;
     padding-right: 200px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
@@ -353,7 +352,7 @@ h4{
 
 #saveBtn{
     text-align: center; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     font-size: 20px;
