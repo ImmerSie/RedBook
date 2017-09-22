@@ -53,7 +53,6 @@
             <nav role="side">
             <ul>
                 <p></p>
-                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
@@ -63,7 +62,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
@@ -78,7 +77,7 @@
                 <a href="createJournal.jsp"> + </a>
             </div>
             
-            <div id="journalAddTable">
+            <div id="journalPosition">
                 <tr>
                 <p id="journalIcon">
                 <% if(user.getJournals().size() > 0){

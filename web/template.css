@@ -22,6 +22,12 @@ and open the template in the editor.
 
 .icon{
     margin-top: 3px;
+    height: 10px;
+    weight: 10px;
+}
+
+#icon{
+    margin-top: 3px;
     height: 10%;
     weight: 10%;
 }
@@ -148,6 +154,18 @@ nav[role="side"] li a:hover{
     font-weight: 500;
     margin-top: 50px;
     margin-left: 500px;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+#journalPosition{
+    background-color: transparent;
+    color: white;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-left: 50px;
     margin-right: auto;
     font-size: 20px;
 }
@@ -300,7 +318,7 @@ h4{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #X{
@@ -368,7 +386,6 @@ h4{
 
 #journalIcon{
     position: fixed;
-    padding-left: 200px;
     height: 100px;
     width: 75px;
     color: white;

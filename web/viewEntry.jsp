@@ -27,8 +27,8 @@
         <nav role="side">
             <ul>
                 <p></p>
-                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
@@ -76,14 +76,32 @@
             { %>
                 <h1>Edit Entry</h1>
                 <form action="viewEntry.jsp" method="POST">
-                    <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
-                    <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
-                    <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
-                    <p>Date Created: <%= entry.getDateCreated()%></p>
-                    <p>Date Modified: <%= entry.getDateModified()%></p>
-                    <input type="submit" value="Save Entry" name="Save Entry">
-                    <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                    <input type="hidden" name="modified" value="modified" id="modified">
+                <div class="table">
+                    <table>
+                    <tr>
+                    <tr>
+                        <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
+                        <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                        <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                    <tr></tr>
+                        <td id="entryTitle"> Entry Title: </td>
+                        <tr></tr>
+                        <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                    <tr></tr>
+                        <td><textarea name="entryContent" rows="5" id="entryContent"><%= entry.getContent()%></textarea></td>
+                    <tr></tr>
+                    <td>
+                        <input type="submit" value="Save Entry" name="Save Entry">
+                    </td>
+                    <td>
+                        <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                    </td>
+                    <td>
+                        <input type="hidden" name="modified" value="modified" id="modified">
+                    </td>
+                    </tr>
+                    </table>
+                </div>
                 </form>
             <% }
             else

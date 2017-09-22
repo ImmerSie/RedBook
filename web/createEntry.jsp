@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Entry</title>
@@ -16,8 +17,8 @@
         <nav role="side">
             <ul>
                 <p></p>
-                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
@@ -38,7 +39,7 @@
         <h1></h1>  
         
         <p>
-            <a href="entries.jsp">
+            <a href="journals.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             <a/>        
         </p>
