@@ -21,15 +21,17 @@ and open the template in the editor.
 }
 
 .icon{
+    display: block;
     margin-top: 3px;
     height: 10px;
-    weight: 10px;
+    width: 10px;
 }
 
 #icon{
+    display: block;
     margin-top: 3px;
     height: 10%;
-    weight: 10%;
+    width: 10%;
 }
 
 /* START TOP NAVIGATION */
