@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="models.User"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,7 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Journal</title>
+        <%User user = (User) session.getAttribute("user");%>
     </head>
     <body>
         <div id="background">
@@ -30,7 +32,7 @@
             <ul>
                 <li><a href="index.html"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
