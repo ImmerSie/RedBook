@@ -83,15 +83,16 @@
                         <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
                         <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
                         <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                        <td id="X"><a href="entries.jsp"> X </a></td>
                     <tr></tr>
                         <td id="entryTitle"> Entry Title: </td>
                         <tr></tr>
                         <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
                     <tr></tr>
-                        <td><textarea name="entryContent" rows="5" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        <td><textarea name="entryContent" rows="5" id="content"><%= entry.getContent()%></textarea></td>
                     <tr></tr>
                     <td>
-                        <input type="submit" value="Save Entry" name="Save Entry">
+                        <input id="saveBtn" type="submit" value="Save Entry" name="Save Entry">
                     </td>
                     <td>
                         <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
