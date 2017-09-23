@@ -5,7 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="models.User"%>
+<%@page import="models.User"
+        import="java.util.Date"
+        import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,7 +52,11 @@
             <div class="table">
                 <table>
                     <tr>
-                        <td id="date"> Insert date here </td>
+                        <%
+                            Date entryDate = new Date();
+                            SimpleDateFormat ft = new SimpleDateFormat("E - dd/MM/yyyy");
+                        %>
+                        <td id="date"> <%=ft.format(entryDate)%> </td>
                         <td id="X"><a href="entries.jsp"> X </a></td>
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>

@@ -14,6 +14,10 @@
         <title>Login</title>
     </head>
     <body>
+        <%
+            if(((HttpServletRequest) request).getSession().getAttribute("user") != null){
+            ((HttpServletResponse) response).sendRedirect("journals.jsp");
+        }%>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>
