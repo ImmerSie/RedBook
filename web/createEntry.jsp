@@ -57,7 +57,6 @@
                             SimpleDateFormat ft = new SimpleDateFormat("E - dd/MM/yyyy");
                         %>
                         <td id="date"> <%=ft.format(entryDate)%> </td>
-                        <td id="X"><a href="entries.jsp"> X </a></td>
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>
                     <tr></tr>
