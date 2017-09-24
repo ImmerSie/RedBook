@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -101,7 +103,7 @@ public class EntryController implements Serializable{
         return null;
     }
     
-    public Entries getNonHiddenEntries(int userID, int journalID){
+    /**public Entries getNonHiddenEntries(int userID, int journalID){
         Entries journalEntries = new Entries();
         if(entries.getEntries().size() > 0){
             for(Entry e : entries.getEntries()){
@@ -110,6 +112,28 @@ public class EntryController implements Serializable{
                 }
             }
         }        
+        return journalEntries;
+    }**/
+    
+    public Entries getAllEntries(){
+        Entries journalEntries = new Entries();
+        if(entries.getEntries().size() > 0){
+            for(Entry e : entries.getEntries()){
+                journalEntries.addEntry(e);
+            }
+        }
+        return journalEntries;
+    }
+    
+    public Entries getHiddenEntries(){
+        Entries journalEntries = new Entries();
+        if(entries.getEntries().size() > 0){
+            for(Entry e : entries.getEntries()){
+                if(e.getFlag().equals("hidden")){
+                    journalEntries.addEntry(e);
+                }
+            }
+        }
         return journalEntries;
     }
     
@@ -131,7 +155,23 @@ public class EntryController implements Serializable{
         
     public void hideEntry(int entryID){
         Entry entry = getEntryByID(entryID);
-        entry.setFlag("hidden");
-        System.out.println("Hidden");
+        if(entry.getFlag().equals("hidden")){
+            entry.setFlag("visible");
+        }
+        else if(entry.getFlag().equals("visible")){
+            entry.setFlag("hidden");
+        }
+    }
+    
+    public ArrayList<Entry> sortByTitle(ArrayList<Entry> e){
+        e.sort(Comparator.comparing(Entry::getTitleLowercase));
+        return e;
+    }
+    
+    public ArrayList<Entry> sortByTitleDesc(ArrayList<Entry> e){
+        e.sort(Comparator.comparing(Entry::getTitleLowercase, (s1, s2) -> {
+            return s2.compareTo(s1);
+        }));
+        return e;
     }
 }

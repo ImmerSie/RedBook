@@ -100,6 +100,10 @@ public class Entry {
     public String getTitle() {
         return title;
     }
+    
+    public String getTitleLowercase(){
+        return title.toLowerCase();
+    }
 
     public void setTitle(String title) {
         this.title = title;

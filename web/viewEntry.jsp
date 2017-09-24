@@ -37,7 +37,7 @@
             <ul>
                 <li><a href="index.html"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><div id="usersName"> <%= user.getName() %>  </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>

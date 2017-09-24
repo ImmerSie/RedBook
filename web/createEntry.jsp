@@ -4,6 +4,8 @@
     Author     : Max
 --%>
 
+<%@page import="models.User"%>
+<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +15,9 @@
         <title>Create Entry</title>
     </head>
     <body>
+        <%
+            User user = (User) session.getAttribute("user");
+            %>
         <nav role="side">
             <ul>
                 <p></p>
@@ -27,7 +32,7 @@
             <ul>
                 <li><a href="index.html"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><div id="usersName"><%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
@@ -47,7 +52,7 @@
             <div class="table">
                 <table>
                     <tr>
-                        <td id="date"> Insert date here </td>
+                        <td id="date"><%= new Date() %> </td>
                         <td id="X"><a href="entries.jsp"> X </a></td>
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>

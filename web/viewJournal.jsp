@@ -17,7 +17,10 @@
     <body>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
-        </div>        
+        </div>  
+        <%
+            User user = (User) session.getAttribute("user");
+            %>
         <nav role="side">
             <ul>
                 <p></p>
@@ -32,7 +35,7 @@
             <ul>
                 <li><a href="index.html"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
@@ -40,7 +43,7 @@
             </div>
         </nav>
         <h1>View Entry</h1>
-        <% User user = (User) session.getAttribute("user");
+        <% 
            String parameter = request.getParameter("id");
            if(parameter != null){
                Journal journal = user.getJournal(Integer.parseInt(parameter));

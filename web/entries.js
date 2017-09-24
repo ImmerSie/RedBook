@@ -4,6 +4,22 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function(){
+   var url = window.location.href;
+   if(url.indexOf("title") > 0){
+       document.getElementById("sorting").selectedIndex =  1;
+
+   }
+   else if(url.indexOf("titleDesc") > 0){
+        document.getElementById("sorting").selectedIndex =  2;
+
+   }
+   else if(url.indexOf("date") > 0){
+        document.getElementById("sorting").selectedIndex =  0;
+   }
+});
+
+
 function getXMLHttpRequest() {
 	var xmlHttpReq = false;
 	// to create XMLHttpRequest object in non-Microsoft browsers
