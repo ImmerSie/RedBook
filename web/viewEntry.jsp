@@ -77,17 +77,20 @@
                 entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
-                <h1>Edit Entry</h1>
-                <form action="viewEntry.jsp" method="POST">
-                    <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
-                    <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
-                    <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
-                    <p>Date Created: <%= entry.getDateCreated()%></p>
-                    <p>Date Modified: <%= entry.getDateModified()%></p>
-                    <input type="submit" value="Save Entry" name="Save Entry">
-                    <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                    <input type="hidden" name="modified" value="modified" id="modified">
-                </form>
+                <div class="table">
+                    <h1>Edit Entry</h1>
+                    <form action="viewEntry.jsp" method="POST">
+                        <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
+                        <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
+                        <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
+                        <p>Date Created: <%= entry.getDateCreated()%></p>
+                        <p>Date Modified: <%= entry.getDateModified()%></p>
+                        <input type="submit" value="Save Entry" name="Save Entry">
+                        <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                        <input type="hidden" name="modified" value="modified" id="modified">
+                    </form>
+                </div>
+                
             <% }
             else
             { 
@@ -121,6 +124,7 @@
                     <% } %>
                     </tr>
                     </table>
+                    
                 </div>
         </div>
             

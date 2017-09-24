@@ -5,15 +5,18 @@
  */
 package servlet;
 
+import com.google.gson.Gson;
 import controllers.EntryController;
 import java.io.BufferedReader;
 import static java.net.Proxy.Type.HTTP;
+import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Journal;
 import models.User;
+import models.Entry;
 
 public class HideEntryServlet extends HttpServlet {
 
@@ -22,7 +25,7 @@ public class HideEntryServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
-                ServletContext ctx = getServletContext(); 
+                //ServletContext ctx = getServletContext(); 
                 //EntryController entryApp = (EntryController) ctx.getAttribute("entryApp");
                 StringBuffer jb = new StringBuffer();
                 String line = null;
@@ -57,6 +60,14 @@ public class HideEntryServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
-		doPost(req, res);
+		//doPost(req, res);
+                EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
+                ArrayList<Entry> entries = entryApp.getAllEntries();
+                String json = new Gson().toJson(entries);
+                
+                res.setContentType("application/json");
+                res.setCharacterEncoding("UTF-8");
+                res.getWriter().write(json);
+                int x = 9 + 10;
 	}
 }

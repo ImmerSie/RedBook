@@ -40,8 +40,6 @@
            if(parameter != null){
                //Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
                Journal journal = user.getJournal(Integer.parseInt(parameter));
-               ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
-               journal.setEntries(e);
                session.setAttribute("journal", journal);
                entryApp.setJournal(journal);
            }
@@ -49,6 +47,8 @@
            //Journal journal = user.getJournal(parameter)entryApp.getJournal();
            //session.setAttribute("journal", journal);
            Journal journal = (Journal) session.getAttribute("journal");
+           ArrayList<Entry> journalEntries = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+           journal.setEntries(journalEntries);
         %>
         
         <nav role="side">
@@ -73,7 +73,7 @@
             </div>
         </nav>
         
-        <h1><%= journal.getTitle()%></h1>
+        <h1 id="theTitle"><%= journal.getTitle()%></h1>
         <h3><%= journal.getDescription()%></h3>
         <h4>
             <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
@@ -96,13 +96,13 @@
             
             String mode = request.getParameter("mode");
             if(mode == null || mode.equals("visible")){
-                entries = entryApp.getNonHiddenEntries().getEntries();
+                entries = entryApp.getNonHiddenEntries();
             }
             else if(mode.equals("hidden")){
-                entries = entryApp.getHiddenEntries().getEntries();
+                entries = entryApp.getHiddenEntries();
             }
             else{
-                entries = entryApp.getAllEntries().getEntries();
+                entries = entryApp.getAllEntries();
             }
             
             String sort = request.getParameter("sort");
@@ -153,8 +153,9 @@
                     <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
                         <td></td>
                         <td><%= e.getTitle() %></td>
-                        <td></td><td></td>
-                        <td> insert date of creation or last modification </td>
+                        <td></td><td><%= e.getContentSnippet() %></td>
+                        <td><p>Created: <%= e.getDateCreated() %> </p></td>
+                        <td><p>Modified: <%= e.getDateModified() %> </p></td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getFlag() %></td>
                          <td></td><td></td><td>

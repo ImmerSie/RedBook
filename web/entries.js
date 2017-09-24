@@ -69,7 +69,10 @@ function getReadyStateHandler(xmlHttpRequest) {
 	return function() {
 		if (xmlHttpRequest.readyState == 4) {
 			if (xmlHttpRequest.status == 200) {
-                                window.parent.location = window.parent.location.href;
+                            //$.get("hideEntryServlet.do", function(response){
+                              //  $("theTitle").text("get method run");
+                            //});
+                            window.parent.location = window.parent.location.href;
 			} else {
 				alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
 			}

@@ -170,4 +170,17 @@ public class Entry {
         this.dateModified = new Date();
         this.comments = entry.getComments();
     }
+    
+    public void replaceEntry(Entry e){
+        this.userID = e.getUserID();
+        this.entryID = e.getEntryID();
+        this.journalID = e.getJournalID();
+        this.title = e.getTitle();
+        this.content = e.getContent();
+        this.flag = e.getFlag();
+        this.dateCreated = e.getDateCreated();
+        this.dateModified = e.getDateModified();
+        this.comments = e.getComments();
+        this.history = e.getHistory();
+    }
 }
