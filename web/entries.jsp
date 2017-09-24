@@ -22,6 +22,10 @@
         <title>Entries</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
+        <%
+            if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
+            ((HttpServletResponse) response).sendRedirect("login.jsp");
+        }%>
     </head>
     <body>
         <%  if(session.getAttribute("entryApp") == null){
@@ -57,7 +61,7 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="index.html"> Logout </a></li>
+                <li><a href="logout.jsp"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
@@ -115,7 +119,7 @@
                         <td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getTitle() %></td>
                         <td></td><td></td>
-                        <td> insert date of creation or last modification </td>
+                        <td>Date Last Modified: <%= e.getDateModified()%> </td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         <td><%= e.getFlag() %></td>
                          <td></td><td></td><td>

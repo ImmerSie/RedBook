@@ -6,6 +6,7 @@
 
 <%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
+<%@page import="models.User"%>
 <%@page import="models.Journal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entry</title>
+        <%User user = (User) session.getAttribute("user");%>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>
@@ -36,9 +38,9 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="index.html"> Logout </a></li>
+                <li><a href="logout.jsp"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
