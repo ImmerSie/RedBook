@@ -37,7 +37,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> insert users name here </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
