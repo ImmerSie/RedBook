@@ -33,7 +33,7 @@ public class Journal {
     
     @XmlElement(name="entry")
     //private ArrayList<Entry> entries = new ArrayList<Entry>();
-    private Entries entries = new Entries();
+    private ArrayList<Entry> entries = new ArrayList<Entry>();
     
     public Journal() {
     }
@@ -95,12 +95,12 @@ public class Journal {
         this.journalID = journalID;
     }
 
-    public Entries getEntries() {
+    public ArrayList<Entry> getEntries() {
         return entries;
     }
     
     public Entry getEntry(int entryID){
-        for(Entry e : this.getEntries().getEntries()){
+        for(Entry e : this.getEntries()){
             if(e.getEntryID() == entryID){
                 return e;
             }
@@ -108,11 +108,11 @@ public class Journal {
         return null;
     }
 
-    public void setEntries(Entries entries) {
+    public void setEntries(ArrayList<Entry> entries) {
         this.entries = entries;
     }
      
     public void addEntry(Entry entry){
-        entries.getEntries().add(entry);
+        entries.add(entry);
     }
 }

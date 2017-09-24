@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="models.User"%>
 <%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
@@ -23,6 +24,9 @@
         </script>
     </head>
     <body>
+        <%
+            User user = (User) session.getAttribute("user");
+            %>
         <nav role="side">
             <ul>
                 <p></p>

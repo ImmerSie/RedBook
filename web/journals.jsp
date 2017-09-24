@@ -39,6 +39,8 @@
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User user = (User) session.getAttribute("user");
+            session.setAttribute("journal", null);
+            session.setAttribute("entryApp", null);
             if(user == null || (email != null && !(user.getEmail().equals(email)))){
                 user = users.login(email, password);
             }

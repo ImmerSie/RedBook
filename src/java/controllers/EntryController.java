@@ -25,53 +25,57 @@ import models.Journal;
  */
 public class EntryController implements Serializable{
     private String filePath;
+    private Journal oldJournal;
     //private Journal journal;
-    private Entries entries;
+    private Journal journal;
     
     public EntryController() {
     }
 
-    public EntryController(String filePath, Entries entries) {
+    public EntryController(String filePath, Journal journal) {
         super();
         this.filePath = filePath;
-        this.entries = entries;
+        this.journal = journal;
     }
     
     public void setFilePath(String filePath) throws Exception{
         this.filePath = filePath;
         
-        JAXBContext jc = JAXBContext.newInstance(Entries.class);
+        JAXBContext jc = JAXBContext.newInstance(Journal.class);
         Unmarshaller u = jc.createUnmarshaller();
         
         FileInputStream fin = new FileInputStream(filePath);
-        entries = (Entries) u.unmarshal(fin);
+        journal = (Journal) u.unmarshal(fin);
         int x = 5 + 9;
+        this.oldJournal = journal;
         fin.close();
     }
     
-    public void updateXML(Entries entries, String filePath) throws Exception{
-        this.entries = entries;
+    public void updateXML(Journal journal, String filePath) throws Exception{
+        this.journal = journal;
         this.filePath = filePath;
-        JAXBContext jc = JAXBContext.newInstance(Entries.class);
-        Marshaller m = jc.createMarshaller();
-        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        FileOutputStream fout = new FileOutputStream(filePath);
-        m.marshal(entries, fout);
-        fout.close();
-    }
-    
-    public void saveEntries() throws JAXBException, IOException{
         JAXBContext jc = JAXBContext.newInstance(Journal.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         FileOutputStream fout = new FileOutputStream(filePath);
-        m.marshal(entries, fout);
+        m.marshal(journal, fout);
+        fout.close();
+    }
+    
+    public void saveEntries() throws JAXBException, IOException{
+        Entry e = journal.getEntries().get(journal.getEntries().size() - 1);
+        oldJournal.addEntry(e);
+        JAXBContext jc = JAXBContext.newInstance(Journal.class);
+        Marshaller m = jc.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        FileOutputStream fout = new FileOutputStream(filePath);
+        m.marshal(oldJournal, fout);
         fout.close();
     }
     
     public int getNewEntryID(){
-        if(entries.getEntries().size() > 0){
-            int finalID = entries.getEntries().get(entries.getEntries().size() - 1).getEntryID();
+        if(journal.getEntries().size() > 0){
+            int finalID = journal.getEntries().get(journal.getEntries().size() - 1).getEntryID();
             return finalID + 1;
         }
         else{
@@ -79,15 +83,15 @@ public class EntryController implements Serializable{
         }
     }
     
-    public Entries getEntries(){
-        return entries;
+    public ArrayList<Entry> getEntries(){
+        return journal.getEntries();
     }
     
-    public Entries getEntriesForJournal(int userID, int journalID){
-        Entries journalEntries = new Entries();
-        for(Entry e : entries.getEntries()){
+    public ArrayList<Entry> getEntriesForJournal(int userID, int journalID){
+        ArrayList<Entry> journalEntries = new ArrayList<Entry>();
+        for(Entry e : journal.getEntries()){
             if(e.getUserID() == userID && e.getJournalID() == journalID){
-                journalEntries.addEntry(e);
+                journalEntries.add(e);
             }
         }
         return journalEntries;
@@ -95,7 +99,7 @@ public class EntryController implements Serializable{
     
     public Entry getEntryByID(int entryID){
         Entries journalEntries = new Entries();
-        for(Entry e : entries.getEntries()){
+        for(Entry e : journal.getEntries()){
             if(e.getEntryID() == entryID){
                 return e;
             }
@@ -117,8 +121,8 @@ public class EntryController implements Serializable{
     
     public Entries getAllEntries(){
         Entries journalEntries = new Entries();
-        if(entries.getEntries().size() > 0){
-            for(Entry e : entries.getEntries()){
+        if(journal.getEntries().size() > 0){
+            for(Entry e : journal.getEntries()){
                 journalEntries.addEntry(e);
             }
         }
@@ -127,8 +131,8 @@ public class EntryController implements Serializable{
     
     public Entries getHiddenEntries(){
         Entries journalEntries = new Entries();
-        if(entries.getEntries().size() > 0){
-            for(Entry e : entries.getEntries()){
+        if(journal.getEntries().size() > 0){
+            for(Entry e : journal.getEntries()){
                 if(e.getFlag().equals("hidden")){
                     journalEntries.addEntry(e);
                 }
@@ -139,8 +143,8 @@ public class EntryController implements Serializable{
     
     public Entries getNonHiddenEntries(){
         Entries journalEntries = new Entries();
-        if(entries.getEntries().size() > 0){
-            for(Entry e : entries.getEntries()){
+        if(journal.getEntries().size() > 0){
+            for(Entry e : journal.getEntries()){
                 if(e.getFlag().equals("visible")){
                     journalEntries.addEntry(e);
                 }
@@ -149,8 +153,12 @@ public class EntryController implements Serializable{
         return journalEntries;
     }
     
-    public void setEntries(Entries entries){
-        this.entries = entries;
+    public Journal getJournal(){
+        return this.journal;
+    }
+    
+    public void setJournal(Journal journal){
+        this.journal = journal;
     }
         
     public void hideEntry(int entryID){

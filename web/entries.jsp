@@ -38,10 +38,16 @@
            journalApp.setUser(user);
            String parameter = request.getParameter("id");
            if(parameter != null){
-               Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
+               //Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
+               Journal journal = user.getJournal(Integer.parseInt(parameter));
+               ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+               journal.setEntries(e);
                session.setAttribute("journal", journal);
-               entryApp.setEntries(journal.getEntries());
+               entryApp.setJournal(journal);
            }
+           //Journal journal = (Journal) session.getAttribute("journal");
+           //Journal journal = user.getJournal(parameter)entryApp.getJournal();
+           //session.setAttribute("journal", journal);
            Journal journal = (Journal) session.getAttribute("journal");
         %>
         
