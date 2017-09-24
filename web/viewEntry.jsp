@@ -6,6 +6,7 @@
 
 <%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
+<%@page import="models.User"%>
 <%@page import="models.Journal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entry</title>
+        <%User user = (User) session.getAttribute("user");%>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>

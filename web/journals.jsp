@@ -18,6 +18,10 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Journals</title>
+        <%
+            if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
+            ((HttpServletResponse) response).sendRedirect("login.jsp");
+        }%>
     </head>
     <body>
         <% 
