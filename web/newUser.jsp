@@ -30,7 +30,9 @@
         <%
             Users users = userApp.getUsers();
             String email = request.getParameter("email");
-
+            
+            
+            
             if (users.getUser(email) == null) {
                 String name = request.getParameter("name");
                 String password = request.getParameter("password");
