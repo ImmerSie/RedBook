@@ -76,10 +76,6 @@
         <h4>
             <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
         </h4>
-        
-        <div id="addJournal">    
-                <a href="createEntry.jsp"> + </a>
-        </div>
 
         <button type="button" onClick="makeRequest()">Hide</button>
         <%
@@ -101,12 +97,12 @@
                     <table>
                         <tr>
                             <td>
-                                <a href="createEntry.jsp" id="X"> + <a/> 
+                                <button type="button" id="seeHiddenBtn" onClick="viewHidden()"> See Hidden </button>
+                            </td>
+                            <td>
+                                <a class="addEntry" href="createEntry.jsp"> + </a>
                             </td>
 
-                            <td>
-                                <button type="button" onClick="viewHidden()"> See Hidden </button>
-                            </td>
                         </tr>
                     </table>
                 </div>     
@@ -114,17 +110,18 @@
                     <div style="overflow-x:auto;">
                     <div class="entryList">    
                     <table>
-                    <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
-                    <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
-                        <td></td><td></td><td></td><td></td><td></td>
-                        <td><%= e.getTitle() %></td>
-                        <td></td><td></td>
-                        <td>Date Last Modified: <%= e.getDateModified()%> </td>
+                        <td>
+                            <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
+                        </td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getTitle() %></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"> <%= e.getDateModified()%> </td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        <td><%= e.getFlag() %></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getFlag() %></td>
                          <td></td><td></td><td>
                         <td>    
-                            <button type="button" onClick="hide()">Hide</button>
+                            <button type="button" class="hideBtn" onClick="hide()">Hide</button>
                         </td>
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>

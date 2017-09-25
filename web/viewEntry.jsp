@@ -76,33 +76,37 @@
                 entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
-                <h1>Edit Entry</h1>
+                
+                                            <%-- 
+                                    EDIT ENTRY
+                                --%>
                 <form action="viewEntry.jsp" method="POST">
                 <div class="table">
                     <table>
-                    <tr>
-                    <tr>
-                        <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                        <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
-                        <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
-                        <td id="X"><a href="entries.jsp"> X </a></td>
-                    <tr></tr>
-                        <td id="entryTitle"> Entry Title: </td>
-                        <tr></tr>
-                        <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
-                    <tr></tr>
-                        <td><textarea name="entryContent" rows="5" id="content"><%= entry.getContent()%></textarea></td>
-                    <tr></tr>
-                    <td>
-                        <input id="saveBtn" type="submit" value="Save Entry" name="Save Entry">
-                    </td>
-                    <td>
-                        <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                    </td>
-                    <td>
-                        <input type="hidden" name="modified" value="modified" id="modified">
-                    </td>
-                    </tr>
+                        <tr>
+                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
+                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                            <td id="X"><a href="entries.jsp"> X </a></td>
+                        </tr>
+                        <tr>
+                            <td><h2> Entry Title: </h2></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                        </tr>
+                        <tr>
+                            <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        </tr>
+                        <td>
+                            <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                        </td>
+                        <td>
+                            <input type="hidden" name="modified" value="modified" id="modified">
+                        </td>
                     </table>
                 </div>
                 </form>
@@ -120,17 +124,19 @@
                     entryHisApp.saveEntryHistory();
                 } %>
                 
-
+                                            <%-- 
+                                    VIEW ENTRY
+                                --%>
                 <div class="table">
                     <table>
                         <tr>
                         <td id="date">Date Created: <%= entry.getDateCreated()%></td>
                         <td id="date">Date Modified: <%= entry.getDateModified()%></td> 
                         <td id="date">Flag: <%= entry.getFlag()%></td>
-
                         <td>
                             <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
                         </td>
+                        <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                         <td id="entryTitle" colspan="5"> <%= entry.getTitle()%></td>
                         <tr></tr>
