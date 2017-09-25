@@ -27,9 +27,6 @@
         </script>
     </head>
     <body>
-        <%
-            User user = (User) session.getAttribute("user");
-            %>
         <nav role="side">
             <ul>
                 <p></p>

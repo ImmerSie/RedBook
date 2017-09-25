@@ -10,7 +10,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -63,8 +66,19 @@ public class EntryController implements Serializable{
     }
     
     public void saveEntries() throws JAXBException, IOException{
-        Entry e = journal.getEntries().get(journal.getEntries().size() - 1);
-        oldJournal.addEntry(e);
+        for(Entry e : journal.getEntries()){
+            if(oldJournal.getEntries().contains(e)){
+                for(Entry o : oldJournal.getEntries()){
+                    if(o.getUserID() == e.getUserID() && o.getJournalID() == e.getJournalID() && o.getEntryID() == e.getEntryID()){
+                        o.replaceEntry(e);
+                    }
+                }
+            }
+            else{
+                oldJournal.addEntry(e);
+            }
+           
+        }
         JAXBContext jc = JAXBContext.newInstance(Journal.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -107,46 +121,59 @@ public class EntryController implements Serializable{
         return null;
     }
     
-    /**public Entries getNonHiddenEntries(int userID, int journalID){
-        Entries journalEntries = new Entries();
-        if(entries.getEntries().size() > 0){
-            for(Entry e : entries.getEntries()){
-                if(e.getUserID() == userID && e.getJournalID() == journalID && e.getFlag().equals("visible")){
-                    journalEntries.addEntry(e);
-                }
+    public ArrayList<Entry> getByDate(Date date){
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(date);
+        Calendar c2 = Calendar.getInstance();
+        ArrayList<Entry> dateEntries = new ArrayList<Entry>();
+        for(Entry e : journal.getEntries()){
+            c2.setTime(e.getDateCreated());
+            if(c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) && c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR)){
+                dateEntries.add(e);
             }
-        }        
-        return journalEntries;
-    }**/
+        }
+        return dateEntries;
+    }
     
-    public Entries getAllEntries(){
-        Entries journalEntries = new Entries();
+    public ArrayList<Entry> getByTitle(String title){
+        ArrayList<Entry> titleEntries = new ArrayList<Entry>();
+        for(Entry e : journal.getEntries()){
+            if(e.getTitle().contains(title)){
+                titleEntries.add(e);
+            }
+        }
+        return titleEntries;
+    }
+    
+    
+    public ArrayList<Entry> getAllEntries(){
+        ArrayList<Entry> journalEntries = new ArrayList<Entry>();
         if(journal.getEntries().size() > 0){
             for(Entry e : journal.getEntries()){
-                journalEntries.addEntry(e);
+                journalEntries.add(e);
             }
         }
         return journalEntries;
     }
     
-    public Entries getHiddenEntries(){
-        Entries journalEntries = new Entries();
+    public ArrayList<Entry> getHiddenEntries(){
+        ArrayList<Entry> journalEntries = new ArrayList<Entry>();
         if(journal.getEntries().size() > 0){
             for(Entry e : journal.getEntries()){
                 if(e.getFlag().equals("hidden")){
-                    journalEntries.addEntry(e);
+                    journalEntries.add(e);
                 }
             }
         }
         return journalEntries;
     }
     
-    public Entries getNonHiddenEntries(){
-        Entries journalEntries = new Entries();
+    public ArrayList<Entry> getNonHiddenEntries(){
+        ArrayList<Entry> journalEntries = new ArrayList<Entry>();
         if(journal.getEntries().size() > 0){
             for(Entry e : journal.getEntries()){
                 if(e.getFlag().equals("visible")){
-                    journalEntries.addEntry(e);
+                    journalEntries.add(e);
                 }
             }
         }
