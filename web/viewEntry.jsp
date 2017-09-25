@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : viewEntry
     Created on : 14/09/2017, 8:24:52 PM
@@ -88,25 +89,23 @@
                             <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
                             <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><h2> Entry Title: </h2></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        <tr></tr>
+                            <td>
+                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                            </td>
+                            <tr></tr>
+                            <td>
+                                <input type="hidden" name="modified" value="modified" id="modified">
+                            </td>
                         </tr>
-                        <td>
-                            <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                        </td>
-                        <td>
-                            <input type="hidden" name="modified" value="modified" id="modified">
-                        </td>
                     </table>
                 </div>
                 </form>
@@ -143,7 +142,7 @@
                         <td id="content" colspan="5"><%= entry.getContent()%></td>
 
                     <% } %>
-                    </tr>
+                        </tr>
                     </table>
                 </div>
         </div>
