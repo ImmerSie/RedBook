@@ -20,6 +20,28 @@ import models.Entry;
 
 public class HideEntryServlet extends HttpServlet {
 
+        private ArrayList<Entry> getEntriesBySortFilter(EntryController entryApp, String filter, String sort){
+            ArrayList<Entry> entries = null;
+            if(filter.equals("hidden")){
+                entries = entryApp.getHiddenEntries();
+            }
+            else if(filter.equals("all")){
+                entries = entryApp.getAllEntries();
+            }
+            else{
+                entries = entryApp.getNonHiddenEntries();
+            }
+            
+            if(sort.equals("byTitle")){
+                entries = entryApp.sortByTitle(entries);
+            }
+            else if(sort.equals("byTitleDesc")){
+                entries = entryApp.sortByTitleDesc(entries);
+            }
+            
+            return entries;
+        }
+    
 	/**
 	 * A simple HelloWorld Servlet
 	 */
@@ -27,15 +49,10 @@ public class HideEntryServlet extends HttpServlet {
 			throws java.io.IOException {
                 //ServletContext ctx = getServletContext(); 
                 //EntryController entryApp = (EntryController) ctx.getAttribute("entryApp");
-                StringBuffer jb = new StringBuffer();
-                String line = null;
-                try {
-                  BufferedReader reader = req.getReader();
-                  while ((line = reader.readLine()) != null)
-                    jb.append(line);
-                } catch (Exception e) { /*report an error*/ }
+                
+                String json = req.getParameter("json");                
 
-                String[] splitjb = jb.toString().split("\"");
+                String[] splitjb = json.split("\"");
                 int[] entryIDs = new int[(splitjb.length - 1)/2];
                 int j = 0;
                 for(int i = 1; i < splitjb.length; i = i + 2){
@@ -54,20 +71,34 @@ public class HideEntryServlet extends HttpServlet {
                 catch(Exception e){
                     
                 }
-		res.setContentType("text/html");
-		res.getWriter().write("Hello World!");
+                ArrayList<Entry> entries = null;
+                
+                String sorting = req.getParameter("sorting");
+                String filter = req.getParameter("filter");
+                entries = getEntriesBySortFilter(entryApp, filter, sorting);
+                
+                String responseJson = new Gson().toJson(entries);
+                
+                res.setContentType("application/json");
+                res.setCharacterEncoding("UTF-8");
+                res.getWriter().write(responseJson);
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws java.io.IOException {
-		//doPost(req, res);
+		
                 EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
-                ArrayList<Entry> entries = entryApp.getAllEntries();
+                ArrayList<Entry> entries = null;
+                
+                String sorting = req.getParameter("sorting");
+                String filter = req.getParameter("filter");
+                entries = getEntriesBySortFilter(entryApp, filter, sorting);
+                
                 String json = new Gson().toJson(entries);
                 
                 res.setContentType("application/json");
                 res.setCharacterEncoding("UTF-8");
                 res.getWriter().write(json);
-                int x = 9 + 10;
 	}
+       
 }
