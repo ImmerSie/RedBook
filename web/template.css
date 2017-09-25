@@ -15,15 +15,16 @@ and open the template in the editor.
 }
 
 .logoutLogo{
-    margin-top: 2px;
+    margin-top: 5px;
     height: 45px;
     width: 140px;
 }
 
 .icon{
-    margin-top: 3px;
-    height: 10%;
-    weight: 10%;
+    display: block;
+    margin-top: 6px;
+    height: 10px;
+    width: 10px;
 }
 
 /* START TOP NAVIGATION */
@@ -47,7 +48,7 @@ nav[role="main"] li a {
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     text-decoration: none;
@@ -66,7 +67,7 @@ nav[role="main"] li {
 
 #usersName{
     padding-top: 8px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     color: #93163A
@@ -97,7 +98,7 @@ nav[role="side"] li a{
     color: white;
     padding: 10px 16px 16px 16px;
     text-decoration: none;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: lighter;
     text-decoration: none;
@@ -116,7 +117,7 @@ nav[role="side"] li a:hover{
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
-       font-family: 'Helvetica Neue';
+       font-family: 'Open Sans';
        font-style: normal;
        font-weight: normal;
        font-size: 20px;
@@ -129,22 +130,57 @@ nav[role="side"] li a:hover{
 #entriesMenu{
     background-color: #494949;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 5px;
     margin-left: 180px;
     margin-right: auto;
     font-size: 16px;
     padding-bottom: 0px;
-    height: 45px;
+    height: 40px;
 }
 
+.addEntry{
+    float: right;
+    margin-top: 8px;
+    margin-right: 40px;
+    text-align: right;
+    font-family: 'Open Sans';
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.addEntry a:link{
+    text-decoration: none;
+}
+
+.addEntry a:hover{
+    color: #93163A;
+    font-weight: 700;
+    text-decoration: none;
+
+}
+
+#seeHiddenBtn{
+    margin-top: 13px;
+    float: right;
+    margin-right: 30px;
+
+}
+
+.hideBtn{
+    float: right;
+    margin-right: 30px;
+}
 
 #journalAddTable{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 50px;
@@ -153,10 +189,41 @@ nav[role="side"] li a:hover{
     font-size: 20px;
 }
 
+#journalPosition{
+    background-color: transparent;
+    color: white;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+.journalTitle{
+    position:absolute;
+      top:36%;
+      left:0; 
+      right:0;
+      font-weight: bold;
+      text-align:center;
+      strong {display:block;}
+    
+}
+
+.journal{
+    margin:auto;
+    height:auto;
+    text-align: center;
+    font-weight: bold;
+    position:relative;
+}
+
 #entriesTable{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 80px;
@@ -168,7 +235,7 @@ nav[role="side"] li a:hover{
 #noEntries{
     background-color: transparent;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 80px;
@@ -181,7 +248,7 @@ nav[role="side"] li a:hover{
 .entryList{
     background-color: #93163A;
     color: white;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
     margin-top: 0px;
@@ -203,8 +270,13 @@ nav[role="side"] li a:hover{
     font-weight: bold;
 }
 
+.entryList td{
+    text-align: center;
+    vertical-align: middle;
+}
+
 #entryTitle{
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     text-decoration: underline;
@@ -213,7 +285,7 @@ nav[role="side"] li a:hover{
 }
 
 #content{
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 200;
     font-size: 15px;
@@ -223,7 +295,7 @@ nav[role="side"] li a:hover{
 body{
     background-color: lightblue;
     margin: 5px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     color: black;
@@ -242,7 +314,7 @@ h2{
     padding-top: 0px 0px 0px 0px;
     font-size: 25px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
 }
@@ -252,7 +324,7 @@ h3{
     padding-top: 0px 0px 0px 0px;
     font-size: 18px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
     color: white;
@@ -263,10 +335,16 @@ h4{
     padding-top: 0px 0px 0px 0px;
     font-size: 10px;
     margin: 0px 0px 0px 0px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 200;
     color: white;
+}
+
+.entryCheck{
+    padding-top: 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 
@@ -277,15 +355,16 @@ h4{
 
 #date{
     text-align: left; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #X{
+    color: black;
     text-align: right; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     font-size: 20px;
@@ -298,18 +377,66 @@ h4{
 
 #X a:hover{
     color: #93163A;
-    font-weight: 700;
+    font-weight: 300;
 }
 
 #X a:visited{
+    color: black;
+}
+
+#add{
+    color: white;
+    text-align: right; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#add a:link{
+    text-decoration: none;
+}
+
+#add a:hover{
+    color: #93163A;
+    font-weight: 300;
+}
+
+#add a:visited{
+    color: white;
+}
+
+.addEntry{
+    text-align: right;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.addEntry a:link{
+    text-decoration: none;
+}
+
+.addEntry a:hover{
+    color: #93163A;
+    font-weight: 700;
+    text-decoration: none;
+
+}
+
+#addEntry a:visited{
     color: white;
     font-weight: 700;
+    text-decoration: none;
 }
 
 #addJournal{
     text-align: right;
     padding-right: 200px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
@@ -332,7 +459,7 @@ h4{
 
 #saveBtn{
     text-align: center; 
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 100;
     font-size: 20px;
@@ -348,7 +475,6 @@ h4{
 
 #journalIcon{
     position: fixed;
-    padding-left: 200px;
     height: 100px;
     width: 75px;
     color: white;

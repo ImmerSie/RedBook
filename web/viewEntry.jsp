@@ -7,14 +7,17 @@
 <%@page import="models.User"%>
 <%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
+<%@page import="models.User"%>
 <%@page import="models.Journal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entry</title>
+        <%User user = (User) session.getAttribute("user");%>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>
@@ -30,8 +33,8 @@
         <nav role="side">
             <ul>
                 <p></p>
-                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
@@ -77,16 +80,39 @@
                 entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
-                <h1>Edit Entry</h1>
+                
+                                            <%-- 
+                                    EDIT ENTRY
+                                --%>
                 <form action="viewEntry.jsp" method="POST">
-                    <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
-                    <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
-                    <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
-                    <p>Date Created: <%= entry.getDateCreated()%></p>
-                    <p>Date Modified: <%= entry.getDateModified()%></p>
-                    <input type="submit" value="Save Entry" name="Save Entry">
-                    <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                    <input type="hidden" name="modified" value="modified" id="modified">
+                <div class="table">
+                    <table>
+                        <tr>
+                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
+                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                            <td id="X"><a href="entries.jsp"> X </a></td>
+                        </tr>
+                        <tr>
+                            <td><h2> Entry Title: </h2></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                        </tr>
+                        <tr>
+                            <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        </tr>
+                        <td>
+                            <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                        </td>
+                        <td>
+                            <input type="hidden" name="modified" value="modified" id="modified">
+                        </td>
+                    </table>
+                </div>
                 </form>
             <% }
             else
@@ -102,17 +128,19 @@
                     entryHisApp.saveEntryHistory();
                 } %>
                 
-
+                                            <%-- 
+                                    VIEW ENTRY
+                                --%>
                 <div class="table">
                     <table>
                         <tr>
                         <td id="date">Date Created: <%= entry.getDateCreated()%></td>
                         <td id="date">Date Modified: <%= entry.getDateModified()%></td> 
                         <td id="date">Flag: <%= entry.getFlag()%></td>
-
                         <td>
                             <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
                         </td>
+                        <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                         <td id="entryTitle" colspan="5"> <%= entry.getTitle()%></td>
                         <tr></tr>

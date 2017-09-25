@@ -17,11 +17,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
+        <%
+            if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
+            ((HttpServletResponse) response).sendRedirect("login.jsp");
+        }%>
     </head>
     <body>
         <%  if(session.getAttribute("entryApp") == null){
@@ -54,8 +59,8 @@
         <nav role="side">
             <ul>
                 <p></p>
-                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
@@ -64,7 +69,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
@@ -113,13 +118,18 @@
                 entries = entryApp.sortByTitleDesc(entries);
             }
             %>
-            <div id="entriesMenu"
-                <table>
-                    <tr>
-                        <td>
-                            <a href="createEntry.jsp" id="X"> + <a/> 
-                        </td>
 
+            if(entryApp.getNonHiddenEntries().getEntries().size() > 0)
+            { %>
+                <div id="entriesMenu"
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="button" id="seeHiddenBtn" onClick="viewHidden()"> See Hidden </button>
+                            </td>
+                            <td>
+                                <a class="addEntry" href="createEntry.jsp"> + </a>
+                            </td>
                         <td>
                             <button type="button" onClick="viewHidden()"> See Hidden </button>
                         </td>
@@ -149,17 +159,18 @@
                     <div style="overflow-x:auto;">
                     <div class="entryList">    
                     <table>
-                    <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
-                    <tr onClick="entryClick(this, <%=e.getEntryID()%>)">
-                        <td></td>
-                        <td><%= e.getTitle() %></td>
-                        <td></td><td></td>
-                        <td> insert date of creation or last modification </td>
+                        <td>
+                            <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
+                        </td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getTitle() %></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"> <%= e.getDateModified()%> </td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        <td><%= e.getFlag() %></td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getFlag() %></td>
                          <td></td><td></td><td>
                         <td>    
-                            <button type="button" onClick="hide()">Hide</button>
+                            <button type="button" class="hideBtn" onClick="hide()">Hide</button>
                         </td>
                         <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
                     </tr>

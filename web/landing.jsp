@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Landing Page</title>
     </head>

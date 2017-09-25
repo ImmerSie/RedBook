@@ -24,7 +24,7 @@ li a {
     text-align: center;
     padding: 15px 15px 15px 15px;
     margin-top: 10%;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -78,7 +78,7 @@ body{
     top:50%;
     left:25%;
     position:absolute;
-    ont-family: 'Helvetica Neue';
+    ont-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
    
@@ -108,7 +108,7 @@ body{
     font-size: 18px;
     padding-left: 25px;
     width:80%;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: normal;
 }
