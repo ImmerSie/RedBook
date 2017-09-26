@@ -15,6 +15,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import models.Entries;
 import models.Entry;
+import models.EntryHistory;
 import models.Journal;
 
 /**
@@ -74,5 +75,13 @@ public class EntryHistoryController implements Serializable{
         this.entry = entry;
     }
     
-    
+    public EntryHistory getEntryHisFromID(int hisID){
+        for(EntryHistory eh : entry.getHistory()){
+            if(eh.getEntryHisID() == hisID){
+                return eh;
+            }
+        }
+        return null;
+    }
+        
 }

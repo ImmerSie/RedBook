@@ -79,7 +79,6 @@
         <h4>
             <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
         </h4>       
-        <button type="button" onClick="makeRequest()">Hide</button>
         <%
             if(request.getParameter("title") != null){
                 String title = request.getParameter("title");

@@ -49,7 +49,6 @@ public class EntryController implements Serializable{
         
         FileInputStream fin = new FileInputStream(filePath);
         journal = (Journal) u.unmarshal(fin);
-        int x = 5 + 9;
         this.oldJournal = journal;
         fin.close();
     }

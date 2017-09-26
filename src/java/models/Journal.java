@@ -19,20 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="entries")
 public class Journal {
     @XmlElement
-    private int journalID;
-    @XmlElement
     private int userID;
+    @XmlElement
+    private int journalID;
     @XmlElement
     private Date dateCreated;
     @XmlElement
-    private Date lastModified;
+    private Date dateModified;
     @XmlElement
     private String title;
     @XmlElement
     private String description;
     
     @XmlElement(name="entry")
-    //private ArrayList<Entry> entries = new ArrayList<Entry>();
     private ArrayList<Entry> entries = new ArrayList<Entry>();
     
     public Journal() {
@@ -42,7 +41,7 @@ public class Journal {
         this.userID = userID;
         this.journalID = journalID;
         this.dateCreated = dateCreated;
-        this.lastModified = lastModified;
+        this.dateModified = lastModified;
         this.title = title;
         this.description = description;
     }
@@ -72,11 +71,11 @@ public class Journal {
     }
 
     public Date getLastModified() {
-        return lastModified;
+        return dateModified;
     }
 
     public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
+        this.dateModified = lastModified;
     }
 
     public String getTitle() {
