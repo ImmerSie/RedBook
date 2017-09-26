@@ -4,60 +4,89 @@
  * and open the template in the editor.
  */
 
-function getXMLHttpRequest() {
-	var xmlHttpReq = false;
-	// to create XMLHttpRequest object in non-Microsoft browsers
-	if (window.XMLHttpRequest) {
-		xmlHttpReq = new XMLHttpRequest();
-	} else if (window.ActiveXObject) {
-		try {
-			// to create XMLHttpRequest object in later versions
-			// of Internet Explorer
-			xmlHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (exp1) {
-			try {
-				// to create XMLHttpRequest object in older versions
-				// of Internet Explorer
-				xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (exp2) {
-				xmlHttpReq = false;
-			}
-		}
-	}
-	return xmlHttpReq;
-}
-
-function hideEntries() {
-        var jsonEntries = [];
-        var checkedEntries = document.getElementsByClassName("entryCheck");
-        for(var i = 0; i < checkedEntries.length; i++){
-            if(checkedEntries.item(i).checked === true){
-                jsonEntries.push(checkedEntries.item(i).value);
-            }
+function getEntries(){
+    var sortingDrop = document.getElementById("sorting");
+    var filterDrop = document.getElementById("filter");
+    $.get("hideEntryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
+        var html = '';
+        if(jQuery.isEmptyObject(response)){
+            html += '<p><h3>You have no entries.</h3></p>';
+            html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
-        var json = JSON.stringify(jsonEntries);
-	var xmlHttpRequest = getXMLHttpRequest();
-	xmlHttpRequest.onreadystatechange = getReadyStateHandler(xmlHttpRequest);
-	xmlHttpRequest.open("POST", "hideEntryServlet.do", true);
-	xmlHttpRequest.setRequestHeader("Content-Type",
-			"application/x-www-form-urlencoded");
-        xmlHttpRequest.setRequestHeader("Content-length", json.length);
-        xmlHttpRequest.setRequestHeader("Connection", "close");
-	xmlHttpRequest.send(json);
+        else{
+            $.each(response, function(key, e){
+                html += '<div style="overflow-x:auto;">';
+                html += '<div class="entryList">';    
+                html += '<table>';
+                html += '<input type="checkbox" class="entryCheck" name="' +  e.entryID + '" value="' + e.entryID + '">';
+                html += '<tr onClick="entryClick(this, ' + e.entryID + ')">';
+                html += '<td></td>';
+                html += '<td>' + e.title + '</td>';
+                html += '<td></td><td>' + e.content + '</td>';
+                html += '<td><p>Created:' + e.dateCreated + '</p></td>';
+                html += '<td><p>Modified:' + e.dateModified + '</p></td>';
+                html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+                html += '<td>' + e.flag + '</td>';
+                html += '<td></td><td></td><td>';
+                html += '<td>';    
+                html += '<button type="button" onClick="hide()">Hide</button>';
+                html += '</td>';
+                html += '<td><input type="hidden" value="' + e.entryID + '" name="entryID" id="entryID"></td>';
+                html += '</tr>';
+                html += '</table>';
+                html += '</div>';
+                html += '</div>';
+            });
+        }
+        
+        $('#ajaxEntries').html(html);
+    });  
 }
 
-function getReadyStateHandler(xmlHttpRequest) {
-
-	// an anonymous function returned
-	// it listens to the XMLHttpRequest instance
-	return function() {
-		if (xmlHttpRequest.readyState == 4) {
-			if (xmlHttpRequest.status == 200) {
-                                window.parent.location = window.parent.location.href;
-			} else {
-				alert("HTTP error " + xmlHttpRequest.status + ": " + xmlHttpRequest.statusText);
-			}
-		}
-	};
+function hideEntries(){
+    var jsonEntries = [];
+    var checkedEntries = document.getElementsByClassName("entryCheck");
+    for(var i = 0; i < checkedEntries.length; i++){
+        if(checkedEntries.item(i).checked === true){
+            jsonEntries.push(checkedEntries.item(i).value);
+        }
+    }
+    
+    var json = JSON.stringify(jsonEntries);
+    var sortingDrop = document.getElementById("sorting");
+    var filterDrop = document.getElementById("filter");
+    
+    $.post("hideEntryServlet.do", {json: json, sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
+        var html = '';
+        if(jQuery.isEmptyObject(response)){
+            html += '<p><h3>You have no entries.</h3></p>';
+            html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
+        }
+        else{
+            $.each(response, function(key, e){
+                html += '<div style="overflow-x:auto;">';
+                html += '<div class="entryList">';    
+                html += '<table>';
+                html += '<input type="checkbox" class="entryCheck" name="' +  e.entryID + '" value="' + e.entryID + '">';
+                html += '<tr onClick="entryClick(this, ' + e.entryID + ')">';
+                html += '<td></td>';
+                html += '<td>' + e.title + '</td>';
+                html += '<td></td><td>' + e.content + '</td>';
+                html += '<td><p>Created:' + e.dateCreated + '</p></td>';
+                html += '<td><p>Modified:' + e.dateModified + '</p></td>';
+                html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+                html += '<td>' + e.flag + '</td>';
+                html += '<td></td><td></td><td>';
+                html += '<td>';    
+                html += '<button type="button" onClick="hide()">Hide</button>';
+                html += '</td>';
+                html += '<td><input type="hidden" value="' + e.entryID + '" name="entryID" id="entryID"></td>';
+                html += '</tr>';
+                html += '</table>';
+                html += '</div>';
+                html += '</div>';
+            });
+        }
+        $('#ajaxEntries').html(html);
+    });
 }
-

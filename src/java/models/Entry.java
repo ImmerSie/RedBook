@@ -20,11 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="entriesHis")
 public class Entry {
     @XmlElement
-    private int entryID;
+    private int userID;
     @XmlElement
     private int journalID;
     @XmlElement
-    private int userID;
+    private int entryID;
     @XmlElement
     private String title;
     @XmlElement
@@ -100,6 +100,10 @@ public class Entry {
     public String getTitle() {
         return title;
     }
+    
+    public String getTitleLowercase(){
+        return title.toLowerCase();
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -144,6 +148,14 @@ public class Entry {
     public ArrayList<EntryHistory> getHistory() {
         return history;
     }
+    
+    public ArrayList<EntryHistory> getHistoryReverse(){
+        ArrayList<EntryHistory> reverseHistory = new ArrayList<EntryHistory>();
+        for(int i = getHistory().size() - 1; i >= 0; i--){
+            reverseHistory.add(getHistory().get(i));
+        }
+        return reverseHistory;
+    }
 
     public void setHistory(ArrayList<EntryHistory> history) {
         this.history = history;
@@ -155,7 +167,7 @@ public class Entry {
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
-        EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, new Date());
+        EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, this.dateModified);
         oldEntry.setComments(this.comments);
         
         history.add(oldEntry);
@@ -165,5 +177,18 @@ public class Entry {
         this.dateCreated = entry.getDateCreated();
         this.dateModified = new Date();
         this.comments = entry.getComments();
+    }
+    
+    public void replaceEntry(Entry e){
+        this.userID = e.getUserID();
+        this.entryID = e.getEntryID();
+        this.journalID = e.getJournalID();
+        this.title = e.getTitle();
+        this.content = e.getContent();
+        this.flag = e.getFlag();
+        this.dateCreated = e.getDateCreated();
+        this.dateModified = e.getDateModified();
+        this.comments = e.getComments();
+        this.history = e.getHistory();
     }
 }

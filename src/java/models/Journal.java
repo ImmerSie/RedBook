@@ -19,21 +19,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="entries")
 public class Journal {
     @XmlElement
-    private int journalID;
-    @XmlElement
     private int userID;
+    @XmlElement
+    private int journalID;
     @XmlElement
     private Date dateCreated;
     @XmlElement
-    private Date lastModified;
+    private Date dateModified;
     @XmlElement
     private String title;
     @XmlElement
     private String description;
     
     @XmlElement(name="entry")
-    //private ArrayList<Entry> entries = new ArrayList<Entry>();
-    private Entries entries = new Entries();
+    private ArrayList<Entry> entries = new ArrayList<Entry>();
     
     public Journal() {
     }
@@ -42,7 +41,7 @@ public class Journal {
         this.userID = userID;
         this.journalID = journalID;
         this.dateCreated = dateCreated;
-        this.lastModified = lastModified;
+        this.dateModified = lastModified;
         this.title = title;
         this.description = description;
     }
@@ -72,11 +71,11 @@ public class Journal {
     }
 
     public Date getLastModified() {
-        return lastModified;
+        return dateModified;
     }
 
     public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
+        this.dateModified = lastModified;
     }
 
     public String getTitle() {
@@ -95,12 +94,12 @@ public class Journal {
         this.journalID = journalID;
     }
 
-    public Entries getEntries() {
+    public ArrayList<Entry> getEntries() {
         return entries;
     }
     
     public Entry getEntry(int entryID){
-        for(Entry e : this.getEntries().getEntries()){
+        for(Entry e : this.getEntries()){
             if(e.getEntryID() == entryID){
                 return e;
             }
@@ -108,11 +107,11 @@ public class Journal {
         return null;
     }
 
-    public void setEntries(Entries entries) {
+    public void setEntries(ArrayList<Entry> entries) {
         this.entries = entries;
     }
      
     public void addEntry(Entry entry){
-        entries.getEntries().add(entry);
+        entries.add(entry);
     }
 }

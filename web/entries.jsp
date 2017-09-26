@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="controllers.EntryController"%>
 <%@page import="controllers.JournalController"%>
 <%@page import="controllers.LoginController"%>
@@ -42,9 +43,11 @@
            journalApp.setUser(user);
            String parameter = request.getParameter("id");
            if(parameter != null){
-               Journal journal = journalApp.getJournalFromID(Integer.parseInt(parameter));
+               Journal journal = user.getJournal(Integer.parseInt(parameter));
+               ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+               journal.setEntries(e);
                session.setAttribute("journal", journal);
-               entryApp.setEntries(journal.getEntries());
+               entryApp.setJournal(journal);
            }
            Journal journal = (Journal) session.getAttribute("journal");
         %>
@@ -75,9 +78,7 @@
         <h3><%= journal.getDescription()%></h3>
         <h4>
             <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
-        </h4>
-
-        <button type="button" onClick="makeRequest()">Hide</button>
+        </h4>       
         <%
             if(request.getParameter("title") != null){
                 String title = request.getParameter("title");
@@ -90,52 +91,34 @@
                 Entry entry = new Entry(userID, journalID, entryID, title, content, "visible", dateModified);
                 journal.addEntry(entry);
                 entryApp.saveEntries();
-            }
-            if(entryApp.getNonHiddenEntries().getEntries().size() > 0)
-            { %>
-                <div id="entriesMenu"
+            } %>
+                <div id="entriesMenu">
                     <table>
                         <tr>
                             <td>
-                                <button type="button" id="seeHiddenBtn" onClick="viewHidden()"> See Hidden </button>
-                            </td>
-                            <td>
                                 <a class="addEntry" href="createEntry.jsp"> + </a>
                             </td>
-
+                            <td>
+                                <button type="button" onClick="hideEntries()"> Hide </button>
+                            </td>
+                            <td>
+                                <select id="filter" onChange="filterEntries()">
+                                    <option value="visible">Visible Entries</option>
+                                    <option value="hidden">Hidden Entries</option>
+                                    <option value="all">All Entries</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="sorting" onChange="sortEntries()">
+                                    <option value="byDate">By Date</option>
+                                    <option value="byTitle">By Title</option>
+                                    <option value="byTitleDesc">By Title Desc</option>
+                                </select>
+                            </td>
                         </tr>
                     </table>
                 </div>     
-                <% for(Entry e : entryApp.getNonHiddenEntries().getEntries()){ %> 
-                    <div style="overflow-x:auto;">
-                    <div class="entryList">    
-                    <table>
-                        <td>
-                            <input type="checkbox" class="entryCheck" name="<%= e.getEntryID()%>" value="<%= e.getEntryID() %>">
-                        </td>
-                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getTitle() %></td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"> <%= e.getDateModified()%> </td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        <td onClick="entryClick(this, <%=e.getEntryID()%>)"><%= e.getFlag() %></td>
-                         <td></td><td></td><td>
-                        <td>    
-                            <button type="button" class="hideBtn" onClick="hide()">Hide</button>
-                        </td>
-                        <td><input type="hidden" value="<%= e.getEntryID()%>" name="entryID" id="entryID"></td>
-                    </tr>
-                        </table>
-                    </div>
-                </div>
-                    <% } %>
-            
-            <% }
-            else{
-            %><p><h3>You have no entries.</h3></p>
-                <p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p><%
-            }
-            %>
+            <div id="ajaxEntries"></div>
 
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
@@ -145,6 +128,8 @@
 </html>
 
 <script type="text/javascript">
+    getEntries();
+    
     function entryClick(elmnt, entryID){
        elmnt.style.color = 'red';
        var currentURL = window.location.href;
@@ -154,4 +139,12 @@
         }
        window.location = currentURL + "?id=" + entryID;
    }
+      
+    function sortEntries(){
+        getEntries();
+    }
+    
+    function filterEntries(){
+        getEntries();
+    }   
 </script>

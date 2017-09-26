@@ -1,23 +1,24 @@
 <%-- 
-    Document   : createJournal
-    Created on : 09/09/2017, 10:56:23 PM
+    Document   : viewJournal
+    Created on : 14/09/2017, 8:55:41 PM
     Author     : Max
 --%>
 
 <%@page import="models.User"%>
+<%@page import="models.Journal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Journal</title>
+        <title>View Journal</title>
     </head>
     <body>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>  
-        <% 
+        <%
             User user = (User) session.getAttribute("user");
             %>
         <nav role="side">
@@ -34,42 +35,25 @@
             <ul>
                 <li><a href="index.html"> Logout </a></li>
                 <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"><%= user.getName() %> </div></li>
+                <li><div id="usersName"> <%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
             </div>
         </nav>
-        
-        <h1></h1>  
-        
-        <p>
-            <a href="entries.jsp">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
-            <a/>        
-        </p>
-        
-        <form action="newJournal.jsp" method="post">
-            <div id="journalAddTable">    
-                <table>
-                    <tr>
-                        <td> Journal Name: </td>
-                        <td><input type="text" name="title"></td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td> Brief Description: </td>
-                        <td><input type="text" name="description"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Create"></td>
-                    </tr>
-                </table>
-            </div>    
-        </form>
-    </body>
+        <h1>View Entry</h1>
+        <% 
+           String parameter = request.getParameter("id");
+           if(parameter != null){
+               Journal journal = user.getJournal(Integer.parseInt(parameter));
+               session.setAttribute("journal", journal);
+           }
+           Journal journal = (Journal) session.getAttribute("journal");
+        %>
+        <p><h3>Title: <%= journal.getTitle()%></h3></p>
+        <p><h3>Content: <%= journal.getDescription() %></h3></p>
+        <p><h4>Date Created: <%= journal.getDateCreated()%></h4></p>
+        <p><h4>Date Modified: <%= journal.getLastModified()%></h4></p>
+      </body>
 </html>

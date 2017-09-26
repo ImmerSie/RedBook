@@ -5,6 +5,8 @@
     Author     : Max
 --%>
 
+<%@page import="models.EntryHistory"%>
+<%@page import="models.User"%>
 <%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
 <%@page import="models.User"%>
@@ -20,11 +22,7 @@
         <%User user = (User) session.getAttribute("user");%>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script>
-            $(function(){
-               $("$viewDialog").dialog(); 
-            });
-        </script>
+        <script type="text/javascript" language="javascript" src="viewEntry.js"></script>
     </head>
     <body>
         <nav role="side">
@@ -34,14 +32,14 @@
                 <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
-        </nav> 
+        </nav>
         
         <nav role="main">
             <div id= "topNav">
             <ul>
                 <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
+                <li><img src="userIcon.png" class="icon"></li>
+                <li><div id="usersName"> <%= user.getName() %>  </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
@@ -69,11 +67,10 @@
                 EntryController entryApp = (EntryController) session.getAttribute("entryApp");
                 Journal journal = (Journal) session.getAttribute("journal");
                 String parameter = request.getParameter("id");
+                Entry entry = null;
                 if(parameter != null){
-                    Entry entry = journal.getEntry(Integer.parseInt(parameter));
-                    session.setAttribute("entry", entry);
+                    entry = journal.getEntry(Integer.parseInt(parameter));
                 }
-                Entry entry = (Entry) session.getAttribute("entry");
                 entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
@@ -126,25 +123,47 @@
                                             <%-- 
                                     VIEW ENTRY
                                 --%>
-                <div class="table">
-                    <table>
+                <div class="table" id="viewEntryTable">
+                    <table id="viewEntryData">
                         <tr>
-                        <td id="date">Date Created: <%= entry.getDateCreated()%></td>
-                        <td id="date">Date Modified: <%= entry.getDateModified()%></td> 
-                        <td id="date">Flag: <%= entry.getFlag()%></td>
-                        <td>
-                            <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
-                        </td>
-                        <td id="X"><a href="entries.jsp"> X </a></td>
-                        <tr></tr>
-                        <td id="entryTitle" colspan="5"> <%= entry.getTitle()%></td>
-                        <tr></tr>
-                        <td id="content" colspan="5"><%= entry.getContent()%></td>
-
-                    <% } %>
+                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
+                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
+                            <td id="viewFlag" value="<%= entry.getFlag()%>">Flag: <%= entry.getFlag()%></td>
+                            <td>
+                                <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
+                            </td>
+                            <td>
+                                <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
+                            </td>
+                            <td id="X"><a href="entries.jsp"> X </a></td>
+                            <tr></tr>
+                            <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
+                            <tr></tr>
+                            <td id="viewEntryContent" colspan="5"><%= entry.getContent()%></td>
                         </tr>
                     </table>
+                    <table id="viewHistoryTable"></table>
+                    <table id="historyEntryDiv"></table>
+                    <div id="entryHistoryList">
+                        <h3 style="color:black;">Entry History</h3>
+                        <table>
+                                <tr onClick="setViewHistoryTable()">
+                                    <td ><%= entry.getDateModified() %></td>
+                                </tr>
+                        </table>
+                        <% for(EntryHistory eh : entry.getHistoryReverse()){ %>
+                            <table>
+                                <tr id="<%= eh.getEntryHisID() %>" onClick="getEntryHistory(this)">
+                                    <td ><%= eh.getDateModified() %></td>
+                                    <input type="hidden" value="<%= eh.getTitle() %>">
+                                    <input type="hidden" value="<%= eh.getContent() %>">
+                                    <input type="hidden" value="<%= eh.getDateModified() %>">
+                                </tr>
+                            </table>
+                        <% } %>
+                    </div>
                 </div>
+            <% } %>
         </div>
             
         <div id="background">
@@ -160,4 +179,7 @@
        var currentURL = window.location.href;
        window.location = currentURL + "&mode=edit";
    }
+   
+    $('#entryHistoryList').hide();
+    $('#viewHistoryTable').hide();
 </script>
