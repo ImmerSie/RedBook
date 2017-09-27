@@ -38,7 +38,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %>  </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
@@ -142,14 +142,19 @@
                             <td id="viewEntryContent" colspan="5"><%= entry.getContent()%></td>
                         </tr>
                     </table>
+
+                                            <%-- 
+                                    ENTRY HISTORY
+                                --%>
+                        
                     <table id="viewHistoryTable"></table>
                     <table id="historyEntryDiv"></table>
                     <div id="entryHistoryList">
-                        <h3 style="color:black;">Entry History</h3>
+                        <h2> Entry History </h2>
                         <table>
-                                <tr onClick="setViewHistoryTable()">
-                                    <td ><%= entry.getDateModified() %></td>
-                                </tr>
+                            <tr onClick="setViewHistoryTable()">
+                                <td id="viewEntryTitle"> <%= entry.getDateModified() %> </td>
+                            </tr>
                         </table>
                         <% for(EntryHistory eh : entry.getHistoryReverse()){ %>
                             <table>
