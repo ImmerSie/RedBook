@@ -347,9 +347,11 @@ h4{
 }
 
 .entryCheck{
-    padding-top: 10px;
+    padding-top: 20px;
+    float: left;
     text-align: center;
     vertical-align: middle;
+    margin-top: 18px;
 }
 
 
