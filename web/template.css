@@ -496,6 +496,31 @@ h4{
 #viewEntryTable{
     float: left;
 }
+
+#viewDateCreated{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+#viewDateModified{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+} 
+
+#viewFlag{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+}
+
 #entryHistoryList {
     float: left;
 }

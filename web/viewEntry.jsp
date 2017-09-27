@@ -80,13 +80,13 @@
                                     EDIT ENTRY
                                 --%>
                 <form action="viewEntry.jsp" method="POST">
-                <div class="table">
-                    <table>
+                <div>
+                    <table class="table">
                         <tr>
-                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
-                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
-                            <td id="X"><a href="entries.jsp"> X </a></td>
+                            <th id="date"> Date Created: <%= entry.getDateCreated()%> </th>
+                            <th id="date"> Date Modified: <%= entry.getDateModified()%> </th>
+                            <th id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></th>
+                            <th id="X"><a href="entries.jsp"> X </a></th>
                         <tr></tr>
                             <td><h2> Entry Title: </h2></td>
                         <tr></tr>
@@ -143,7 +143,6 @@
                             <td id="viewEntryContent" colspan="5"><%= entry.getContent()%></td>
                         </tr>
                     </table>
-
                                             <%-- 
                                     ENTRY HISTORY
                                 --%>

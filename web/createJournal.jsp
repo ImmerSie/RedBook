@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Journal</title>
@@ -34,7 +35,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"><%= user.getName() %> </div></li>
                 <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
