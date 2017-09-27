@@ -10,6 +10,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.User"%>
 <%@page import="models.Journal"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

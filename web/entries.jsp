@@ -13,6 +13,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
 <%@page import="models.User"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,10 +24,6 @@
         <title>Entries</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
-        <%
-            if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
-            ((HttpServletResponse) response).sendRedirect("login.jsp");
-        }%>
     </head>
     <body>
         <%  if(session.getAttribute("entryApp") == null){
