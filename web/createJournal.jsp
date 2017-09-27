@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="models.User"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
         </div>  
         <% 
             User user = (User) session.getAttribute("user");
-            %>
+        %>
         <nav role="side">
             <ul>
                 <p></p>

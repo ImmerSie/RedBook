@@ -8,6 +8,7 @@
 <%@page import="models.User"
         import="models.Journal"
         import="java.util.Date"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

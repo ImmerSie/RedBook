@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page errorPage = "login.jsp"%>
 <%@page import="models.User"
         import="java.util.Date"
         import="java.text.SimpleDateFormat"%>
