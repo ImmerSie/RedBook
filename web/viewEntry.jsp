@@ -13,6 +13,7 @@
 <%@page import="models.Journal"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md' %> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,7 +48,8 @@
             </ul>
             </div>
         </nav>
-        
+                
+               
                 
         <h1></h1>  
         
@@ -140,7 +142,7 @@
                             <tr></tr>
                             <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
                             <tr></tr>
-                            <td id="viewEntryContent" colspan="5"><%= entry.getContent()%></td>
+                            <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
                         </tr>
                     </table>
                                             <%-- 
