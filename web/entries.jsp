@@ -13,6 +13,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
 <%@page import="models.User"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,10 +27,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
-        <%
-            if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
-            ((HttpServletResponse) response).sendRedirect("login.jsp");
-        }%>
     </head>
     <body>
         <%  if(session.getAttribute("entryApp") == null){
@@ -67,10 +64,10 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="index.html"> Logout </a></li>
+                <li><a href="logout.jsp"> Logout </a></li>
                 <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
-                <a href="index.html">
+                <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>

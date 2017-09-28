@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : viewEntry
     Created on : 14/09/2017, 8:24:52 PM
@@ -10,6 +11,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.User"%>
 <%@page import="models.Journal"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,10 +38,10 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
+                <li><a href="logout.jsp"> Logout </a></li>
+                <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %>  </div></li>
-                <a href="index.html">
+                <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
@@ -78,32 +80,30 @@
                                     EDIT ENTRY
                                 --%>
                 <form action="viewEntry.jsp" method="POST">
-                <div class="table">
-                    <table>
+                <div>
+                    <table class="table">
                         <tr>
-                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
-                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
-                            <td id="X"><a href="entries.jsp"> X </a></td>
-                        </tr>
-                        <tr>
+                            <th id="date"> Date Created: <%= entry.getDateCreated()%> </th>
+                            <th id="date"> Date Modified: <%= entry.getDateModified()%> </th>
+                            <th id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></th>
+                            <th id="X"><a href="entries.jsp"> X </a></th>
+                        <tr></tr>
                             <td><h2> Entry Title: </h2></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
-                        </tr>
-                        <tr>
+                        <tr></tr>
                             <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        <tr></tr>
+                            <td>
+                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                            </td>
+                            <tr></tr>
+                            <td>
+                                <input type="hidden" name="modified" value="modified" id="modified">
+                            </td>
                         </tr>
-                        <td>
-                            <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                        </td>
-                        <td>
-                            <input type="hidden" name="modified" value="modified" id="modified">
-                        </td>
                     </table>
                 </div>
                 </form>
@@ -143,14 +143,18 @@
                             <td id="viewEntryContent" colspan="5"><%= entry.getContent()%></td>
                         </tr>
                     </table>
+                                            <%-- 
+                                    ENTRY HISTORY
+                                --%>
+                        
                     <table id="viewHistoryTable"></table>
                     <table id="historyEntryDiv"></table>
                     <div id="entryHistoryList">
-                        <h3 style="color:black;">Entry History</h3>
+                        <h2> Entry History </h2>
                         <table>
-                                <tr onClick="setViewHistoryTable()">
-                                    <td ><%= entry.getDateModified() %></td>
-                                </tr>
+                            <tr onClick="setViewHistoryTable()">
+                                <td id="viewEntryTitle"> <%= entry.getDateModified() %> </td>
+                            </tr>
                         </table>
                         <% for(EntryHistory eh : entry.getHistoryReverse()){ %>
                             <table>

@@ -67,6 +67,7 @@ function hideEntries(){
                 html += '<div style="overflow-x:auto;">';
                 html += '<div class="entryList">';    
                 html += '<table>';
+                html += '<td>';
                 html += '<input type="checkbox" class="entryCheck" name="' +  e.entryID + '" value="' + e.entryID + '">';
                 html += '<tr class="entryRow" onClick="entryClick(this, ' + e.entryID + ')">';
                 html += '<td></td>';
@@ -75,7 +76,7 @@ function hideEntries(){
                 html += '<td><p value="<%= e.dateCreated %>">Created:' + e.dateCreated + '</p></td>';
                 html += '<td><p value="<%= e.dateModified %>">Modified:' + e.dateModified + '</p></td>';
                 html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-                html += '<td>' + e.flag + '</td>';
+                html += '<td onClick="entryClick(this, ' + e.entryID + ')">' + e.flag + '</td>';
                 html += '<td></td><td></td><td>';
                 html += '<td>';    
                 html += '<button type="button" onClick="hide()">Hide</button>';

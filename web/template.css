@@ -134,17 +134,22 @@ nav[role="side"] li a:hover{
     font-style: normal;
     font-weight: 500;
     margin-top: 5px;
-    margin-left: 180px;
+    margin-left: 170px;
     margin-right: auto;
     font-size: 16px;
     padding-bottom: 0px;
     height: 40px;
+    padding-left: 800px;
+}
+
+#entriesMenu td{
+    padding-top: 5px;
 }
 
 .addEntry{
     float: right;
-    margin-top: 8px;
-    margin-right: 40px;
+    margin-top: 0px;
+    margin-right: 10px;
     text-align: right;
     font-family: 'Open Sans';
     color: white;
@@ -195,8 +200,8 @@ nav[role="side"] li a:hover{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
-    margin-top: 30px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 40px;
     margin-right: auto;
     font-size: 20px;
 }
@@ -252,7 +257,7 @@ nav[role="side"] li a:hover{
     font-style: normal;
     font-weight: 500;
     margin-top: 0px;
-    margin-left: 180px;
+    margin-left: 175px;
     margin-right: auto;
     font-size: 14px;
     border-bottom: 0.2px solid white;
@@ -342,9 +347,11 @@ h4{
 }
 
 .entryCheck{
-    padding-top: 10px;
+    padding-top: 20px;
+    float: left;
     text-align: center;
     vertical-align: middle;
+    margin-top: 18px;
 }
 
 
@@ -491,6 +498,31 @@ h4{
 #viewEntryTable{
     float: left;
 }
+
+#viewDateCreated{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+#viewDateModified{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+} 
+
+#viewFlag{
+    text-align: left; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+}
+
 #entryHistoryList {
     float: left;
 }
