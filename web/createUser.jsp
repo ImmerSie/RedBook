@@ -20,6 +20,10 @@
         <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create User Account</title>
+        <%
+            if(((HttpServletRequest) request).getSession().getAttribute("user") != null){
+            ((HttpServletResponse) response).sendRedirect("login.jsp");
+        }%>
     </head>
     
     <body>

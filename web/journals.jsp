@@ -67,7 +67,7 @@
                 <li><a href="logout.jsp"> Logout </a></li>
                 <li><img src="userIcon.png" id="icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
-                <a href="index.html">
+                <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
