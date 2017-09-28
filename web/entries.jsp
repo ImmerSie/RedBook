@@ -19,9 +19,12 @@
     <head>
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
         <%
             if(((HttpServletRequest) request).getSession().getAttribute("user") == null){
@@ -115,10 +118,23 @@
                                     <option value="byTitleDesc">By Title Desc</option>
                                 </select>
                             </td>
+                            <td>
+                                <select id="searchBy" onChange="searchBy()">
+                                    <option value="searchNone">Search by...</option>
+                                    <option value="searchTitle">Title</option>
+                                    <option value="searchContent">Content</option>
+                                    <option value="date">Date</option>
+                                    <!--<option value="searchMonth">Month</option>
+                                    <option value="searchYear">Year</option>-->
+                                    <option value="searchBetween">Between</option>
+                                </select>
+                            </td>
+                            <td id="searchInput"></td>
                         </tr>
                     </table>
                 </div>     
             <div id="ajaxEntries"></div>
+            <div id="searchResultEntries"></div>
 
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
