@@ -22,7 +22,6 @@ function getEntries(){
                 html += '<tr onClick="entryClick(this, ' + e.entryID + ')">';
                 html += '<td></td>';
                 html += '<td>' + e.title + '</td>';
-                html += '<td></td><td>' + e.content + '</td>';
                 html += '<td><p>Created:' + e.dateCreated + '</p></td>';
                 html += '<td><p>Modified:' + e.dateModified + '</p></td>';
                 html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
