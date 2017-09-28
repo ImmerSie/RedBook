@@ -123,7 +123,23 @@ nav[role="side"] li a:hover{
        font-size: 20px;
        color: black;
        margin-top: 0px;
-       margin-left: 300px; 
+       margin-left: 250px; 
+       margin-right: auto; 
+}
+
+.newEntry {background-color: white;
+       padding-top: 10px;
+       padding-right: 50px;
+       padding-bottom: 30px;
+       padding-left: 50px;
+       text-align: center; 
+       font-family: 'Open Sans';
+       font-style: normal;
+       font-weight: normal;
+       font-size: 20px;
+       color: black;
+       margin-top: 0px;
+       margin-left: 320px; 
        margin-right: 150px; 
 }
 
@@ -134,12 +150,11 @@ nav[role="side"] li a:hover{
     font-style: normal;
     font-weight: 500;
     margin-top: 5px;
-    margin-left: 170px;
     margin-right: auto;
     font-size: 16px;
     padding-bottom: 0px;
     height: 40px;
-    padding-left: 800px;
+    padding-left: 180px;
 }
 
 #entriesMenu td{
@@ -524,7 +539,27 @@ h4{
 }
 
 #entryHistoryList {
-    float: left;
+    background: #C5B5B9;
+    border-radius: 10px;
+    float: right;
+    margin-right: 30px;
+    padding-bottom: 12px;
+    font-size: 12px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 150;
+}
+
+#historyListHeader{
+    background: #93163A;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    padding: 12px 20px;
 }
 
 #viewEntryContent{

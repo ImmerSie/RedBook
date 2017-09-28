@@ -85,18 +85,18 @@
                 <div>
                     <table class="table">
                         <tr>
-                            <th id="date"> Date Created: <%= entry.getDateCreated()%> </th>
-                            <th id="date"> Date Modified: <%= entry.getDateModified()%> </th>
-                            <th id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></th>
-                            <th id="X"><a href="entries.jsp"> X </a></th>
+                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
+                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                            <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
-                            <td><h2> Entry Title: </h2></td>
+                            <td colspan="5"><h2> Entry Title: </h2></td>
                         <tr></tr>
-                            <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                            <td  colspan="5"><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
                         <tr></tr>
-                            <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                            <td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
                         <tr></tr>
-                            <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                            <td colspan="5"><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
                         <tr></tr>
                             <td>
                                 <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
@@ -151,8 +151,10 @@
                         
                     <table id="viewHistoryTable"></table>
                     <table id="historyEntryDiv"></table>
+                    
+                </div>
                     <div id="entryHistoryList">
-                        <h2> Entry History </h2>
+                        <div id="historyListHeader"> Entry History </div>
                         <table>
                             <tr onClick="setViewHistoryTable()">
                                 <td id="viewEntryTitle"> <%= entry.getDateModified() %> </td>
@@ -168,8 +170,7 @@
                                 </tr>
                             </table>
                         <% } %>
-                    </div>
-                </div>
+                    </div>             
             <% } %>
         </div>
             

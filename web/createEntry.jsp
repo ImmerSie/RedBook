@@ -50,7 +50,7 @@
         </p>
 
         <form action="entries.jsp" method="post">
-            <div class="table">
+            <div class="newEntry">
                 <table>
                     <tr>
                         <%
