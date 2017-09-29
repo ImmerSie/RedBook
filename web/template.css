@@ -278,8 +278,8 @@ nav[role="side"] li a:hover{
     margin-left: 175px;
     margin-right: auto;
     font-size: 14px;
-    border-bottom: 0.2px solid white;
-    border-top: 1px solid white;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .entryList tr{
