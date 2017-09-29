@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%-- 
     Document   : journals
     Created on : 09/09/2017, 10:13:34 PM
@@ -53,27 +52,14 @@
                 userApp.saveUsers();
                 
             %>
-            <nav role="side">
+        <nav role="side">
             <ul>
                 <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
-        
-        <nav role="main">
-            <div id= "topNav">
-            <ul>
-                <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"> <%= user.getName() %> </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
-            </ul>
-            </div>
-        </nav>
-            
+             
             <h1>Journals</h1>
                 
             <div id="addJournal">    
@@ -81,27 +67,37 @@
             </div>
             
             <div id="journalPosition">
-                <tr>
-                <p id="journalIcon">
                 <% if(user.getJournals().size() > 0){
                     for(Journal j : user.getJournals()){
-                        %><div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
-                    <img src="journal.png" alt=""/> <p class="journalTitle"> <%= j.getTitle()%> </p></div><%
+                        %>
+                <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
+                    <img src="journal.png" alt=""/>
+                        <p class="journalTitle"> <%= j.getTitle()%> </p>
+                </div>
+            <%
                     }
                 }
             } else { %>
-            </p><p><h3>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
+            <p><h3>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
             <% } %>
-            
+            </div>
+        
+            <nav role="main">
+            <div id= "topNav">
+                <ul>
+                    <li><a href="logout.jsp"> Logout </a></li>
+                    <li><img src="userIcon.png" id="icon"></li>
+                    <li><div id="usersName"> <%= user.getName() %> </div></li>
+                    <a href="journals.jsp">
+                        <img src="RedLogo.png" class="logo" alt="Logo">
+                    </a>
+                </ul>
+            </div>
+        </nav>
             
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div> 
-            
-
-        
-        <h1></h1>  
-        
     </body>
 </html>
 

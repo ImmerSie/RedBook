@@ -216,7 +216,7 @@ nav[role="side"] li a:hover{
     font-style: normal;
     font-weight: 500;
     margin-top: 20px;
-    margin-left: 40px;
+    margin-left: 220px;
     margin-right: auto;
     font-size: 20px;
 }
@@ -238,6 +238,8 @@ nav[role="side"] li a:hover{
     text-align: center;
     font-weight: bold;
     position:relative;
+    display: inline-block;
+    padding-right: 20px;
 }
 
 #entriesTable{
@@ -493,13 +495,6 @@ h4{
     height: 10%;
     weight: 10%;
     padding-left: 17%;
-}
-
-#journalIcon{
-    position: fixed;
-    height: 100px;
-    width: 75px;
-    color: white;
 }
 
 #background {
