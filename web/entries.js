@@ -23,8 +23,8 @@ function getEntries(){
                 html += '<td></td>';
                 html += '<td>' + e.title + '</td>';
                 html += '<td></td><td>' + e.content + '</td>';
-                html += '<td><p value="<%= e.dateCreated %>">Created:' + e.dateCreated + '</p></td>';
-                html += '<td><p value="<%= e.dateModified %>">Modified:' + e.dateModified + '</p></td>';
+                html += '<td><p value="<%= e.dateCreated %>">Created: ' + e.dateCreated + '</p></td>';
+                html += '<td><p value="<%= e.dateModified %>">Modified: ' + e.dateModified + '</p></td>';
                 html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
                 html += '<td>' + e.flag + '</td>';
                 html += '<td></td><td></td><td>';
@@ -73,8 +73,8 @@ function hideEntries(){
                 html += '<td></td>';
                 html += '<td>' + e.title + '</td>';
                 html += '<td></td><td>' + e.content + '</td>';
-                html += '<td><p value="<%= e.dateCreated %>">Created:' + e.dateCreated + '</p></td>';
-                html += '<td><p value="<%= e.dateModified %>">Modified:' + e.dateModified + '</p></td>';
+                html += '<td><p value="<%= e.dateCreated %>">Created: ' + e.dateCreated + '</p></td>';
+                html += '<td><p value="<%= e.dateModified %>">Modified: ' + e.dateModified + '</p></td>';
                 html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
                 html += '<td onClick="entryClick(this, ' + e.entryID + ')">' + e.flag + '</td>';
                 html += '<td></td><td></td><td>';

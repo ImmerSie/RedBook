@@ -12,7 +12,7 @@
         <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <%! String passwordRegex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"; %>
+        <%! String passwordLogex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"; %>
     </head>
     <body>
         <%
@@ -43,8 +43,9 @@
                     <td>
                         <img src="passwordIcon.png" class="Icon" alt="Icon">
                     </td>
-                    <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordRegex%>"
-                               oninvalid="setCustomValidity('Invalid password has been entered')"/></td>
+                    <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
+                               oninvalid="setCustomValidity('Please enter a valid Password')"
+                               oninput="setCustomValidity('')"/></td>
                 </tr>
                 <tr>
                     <td></td>
