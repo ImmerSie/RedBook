@@ -12,6 +12,7 @@
         <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <%! String passwordRegex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"; %>
     </head>
     <body>
         <%
@@ -36,13 +37,14 @@
                     <td>
                         <img src="emailIcon.png" class="Icon" alt="Icon">
                     </td>
-                    <td><input type="email" name="email"></td>
+                    <td><input type="email" name="email" placeholder="Email Address" required></td>
                 </tr>
                 <tr>
                     <td>
                         <img src="passwordIcon.png" class="Icon" alt="Icon">
                     </td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordRegex%>"
+                               oninvalid="setCustomValidity('Invalid password has been entered')"/></td>
                 </tr>
                 <tr>
                     <td></td>
