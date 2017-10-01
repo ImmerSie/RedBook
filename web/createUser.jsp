@@ -61,7 +61,7 @@
                         <img src="passwordIcon.png" class="Icon" alt="Password Icon">
                     </td>
                     <td><input type="password" name="password" placeholder="Password" required="required" pattern="<%=passwordRegex%>"
-                               oninvalid="setCustomValidity('Password must contain atleast 6 characters, 1 Uppercase, 1 lowercase and 1 number')"
+                               oninvalid="setCustomValidity('Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 number')"
                                oninput="setCustomValidity('')" onchange="setCustomerValidity('')"/></td>
                 </tr>
    

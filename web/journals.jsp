@@ -56,7 +56,6 @@
             <ul>
                 <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
              
