@@ -11,6 +11,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.User"%>
 <%@page import="models.Journal"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md' %> 
@@ -25,6 +26,9 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" language="javascript" src="viewEntry.js"></script>
+        <%
+            SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
+        %>
     </head>
     <body>
         <nav role="side">
@@ -85,9 +89,9 @@
                 <div>
                     <table class="table">
                         <tr>
-                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
-                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
+                            <td id="date"> Date Created: <%= ft1.format(entry.getDateCreated())%> </td>
+                            <td id="date"> Date Modified: <%= ft1.format(entry.getDateModified())%> </td>
+                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag" disabled></td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                             <td colspan="5"><h2> Entry Title: </h2></td>
@@ -129,8 +133,8 @@
                 <div class="table" id="viewEntryTable">
                     <table id="viewEntryData">
                         <tr>
-                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
-                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
+                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= ft1.format(entry.getDateCreated()) %></td>
+                            <td id="viewDateModified" value="<%= entry.getDateModified() %>">Date Modified: <%= ft1.format(entry.getDateModified()) %></td>
                             <td id="viewFlag" value="<%= entry.getFlag()%>">Flag: <%= entry.getFlag()%></td>
                             <td>
                                 <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
