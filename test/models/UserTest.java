@@ -108,9 +108,17 @@ public class UserTest {
     @Test
     public void testGetJournals() {
         System.out.println("getJournals");
-        User instance = new User();
+        Date dateCreated = new Date();
+        Date lastModified = new Date();
+        Journal j = new Journal(123,123,dateCreated,lastModified,"title","description");
+        User user = new User();
+        User instance = user;
+        instance.addJournal(j);
+        ArrayList<Journal> journals = new ArrayList<Journal>();
+        journals.add(j);
+        
         ArrayList<Journal> result = instance.getJournals();
-        assertEquals(result.size(),0);
+        assertEquals(result,journals);
     
     }
 
@@ -121,9 +129,16 @@ public class UserTest {
     @Test
     public void testGetJournal() {
         System.out.println("getJournal");
+        
+         Date dateCreated = new Date();
+        Date lastModified = new Date();
+        Journal j = new Journal(123,123,dateCreated,lastModified,"title","description");
+        User user = new User();
+        User instance = user;
+        instance.addJournal(j);
         int journalID = 123;
-        User instance = new User(123,"Testname","Test@test.com","Password");
-        Journal expResult = null;
+    
+        Journal expResult = j;
         Journal result = instance.getJournal(journalID);
         assertEquals(expResult, result);
      

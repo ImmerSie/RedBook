@@ -141,17 +141,20 @@ public class JournalTest {
     @Test
     public void testGetEntries() {
         System.out.println("getEntries");
-        Date dateCreated = new Date();
-        Date lastModified = new Date();
-        Journal instance = new Journal(123,123,dateCreated,lastModified,"title","description");
+       
         Date TestDate = new Date();
         Entry E1=new Entry(123,123,123,"TestTitle","TestContent","TestFlag",TestDate);
-        Entry E2=new Entry(124,123,123,"TestTitle","TestContent","TestFlag",TestDate);
+  
+    
+        Journal j = new Journal();
+        Journal instance = j;
+        j.addEntry(E1);
+        
         ArrayList<Entry> entries = new ArrayList<Entry>();
         entries.add(E1);
-        entries.add(E2);
+        
         ArrayList<Entry> result = instance.getEntries();
-        assertEquals(result.size(),0);
+        assertEquals(result,entries);
 
     }
 

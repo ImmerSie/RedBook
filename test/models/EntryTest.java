@@ -188,9 +188,16 @@ public class EntryTest {
     public void testGetComments() {
         System.out.println("getComments");
         Date TestDate = new Date();
-        Entry instance = new Entry(123,123,123,"TestTitle","TestContent","TestFlag",TestDate);
+       Comment comments = new Comment(123,TestDate,"Comment");
+    
+       ArrayList<Comment> commentsTest = new ArrayList<Comment>();
+       commentsTest.add(comments);
+       
+        Entry e = new Entry();
+        Entry instance = e;
+        e.addComment(comments);
         ArrayList<Comment> result = instance.getComments();
-         assertEquals(result.size(),0);
+         assertEquals(result,commentsTest);
 
     }
 
@@ -203,10 +210,22 @@ public class EntryTest {
     @Test
     public void testGetHistory() {
         System.out.println("getHistory");
-        Entry instance = new Entry(); 
+       
+        Date TestDate1 = new Date();
+        EntryHistory eh = new EntryHistory(123,123,123,123,"TestTitle","TestContent",TestDate1);
         ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
+        history.add(eh);
+       
+        ArrayList<EntryHistory> historyTest = new ArrayList<EntryHistory>();
+        historyTest.add(eh);
+        
+        Entry e = new Entry();
+        Entry instance = e;
+        e.setHistory(history);
+
+   
         ArrayList<EntryHistory> result = instance.getHistory();
-        assertEquals(result.size(),0);
+        assertEquals(result,historyTest);
  
     }
 
@@ -216,10 +235,19 @@ public class EntryTest {
     @Test
     public void testGetHistoryReverse() {
         System.out.println("getHistoryReverse");
-        Entry instance = new Entry();
-        ArrayList<EntryHistory> expResult = null;
+         
+        Date TestDate1 = new Date();
+        EntryHistory eh = new EntryHistory(123,123,123,123,"TestTitle","TestContent",TestDate1);
+        ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
+        history.add(eh);
+         ArrayList<EntryHistory> historyTest = new ArrayList<EntryHistory>();
+        historyTest.add(eh);
+       
+        Entry e = new Entry();
+        Entry instance = e;
+        e.setHistory(history);
         ArrayList<EntryHistory> result = instance.getHistoryReverse();
-           assertEquals(result.size(),0);
+           assertEquals(result,historyTest);
    
     }
 

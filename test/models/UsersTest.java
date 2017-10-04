@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-i m
 import static org.junit.Assert.*;
 
 /**
@@ -51,13 +50,16 @@ public class UsersTest {
         
         User u=new User(123,"Testname","Test@test.com","password");
         Users users=new Users();
+      
+       
+        Users instance = users;
+        instance.addUser(u);
+      
         ArrayList<User> userList = new ArrayList<User>();
         userList.add(u);
-        Users instance = users;
-      
         ArrayList<User> result = instance.getUsers();
-
-         assertEquals(result.size(),0);
+        
+         assertEquals(result,userList);
       
 
     }
@@ -73,11 +75,12 @@ public class UsersTest {
         String email = "Test@test.com";
         User u=new User(123,"Testname","Test@test.com","password");
         Users users=new Users();
-        users.addUser(u);
+         Users instance = users;
+        instance.addUser(u);
  
         
-        User expResult = null;
-        Users instance = new Users();
+        User expResult = u;
+
         User result = instance.getUser(email);
         assertEquals(expResult, result);
      
@@ -92,9 +95,9 @@ public class UsersTest {
         User u=new User(123,"Testname","Test@test.com","password");
         Users users=new Users();
         users.addUser(u);
-        String email = "123";
-        String password = "123";
-        User expResult = null;
+        String email = "Test@test.com";
+        String password = "password";
+        User expResult = u;
         User result = users.login(email, password);
         assertEquals(expResult, result);
        

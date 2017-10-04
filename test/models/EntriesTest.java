@@ -36,41 +36,25 @@ public class EntriesTest {
      * Test of getEntries method, of class Entries.
      */
     @Test
-    public void testGetEntries() throws IllegalArgumentException, IllegalAccessException {
+    public void testGetEntries() {
         System.out.println("getEntries");
         
         Date TestDate = new Date();
         Entry E1=new Entry(123,123,123,"TestTitle","TestContent","TestFlag",TestDate);
-        ArrayList<Entry> entryList= new ArrayList<Entry>();
-        entryList.add(E1);
-         
-   
+        Entries EntriesTest = new Entries();
+        Entries instance = EntriesTest;
+        EntriesTest.addEntry(E1);
         
-        Field [] fa = EntriesTest.class.getDeclaredFields();   
-      for(Field f :fa){
-          int entryID;
-   if(f.getName().equals("entryList"))
-   {
-    f.setAccessible(true);
-    Entries t = new Entries();
-    
-   /**  ArrayList<Entry> entryList1 = ( ArrayList<Entry>)(f.get(t)); **/
-     
-        entryID = (int)(f.get(t));
-        assertEquals(1245656566,entryID);
+        ArrayList<Entry> entryList = new ArrayList<Entry>();
+        entryList.add(E1);
+        ArrayList<Entry> result = instance.getEntries();
+        
+        assertEquals(result,entryList);
+         
    }
     
     
   }
    
-    
-       
 
-  } 
-     
-
-        
-    }
-
-    
-}
+ 

@@ -145,9 +145,14 @@ public class EntryHistoryTest {
     @Test
     public void testGetComments() {
         System.out.println("getComments");
-        EntryHistory instance = new EntryHistory();
+         Date TestDate = new Date();
+       Comment comments = new Comment(123,TestDate,"Comment");
+       
+        Entry e = new Entry();
+        Entry instance = e;
+        e.addComment(comments);
         ArrayList<Comment> result = instance.getComments();
-        assertEquals(result.size(),0);
+        assertEquals(result.size(),1);
   
     }
 

@@ -60,20 +60,20 @@ public class EntryHistoryControllerTest {
     @Test
     public void testGetEntryHisFromID() {
         System.out.println("getEntryHisFromID");
-        int hisID = 123;
-        Date TestDate1 = new Date();
-        EntryHistory eh = new EntryHistory(123,123,123,123,"TestTitle","TestContent",TestDate1);
-        
-        ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
-       history.add(eh);
-        
-        String filePath = "TestfilePath";
+         String filePath = "TestfilePath";
+         int hisID = 123;
+         
         Date TestDate = new Date();
-        Entry EntryTest = new Entry(123,123,123,"TestTitle","TestContent","TestFlag",TestDate);
-        EntryHistoryController instance = new EntryHistoryController(filePath,EntryTest);
-        
-        
-        EntryHistory expResult = null;
+        EntryHistory eh = new EntryHistory(123,123,123,123,"TestTitle","TestContent",TestDate);
+         ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
+        history.add(eh);
+       
+        Entry e = new Entry();
+        e.setHistory(history);
+          
+    
+        EntryHistory expResult = eh;
+        EntryHistoryController instance = new EntryHistoryController(filePath,e);
         EntryHistory result = instance.getEntryHisFromID(hisID);
         assertEquals(expResult, result);
  
