@@ -54,6 +54,9 @@ public class HideEntryServlet extends HttpServlet {
             else if(sort.equals("byTitleDesc")){
                 entries = entryApp.sortByTitleDesc(entries);
             }
+            else if(sort.equals("byDate")){
+                entries = entryApp.sortByDate(entries);
+            }
             
             return entries;
         }

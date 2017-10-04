@@ -213,12 +213,14 @@ public class EntryController implements Serializable{
      * @return A list representing all the entries for a given journal
      */
     public ArrayList<Entry> getAllEntries(){
-        ArrayList<Entry> journalEntries = new ArrayList<>();
-        if(journal.getEntries().size() > 0){
-            for(Entry e : journal.getEntries()){
+        ArrayList<Entry> journalEntries = journal.getEntries();
+        /*ArrayList<Entry> journalEntries = new ArrayList<>();
+        ArrayList<Entry> entriesList = sortByDate(journal.getEntries());
+        if(entriesList.size() > 0){
+            for(Entry e : entriesList){
                 journalEntries.add(e);
             }
-        }
+        }*/
         return journalEntries;
     }
     
@@ -229,8 +231,9 @@ public class EntryController implements Serializable{
      */
     public ArrayList<Entry> getHiddenEntries(){
         ArrayList<Entry> journalEntries = new ArrayList<>();
-        if(journal.getEntries().size() > 0){
-            for(Entry e : journal.getEntries()){
+        ArrayList<Entry> entriesList = getAllEntries();
+        if(entriesList.size() > 0){
+            for(Entry e : entriesList){
                 if(e.getFlag().equals("hidden")){
                     journalEntries.add(e);
                 }
@@ -241,8 +244,9 @@ public class EntryController implements Serializable{
     
     public ArrayList<Entry> getDeletedEntries(){
         ArrayList<Entry> journalEntries = new ArrayList<>();
-        if(journal.getEntries().size() > 0){
-            for(Entry e : journal.getEntries()){
+        ArrayList<Entry> entriesList = getAllEntries();
+        if(entriesList.size() > 0){
+            for(Entry e : entriesList){
                 if(e.getFlag().equals("deleted")){
                     journalEntries.add(e);
                 }
@@ -258,8 +262,9 @@ public class EntryController implements Serializable{
      */
     public ArrayList<Entry> getVisibleEntries(){
         ArrayList<Entry> journalEntries = new ArrayList<>();
-        if(journal.getEntries().size() > 0){
-            for(Entry e : journal.getEntries()){
+        ArrayList<Entry> entriesList = getAllEntries();
+        if(entriesList.size() > 0){
+            for(Entry e : entriesList){
                 if(e.getFlag().equals("visible")){
                     journalEntries.add(e);
                 }
@@ -326,6 +331,13 @@ public class EntryController implements Serializable{
      */
     public ArrayList<Entry> sortByTitleDesc(ArrayList<Entry> e){
         e.sort(Comparator.comparing(Entry::getTitleLowercase, (s1, s2) -> {
+            return s2.compareTo(s1);
+        }));
+        return e;
+    }
+    
+    public ArrayList<Entry> sortByDate(ArrayList<Entry> e){
+        e.sort(Comparator.comparing(Entry::getDateCreated, (s1, s2) -> {
             return s2.compareTo(s1);
         }));
         return e;

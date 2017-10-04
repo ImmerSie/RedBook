@@ -117,6 +117,7 @@
                             <td>
                                 <select id="sorting" onChange="sortEntries()">
                                     <option value="byDate">By Date</option>
+                                    <option value="byDateDesc">By Date Desc</option>
                                     <option value="byTitle">By Title</option>
                                     <option value="byTitleDesc">By Title Desc</option>
                                 </select>
