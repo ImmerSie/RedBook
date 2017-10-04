@@ -52,7 +52,7 @@
                         <img src="emailIcon.png" class="Icon" alt="Email Icon">
                     </td>
                     <td><input type="email" name="email" placeholder="Email Address" required="required" pattern="<%=regex%>" autocomplete="on" 
-                                oninvalid="setCustomValidity('Please enter a valid Email Address ')" oninput="setCustomValidity('')" onchange="setCustomerValidity('')"
+                                oninvalid="setCustomValidity('Please enter a valid Email Address ')" oninput="setCustomValidity('')" onchange="setCustomValidity('')"
                                 ></td>
                     
                 </tr>

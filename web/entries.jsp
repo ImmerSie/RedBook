@@ -9,6 +9,7 @@
 <%@page import="controllers.JournalController"%>
 <%@page import="controllers.LoginController"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
 <%@page import="models.User"%>
@@ -57,6 +58,7 @@
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
+                <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
         
@@ -76,7 +78,11 @@
         <h1><%= journal.getTitle()%></h1>
         <h3><%= journal.getDescription()%></h3>
         <h4>
-            <p>Created: <%= journal.getDateCreated()%>   Last Modified: <%= journal.getLastModified() %></p>
+            <%
+                SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
+            %>
+            <p>Created: <%=ft1.format(journal.getDateCreated())%></p>
+            <p>Last Modified: <%=ft1.format(journal.getLastModified())%></p>
         </h4>       
         <%
             if(request.getParameter("title") != null){

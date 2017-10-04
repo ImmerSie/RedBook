@@ -106,8 +106,7 @@ function hideEntries(){
             html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
         else{
-            $.each(response, function(key, e){
-                
+            $.each(response, function(key, e){                
                 html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);
             });
         }

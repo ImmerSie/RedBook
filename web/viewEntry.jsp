@@ -11,6 +11,7 @@
 <%@page import="models.Entry"%>
 <%@page import="models.User"%>
 <%@page import="models.Journal"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md' %> 
@@ -25,6 +26,9 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" language="javascript" src="viewEntry.js"></script>
+        <%
+            SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
+        %>
     </head>
     <body>
         <nav role="side">
@@ -33,6 +37,7 @@
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
+                <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav>
         

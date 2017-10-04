@@ -1,9 +1,8 @@
 <%-- 
-    Document   : createJournal
-    Created on : 09/09/2017, 10:56:23 PM
-    Author     : Max
+    Document   : help
+    Created on : 04/10/2017, 9:25:12 AM
+    Author     : SophiePapworth
 --%>
-
 <%@page import="models.User"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Journal</title>
+        <title> Help </title>
     </head>
     <body>
         <div id="background">
@@ -45,34 +44,13 @@
             </div>
         </nav>
         
-        <h1></h1>  
+        <h1> Help and Documentation Guide </h1>
         
         <p>
-            <a href="entries.jsp">
+            <a href="journals.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             <a/>        
-        </p>
+        </p>  
         
-        <form action="newJournal.jsp" method="post">
-            <div id="journalAddTable">    
-                <table>
-                    <tr>
-                        <td> Journal Name: </td>
-                        <td><input type="text" name="title"></td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td> Brief Description: </td>
-                        <td><input type="text" name="description"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Create"></td>
-                    </tr>
-                </table>
-            </div>    
-        </form>
     </body>
 </html>
