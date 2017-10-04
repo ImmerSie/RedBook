@@ -8,7 +8,6 @@
 <%@page import="controllers.EntryController"%>
 <%@page import="controllers.JournalController"%>
 <%@page import="controllers.LoginController"%>
-<%@page import="models.Entries"%>
 <%@page import="java.util.Date"%>
 <%@page import="models.Entry"%>
 <%@page import="models.Journal"%>
@@ -30,7 +29,7 @@
     </head>
     <body>
         <%  if(session.getAttribute("entryApp") == null){
-            String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
+                String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
                 <jsp:useBean id="entryApp" class="controllers.EntryController" scope="session">
                     <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
                 </jsp:useBean>
@@ -105,6 +104,7 @@
                                 <select id="filter" onChange="filterEntries()">
                                     <option value="visible">Visible Entries</option>
                                     <option value="hidden">Hidden Entries</option>
+                                    <option value="deleted">Deleted Entries</option>
                                     <option value="all">All Entries</option>
                                 </select>
                             </td>

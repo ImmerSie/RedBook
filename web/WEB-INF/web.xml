@@ -17,4 +17,13 @@
         <servlet-name>hideEntryServlet</servlet-name>
         <url-pattern>/hideEntryServlet.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>entryServlet</servlet-name>
+        <servlet-class>servlet.EntryServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>entryServlet</servlet-name>
+        <url-pattern>/entryServlet.do</url-pattern>
+    </servlet-mapping>
 </web-app>

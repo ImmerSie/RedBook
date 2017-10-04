@@ -8,7 +8,8 @@ package models;
 import java.util.Date;
 
 /**
- *
+ * Data Application Object representing a comment on a journal entry.
+ * 
  * @author Max
  */
 public class Comment {

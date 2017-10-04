@@ -11,8 +11,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
 /**
- *
+ * Data Application Object representing a journal in journals.xml and
+ * the root object in entries.xml file
+ * 
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)

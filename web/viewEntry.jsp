@@ -87,7 +87,6 @@
                         <tr>
                             <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
                             <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
-                            <td id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                             <td colspan="5"><h2> Entry Title: </h2></td>
@@ -131,18 +130,26 @@
                         <tr>
                             <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
                             <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
-                            <td id="viewFlag" value="<%= entry.getFlag()%>">Flag: <%= entry.getFlag()%></td>
                             <td>
                                 <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
                             </td>
                             <td>
                                 <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
                             </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">
+                                    <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
+                                    <input type="submit" class="button" value="Download">
+                                </form>
+                            </td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
                             <tr></tr>
                             <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
                             <tr></tr>
                             <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                            <td>
+                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                            </td>
                         </tr>
                     </table>
                                             <%-- 

@@ -13,7 +13,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Data Application Object representing an entry in entries.xml and
+ * the root element in entriesHistory.xml file
+ * 
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -38,6 +40,7 @@ public class Entry {
     
     @XmlElement(name="comment")
     private ArrayList<Comment> comments = new ArrayList<Comment>();
+    
     @XmlElement(name="entryHis")
     private ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
 
@@ -83,6 +86,11 @@ public class Entry {
         return content;
     }
     
+    /**
+     * Gets the first 100 characters from them content, for summarisation purposes
+     * 
+     * @return The first 100 characters in the content
+     */
     public String getContentSnippet(){
         if(content.length() > 103){
             String snippet = content.substring(0, 100);
@@ -161,15 +169,24 @@ public class Entry {
         this.history = history;
     }
     
+    /**
+     * Adds the old entry data to the entry history, setting the new data to the entry data
+     * 
+     * @param entry An object representing the new entry data
+     */
     public void addToHistory(Entry entry){
+        // Creates an id for the entry history object
         int newID = 0;
         if(history.size() > 0){
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
+        
+        // Creates the entry history object with the old entry's data
         EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, this.dateModified);
         oldEntry.setComments(this.comments);
         
+        // Sets the new data to the entry object
         history.add(oldEntry);
         this.title = entry.getTitle();
         this.content = entry.getContent();

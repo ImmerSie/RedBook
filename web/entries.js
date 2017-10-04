@@ -4,6 +4,69 @@
  * and open the template in the editor.
  */
 
+function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, forResultTable){
+    var html = '';
+    
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';    
+    html += '<table>';
+    html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
+    if(forResultTable){
+        html += '<tr onClick="entryClick(this, ' + entryID + ')">';
+    }
+    else{
+       html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
+    }
+    html += '<td></td>';
+    html += '<td>' + eTitle + '</td>';
+    html += '<td></td><td>' + eContent + '</td>';
+    html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
+    html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+    html += '<td></td><td></td><td>';
+    html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
+    html += '</tr>';
+    html += '<td>';
+    html += '<div id="vis-wrapper">';
+    html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
+    html += '<div id="vis-dropdown">';
+    html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
+    html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
+    html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+    html += '</div>';
+    html += '</div>';
+    html += '</td>';
+    html += '</table>';
+    html += '</div>';
+    html += '</div>';
+    
+    return html;
+}
+
+function visiblise(entryID){
+    var sortingDrop = document.getElementById("sorting");
+    var filterDrop = document.getElementById("filter");
+    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "visible", entryID: entryID}, function(response){
+        getEntries()
+    });
+}
+
+function hide(entryID){
+    var sortingDrop = document.getElementById("sorting");
+    var filterDrop = document.getElementById("filter");
+    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "hidden", entryID: entryID}, function(response){
+           getEntries();
+    });
+}
+
+function del(entryID){
+    var sortingDrop = document.getElementById("sorting");
+    var filterDrop = document.getElementById("filter");
+    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){
+        getEntries();
+    });
+}
+
 function getEntries(){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
@@ -15,27 +78,7 @@ function getEntries(){
         }
         else{
             $.each(response, function(key, e){
-                html += '<div style="overflow-x:auto;">';
-                html += '<div class="entryList">';    
-                html += '<table>';
-                html += '<input type="checkbox" class="entryCheck" name="' +  e.entryID + '" value="' + e.entryID + '">';
-                html += '<tr class="entryRow" onClick="entryClick(this, ' + e.entryID + ')">';
-                html += '<td></td>';
-                html += '<td>' + e.title + '</td>';
-                html += '<td></td><td>' + e.content + '</td>';
-                html += '<td><p value="<%= e.dateCreated %>">Created:' + e.dateCreated + '</p></td>';
-                html += '<td><p value="<%= e.dateModified %>">Modified:' + e.dateModified + '</p></td>';
-                html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-                html += '<td>' + e.flag + '</td>';
-                html += '<td></td><td></td><td>';
-                html += '<td>';    
-                html += '<button type="button" onClick="hide()">Hide</button>';
-                html += '</td>';
-                html += '<td><input type="hidden" value="' + e.entryID + '" name="entryID" id="entryID"></td>';
-                html += '</tr>';
-                html += '</table>';
-                html += '</div>';
-                html += '</div>';
+                html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);                
             });
         }
         
@@ -64,28 +107,8 @@ function hideEntries(){
         }
         else{
             $.each(response, function(key, e){
-                html += '<div style="overflow-x:auto;">';
-                html += '<div class="entryList">';    
-                html += '<table>';
-                html += '<td>';
-                html += '<input type="checkbox" class="entryCheck" name="' +  e.entryID + '" value="' + e.entryID + '">';
-                html += '<tr class="entryRow" onClick="entryClick(this, ' + e.entryID + ')">';
-                html += '<td></td>';
-                html += '<td>' + e.title + '</td>';
-                html += '<td></td><td>' + e.content + '</td>';
-                html += '<td><p value="<%= e.dateCreated %>">Created:' + e.dateCreated + '</p></td>';
-                html += '<td><p value="<%= e.dateModified %>">Modified:' + e.dateModified + '</p></td>';
-                html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-                html += '<td onClick="entryClick(this, ' + e.entryID + ')">' + e.flag + '</td>';
-                html += '<td></td><td></td><td>';
-                html += '<td>';    
-                html += '<button type="button" onClick="hide()">Hide</button>';
-                html += '</td>';
-                html += '<td><input type="hidden" value="' + e.entryID + '" name="entryID" id="entryID"></td>';
-                html += '</tr>';
-                html += '</table>';
-                html += '</div>';
-                html += '</div>';
+                
+                html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);
             });
         }
         $('#ajaxEntries').html(html);
@@ -130,8 +153,6 @@ function searchBy(){
         var html = '';
         
         html += '<input type="text" id="datepickerFrom" placeholder="Date..."> and <input type="text" id="datepickerTo" placeholder="Date...">';
-        //html += '<p>and</p>';
-        //html += '<input type="text" id="datepickerTo" placeholder="Date...">';
         html += '<button value="goSearch" onClick="searchBetweenDates()">Go</button>';
         html += '</td><td><button onClick="removeSearch()">X</button>';
         
@@ -163,27 +184,8 @@ function searchByTitle(){
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            html += '<div style="overflow-x:auto;">';
-            html += '<div class="entryList">';    
-            html += '<table>';
-            html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-            html += '<tr onClick="entryClick(this, ' + entryID + ')">';
-            html += '<td></td>';
-            html += '<td>' + eTitle + '</td>';
-            html += '<td></td><td>' + eContent + '</td>';
-            html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-            html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
-            html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-            html += '<td>' + eFlag + '</td>';
-            html += '<td></td><td></td><td>';
-            html += '<td>';    
-            html += '<button type="button" onClick="hide()">Hide</button>';
-            html += '</td>';
-            html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-            html += '</tr>';
-            html += '</table>';
-            html += '</div>';
-            html += '</div>';
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
         }
     }
     
@@ -207,27 +209,8 @@ function searchByContent(){
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            html += '<div style="overflow-x:auto;">';
-            html += '<div class="entryList">';    
-            html += '<table>';
-            html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-            html += '<tr onClick="entryClick(this, ' + entryID + ')">';
-            html += '<td></td>';
-            html += '<td>' + eTitle + '</td>';
-            html += '<td></td><td>' + eContent + '</td>';
-            html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-            html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
-            html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-            html += '<td>' + eFlag + '</td>';
-            html += '<td></td><td></td><td>';
-            html += '<td>';    
-            html += '<button type="button" onClick="hide()">Hide</button>';
-            html += '</td>';
-            html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-            html += '</tr>';
-            html += '</table>';
-            html += '</div>';
-            html += '</div>';
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
         }
     }
     
@@ -258,27 +241,8 @@ function searchByDate(selectedDate){
             var eContent = $(row.item(i)).find('td').eq(3).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            html += '<div style="overflow-x:auto;">';
-            html += '<div class="entryList">';    
-            html += '<table>';
-            html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-            html += '<tr onClick="entryClick(this, ' + entryID + ')">';
-            html += '<td></td>';
-            html += '<td>' + eTitle + '</td>';
-            html += '<td></td><td>' + eContent + '</td>';
-            html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-            html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
-            html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-            html += '<td>' + eFlag + '</td>';
-            html += '<td></td><td></td><td>';
-            html += '<td>';    
-            html += '<button type="button" onClick="hide()">Hide</button>';
-            html += '</td>';
-            html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-            html += '</tr>';
-            html += '</table>';
-            html += '</div>';
-            html += '</div>';
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
         }
     }
     
@@ -289,7 +253,6 @@ function searchByDate(selectedDate){
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
-
 
 function searchBetweenDates(){
     var row = document.getElementsByClassName("entryRow");
@@ -311,36 +274,15 @@ function searchBetweenDates(){
             var eContent = $(row.item(i)).find('td').eq(3).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            html += '<div style="overflow-x:auto;">';
-            html += '<div class="entryList">';    
-            html += '<table>';
-            html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-            html += '<tr onClick="entryClick(this, ' + entryID + ')">';
-            html += '<td></td>';
-            html += '<td>' + eTitle + '</td>';
-            html += '<td></td><td>' + eContent + '</td>';
-            html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-            html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
-            html += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
-            html += '<td>' + eFlag + '</td>';
-            html += '<td></td><td></td><td>';
-            html += '<td>';    
-            html += '<button type="button" onClick="hide()">Hide</button>';
-            html += '</td>';
-            html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-            html += '</tr>';
-            html += '</table>';
-            html += '</div>';
-            html += '</div>';
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
         }
     }
     
     if(html.length < 1){
         html += '<h3>You have no results<h3>';
     }
-    
-    //$('#searchInput').html(html);
-    
+        
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
