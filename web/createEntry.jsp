@@ -15,6 +15,10 @@
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" language="javascript" src="createEntry.js"></script>
         <title>Create Entry</title>
         <%User user = (User) session.getAttribute("user");%>
     </head>
@@ -50,7 +54,7 @@
             <a/>        
         </p>
 
-        <form action="entries.jsp" method="post">
+        <!--<form action="entries.jsp" method="post">-->
             <div class="newEntry">
                 <table>
                     <tr>
@@ -63,17 +67,17 @@
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>
                     <tr></tr>
-                        <td><input type="text" name="title"></td>
+                        <td><input type="text" name="title" id="createTitleTxt"></td>
                     </tr>
                     <tr>
                         <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Save" id="saveBtn"></td>
+                        <td><button  value="Save" id="saveBtn" onclick="createEntry()">Save</button></td>
                     </tr>
                 </table>
             </div>
-        </form>
+        <!--</form type="submit">-->
         
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />

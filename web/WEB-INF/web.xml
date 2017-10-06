@@ -26,4 +26,13 @@
         <servlet-name>entryServlet</servlet-name>
         <url-pattern>/entryServlet.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>entryHistoryServlet</servlet-name>
+        <servlet-class>servlet.EntryHistoryServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>entryHistoryServlet</servlet-name>
+        <url-pattern>/entryHistoryServlet.do</url-pattern>
+    </servlet-mapping>
 </web-app>

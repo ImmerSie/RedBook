@@ -46,23 +46,25 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
 function visiblise(entryID){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "visible", entryID: entryID}, function(response){
-        getEntries()
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "visible", entryID: entryID}, function(response){
+        getEntries();
     });
 }
 
 function hide(entryID){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "hidden", entryID: entryID}, function(response){
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "hidden", entryID: entryID}, function(response){
            getEntries();
     });
 }
 
 function del(entryID){
+    var html = '<h2>Testing del</h2>';
+    $("entriesMenu").html(html);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){
         getEntries();
     });
 }

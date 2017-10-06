@@ -84,61 +84,48 @@
             <p>Created: <%=ft1.format(journal.getDateCreated())%></p>
             <p>Last Modified: <%=ft1.format(journal.getLastModified())%></p>
         </h4>       
-        <%
-            if(request.getParameter("title") != null){
-                String title = request.getParameter("title");
-                String content = request.getParameter("content");
-                int userID = user.getUserID();
-                int journalID = journal.getJournalID();
-                int entryID = entryApp.getNewEntryID();
-                Date dateCreated = new Date();
-                Date dateModified = new Date();
-                Entry entry = new Entry(userID, journalID, entryID, title, content, "visible", dateModified);
-                journal.addEntry(entry);
-                entryApp.saveEntries();
-            } %>
-                <div id="entriesMenu">
-                    <table>
-                        <tr>
-                            <td>
-                                <a class="addEntry" href="createEntry.jsp"> + </a>
-                            </td>
-                            <td>
-                                <button type="button" onClick="hideEntries()"> Hide </button>
-                            </td>
-                            <td>
-                                <select id="filter" onChange="filterEntries()">
-                                    <option value="visible">Visible Entries</option>
-                                    <option value="hidden">Hidden Entries</option>
-                                    <option value="deleted">Deleted Entries</option>
-                                    <option value="all">All Entries</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select id="sorting" onChange="sortEntries()">
-                                    <option value="byDate">By Date</option>
-                                    <option value="byDateDesc">By Date Desc</option>
-                                    <option value="byTitle">By Title</option>
-                                    <option value="byTitleDesc">By Title Desc</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select id="searchBy" onChange="searchBy()">
-                                    <option value="searchNone">Search by...</option>
-                                    <option value="searchTitle">Title</option>
-                                    <option value="searchContent">Content</option>
-                                    <option value="date">Date</option>
-                                    <!--<option value="searchMonth">Month</option>
-                                    <option value="searchYear">Year</option>-->
-                                    <option value="searchBetween">Between</option>
-                                </select>
-                            </td>
-                            <td id="searchInput"></td>
-                        </tr>
-                    </table>
-                </div>     
-            <div id="ajaxEntries"></div>
-            <div id="searchResultEntries"></div>
+        <div id="entriesMenu">
+            <table>
+                <tr>
+                    <td>
+                        <a class="addEntry" href="createEntry.jsp"> + </a>
+                    </td>
+                    <td>
+                        <button type="button" onClick="hideEntries()"> Hide </button>
+                    </td>
+                    <td>
+                        <select id="filter" onChange="filterEntries()">
+                            <option value="visible">Visible Entries</option>
+                            <option value="hidden">Hidden Entries</option>
+                            <option value="deleted">Deleted Entries</option>
+                            <option value="all">All Entries</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="sorting" onChange="sortEntries()">
+                            <option value="byDate">By Date</option>
+                            <option value="byDateDesc">By Date Desc</option>
+                            <option value="byTitle">By Title</option>
+                            <option value="byTitleDesc">By Title Desc</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="searchBy" onChange="searchBy()">
+                            <option value="searchNone">Search by...</option>
+                            <option value="searchTitle">Title</option>
+                            <option value="searchContent">Content</option>
+                            <option value="date">Date</option>
+                            <!--<option value="searchMonth">Month</option>
+                            <option value="searchYear">Year</option>-->
+                            <option value="searchBetween">Between</option>
+                        </select>
+                    </td>
+                    <td id="searchInput"></td>
+                </tr>
+            </table>
+        </div>     
+        <div id="ajaxEntries"></div>
+        <div id="searchResultEntries"></div>
 
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />

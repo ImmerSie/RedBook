@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import controllers.EntryHistoryController;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletOutputStream;
@@ -79,34 +81,24 @@ public class EntryServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws java.io.IOException {
-        String changeTo = req.getParameter("changeTo");
-        String entryID = req.getParameter("entryID");
-        
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
-        Entry entry = entryApp.getEntryByID(Integer.parseInt(entryID));
         
-        if(changeTo.equals("hidden")){
-            entryApp.hideEntry(entry);
-        }
-        else if(changeTo.equals("deleted")){
-            entryApp.deleteEntry(entry);
-        }
-        else{
-            entryApp.visibleEntry(entry);
-        }
-
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        String dateModified = req.getParameter("dateModified");
+        
+        Entry entry = entryApp.createEntry(title, content, new Date());
         try {
             entryApp.saveEntries();
         } catch (JAXBException ex) {
             Logger.getLogger(EntryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        String json = new Gson().toJson(entry);
 
-        
+        String json = new Gson().toJson(entry);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(json);
+        //res.sendRedirect(entries.jsp);
     }
 
     /**
@@ -125,30 +117,42 @@ public class EntryServlet extends HttpServlet {
 
         // Takes parameter and retrieves the relevant Entry object from it.
         String entryID = req.getParameter("entryID");
+        String noDownload = req.getParameter("noDownload");
+     
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
         Entry entry = entryApp.getEntryByID(Integer.parseInt(entryID));
 
-        // Method call to generate CSV
-        String file = generateCSV(entry);
-        
-        //Tells the client browser that a download is being returned.
-        res.setContentType("application/octet-stream");
-        res.setHeader("Content-Disposition", "attachment; filename=" + entry.getTitle() + ".csv");
+        if(noDownload == null){
+            // Method call to generate CSV
+            String file = generateCSV(entry);
 
-        // Takes generated CSV string, and turns it into the download stream
-        StringBuffer sb = new StringBuffer(file);
-        InputStream in = new ByteArrayInputStream(sb.toString().getBytes("UTF-8"));
-        ServletOutputStream out = res.getOutputStream();
+            //Tells the client browser that a download is being returned.
+            res.setContentType("application/octet-stream");
+            res.setHeader("Content-Disposition", "attachment; filename=" + entry.getTitle() + ".csv");
 
-        // Copy binary contect to output stream
-        byte[] outputByte = new byte[4096];
-        while (in.read(outputByte, 0, 4096) != -1) {
-            out.write(outputByte, 0, 4096);
+            // Takes generated CSV string, and turns it into the download stream
+            StringBuffer sb = new StringBuffer(file);
+            InputStream in = new ByteArrayInputStream(sb.toString().getBytes("UTF-8"));
+            ServletOutputStream out = res.getOutputStream();
+
+            // Copy binary contect to output stream
+            byte[] outputByte = new byte[4096];
+            while (in.read(outputByte, 0, 4096) != -1) {
+                out.write(outputByte, 0, 4096);
+            }
+
+            // Cleans up and closes streams
+            in.close();
+            out.flush();
+            out.close();
+        }
+        else{
+            String json = new Gson().toJson(entry);
+
+            res.setContentType("application/json");
+            res.setCharacterEncoding("UTF-8");
+            res.getWriter().write(json);
         }
         
-        // Cleans up and closes streams
-        in.close();
-        out.flush();
-        out.close();
     }
 }

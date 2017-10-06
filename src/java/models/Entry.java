@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="entriesHis")
-public class Entry {
+public class Entry implements Serializable{
     @XmlElement
     private int userID;
     @XmlElement

@@ -123,8 +123,13 @@ public class EntryController implements Serializable{
      */
     public int getNewEntryID(){
         if(journal.getEntries().size() > 0){
-            int finalID = journal.getEntries().get(journal.getEntries().size() - 1).getEntryID();
-            return finalID + 1;
+            int max = 0;
+            for(Entry e : journal.getEntries()){
+                if(e.getEntryID() > max){
+                    max = e.getEntryID();
+                }
+            }
+            return max + 1;
         }
         else{
             return 1;
@@ -341,5 +346,14 @@ public class EntryController implements Serializable{
             return s2.compareTo(s1);
         }));
         return e;
+    }
+    
+    public Entry createEntry(String title, String content, Date dateModified){
+        int userID = journal.getUserID();
+        int journalID = journal.getJournalID();
+        int entryID = getNewEntryID();
+        Entry entry = new Entry(userID, journalID, entryID, title, content, "visible", dateModified);
+        journal.addEntry(entry);
+        return entry;
     }
 }
