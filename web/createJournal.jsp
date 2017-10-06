@@ -48,9 +48,9 @@
         <h1></h1>  
         
         <p>
-            <a href="entries.jsp">
+            <a href="entries.jsp" id="alignmentBtn">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
-            <a/>        
+            </a>        
         </p>
         
         <form action="newJournal.jsp" method="post">
