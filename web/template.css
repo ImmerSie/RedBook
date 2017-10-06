@@ -203,10 +203,22 @@ nav[role="side"] li a:hover{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
-    margin-top: 50px;
-    margin-left: 500px;
-    margin-right: auto;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    transform: translate(-50%, -50%);
     font-size: 20px;
+}
+
+#alignmentBtn{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 
 #journalPosition{
@@ -599,15 +611,12 @@ h4{
 
  #vis-dropdown {
   opacity: 0;
-  width: 1023px;
+  width: 70px;
   display: none;
-  margin-top: 3px;
-  left: 0;
   position: absolute;
   border: 1px solid #ddd;
   background: #fff;
-  box-shadow: 0px 3px 3px #b3b3b3;
-
+  box-shadow: 0px 3px 3px #000000;
  }
 
  #vis-dropdown h3 {
@@ -631,7 +640,7 @@ h4{
  .vis-links {
   font-size: 12px;
   text-decoration: none;
-  color: #2793e6;
+  color: #93163A;
  }
 
  .vis-links:hover {
