@@ -17,6 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Entry</title>
         <%User user = (User) session.getAttribute("user");%>
+        <%! String testempty = ".{}*"; %>
     </head>
     <body>
         <nav role="side">
@@ -63,10 +64,14 @@
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>
                     <tr></tr>
-                        <td><input type="text" name="title"></td>
+                    <td><input type="text" name="title" placeholder="Enter title here..." required 
+                               oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal entry.')"
+                               oninput="setCustomValidity('')"></td>
                     </tr>
                     <tr>
-                        <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
+                        <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
+                                      oninvalid="setCustomValidity('Please enter content for your journal entry.')"
+                                      oninput="setCustomValidity('')"></textarea></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Save" id="saveBtn"></td>

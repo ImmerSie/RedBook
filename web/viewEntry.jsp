@@ -90,8 +90,8 @@
                 <div>
                     <table class="table">
                         <tr>
-                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                            <td id="date"> Date Created: <%= ft1.format(entry.getDateCreated())%> </td>
+                            <td id="date"> Date Modified: <%= ft1.format(entry.getDateModified())%> </td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                             <td colspan="5"><h2> Entry Title: </h2></td>
@@ -133,8 +133,8 @@
                 <div class="table" id="viewEntryTable">
                     <table id="viewEntryData">
                         <tr>
-                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
-                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
+                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= ft1.format(entry.getDateCreated())%></td>
+                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= ft1.format(entry.getDateModified())%></td> 
                             <td>
                                 <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
                             </td>

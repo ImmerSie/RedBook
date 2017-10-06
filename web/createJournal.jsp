@@ -58,14 +58,16 @@
                 <table>
                     <tr>
                         <td> Journal Name: </td>
-                        <td><input type="text" name="title"></td>
+                        <td><input type="text" name="title" placeholder="Title..." required
+                                   oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal.')"
+                                   oninput="setCustomValidity('')"></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
                         <td> Brief Description: </td>
-                        <td><input type="text" name="description"></td>
+                        <td><input type="text" name="description" placeholder="Description..." required></td>
                     </tr>
                     <tr>
                         <td></td>
