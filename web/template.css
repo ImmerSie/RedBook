@@ -219,6 +219,7 @@ nav[role="side"] li a:hover{
     top: 20%;
     left: 20%;
     transform: translate(-50%, -50%);
+    padding-bottom: 60px;
 }
 
 #journalPosition{
@@ -607,7 +608,7 @@ h4{
   top: -1px;
 }
 
-/* ------------------ Visibility DROPDOWN ------------------ */
+/* ------------------ Visibility DROPDOWN Start ------------------ */
 
  #vis-dropdown {
   opacity: 0;
@@ -647,3 +648,67 @@ h4{
   text-decoration: underline;
 
  }
+ 
+ /* ------------------ Visibility DROPDOWN Fin ------------------ */
+ 
+ /* ------------------ Help Styling Start ------------------ */
+ 
+ .helpTable {
+    background-color: white;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 170px;
+    margin-right: auto;
+    font-family: 'Open Sans';
+ }
+ 
+ #helpH1 {
+    color: #93163A;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 30px;
+ }
+ 
+ #helpH2 {
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 12px;
+    color: black;
+    padding-top: 10px;
+ }
+ 
+ #helpBody{
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 12px;
+    color: black;
+    text-indent: 20px;
+ }
+ 
+ #helpHeader{
+    text-align: center;
+    padding-top: 80px;
+    color: white;
+    font-size: 30px;
+    margin-left: 185px;
+}
+
+#helpMenu{
+    background-color: #494949;
+    color: white;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 60px;
+    margin-right: auto;
+    font-size: 16px;
+    padding-bottom: 0px;
+    height: 40px;
+    padding-left: 180px;
+}
+
+ /* ------------------ Help Styling Fin ------------------ */
