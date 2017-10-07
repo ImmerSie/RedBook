@@ -14,12 +14,17 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Journal</title>
+        <%
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
     </head>
     <body>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>  
-        <% 
+        <%
             User user = (User) session.getAttribute("user");
         %>
         <nav role="side">
@@ -31,28 +36,28 @@
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
-        
+
         <nav role="main">
             <div id= "topNav">
-            <ul>
-                <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"><%= user.getName() %> </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
-            </ul>
+                <ul>
+                    <li><a href="logout.jsp"> Logout </a></li>
+                    <li><img src="userIcon.png" id="icon"></li>
+                    <li><div id="usersName"><%= user.getName()%> </div></li>
+                    <a href="journals.jsp">
+                        <img src="RedLogo.png" class="logo" alt="Logo">
+                    </a>
+                </ul>
             </div>
         </nav>
-        
+
         <h1></h1>  
-        
+
         <p>
             <a href="entries.jsp" id="alignmentBtn">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
-        
+
         <form action="newJournal.jsp" method="post">
             <div id="journalAddTable">    
                 <table>

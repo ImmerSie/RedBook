@@ -18,6 +18,10 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>New Entry</title>
+        <%
+            if(session.getAttribute("user")== null){
+            response.sendRedirect("login.jsp");}
+        %>
     </head>
     <body>  
         <a href="index.html">
@@ -38,9 +42,9 @@
             journal.addEntry(entry);
             entryApp.saveEntries();
 
-        %><p><h3>New entry  <%= title %> successfully created.</h3></p>
-            <p><h3>Click <a href="entries.jsp">here</a> to return to the journals page.</h3></p>
-        
+        %><p><h3>New entry  <%= title%> successfully created.</h3></p>
+        <p><h3>Click <a href="entries.jsp">here</a> to return to the journals page.</h3></p>
+
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div>
