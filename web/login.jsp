@@ -12,13 +12,14 @@
         <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <%! String passwordLogex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"; %>
+        <%! String passwordLogex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}";%>
     </head>
     <body>
         <%
-            if(((HttpServletRequest) request).getSession().getAttribute("user") != null){
-            ((HttpServletResponse) response).sendRedirect("journals.jsp");
-        }%>
+            if (((HttpServletRequest) request).getSession().getAttribute("user") != null) {
+                ((HttpServletResponse) response).sendRedirect("journals.jsp");
+            }
+        %>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>
@@ -30,35 +31,34 @@
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             <a/>
         </p>
-        
+
         <form action="journals.jsp" method="post">
             <table>
                 <tr>
-                    <td>
-                        <img src="emailIcon.png" class="Icon" alt="Icon">
-                    </td>
+                    <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
                     <td><input type="email" name="email" placeholder="Email Address" required></td>
                 </tr>
                 <tr>
-                    <td>
-                        <img src="passwordIcon.png" class="Icon" alt="Icon">
-                    </td>
+                    <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
                     <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
                                oninvalid="setCustomValidity('Please enter a valid Password')"
                                oninput="setCustomValidity('')"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2">
-                        <input type="submit" class="Button" value="Login">
-                    </td>
+                    <td colspan="2"><input type="submit" class="Button" value="Login"></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <a href="createUser.jsp"> Not a user yet? Click here.</a>
-                    </td>
+                    <td colspan="2"><a href="createUser.jsp"> Not a user yet? Click here.</a></td>
                 </tr>
             </table>
         </form>
     </body>
 </html>
+
+<script type="text/javascript">
+    var example = document.referrer;
+    if (example === "http://localhost:8080/RedBook/login.jsp") {
+        alert("Invalid Login Attempt");
+    }
+</script>

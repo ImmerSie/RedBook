@@ -14,12 +14,17 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Journal</title>
+        <%
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
     </head>
     <body>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>  
-        <% 
+        <%
             User user = (User) session.getAttribute("user");
         %>
         <nav role="side">
@@ -31,41 +36,43 @@
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
-        
+
         <nav role="main">
             <div id= "topNav">
-            <ul>
-                <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"><%= user.getName() %> </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
-            </ul>
+                <ul>
+                    <li><a href="logout.jsp"> Logout </a></li>
+                    <li><img src="userIcon.png" id="icon"></li>
+                    <li><div id="usersName"><%= user.getName()%> </div></li>
+                    <a href="journals.jsp">
+                        <img src="RedLogo.png" class="logo" alt="Logo">
+                    </a>
+                </ul>
             </div>
         </nav>
-        
+
         <h1></h1>  
-        
+
         <p>
             <a href="entries.jsp" id="alignmentBtn">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
-        
+
         <form action="newJournal.jsp" method="post">
             <div id="journalAddTable">    
                 <table>
                     <tr>
                         <td> Journal Name: </td>
-                        <td><input type="text" name="title"></td>
+                        <td><input type="text" name="title" placeholder="Title..." required
+                                   oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal.')"
+                                   oninput="setCustomValidity('')"></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
                         <td> Brief Description: </td>
-                        <td><input type="text" name="description"></td>
+                        <td><input type="text" name="description" placeholder="Description..." required></td>
                     </tr>
                     <tr>
                         <td></td>

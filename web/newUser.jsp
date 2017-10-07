@@ -14,13 +14,17 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Welcome!</title>
+        <%
+            if(session.getAttribute("user")== null){
+            response.sendRedirect("login.jsp");}
+        %>
     </head>
     <body>
-        
+
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
-        
+
         <%
             String filePath = application.getRealPath("WEB-INF/users.xml");
         %>
@@ -30,9 +34,7 @@
         <%
             Users users = userApp.getUsers();
             String email = request.getParameter("email");
-            
-            
-            
+
             if (users.getUser(email) == null) {
                 String name = request.getParameter("name");
                 String password = request.getParameter("password");
@@ -41,17 +43,17 @@
                 session.setAttribute("user", user);
                 users.addUser(user);
                 userApp.updateXML(users, filePath);
-                %>
-                <p>Redirecting you to the journals page... </p>
-                <%  String redirectURL = "journals.jsp";
-                    response.sendRedirect(redirectURL);
-                %> 
-            <% } else { %>
-            <p><h3>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
-            <% }%>
+        %>
+        <p>Redirecting you to the journals page... </p>
+        <%  String redirectURL = "journals.jsp";
+            response.sendRedirect(redirectURL);
+        %> 
+        <% } else { %>
+        <p><h3>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
+        <% }%>
 
-        <div id="background">
-            <img src="DBackground.png" class="stretch" alt="background" />
-        </div> 
-    </body>
+    <div id="background">
+        <img src="DBackground.png" class="stretch" alt="background" />
+    </div> 
+</body>
 </html>

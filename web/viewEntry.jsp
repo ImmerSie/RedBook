@@ -29,6 +29,11 @@
         <%
             SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
         %>
+        <%
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
     </head>
     <body>
         <nav role="side">
@@ -40,166 +45,163 @@
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav>
-        
+
         <nav role="main">
             <div id= "topNav">
-            <ul>
-                <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"> <%= user.getName() %>  </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
-            </ul>
+                <ul>
+                    <li><a href="logout.jsp"> Logout </a></li>
+                    <li><img src="userIcon.png" id="icon"></li>
+                    <li><div id="usersName"> <%= user.getName()%>  </div></li>
+                    <a href="journals.jsp">
+                        <img src="RedLogo.png" class="logo" alt="Logo">
+                    </a>
+                </ul>
             </div>
         </nav>
-                
-               
-                
+
+
+
         <h1></h1>  
-        
+
         <p>
             <a href="entries.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
-            <a/>        
+                <a/>        
         </p>
 
-        
+
         <div id="viewDialog" title="Entry">
             <%  String filePath = application.getRealPath("WEB-INF/entriesHistory.xml");
             %>
             <jsp:useBean id="entryHisApp" class="controllers.EntryHistoryController" scope="session">
                 <jsp:setProperty name="entryHisApp" property="filePath" value="<%=filePath%>"/>
             </jsp:useBean>
-            <% 
+            <%
                 EntryController entryApp = (EntryController) session.getAttribute("entryApp");
                 Journal journal = (Journal) session.getAttribute("journal");
                 String parameter = request.getParameter("id");
                 Entry entry = null;
-                if(parameter != null){
+                if (parameter != null) {
                     entry = journal.getEntry(Integer.parseInt(parameter));
                 }
                 entryHisApp.setEntry(entry);
-            if(request.getParameter("mode") != null)
-            { %>
-                
-                                            <%-- 
-                                    EDIT ENTRY
-                                --%>
-                <form action="viewEntry.jsp" method="POST">
+                if (request.getParameter("mode") != null) {%>
+
+            <%-- 
+    EDIT ENTRY
+            --%>
+            <form action="viewEntry.jsp" method="POST">
                 <div>
                     <table class="table">
                         <tr>
-                            <td id="date"> Date Created: <%= entry.getDateCreated()%> </td>
-                            <td id="date"> Date Modified: <%= entry.getDateModified()%> </td>
+                            <td id="date"> Date Created: <%= ft1.format(entry.getDateCreated())%> </td>
+                            <td id="date"> Date Modified: <%= ft1.format(entry.getDateModified())%> </td>
                             <td id="X"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
-                            <td colspan="5"><h2> Entry Title: </h2></td>
+                        <td colspan="5"><h2> Entry Title: </h2></td>
                         <tr></tr>
-                            <td  colspan="5"><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                        <td  colspan="5"><input type="text" value="<%= entry.getTitle()%>" name="entryTitle"></td>
                         <tr></tr>
-                            <td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        <td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
                         <tr></tr>
-                            <td colspan="5"><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        <td colspan="5"><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
                         <tr></tr>
-                            <td>
-                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                            </td>
-                            <tr></tr>
-                            <td>
-                                <input type="hidden" name="modified" value="modified" id="modified">
-                            </td>
+                        <td>
+                            <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
+                        </td>
+                        <tr></tr>
+                        <td>
+                            <input type="hidden" name="modified" value="modified" id="modified">
+                        </td>
                         </tr>
                     </table>
                 </div>
-                </form>
-            <% }
-            else
-            { 
-                if(request.getParameter("modified") != null){
+            </form>
+            <% } else {
+                if (request.getParameter("modified") != null) {
                     String title = request.getParameter("entryTitle");
                     String content = request.getParameter("entryContent");
                     String flag = request.getParameter("entryFlag");
 
                     Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, flag, entry.getDateCreated());
                     entry.addToHistory(newEntry);
-                    entryApp.saveEntries();  
+                    entryApp.saveEntries();
                     entryHisApp.saveEntryHistory();
-                } %>
-                
-                                            <%-- 
-                                    VIEW ENTRY
-                                --%>
-                <div class="table" id="viewEntryTable">
-                    <table id="viewEntryData">
-                        <tr>
-                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
-                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
-                            <td>
-                                <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
-                            </td>
-                            <td>
-                                <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
-                            </td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">
-                                    <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
-                                    <input type="submit" class="button" value="Download">
-                                </form>
-                            </td>
-                            <td id="X"><a href="entries.jsp"> X </a></td>
-                            <tr></tr>
-                            <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
-                            <tr></tr>
-                            <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
-                            <td>
-                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                            </td>
-                        </tr>
-                    </table>
-                                            <%-- 
-                                    ENTRY HISTORY
-                                --%>
-                        
-                    <table id="viewHistoryTable"></table>
-                    <table id="historyEntryDiv"></table>
-                    
-                </div>
-                    <div id="entryHistoryList">
-                        <div id="historyListHeader"> Entry History </div>
-                        <table>
-                            <tr onClick="setViewHistoryTable()">
-                                <td id="viewEntryTitle"> <%= entry.getDateModified() %> </td>
-                            </tr>
-                        </table>
-                        <% for(EntryHistory eh : entry.getHistoryReverse()){ %>
-                            <table>
-                                <tr id="<%= eh.getEntryHisID() %>" onClick="getEntryHistory(this)">
-                                    <td ><%= eh.getDateModified() %></td>
-                                    <input type="hidden" value="<%= eh.getTitle() %>">
-                                    <input type="hidden" value="<%= eh.getContent() %>">
-                                    <input type="hidden" value="<%= eh.getDateModified() %>">
-                                </tr>
-                            </table>
-                        <% } %>
-                    </div>             
-            <% } %>
+                }%>
+
+            <%-- 
+    VIEW ENTRY
+            --%>
+            <div class="table" id="viewEntryTable">
+                <table id="viewEntryData">
+                    <tr>
+                        <td id="viewDateCreated" value="<%= entry.getDateCreated()%>">Date Created: <%= ft1.format(entry.getDateCreated())%></td>
+                        <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= ft1.format(entry.getDateModified())%></td> 
+                        <td>
+                            <button type="button" onClick="editMode(this, <%= entry.getEntryID()%>)">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
+                        </td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">
+                                <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
+                                <input type="submit" class="button" value="Download">
+                            </form>
+                        </td>
+                        <td id="X"><a href="entries.jsp"> X </a></td>
+                    <tr></tr>
+                    <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
+                    <tr></tr>
+                    <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                        <td>
+                            <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
+                    </td>
+                    </tr>
+                </table>
+                <%-- 
+        ENTRY HISTORY
+                --%>
+
+                <table id="viewHistoryTable"></table>
+                <table id="historyEntryDiv"></table>
+
+            </div>
+            <div id="entryHistoryList">
+                <div id="historyListHeader"> Entry History </div>
+                <table>
+                    <tr onClick="setViewHistoryTable()">
+                        <td id="viewEntryTitle"> <%= entry.getDateModified()%> </td>
+                    </tr>
+                </table>
+                <% for (EntryHistory eh : entry.getHistoryReverse()) {%>
+                <table>
+                    <tr id="<%= eh.getEntryHisID()%>" onClick="getEntryHistory(this)">
+                        <td ><%= eh.getDateModified()%></td>
+                    <input type="hidden" value="<%= eh.getTitle()%>">
+                    <input type="hidden" value="<%= eh.getContent()%>">
+                    <input type="hidden" value="<%= eh.getDateModified()%>">
+                    </tr>
+                </table>
+                <% } %>
+            </div>             
+            <% }%>
         </div>
-            
+
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div> 
-            
+
     </body>
 </html>
 
 <script type="text/javascript">
-    function editMode(elmnt, entryID){
-       elmnt.style.color = 'red';
-       var currentURL = window.location.href;
-       window.location = currentURL + "&mode=edit";
-   }
-   
+    function editMode(elmnt, entryID) {
+        elmnt.style.color = 'red';
+        var currentURL = window.location.href;
+        window.location = currentURL + "&mode=edit";
+    }
+
     $('#entryHistoryList').hide();
     $('#viewHistoryTable').hide();
 </script>
