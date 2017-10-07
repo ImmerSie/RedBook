@@ -18,6 +18,14 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Journals</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <%
@@ -66,7 +74,7 @@
         <h1>Journals</h1>
 
         <div id="addJournal">    
-            <a href="createJournal.jsp"> + </a>
+            <a href="createJournal.jsp" title="Create a new journal"> + </a>
         </div>
 
         <div id="journalPosition">

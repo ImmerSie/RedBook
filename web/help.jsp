@@ -13,6 +13,11 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Help </title>
+        <%
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
     </head>
     <body>
         <div id="background">
@@ -25,8 +30,6 @@
             <ul>
                 <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="entries.jsp"> Entries </a></li>
-                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 

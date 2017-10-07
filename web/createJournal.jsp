@@ -19,6 +19,14 @@
                 response.sendRedirect("login.jsp");
             }
         %>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <div id="background">
@@ -53,7 +61,7 @@
         <h1></h1>  
 
         <p>
-            <a href="entries.jsp" id="alignmentBtn">
+            <a href="entries.jsp" id="alignmentBtn" title="Go Back">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
@@ -65,18 +73,20 @@
                         <td> Journal Name: </td>
                         <td><input type="text" name="title" placeholder="Title..." required
                                    oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal.')"
-                                   oninput="setCustomValidity('')"></td>
+                                   oninput="setCustomValidity('')" title="Give this journal a name"></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
                         <td> Brief Description: </td>
-                        <td><input type="text" name="description" placeholder="Description..." required></td>
+                        <td><input type="text" name="description" placeholder="Description..." required
+                                   title="Give this journal a description"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" value="Create"></td>
+                        <td><input type="submit" value="Create" 
+                                   title="Create a journal after you have filled out the above fields"></td>
                     </tr>
                 </table>
             </div>    

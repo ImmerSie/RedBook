@@ -25,6 +25,14 @@
                 ((HttpServletResponse) response).sendRedirect("journals.jsp");
             }
         %>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
 
     <body>
@@ -44,24 +52,28 @@
             <table>
                 <tr>
                     <td><img src="userIcon.png" class="Icon" alt="User Icon"></td>
-                    <td><input type="text" name="name" placeholder="Full Name" required="required"></td>
+                    <td><input type="text" name="name" placeholder="Full Name" required 
+                               oninvalid="setCustomValidity('Please enter your name')" oninput="setCustomValidity('')"
+                               title="Enter your full name or username"></td>
                 </tr>
                 <tr>
                     <td><img src="emailIcon.png" class="Icon" alt="Email Icon"></td>
-                    <td><input type="email" name="email" placeholder="Email Address" required="required" pattern="<%=regex%>" autocomplete="on" 
-                               oninvalid="setCustomValidity('Please enter a valid Email Address ')" oninput="setCustomValidity('')" 
-                               onchange="setCustomValidity('')"></td>
+                    <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=regex%>" autocomplete="on" 
+                               oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')" 
+                               onchange="setCustomValidity('')" title="Enter an email address to connect to your account"></td>
 
                 </tr>
                 <tr>
                     <td><img src="passwordIcon.png" class="Icon" alt="Password Icon"></td>
-                    <td><input type="password" name="password" placeholder="Password" required="required" pattern="<%=passwordRegex%>"
+                    <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordRegex%>"
                                oninvalid="setCustomValidity('Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 number')"
-                               oninput="setCustomValidity('')" onchange="setCustomerValidity('')"/></td>
+                               oninput="setCustomValidity('')" onchange="setCustomerValidity('')"
+                               title="Create a password to secure your account"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Sign Up"></td>
+                    <td><input type="submit" value="Sign Up" 
+                               title="Create your account after you have filled out the above fields"></td>
                 </tr>
                 <tr>
                     <td colspan="2"> 

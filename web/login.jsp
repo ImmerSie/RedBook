@@ -13,6 +13,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <%! String passwordLogex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}";%>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <%
@@ -36,17 +44,19 @@
             <table>
                 <tr>
                     <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
-                    <td><input type="email" name="email" placeholder="Email Address" required></td>
+                    <td><input type="email" name="email" placeholder="Email Address" required
+                               title="Email address you used to create an account"></td>
                 </tr>
                 <tr>
                     <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
                     <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
                                oninvalid="setCustomValidity('Please enter a valid Password')"
-                               oninput="setCustomValidity('')"/></td>
+                               oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2"><input type="submit" class="Button" value="Login"></td>
+                    <td colspan="2"><input type="submit" class="Button" value="Login" 
+                                           title="Login after you have filled out the above fields"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><a href="createUser.jsp"> Not a user yet? Click here.</a></td>

@@ -34,6 +34,14 @@
                 response.sendRedirect("login.jsp");
             }
         %>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <nav role="side">
@@ -70,7 +78,7 @@
         </p>
 
 
-        <div id="viewDialog" title="Entry">
+        <div id="viewDialog">
             <%  String filePath = application.getRealPath("WEB-INF/entriesHistory.xml");
             %>
             <jsp:useBean id="entryHisApp" class="controllers.EntryHistoryController" scope="session">
@@ -138,18 +146,18 @@
                         <td id="viewDateCreated" value="<%= entry.getDateCreated()%>">Date Created: <%= ft1.format(entry.getDateCreated())%></td>
                         <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= ft1.format(entry.getDateModified())%></td> 
                         <td>
-                            <button type="button" onClick="editMode(this, <%= entry.getEntryID()%>)">Edit</button>
+                            <button type="button" onClick="editMode(this, <%= entry.getEntryID()%>)" title="Make changes to this journal entry">Edit</button>
                         </td>
                         <td>
-                            <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
+                            <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()" title="Display the editing history of this journal entry">Show History</button>
                         </td>
                         <td>
                             <form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">
                                 <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
-                                <input type="submit" class="button" value="Download">
+                                <input type="submit" class="button" value="Download" title="Download a copy of this journal entry">
                             </form>
                         </td>
-                        <td id="X"><a href="entries.jsp"> X </a></td>
+                        <td id="X"><a href="entries.jsp" title="Return to the list of journal entries"> X </a></td>
                     <tr></tr>
                     <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
                     <tr></tr>

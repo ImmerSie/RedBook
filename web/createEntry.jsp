@@ -23,6 +23,14 @@
                 response.sendRedirect("login.jsp");
             }
         %>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <nav role="side">
@@ -65,13 +73,13 @@
                             SimpleDateFormat ft = new SimpleDateFormat("E - dd/MM/yyyy");
                         %>
                         <td id="date"> <%=ft.format(entryDate)%> </td>
-                        <td id="X"><a href="entries.jsp"> X </a></td>
+                        <td id="X"><a href="entries.jsp" title="Cancel this entry"> X </a></td>
                     <tr></tr>
                         <td><h2> Entry Title: </h2></td>
                     <tr></tr>
                         <td><input type="text" name="title" placeholder="Enter title here..." required 
                                    oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal entry.')"
-                                   oninput="setCustomValidity('')"></td>
+                                   oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
                         <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
@@ -79,7 +87,7 @@
                                       oninput="setCustomValidity('')"></textarea></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Save" id="saveBtn"></td>
+                        <td><input type="submit" value="Save" id="saveBtn" title="Confirm this new entry"></td>
                     </tr>
                 </table>
             </div>

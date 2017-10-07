@@ -27,6 +27,12 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" language="javascript" src="entries.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script>
+            $( function() {
+                $( document ).tooltip();
+            } );
+        </script>
     </head>
     <body>
         <%  if (session.getAttribute("entryApp") == null) {
@@ -102,7 +108,7 @@
         <div id="entriesMenu">
             <table>
                 <tr>
-                    <td><a class="addEntry" href="createEntry.jsp"> + </a></td>
+                    <td><a class="addEntry" href="createEntry.jsp" title="Add a new entry to this journal"> + </a></td>
                     <td><button type="button" onClick="hideEntries()"> Hide </button></td>
                     <td>
                         <select id="filter" onChange="filterEntries()">
