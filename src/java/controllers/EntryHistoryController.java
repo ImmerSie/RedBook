@@ -21,7 +21,7 @@ import models.EntryHistory;
  * 
  * <p>Held in page data, for the viewEntries.jsp page</p>
  * 
- * @author Max
+ * @author Sarah
  */
 public class EntryHistoryController implements Serializable{
     private String filePath;

@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlElement;
  * A slimmed version of the Entry DAO, representing the data needed to be persisted
  * to maintain an accurate record of an entry's history of modification.
  * 
- * @author Max
+ * @author Sarah
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EntryHistory {

@@ -22,7 +22,7 @@ import models.Entry;
 /**
  * Allows the user to get a .csv file containing the data for an entry
  * 
- * @author Max
+ * @author Sarah
  */
 public class EntryServlet extends HttpServlet {
 

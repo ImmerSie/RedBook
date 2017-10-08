@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Data Application Object representing a comment on a journal entry.
  * 
- * @author Max
+ * @author Sarah
  */
 public class Comment {
     private int commentID;

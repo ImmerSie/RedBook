@@ -21,7 +21,7 @@ import models.Users;
  * <p>The application is held in application context, and provides the
  * functionality that enables the securing of journals.</p>
  * 
- * @author Max
+ * @author Sarah
  */
 public class LoginController implements Serializable{
     private String filePath;
