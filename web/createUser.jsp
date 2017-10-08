@@ -1,7 +1,7 @@
 <%-- 
     Document   : createUser
     Created on : 05/09/2017, 4:00:21 PM
-    Author     : Max
+    Author     : Sarah
 --%>
 
 <%@page import="javax.mail.internet.AddressException"%>

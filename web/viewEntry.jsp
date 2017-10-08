@@ -2,7 +2,7 @@
 <%-- 
     Document   : viewEntry
     Created on : 14/09/2017, 8:24:52 PM
-    Author     : Max
+    Author     : Ramu
 --%>
 
 <%@page import="models.EntryHistory"%>
