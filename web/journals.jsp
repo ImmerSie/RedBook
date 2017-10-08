@@ -96,7 +96,7 @@
         <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
+                <li><img src="userIcon.png" id="userIcon"></li>
                 <li><div id="usersName"> <%= user.getName()%> </div></li>
                 <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">

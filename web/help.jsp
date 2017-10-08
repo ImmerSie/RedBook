@@ -38,7 +38,7 @@
             <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
+                <li><img src="userIcon.png" id="userIcon"></li>
                 <li><div id="usersName"><%= user.getName() %> </div></li>
                 <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">
@@ -150,6 +150,10 @@
                 </tr>
                 <tr>
                     <td id="helpBody"> To edit your specified entry, open the entry from the list of entries in your journal and click the ‘Edit’ button found in the top right hand corner of the page. Then click in the title or content boxes and edit away. </td>
+                </tr>
+                
+                <tr>
+                    <td id="helpEmail"> Can't find what you're after? Email support at support@redbook.com.au </td>
                 </tr>
             </table>            
         </div>

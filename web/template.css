@@ -1,17 +1,21 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 18/09/2017, 4:43:21 PM
     Author     : SophiePapworth
 */
 
+ /* ------------------ Image Styling Start ------------------ */
+
 .logo{
     margin-top: 2px;
     height: 30px;
     width: 140px;
+}
+
+#userIcon{
+    display: block;
+    margin-top: 6px;
+    height: 30px;
+    width: 37px;
 }
 
 .logoutLogo{
@@ -27,7 +31,9 @@ and open the template in the editor.
     width: 10px;
 }
 
-/* START TOP NAVIGATION */
+ /* ------------------ Image Styling Fin ------------------ */
+
+ /* ------------------ Top Nav Start ------------------ */
 nav[role="main"] ul{
     position: fixed;
     top: 0;
@@ -78,9 +84,9 @@ nav[role="main"] li {
     position: fixed;
 }
 
-/* END TOP NAVIGATION */
+ /* ------------------ Top Nav Fin ------------------ */
 
-/* START SIDE NAVIGATION */
+ /* ------------------ Side Nav Start ------------------ */
 nav[role="side"] ul{
     list-style-type: none;
     margin:0;
@@ -109,7 +115,7 @@ nav[role="side"] li a:hover{
     font-weight: bold;
 }
 
-/* END SIDE NAVIGATION */
+ /* ------------------ Side Nav Fin ------------------ */
 
 .table {background-color: white;
        padding-top: 10px;
@@ -687,6 +693,14 @@ h4{
     font-size: 12px;
     color: black;
     text-indent: 20px;
+ }
+ 
+  #helpEmail{
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: black;
  }
  
  #helpHeader{
