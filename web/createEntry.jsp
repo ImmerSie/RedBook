@@ -82,12 +82,20 @@
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
+                        <td><input type="button" onclick="boldFunction()" value="Bold"></button></td>
+                        <td><input type="button" onclick="italiseFunction()" value="Italise"></button></td>
+                        <td><input type="button" onclick="dPFunction()" value="Dot Point"></button></td>
+                
                         <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
                                       oninvalid="setCustomValidity('Please enter content for your journal entry.')"
                                       oninput="setCustomValidity('')"></textarea></td>
                     </tr>
                     <tr>
+                        <td colspan="4"><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
                         <td><input type="submit" value="Save" id="saveBtn" title="Confirm this new entry"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><input type="submit" value="Save" id="saveBtn"></td>
                     </tr>
                 </table>
             </div>
@@ -99,4 +107,28 @@
         
         <a href="entries.jsp">Return to Entries</a>
     </body>
+    
+    <script>
+        function boldFunction(){
+            var textToBold = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToBold,'**'+textToBold+'**');
+            document.getElementById('entryContent').value = fullText;
+        }
+         function italiseFunction(){
+            var textToBold = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToBold,'*'+textToBold+'*');
+            document.getElementById('entryContent').value = fullText;
+        }
+        function dPFunction(){
+            var textToBold = document.getSelection().value.split('\n');
+            var fullText = document.getElementById('entryContent').value;
+            
+            
+            
+            fullText = fullText.replace(textToBold,'-'+textToBold);
+            document.getElementById('entryContent').value = fullText;
+        }
+    </script>
 </html>
