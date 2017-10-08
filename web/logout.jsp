@@ -1,7 +1,7 @@
 <%-- 
     Document   : logout
     Created on : 10/10/2016, 12:01:34 AM
-    Author     : jack
+    Author     : Celine
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -25,7 +25,7 @@ import models.Journal;
  * 
  * <p>Held in session context </p>
  * 
- * @author Max
+ * @author Sarah
  */
 public class EntryController implements Serializable{
     private String filePath;

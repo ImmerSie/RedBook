@@ -18,7 +18,7 @@ import models.Entry;
 /**
  * Allows mass entry modification, and fetching of entries by attribute
  * 
- * @author Max
+ * @author Sarah
  */
 public class HideEntryServlet extends HttpServlet {
 

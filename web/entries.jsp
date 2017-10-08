@@ -1,7 +1,7 @@
 <%-- 
     Document   : entries
     Created on : 10/09/2017, 12:35:45 PM
-    Author     : Max
+    Author     : Sarah
 --%>
 
 <%@page import="java.util.ArrayList"%>

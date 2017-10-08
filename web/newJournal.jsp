@@ -1,7 +1,7 @@
 <%-- 
     Document   : newJournal
     Created on : 09/09/2017, 10:55:10 PM
-    Author     : Max
+    Author     : Andy
 --%>
 
 <%@page import="controllers.JournalController"%>

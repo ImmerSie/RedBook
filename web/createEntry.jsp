@@ -1,7 +1,7 @@
 <%-- 
     Document   : createEntry
     Created on : 13/09/2017, 8:07:44 PM
-    Author     : Max
+    Author     : Sarah
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

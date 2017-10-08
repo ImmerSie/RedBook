@@ -21,7 +21,7 @@ import models.User;
  * 
  * <p>Held in the session data for a specific session</p>
  * 
- * @author Max
+ * @author Sarah
  */
 public class JournalController implements Serializable{
     private String filePath;

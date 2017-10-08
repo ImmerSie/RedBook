@@ -1,7 +1,7 @@
 <%-- 
     Document   : createJournal
     Created on : 09/09/2017, 10:56:23 PM
-    Author     : Max
+    Author     : Sarah
 --%>
 
 <%@page import="models.User"%>

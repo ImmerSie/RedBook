@@ -1,7 +1,7 @@
 <%-- 
     Document   : newUser
     Created on : 05/09/2017, 4:09:00 PM
-    Author     : Max
+    Author     : Andy
 --%>
 
 <%@page import="models.User"%>

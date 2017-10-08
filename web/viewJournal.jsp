@@ -1,7 +1,7 @@
 <%-- 
     Document   : viewJournal
     Created on : 14/09/2017, 8:55:41 PM
-    Author     : Max
+    Author     : Ramu
 --%>
 
 <%@page import="models.User"%>
