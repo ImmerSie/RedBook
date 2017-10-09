@@ -10,41 +10,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Welcome!</title>
     </head>
     <body>
-        <% 
-            String filePath = application.getRealPath("WEB-INF/users.xml");
-        %>
-        <jsp:useBean id="accounts" class="controllers.LoginController" scope="application">
-            <jsp:setProperty name="accounts" property="filePath" value="<%=filePath%>"/>
-        </jsp:useBean>
-        <%
-            Users users = accounts.getUsers();
-            String email = request.getParameter("email");
-            
-            if(users.getUser(email) == null){
-                String name = request.getParameter("name");
-                String password = request.getParameter("password");
-                int userID = accounts.getNewUserID();
-                User user = new User(userID, name, email, password);
-                session.setAttribute("user", user);
-                users.addUser(user);
-                accounts.updateXML(users, filePath);
-                
-                %>
-                <p>Welcome, <%= name %>!</p>
-                <p>Click <a href="createJournal.html">here</a> to create your first journal.</p>
-            <% } else { %>
-            <p>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</p>
-            <% } %>
-            
+        
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
         
+        <%
+            String filePath = application.getRealPath("WEB-INF/users.xml");
+        %>
+        <jsp:useBean id="userApp" class="controllers.LoginController" scope="application">
+            <jsp:setProperty name="userApp" property="filePath" value="<%=filePath%>"/>
+        </jsp:useBean>
+        <%
+            Users users = userApp.getUsers();
+            String email = request.getParameter("email");
+            
+            
+            
+            if (users.getUser(email) == null) {
+                String name = request.getParameter("name");
+                String password = request.getParameter("password");
+                int userID = userApp.getNewUserID();
+                User user = new User(userID, name, email, password);
+                session.setAttribute("user", user);
+                users.addUser(user);
+                userApp.updateXML(users, filePath);
+                %>
+                <p>Redirecting you to the journals page... </p>
+                <%  String redirectURL = "journals.jsp";
+                    response.sendRedirect(redirectURL);
+                %> 
+            <% } else { %>
+            <p><h3>A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
+            <% }%>
+
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div> 

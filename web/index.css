@@ -24,13 +24,16 @@ li a {
     text-align: center;
     padding: 15px 15px 15px 15px;
     margin-top: 10%;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
-    border-radius: 18px; 
+    border-radius: 24px; 
     background-color: #e3eaee;
-    width:100px;
+    width: 90px;
+    height: 18px;
+    box-shadow: 2px 2px 2px #494949;
 }
 
 li {
@@ -75,7 +78,7 @@ body{
     top:50%;
     left:25%;
     position:absolute;
-    ont-family: 'Helvetica Neue';
+    ont-family: 'Open Sans';
     font-style: normal;
     font-weight: bold;
    
@@ -105,7 +108,7 @@ body{
     font-size: 18px;
     padding-left: 25px;
     width:80%;
-    font-family: 'Helvetica Neue';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: normal;
 }

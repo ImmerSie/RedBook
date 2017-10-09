@@ -1,50 +1,113 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : viewEntry
     Created on : 14/09/2017, 8:24:52 PM
     Author     : Max
 --%>
 
+<%@page import="models.EntryHistory"%>
+<%@page import="models.User"%>
+<%@page import="controllers.EntryController"%>
 <%@page import="models.Entry"%>
+<%@page import="models.User"%>
 <%@page import="models.Journal"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md' %> 
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entry</title>
+        <%User user = (User) session.getAttribute("user");%>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script>
-            $(function(){
-               $("$viewDialog").dialog(); 
-            });
-        </script>
+        <script type="text/javascript" language="javascript" src="viewEntry.js"></script>
     </head>
     <body>
+        <nav role="side">
+            <ul>
+                <p></p>
+                <li><a href="journals.jsp"> Journals </a></li>
+                <li><a href="entries.jsp"> Entries </a></li>
+                <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
+            </ul>
+        </nav>
+        
+        <nav role="main">
+            <div id= "topNav">
+            <ul>
+                <li><a href="logout.jsp"> Logout </a></li>
+                <li><img src="userIcon.png" id="icon"></li>
+                <li><div id="usersName"> <%= user.getName() %>  </div></li>
+                <a href="journals.jsp">
+                    <img src="RedLogo.png" class="logo" alt="Logo">
+                </a>
+            </ul>
+            </div>
+        </nav>
+                
+               
+                
+        <h1></h1>  
+        
+        <p>
+            <a href="entries.jsp">
+                <img src="backArrow.png" class="backButton" alt="Go Back">
+            <a/>        
+        </p>
+
+        
         <div id="viewDialog" title="Entry">
-            <%  String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
-            <jsp:useBean id="entryApp" class="controllers.EntryController" scope="application">
-                <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
+            <%  String filePath = application.getRealPath("WEB-INF/entriesHistory.xml");
+            %>
+            <jsp:useBean id="entryHisApp" class="controllers.EntryHistoryController" scope="session">
+                <jsp:setProperty name="entryHisApp" property="filePath" value="<%=filePath%>"/>
             </jsp:useBean>
-            <% Journal journal = (Journal) session.getAttribute("journal");
+            <% 
+                EntryController entryApp = (EntryController) session.getAttribute("entryApp");
+                Journal journal = (Journal) session.getAttribute("journal");
                 String parameter = request.getParameter("id");
+                Entry entry = null;
                 if(parameter != null){
-                    Entry entry = journal.getEntry(Integer.parseInt(parameter));
-                    session.setAttribute("entry", entry);
+                    entry = journal.getEntry(Integer.parseInt(parameter));
                 }
-                Entry entry = (Entry) session.getAttribute("entry");
+                entryHisApp.setEntry(entry);
             if(request.getParameter("mode") != null)
             { %>
-                <h1>Edit Entry</h1>
+                
+                                            <%-- 
+                                    EDIT ENTRY
+                                --%>
                 <form action="viewEntry.jsp" method="POST">
-                    <p>Title: <input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></p>
-                    <p>Content: <textarea name="entryContent" rows="5"><%= entry.getContent()%></textarea></p>
-                    <p>Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></p>
-                    <p>Date Created: <%= entry.getDateCreated()%></p>
-                    <p>Date Modified: <%= entry.getDateModified()%></p>
-                    <input type="submit" value="Save Entry" name="Save Entry">
-                    <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
-                    <input type="hidden" name="modified" value="modified" id="modified">
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th id="date"> Date Created: <%= entry.getDateCreated()%> </th>
+                            <th id="date"> Date Modified: <%= entry.getDateModified()%> </th>
+                            <th id="date"> Flag: <input type="text" value="<%= entry.getFlag()%>" name="entryFlag"></th>
+                            <th id="X"><a href="entries.jsp"> X </a></th>
+                        <tr></tr>
+                            <td><h2> Entry Title: </h2></td>
+                        <tr></tr>
+                            <td><input type="text" value="<%= entry.getTitle() %>" name="entryTitle"></td>
+                        <tr></tr>
+                            <td><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        <tr></tr>
+                            <td><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        <tr></tr>
+                            <td>
+                                <input type="hidden" name="id" value="<%= entry.getEntryID() %>" id="id">
+                            </td>
+                            <tr></tr>
+                            <td>
+                                <input type="hidden" name="modified" value="modified" id="modified">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 </form>
             <% }
             else
@@ -57,18 +120,63 @@
                     Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, flag, entry.getDateCreated());
                     entry.addToHistory(newEntry);
                     entryApp.saveEntries();  
+                    entryHisApp.saveEntryHistory();
                 } %>
-                <h1>View Entry</h1>
-
-                <p>Title: <%= entry.getTitle()%></p>
-                <p>Content: <%= entry.getContent()%></p>
-                <p>Flag: <%= entry.getFlag()%></p>
-                <p>Date Created: <%= entry.getDateCreated()%></p>
-                <p>Date Modified: <%= entry.getDateModified()%></p>  
-                <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
+                
+                                            <%-- 
+                                    VIEW ENTRY
+                                --%>
+                <div class="table" id="viewEntryTable">
+                    <table id="viewEntryData">
+                        <tr>
+                            <td id="viewDateCreated" value="<%= entry.getDateCreated() %>">Date Created: <%= entry.getDateCreated()%></td>
+                            <td id="viewDateModified" value="<%= entry.getDateModified()%>">Date Modified: <%= entry.getDateModified()%></td> 
+                            <td id="viewFlag" value="<%= entry.getFlag()%>">Flag: <%= entry.getFlag()%></td>
+                            <td>
+                                <button type="button" onClick="editMode(this, <%= entry.getEntryID() %>)">Edit</button>
+                            </td>
+                            <td>
+                                <button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>
+                            </td>
+                            <td id="X"><a href="entries.jsp"> X </a></td>
+                            <tr></tr>
+                            <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
+                            <tr></tr>
+                            <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                        </tr>
+                    </table>
+                                            <%-- 
+                                    ENTRY HISTORY
+                                --%>
+                        
+                    <table id="viewHistoryTable"></table>
+                    <table id="historyEntryDiv"></table>
+                    <div id="entryHistoryList">
+                        <h2> Entry History </h2>
+                        <table>
+                            <tr onClick="setViewHistoryTable()">
+                                <td id="viewEntryTitle"> <%= entry.getDateModified() %> </td>
+                            </tr>
+                        </table>
+                        <% for(EntryHistory eh : entry.getHistoryReverse()){ %>
+                            <table>
+                                <tr id="<%= eh.getEntryHisID() %>" onClick="getEntryHistory(this)">
+                                    <td ><%= eh.getDateModified() %></td>
+                                    <input type="hidden" value="<%= eh.getTitle() %>">
+                                    <input type="hidden" value="<%= eh.getContent() %>">
+                                    <input type="hidden" value="<%= eh.getDateModified() %>">
+                                </tr>
+                            </table>
+                        <% } %>
+                    </div>
+                </div>
             <% } %>
-            </br><a href="entries.jsp">Return to Entries</a>
         </div>
+            
+        <div id="background">
+            <img src="DBackground.png" class="stretch" alt="background" />
+        </div> 
+            
     </body>
 </html>
 
@@ -78,4 +186,7 @@
        var currentURL = window.location.href;
        window.location = currentURL + "&mode=edit";
    }
+   
+    $('#entryHistoryList').hide();
+    $('#viewHistoryTable').hide();
 </script>

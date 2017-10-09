@@ -4,10 +4,13 @@
     Author     : Max
 --%>
 
+<%@page import="models.User"%>
+<%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Journal</title>
@@ -15,7 +18,10 @@
     <body>
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
-        </div>        
+        </div>  
+        <% 
+            User user = (User) session.getAttribute("user");
+        %>
         <nav role="side">
             <ul>
                 <p></p>
@@ -28,10 +34,10 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="index.html"> Logout </a></li>
-                <li><img src="userIcon.png" class="icon"></li>
-                <li><div id="usersName"> insert users name here </div></li>
-                <a href="index.html">
+                <li><a href="logout.jsp"> Logout </a></li>
+                <li><img src="userIcon.png" id="icon"></li>
+                <li><div id="usersName"><%= user.getName() %> </div></li>
+                <a href="journals.jsp">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
