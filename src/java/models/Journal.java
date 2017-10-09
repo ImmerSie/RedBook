@@ -19,20 +19,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="entries")
 public class Journal {
     @XmlElement
-    private int userID;
-    @XmlElement
     private int journalID;
+    @XmlElement
+    private int userID;
     @XmlElement
     private Date dateCreated;
     @XmlElement
-    private Date dateModified;
+    private Date lastModified;
     @XmlElement
     private String title;
     @XmlElement
     private String description;
     
     @XmlElement(name="entry")
-    private ArrayList<Entry> entries = new ArrayList<Entry>();
+    //private ArrayList<Entry> entries = new ArrayList<Entry>();
+    private Entries entries = new Entries();
     
     public Journal() {
     }
@@ -41,7 +42,7 @@ public class Journal {
         this.userID = userID;
         this.journalID = journalID;
         this.dateCreated = dateCreated;
-        this.dateModified = lastModified;
+        this.lastModified = lastModified;
         this.title = title;
         this.description = description;
     }
@@ -71,11 +72,11 @@ public class Journal {
     }
 
     public Date getLastModified() {
-        return dateModified;
+        return lastModified;
     }
 
     public void setLastModified(Date lastModified) {
-        this.dateModified = lastModified;
+        this.lastModified = lastModified;
     }
 
     public String getTitle() {
@@ -94,12 +95,12 @@ public class Journal {
         this.journalID = journalID;
     }
 
-    public ArrayList<Entry> getEntries() {
+    public Entries getEntries() {
         return entries;
     }
     
     public Entry getEntry(int entryID){
-        for(Entry e : this.getEntries()){
+        for(Entry e : this.getEntries().getEntries()){
             if(e.getEntryID() == entryID){
                 return e;
             }
@@ -107,11 +108,11 @@ public class Journal {
         return null;
     }
 
-    public void setEntries(ArrayList<Entry> entries) {
+    public void setEntries(Entries entries) {
         this.entries = entries;
     }
      
     public void addEntry(Entry entry){
-        entries.add(entry);
+        entries.getEntries().add(entry);
     }
 }

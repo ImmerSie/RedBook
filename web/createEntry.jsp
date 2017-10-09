@@ -5,25 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page errorPage = "login.jsp"%>
-<%@page import="models.User"
-        import="java.util.Date"
-        import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Entry</title>
-        <%User user = (User) session.getAttribute("user");%>
     </head>
     <body>
         <nav role="side">
             <ul>
                 <p></p>
+                <li><a href="entries.jsp"> Dashboard </a></li>
                 <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
             </ul>
         </nav> 
@@ -31,10 +25,10 @@
         <nav role="main">
             <div id= "topNav">
             <ul>
-                <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
-                <li><div id="usersName"> <%= user.getName() %> </div></li>
-                <a href="journals.jsp">
+                <li><a href="index.html"> Logout </a></li>
+                <li><img src="userIcon.png" class="icon"></li>
+                <li><div id="usersName"> insert users name here </div></li>
+                <a href="index.html">
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
@@ -44,7 +38,7 @@
         <h1></h1>  
         
         <p>
-            <a href="journals.jsp">
+            <a href="entries.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             <a/>        
         </p>
@@ -53,11 +47,7 @@
             <div class="table">
                 <table>
                     <tr>
-                        <%
-                            Date entryDate = new Date();
-                            SimpleDateFormat ft = new SimpleDateFormat("E - dd/MM/yyyy");
-                        %>
-                        <td id="date"> <%=ft.format(entryDate)%> </td>
+                        <td id="date"> Insert date here </td>
                         <td id="X"><a href="entries.jsp"> X </a></td>
                     <tr></tr>
                     <td><h2> Entry Title: </h2></td>

@@ -17,14 +17,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name="entriesHis")
 public class Entry {
     @XmlElement
-    private int userID;
+    private int entryID;
     @XmlElement
     private int journalID;
     @XmlElement
-    private int entryID;
+    private int userID;
     @XmlElement
     private String title;
     @XmlElement
@@ -38,8 +37,7 @@ public class Entry {
     
     @XmlElement(name="comment")
     private ArrayList<Comment> comments = new ArrayList<Comment>();
-    @XmlElement(name="entryHis")
-    private ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
+    private ArrayList<Entry> history = new ArrayList<Entry>();
 
     public Entry() {
     }
@@ -100,10 +98,6 @@ public class Entry {
     public String getTitle() {
         return title;
     }
-    
-    public String getTitleLowercase(){
-        return title.toLowerCase();
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -145,19 +139,11 @@ public class Entry {
         comments.add(comment);
     }
 
-    public ArrayList<EntryHistory> getHistory() {
+    public ArrayList<Entry> getHistory() {
         return history;
     }
-    
-    public ArrayList<EntryHistory> getHistoryReverse(){
-        ArrayList<EntryHistory> reverseHistory = new ArrayList<EntryHistory>();
-        for(int i = getHistory().size() - 1; i >= 0; i--){
-            reverseHistory.add(getHistory().get(i));
-        }
-        return reverseHistory;
-    }
 
-    public void setHistory(ArrayList<EntryHistory> history) {
+    public void setHistory(ArrayList<Entry> history) {
         this.history = history;
     }
     
@@ -167,8 +153,9 @@ public class Entry {
             int lastID = history.get(history.size() - 1).getEntryID();
             newID = lastID + 1;
         }
-        EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, this.dateModified);
+        Entry oldEntry = new Entry(this.userID, this.journalID, newID, this.title, this.content, this.flag, this.dateCreated);
         oldEntry.setComments(this.comments);
+        oldEntry.setHistory(this.history);
         
         history.add(oldEntry);
         this.title = entry.getTitle();
@@ -176,19 +163,6 @@ public class Entry {
         this.flag = entry.getFlag();
         this.dateCreated = entry.getDateCreated();
         this.dateModified = new Date();
-        this.comments = entry.getComments();
-    }
-    
-    public void replaceEntry(Entry e){
-        this.userID = e.getUserID();
-        this.entryID = e.getEntryID();
-        this.journalID = e.getJournalID();
-        this.title = e.getTitle();
-        this.content = e.getContent();
-        this.flag = e.getFlag();
-        this.dateCreated = e.getDateCreated();
-        this.dateModified = e.getDateModified();
-        this.comments = e.getComments();
-        this.history = e.getHistory();
+        this.comments = new ArrayList<Comment>();
     }
 }

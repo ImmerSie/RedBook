@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Logout</title>
@@ -18,18 +17,16 @@
         <a href="index.html">
             <img src="WhtLogo.png" class="logoutLogo" alt="Logo">
         </a>
+        
         <div id="journalAddTable">
             <table>
                 <tr>
                     <td> You have successfully logged out. </td>
                 </tr>
                 <tr>
-                    <td>Redirecting you to the home page now...</td>
-                    <%  String redirectURL = "index.html";
-                        response.sendRedirect(redirectURL);
-                    %> 
+                    <td> Click <a href="index.html">here</a> to return to the homepage. </td>
                 </tr>
-                <p></p>
+                    <p></p>
             </table>
         </div>
         <div id="background">
