@@ -71,7 +71,7 @@ public class EntryServlet extends HttpServlet {
     }
 
     /**
-     * Returns an Entry objects set of values
+     * Updates the entry object
      * 
      * @param req Contains the necessary data to get the entry (entryID)
      * @param res Contains the entry data, in JSON format

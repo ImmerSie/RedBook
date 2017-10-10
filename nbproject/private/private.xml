@@ -4,14 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/entries.js</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/createEntry.jsp</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/viewEntry.jsp</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/viewJournal.jsp</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/entries.jsp</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/nbproject/ant-deploy.xml</file>
-            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/WEB-INF/users.xml</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/Journal.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/servlet/EntryServlet.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/servlet/HideEntryServlet.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/User.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/Users.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/EntryHistory.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/Entry.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/src/java/models/Comment.java</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/template.css</file>
+            <file>file:/C:/Users/ramuu/IdeaProjects/RedBook/web/userIcon.png</file>
         </group>
     </open-files>
 </project-private>

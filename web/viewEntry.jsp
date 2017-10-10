@@ -104,7 +104,7 @@
                         <tr>
                             <td id="date"> Date Created: <%= ft1.format(entry.getDateCreated())%> </td>
                             <td id="date"> Date Modified: <%= ft1.format(entry.getDateModified())%> </td>
-                            <td id="X"><a href="entries.jsp"> X </a></td>
+                            <td id="exitSymbol"><a href="entries.jsp"> X </a></td>
                         <tr></tr>
                         <td colspan="5"><h2> Entry Title: </h2></td>
                         <tr></tr>
@@ -157,7 +157,7 @@
                                 <input type="submit" class="button" value="Download" title="Download a copy of this journal entry">
                             </form>
                         </td>
-                        <td id="X"><a href="entries.jsp" title="Return to the list of journal entries"> X </a></td>
+                        <td id="exitSymbol"><a href="entries.jsp" title="Return to the list of journal entries"> X </a></td>
                     <tr></tr>
                     <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
                     <tr></tr>

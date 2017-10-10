@@ -1,12 +1,8 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Changes between the hidden and non-hidden views
  */
-
-
 function toggleJournalHistory(){
-    //$('#entryHistoryList').toggle();
+    // Checks if the current view is "hidden"
     if($('#entryHistoryList').is(':hidden')){
         $('#entryHistoryList').show();
         setViewHistoryTable();
@@ -22,6 +18,9 @@ function toggleJournalHistory(){
     }
 }
 
+/**
+ * Create the HTML to show the Hidden table
+ */
 function setViewHistoryTable(){
     var dateModified = $('#viewDateModified').attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
@@ -46,16 +45,23 @@ function setViewHistoryTable(){
     $('#historyEntryDiv').html(html);
 }
 
-function getEntryHistory(elmnt){
-    var dateModified = $(elmnt).find('input').eq(2).attr('value');
+/**
+ * Shows the entry history of a specific entry
+ * 
+ * @param {type} entry The entry to get the history for
+ */
+function getEntryHistory(entry){
+    // Gets the differeent elements of the entry
+    var dateModified = $(entry).find('input').eq(2).attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
     var flag = $('#viewFlag').attr('value');
-    var title = $(elmnt).find('input').eq(0).attr('value');
-    var content = $(elmnt).find('input').eq(1).attr('value');
+    var title = $(entry).find('input').eq(0).attr('value');
+    var content = $(entry).find('input').eq(1).attr('value');
     
     var html = '';
     
-     html += '<tr>';
+    // Set the HTML for the the entry history
+    html += '<tr>';
     html += '<td id="viewDateCreated">Date Created: ' + dateCreated + '</td>';
     html += '<td id="viewDateModified">Date Modified: ' + dateModified + '</td>';
     html += '<td id="viewFlag">Flag: ' + flag + '</td>';
