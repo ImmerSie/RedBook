@@ -1,7 +1,7 @@
 <%-- 
     Document   : journals
     Created on : 09/09/2017, 10:13:34 PM
-    Author     : Max
+    Author     : Sarah
 --%>
 
 <%@page import="controllers.JournalController"%>
@@ -65,7 +65,6 @@
         %>
         <nav role="side">
             <ul>
-                <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
@@ -96,11 +95,9 @@
         <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="icon"></li>
+                <li><img src="userIcon.png" id="userIcon" alt="User Icon"></li>
                 <li><div id="usersName"> <%= user.getName()%> </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
+                <img src="RedLogo.png" class="logo" alt="Logo">
             </ul>
         </div>
     </nav>

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Data Application Object representing an entry in entries.xml and
  * the root element in entriesHistory.xml file
  * 
- * @author Max
+ * @author Sarah
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="entriesHis")

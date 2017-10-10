@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Data Application Object representing a journal in journals.xml and the root
  * object in entries.xml file
- *
- * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "entries")

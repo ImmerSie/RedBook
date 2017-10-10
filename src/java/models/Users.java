@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * <p>This object maps to the root element in the users.xml file. </p>
  * 
- * @author Max
+ * @author Sarah
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="users")
