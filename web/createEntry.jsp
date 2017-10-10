@@ -35,7 +35,6 @@
     <body>
         <nav role="side">
             <ul>
-                <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
@@ -47,11 +46,9 @@
             <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="userIcon"></li>
+                <li><img src="userIcon.png" id="userIcon" alt="User Icon"></li>
                 <li><div id="usersName"> <%= user.getName() %> </div></li>
-                <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
-                </a>
+                <img src="RedLogo.png" class="logo" alt="Logo">
             </ul>
             </div>
         </nav>
@@ -61,7 +58,7 @@
         <p>
             <a href="journals.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
-            <a/>        
+            </a>        
         </p>
 
         <form action="entries.jsp" method="post">
@@ -74,9 +71,11 @@
                         %>
                         <td id="date"> <%=ft.format(entryDate)%> </td>
                         <td id="X"><a href="entries.jsp" title="Cancel this entry"> X </a></td>
-                    <tr></tr>
+                    </tr>
+                    <tr>
                         <td><h2> Entry Title: </h2></td>
-                    <tr></tr>
+                    </tr>
+                    <tr>
                         <td><input type="text" name="title" placeholder="Enter title here..." required 
                                    oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal entry.')"
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
@@ -95,8 +94,6 @@
         
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
-        </div>
-        
-        <a href="entries.jsp">Return to Entries</a>
+        </div>   
     </body>
 </html>

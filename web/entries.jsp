@@ -61,7 +61,6 @@
 
         <nav role="side">
             <ul>
-                <p></p>
                 <li><a href="journals.jsp"> Journals </a></li>
                 <li><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
@@ -75,9 +74,7 @@
                     <li><a href="logout.jsp"> Logout </a></li>
                     <li><img src="userIcon.png" id="userIcon"></li>
                     <li><div id="usersName"> <%= user.getName()%> </div></li>
-                    <a href="journals.jsp">
-                        <img src="RedLogo.png" class="logo" alt="Logo">
-                    </a>
+                    <img src="RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
         </nav>

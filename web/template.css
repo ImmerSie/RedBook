@@ -9,6 +9,7 @@
     margin-top: 2px;
     height: 30px;
     width: 140px;
+    
 }
 
 #userIcon{
@@ -97,6 +98,7 @@ nav[role="side"] ul{
     position: fixed;
     overflow: auto;
     left: 0;
+    padding-top: 20px;
 }
 
 nav[role="side"] li a{
