@@ -102,23 +102,32 @@
                             <td id="date"> Date Created: <%= ft1.format(entry.getDateCreated())%> </td>
                             <td id="date"> Date Modified: <%= ft1.format(entry.getDateModified())%> </td>
                             <td id="exitSymbol"><a href="entries.jsp"> X </a></td>
-                        <tr></tr>
-                        <td colspan="5"><h2> Entry Title: </h2></td>
-                        <tr></tr>
-                        <td  colspan="5"><input type="text" value="<%= entry.getTitle()%>" name="entryTitle"></td>
-                        <tr></tr>
-                        <td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
-                        <tr></tr>
-                        <td colspan="5"><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
-                        <tr></tr>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><h2> Entry Title: </h2></td>
+                        </tr>
+                        <tr>
+                            <td  colspan="5"><input type="text" value="<%= entry.getTitle()%>" name="entryTitle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><input type="button" onclick="boldFunction()" value="Bold"></button>
+                            <input type="button" onclick="italiseFunction()" value="Italics"></button>
+                            <input type="button" onclick="Heading1()" value="H1"></button>
+                            <input type="button" onclick="Heading2()" value="H2"></button>
+                            <input type="button" onclick="Heading3()" value="H3"></button></td>
+                        </tr>
+                        <tr>
+                            <td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent"><%= entry.getContent()%></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><input id="saveBtn" type="submit" value="Save Entry" name="Save Entry"></td>
+                        </tr>
                         <td>
                             <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
                         </td>
-                        <tr></tr>
                         <td>
                             <input type="hidden" name="modified" value="modified" id="modified">
                         </td>
-                        </tr>
                     </table>
                 </div>
             </form>

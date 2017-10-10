@@ -21,6 +21,13 @@
     width: 10px;
 }
 
+/* Formatting of the user icon in the top navigation bar */
+#userIcon{
+    height: 30px;
+    width: 40px;
+    padding-top: 5px;
+}
+
 /* START TOP NAVIGATION
 -------------------------*/
 

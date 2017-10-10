@@ -80,8 +80,8 @@
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
-                        <td><input type="button" onclick="boldFunction()" value="B"></button>
-                        <input type="button" onclick="italiseFunction()" value="I"></button>
+                        <td><input type="button" onclick="boldFunction()" value="Bold"></button>
+                        <input type="button" onclick="italiseFunction()" value="Italics"></button>
                         <input type="button" onclick="Heading1()" value="H1"></button>
                         <input type="button" onclick="Heading2()" value="H2"></button>
                         <input type="button" onclick="Heading3()" value="H3"></button></td>
