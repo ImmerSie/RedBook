@@ -14,9 +14,10 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Welcome!</title>
-        <%
+        <% /*
             if(session.getAttribute("user")== null){
             response.sendRedirect("login.jsp");}
+*/
         %>
     </head>
     <body>

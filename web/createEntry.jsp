@@ -80,20 +80,20 @@
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
-                        <td><input type="button" onclick="boldFunction()" value="Bold"></button></td>
-                        <td><input type="button" onclick="italiseFunction()" value="Italise"></button></td>
-                        <td><input type="button" onclick="dPFunction()" value="Dot Point"></button></td>
+                        <td><input type="button" onclick="boldFunction()" value="B"></button>
+                        <input type="button" onclick="italiseFunction()" value="I"></button>
+                        <input type="button" onclick="Heading1()" value="H1"></button>
+                        <input type="button" onclick="Heading2()" value="H2"></button>
+                        <input type="button" onclick="Heading3()" value="H3"></button></td>
+                    </tr>
+                    <tr>
                 
-                        <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
+                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required
                                       oninvalid="setCustomValidity('Please enter content for your journal entry.')"
                                       oninput="setCustomValidity('')"></textarea></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent"></textarea></td>
                         <td><input type="submit" value="Save" id="saveBtn" title="Confirm this new entry"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4"><input type="submit" value="Save" id="saveBtn"></td>
                     </tr>
                 </table>
             </div>
@@ -112,18 +112,27 @@
             document.getElementById('entryContent').value = fullText;
         }
          function italiseFunction(){
-            var textToBold = document.getSelection();
+            var textToItalise = document.getSelection();
             var fullText = document.getElementById('entryContent').value;
-            fullText = fullText.replace(textToBold,'*'+textToBold+'*');
+            fullText = fullText.replace(textToItalise,'*'+textToItalise+'*');
             document.getElementById('entryContent').value = fullText;
         }
-        function dPFunction(){
-            var textToBold = document.getSelection().value.split('\n');
+        function Heading1(){
+            var textToH1 = document.getSelection();
             var fullText = document.getElementById('entryContent').value;
-            
-            
-            
-            fullText = fullText.replace(textToBold,'-'+textToBold);
+            fullText = fullText.replace(textToH1,'#'+ textToH1);
+            document.getElementById('entryContent').value = fullText;
+        }
+        function Heading2(){
+            var textToH2 = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToH2,'##'+ textToH2);
+            document.getElementById('entryContent').value = fullText;
+        }
+         function Heading3(){
+            var textToH3 = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToH3,'###'+ textToH3);
             document.getElementById('entryContent').value = fullText;
         }
     </script>
