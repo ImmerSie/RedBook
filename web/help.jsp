@@ -9,10 +9,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Help </title>
+        <!-- If a user is not logged in while trying to access this page, they are redirected to the login JSP page -->
         <%
             if (session.getAttribute("user") == null) {
                 response.sendRedirect("login.jsp");
@@ -20,12 +22,14 @@
         %>
     </head>
     <body>
+        <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>  
         <% 
             User user = (User) session.getAttribute("user");
         %>
+        <!-- Side navigation bar -->
         <nav role="side">
             <ul>
                 <p></p>
@@ -34,6 +38,7 @@
             </ul>
         </nav> 
         
+        <!-- Top navigation bar -->
         <nav role="main">
             <div id= "topNav">
             <ul>
@@ -47,6 +52,7 @@
             </div>
         </nav>
         
+        <!-- Page document descriptive heading -->
         <p id="helpHeader"> Help and Documentation Guide </p>
         
         <p>
@@ -74,7 +80,8 @@
                 </tr>
             </table>
         </div>
-                    
+        
+        <!-- Table used to store and provide useful information to users about how to use RedBook -->
         <div class="helpTable">
             <table>
                 <tr>

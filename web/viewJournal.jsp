@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- CSS Stylesheet setup -->
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Journal</title>
@@ -21,12 +22,15 @@
         %>
     </head>
     <body>
+        <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="TEST" />
         </div>  
         <%
             User user = (User) session.getAttribute("user");
         %>
+        
+        <!-- Side navigation bar -->
         <nav role="side">
             <ul>
                 <li><a href="entries.jsp"> Dashboard </a></li>
@@ -35,7 +39,8 @@
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
-
+        
+        <!-- Top navigation bar -->
         <nav role="main">
             <div id= "topNav">
                 <ul>
@@ -46,6 +51,7 @@
                 </ul>
             </div>
         </nav>
+        <!-- NOTE: This JSP page is no longer in use. Please see entries.jsp for further operation. -->
         <h1>View Entry</h1>
         <%
             String parameter = request.getParameter("id");
