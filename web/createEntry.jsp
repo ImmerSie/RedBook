@@ -78,9 +78,8 @@
                             SimpleDateFormat ft = new SimpleDateFormat("E - dd/MM/yyyy");
                         %>
                         <td id="date"> <%=ft.format(entryDate)%> </td>
-                        <td id="X"><a href="entries.jsp" title="Cancel this entry"> X </a></td>
-                    </tr>
-                    <tr>
+                        <td id="exitSymbol"><a href="entries.jsp" title="Cancel this entry"> X </a></td>
+                    <tr></tr>
                         <td><h2> Entry Title: </h2></td>
                     </tr>
                     <tr>
@@ -90,8 +89,20 @@
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
+<<<<<<< HEAD
                         <!-- Text field for the content of the journal entry -->
                         <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
+=======
+                        <td><input type="button" onclick="boldFunction()" value="Bold"></button>
+                        <input type="button" onclick="italiseFunction()" value="Italics"></button>
+                        <input type="button" onclick="Heading1()" value="H1"></button>
+                        <input type="button" onclick="Heading2()" value="H2"></button>
+                        <input type="button" onclick="Heading3()" value="H3"></button></td>
+                    </tr>
+                    <tr>
+                
+                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required
+>>>>>>> origin/EntryInit
                                       oninvalid="setCustomValidity('Please enter content for your journal entry.')"
                                       oninput="setCustomValidity('')"></textarea></td>
                     </tr>
@@ -108,4 +119,37 @@
             <img src="DBackground.png" class="stretch" alt="background" />
         </div>   
     </body>
+    
+    <script>
+        function boldFunction(){
+            var textToBold = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToBold,'**'+textToBold+'**');
+            document.getElementById('entryContent').value = fullText;
+        }
+         function italiseFunction(){
+            var textToItalise = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToItalise,'*'+textToItalise+'*');
+            document.getElementById('entryContent').value = fullText;
+        }
+        function Heading1(){
+            var textToH1 = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToH1,'#'+ textToH1);
+            document.getElementById('entryContent').value = fullText;
+        }
+        function Heading2(){
+            var textToH2 = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToH2,'##'+ textToH2);
+            document.getElementById('entryContent').value = fullText;
+        }
+         function Heading3(){
+            var textToH3 = document.getSelection();
+            var fullText = document.getElementById('entryContent').value;
+            fullText = fullText.replace(textToH3,'###'+ textToH3);
+            document.getElementById('entryContent').value = fullText;
+        }
+    </script>
 </html>

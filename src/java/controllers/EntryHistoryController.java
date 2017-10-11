@@ -21,7 +21,6 @@ import models.EntryHistory;
  * 
  * <p>Held in page data, for the viewEntries.jsp page</p>
  * 
- * @author Sarah
  */
 public class EntryHistoryController implements Serializable{
     private String filePath;
@@ -30,6 +29,11 @@ public class EntryHistoryController implements Serializable{
     public EntryHistoryController() {
     }
 
+    /**
+     * 
+     * @param filePath The file path to where the entry History is located (entriesHistory.xml)
+     * @param entry The entry where the entry history resides in
+     */
     public EntryHistoryController(String filePath, Entry entry) {
         super();
         this.filePath = filePath;
@@ -39,7 +43,7 @@ public class EntryHistoryController implements Serializable{
     /**
      * Perform initial retrieval of data from the entriesHistory.xml file
      * 
-     * @param filePath The filepath to entriesHistory.xml
+     * @param filePath The file path to entriesHistory.xml
      * @throws Exception 
      */
     public void setFilePath(String filePath) throws Exception{

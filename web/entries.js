@@ -1,22 +1,32 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Creates the entry row in HTML format
+ * 
+ * @param {String} entryID the Entry ID of the current entry
+ * @param {String} eTitle the Entry Title of the the current entry
+ * @param {String} eContent the Entry Content of the current entry
+ * @param {String} eCreated the Created Date of the current Entry
+ * @param {String} eModified the Last Modified date of the current Entry
+ * @param {String} eFlag the Flag of the current entry
+ * @param {Boolean} forResultTable if this is for the entry row or not 
+ * @returns {String} The HTML format of the entry row
  */
-
 function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, forResultTable){
+    //Iniates the HTML varaible with a blank string
     var html = '';
     
+    //Adds the surrounding div tags for formatting
     html += '<div style="overflow-x:auto;">';
     html += '<div class="entryList">';    
     html += '<table>';
     html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
+    //Checks if it is for the table, else there is different formatting
     if(forResultTable){
         html += '<tr onClick="entryClick(this, ' + entryID + ')">';
     }
     else{
        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
     }
+    //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
     html += '<td></td><td>' + eContent + '</td>';
@@ -30,6 +40,7 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
     html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+    //Closes the tags of the table
     html += '</div>';
     html += '</div>';
     html += '</td>';
@@ -38,9 +49,15 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '</div>';
     html += '</div>';
     
+    //Returns the final HTML string
     return html;
 }
 
+/**
+ * Changes the Entry's visibility to visibile
+ * 
+ * @param {String} entryID
+ */
 function visiblise(entryID){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
@@ -49,6 +66,11 @@ function visiblise(entryID){
     });
 }
 
+/**
+ * Changes the Entry's Hidden property to hidden
+ * 
+ * @param {String} entryID
+ */
 function hide(entryID){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
@@ -57,6 +79,11 @@ function hide(entryID){
     });
 }
 
+/**
+ * Changes the Entry's Deletion property to "deleted"
+ * 
+ * @param {String} entryID
+ */
 function del(entryID){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
@@ -65,38 +92,59 @@ function del(entryID){
     });
 }
 
+/**
+ * Sets All the entries of into a html format so it can be shown on screen
+ */
 function getEntries(){
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
+    
+    //Sorts and filters the entries repectively
     $.get("hideEntryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
+        
+        // Initialises the HTML string as an empty String
         var html = '';
+        
+        // If there are no entries, it tells the user they have no entries
+        // and prompts the user to create the first entry
         if(jQuery.isEmptyObject(response)){
             html += '<p><h3>You have no entries.</h3></p>';
             html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
         else{
             $.each(response, function(key, e){
+                // Adds the appropriate HTML for each entry
                 html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);                
             });
         }
         
+        // Sets the entries html to the new HTML of the entries
         $('#ajaxEntries').html(html);
     });  
 }
 
+/**
+ * Hides the entries which have the "hidden" property
+ */
 function hideEntries(){
+    //Initialises the JSON entries to an empty Array
     var jsonEntries = [];
     var checkedEntries = document.getElementsByClassName("entryCheck");
+    
+    // Checks if the entry is checked and adds it to the Array
     for(var i = 0; i < checkedEntries.length; i++){
         if(checkedEntries.item(i).checked === true){
             jsonEntries.push(checkedEntries.item(i).value);
         }
     }
     
+    // Changes the Array into a JSON string
     var json = JSON.stringify(jsonEntries);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
     
+    // Hides the "checked" entries and then refreshes the table to only show the 
+    // non hidden entries
     $.post("hideEntryServlet.do", {json: json, sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
         var html = '';
         if(jQuery.isEmptyObject(response)){
@@ -112,7 +160,9 @@ function hideEntries(){
     });
 }
 
-
+/**
+ * Searches the Entry list on a certain criteria and displays the search results
+ */
 function searchBy(){
     var searchDrop = document.getElementById("searchBy");
     var searchValue = searchDrop.options[searchDrop.selectedIndex].value;
@@ -158,23 +208,37 @@ function searchBy(){
         $('#datepickerTo').datepicker();
     }
     else{
+        // If nothing is selected, remove the search query
         removeSearch();
     }
 }
 
+/**
+ * Removes the search query
+ */
 function removeSearch(){
     $('#ajaxEntries').show();
+    
+    // Sets the search results and Input to empty strings
     $('#searchResultEntries').html('');
     $('#searchInput').html('');
     document.getElementById("searchBy").selectedIndex = "0";
 }
 
+/**
+ * Searches the entries by title and displays the serach results
+ */
 function searchByTitle(){
+    // Set the keyword to lower case to make the search case insensitive
     var keyword = $('#titleSearch').val().toString().toLowerCase();
     var row = document.getElementsByClassName("entryRow");
     var html = '';
+    
+    // Searches every entry in the table
     for(var i = 0; i < row.length; i++){
         var eTitle = $(row.item(i)).find('td').eq(1).text();
+        
+        // If the search matches, add the entry to the search table
         if(eTitle.toLowerCase().indexOf(keyword) >= 0){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eContent = $(row.item(i)).find('td').eq(3).text();
@@ -186,15 +250,21 @@ function searchByTitle(){
         }
     }
     
+    // If no results have come, display message "You have no results"
     if(html.length < 1){
         html += '<h3>You have no results<h3>';
     }
-
+    
+    // Hide the current table and show the search result table
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
 
+/**
+ * Searches the table by content and displays the results
+ */
 function searchByContent(){
+    // Content search is case insensitive
     var keyword = $('#contentSearch').val().toString().toLowerCase();
     var row = document.getElementsByClassName("entryRow");
     var html = '';
@@ -219,10 +289,16 @@ function searchByContent(){
     $('#searchResultEntries').html(html);
 }
 
+/**
+ * Searches the table if it is within 2 dates and displays the results
+ * 
+ * @param {Date} selectedDate the Date the user has searched for
+ */
 function searchByDate(selectedDate){
     var row = document.getElementsByClassName("entryRow");
     var html = '';
     for(var i = 0; i < row.length; i++){
+        // Converts the date as a string to a Date Object
         var eCreated = $(row.item(i)).find('p').eq(0).text();
         var colonIndex = eCreated.toString().indexOf(":");
         var dateSection = eCreated.toString().substring(colonIndex);
@@ -231,6 +307,8 @@ function searchByDate(selectedDate){
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
         var rowDate = new Date (month + " " + day + " " + year);
+        
+        // Sets the search Date as a Date Object
         var searchDate = new Date(selectedDate);
         if(searchDate.getTime() === rowDate.getTime()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
@@ -251,8 +329,13 @@ function searchByDate(selectedDate){
     $('#searchResultEntries').html(html);
 }
 
+/**
+ * Searches the entries between 2 dates and displays the results
+ */
 function searchBetweenDates(){
     var row = document.getElementsByClassName("entryRow");
+    
+    // Gets the dates from the datepicker
     var fromDate = $('#datepickerFrom').datepicker("getDate");
     var toDate = $('#datepickerTo').datepicker("getDate");
     var html = '';
@@ -265,6 +348,8 @@ function searchBetweenDates(){
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
         var rowDate = new Date (month + " " + day + " " + year);
+        
+        // Checks if the entry date is in between the 2 dates of the search criteria
         if(fromDate.getTime() < rowDate.getTime() && toDate.getTime() > rowDate.getTime()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();

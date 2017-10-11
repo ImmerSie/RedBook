@@ -25,6 +25,10 @@ public class Users implements Serializable{
     @XmlElement(name="user")
     private ArrayList<User> userList = new ArrayList<User>();
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<User> getUsers() {
         return userList;
     }

@@ -1,23 +1,16 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 16/09/2017, 8:23:06 PM
-    Author     : ramuu
-*/
-
+/* Sets the formatting of the logo */
 .logo{
     height: 50px;
     width: 160px;
 }
 
+/* Sets the formatting of the Icon */
 .icon{
     height: 10%;
     weight: 10%;
 }
 
+/* Sets the formatting of the Back Button */
 .backButton{
     margin-align: left;
     height: 10%;
@@ -25,6 +18,7 @@ and open the template in the editor.
     padding-left: 10%;
 }
 
+/* Sets the formatting of the body */
 body{
     background-color: #93163A;
     margin: 0px;
@@ -36,24 +30,30 @@ body{
     width:100%;
 }
 
-table {background-color: white;
-       padding-top: 100px;
-       padding-right: 70px;
-       padding-bottom: 100px;
-       padding-left: 70px;
-       margin-top: 20px;
-       text-align:center; 
-       font-family: 'Open Sans';
-       font-style: normal;
-       font-weight: normal;
-       font-size: 10px;
-       text-decoration: underline;
-       color: #93163A;
-       margin-left:auto; 
-       margin-right:auto; 
-       border-radius: 20px;
+/* Sets the formatting of the table */
+table {
+   /* Formatting of the layout */
+   background-color: white;
+   padding-top: 100px;
+   padding-right: 70px;
+   padding-bottom: 100px;
+   padding-left: 70px;
+   margin-top: 20px;
+   
+   /* Formatting of the Text in the table */
+   text-align:center; 
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-weight: normal;
+   font-size: 10px;
+   text-decoration: underline;
+   color: #93163A;
+   margin-left:auto; 
+   margin-right:auto; 
+   border-radius: 20px;
 }
 
+/* Sets the formatting of the background */
 #background {
     width: 100%; 
     height: 100%; 
@@ -63,6 +63,7 @@ table {background-color: white;
     z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
 }
 
+/* Ensures the background image is stretched fully */
 .stretch {
     width:100%;
     height:100%;

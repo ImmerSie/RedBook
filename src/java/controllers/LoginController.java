@@ -21,7 +21,6 @@ import models.Users;
  * <p>The application is held in application context, and provides the
  * functionality that enables the securing of journals.</p>
  * 
- * @author Sarah
  */
 public class LoginController implements Serializable{
     private String filePath;
@@ -30,6 +29,12 @@ public class LoginController implements Serializable{
     public LoginController() {
     }
 
+    /**
+     * The constructor for the Login Controller
+     * 
+     * @param filePath The filepath to store the login details (users.xml)
+     * @param users The user which has this login details
+     */
     public LoginController(String filePath, Users users) {
         super();
         this.filePath = filePath;
@@ -110,10 +115,18 @@ public class LoginController implements Serializable{
         }
     }
     
+    /**
+     * 
+     * @return The users of the Red Book Application 
+     */
     public Users getUsers(){
         return users;
     }
     
+    /**
+     * 
+     * @param users The users of the Red Book Application
+     */
     public void setUsers(Users users){
         this.users = users;
     }

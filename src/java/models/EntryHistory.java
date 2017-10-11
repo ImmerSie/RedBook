@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.XmlElement;
  * A slimmed version of the Entry DAO, representing the data needed to be persisted
  * to maintain an accurate record of an entry's history of modification.
  * 
- * @author Sarah
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EntryHistory {
@@ -37,9 +36,21 @@ public class EntryHistory {
     @XmlElement(name="comment")
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     
+  
     public EntryHistory() {
     }
 
+    /**
+     * Constructor of the Entry History
+     * 
+     * @param entryHisID The ID of the specific Entry History
+     * @param entryID The Id of the entry, the entry history is relating to
+     * @param journalID The id of the journal the Entry history is relating to
+     * @param userID The id of the user the entry history is relating to
+     * @param title The title of this entry history
+     * @param content The content of this entry history
+     * @param dateModified The date this entry history was created (modifying the original entry)
+     */
     public EntryHistory(int entryHisID, int entryID, int journalID, int userID, String title, String content, Date dateModified) {
         this.entryHisID = entryHisID;
         this.entryID = entryID;
@@ -50,66 +61,130 @@ public class EntryHistory {
         this.dateModified = dateModified;
     }
 
+    /**
+     *
+     * @return the id of the entry history
+     */
     public int getEntryHisID() {
         return entryHisID;
     }
 
+    /**
+     *
+     * @param entryHisID the id of the entry history
+     */
     public void setEntryHisID(int entryHisID) {
         this.entryHisID = entryHisID;
     }
 
+    /**
+     *
+     * @return The entry this entry history is relating to
+     */
     public int getEntryID() {
         return entryID;
     }
 
+    /**
+     *
+     * @param entryID  The entry this entry history is relating to
+     */
     public void setEntryID(int entryID) {
         this.entryID = entryID;
     }
 
+    /**
+     *
+     * @return The journal this entry history is relating to
+     */
     public int getJournalID() {
         return journalID;
     }
 
+    /**
+     *
+     * @param journalID The journal ID which this entry history is relating to
+     */
     public void setJournalID(int journalID) {
         this.journalID = journalID;
     }
 
+    /**
+     *
+     * @return The UserId who created this entry history
+     */
     public int getUserID() {
         return userID;
     }
 
+    /**
+     *
+     * @param userID The UserId who created this entry history
+     */
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
+    /**
+     *
+     * @return The title of the entry History
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title The title of the entry History
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return The Content of the entry History
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     *
+     * @param content The Content of the entry History
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     *
+     * @return The Date modified of the Entry History
+     */
     public Date getDateModified() {
         return dateModified;
     }
 
+    /**
+     *
+     * @param dateModified The Date modified of the Entry History
+     */
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
     }
 
+    /**
+     *
+     * @return All the comments relating to this entry history
+     */
     public ArrayList<Comment> getComments() {
         return comments;
     }
 
+    /**
+     *
+     * @param comments the comments relating to this entry history
+     */
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
