@@ -80,9 +80,6 @@
                                    oninvalid="setCustomValidity('Title cannot be blank. Please input a title for this journal.')"
                                    oninput="setCustomValidity('')" title="Give this journal a name"></td>
                     </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr></tr>
                     <tr>
                         <!-- Description for the new journal field -->
                         <td> Brief Description: </td>

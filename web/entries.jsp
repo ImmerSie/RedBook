@@ -154,6 +154,7 @@
                 </tr>
             </table>
         </div>     
+        
         <div id="ajaxEntries"></div>
         <div id="searchResultEntries"></div>
 

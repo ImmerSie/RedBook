@@ -70,7 +70,7 @@
         <!-- Journal Entry Creation Form -->
         <form action="entries.jsp" method="post">
             <div class="newEntry">
-                <table>
+                <table style ="width: 100%;">
                     <tr>
                         <!-- Code for date formatting, to put in an easier to understand format -->
                         <%
@@ -89,10 +89,6 @@
                                    oninput="setCustomValidity('')" title="Give this journal entry a title"></td>
                     </tr>
                     <tr>
-<<<<<<< HEAD
-                        <!-- Text field for the content of the journal entry -->
-                        <td><textarea name="content" rows="6" placeholder="Enter content here..." id="entryContent" required
-=======
                         <td><input type="button" onclick="boldFunction()" value="Bold"></button>
                         <input type="button" onclick="italiseFunction()" value="Italics"></button>
                         <input type="button" onclick="Heading1()" value="H1"></button>
@@ -100,11 +96,10 @@
                         <input type="button" onclick="Heading3()" value="H3"></button></td>
                     </tr>
                     <tr>
-                
-                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required
->>>>>>> origin/EntryInit
-                                      oninvalid="setCustomValidity('Please enter content for your journal entry.')"
-                                      oninput="setCustomValidity('')"></textarea></td>
+                        <!-- Text field for the content of the journal entry -->
+                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required 
+                                      oninvalid="setCustomValidity('Please enter content for your journal entry.')" 
+                                      oninput="setCustomValidity('')"></textarea></td>                         
                     </tr>
                     <tr>
                         <!-- Button to confirm creation of a new journal entry -->
