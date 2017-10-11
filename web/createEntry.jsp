@@ -70,7 +70,7 @@
         <!-- Journal Entry Creation Form -->
         <form action="entries.jsp" method="post">
             <div class="newEntry">
-                <table style ="width: 100%;">
+                <table>
                     <tr>
                         <!-- Code for date formatting, to put in an easier to understand format -->
                         <%
@@ -101,6 +101,14 @@
                                       oninvalid="setCustomValidity('Please enter content for your journal entry.')" 
                                       oninput="setCustomValidity('')"></textarea></td>                         
                     </tr>
+                                        <tr>
+                
+                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required
+                                      oninvalid="setCustomValidity('Please enter content for your journal entry.')"
+                                      oninput="setCustomValidity('')"></textarea></td>
+                    </tr>
+
+                    
                     <tr>
                         <!-- Button to confirm creation of a new journal entry -->
                         <td><input type="submit" value="Save" id="saveBtn" title="Confirm this new entry"></td>
