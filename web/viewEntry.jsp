@@ -71,7 +71,6 @@
                 </ul>
             </div>
         </nav>
-
         <h1></h1>  
         <p>
             <a href="entries.jsp">
@@ -99,9 +98,7 @@
                 if (request.getParameter("mode") != null) {
             %>
                 
-            <%-- 
-    EDIT ENTRY
-            --%>
+                                <%--EDIT ENTRY--%>
             <!-- 
             viewEntry form for editing an existing entry. 
             Form is populated with existing values to be modified by the user. 
@@ -155,9 +152,7 @@
                     entryHisApp.saveEntryHistory();
                 }%>
 
-            <%-- 
-    VIEW ENTRY
-            --%>
+                                           <%-- VIEW ENTRY --%>
             <!-- Viewing a journal entry allows the user to see their entry content in full display -->
             <div class="table" id="viewEntryTable">
                 <table id="viewEntryData">
@@ -180,10 +175,14 @@
                             </form>
                         </td>
                         <td id="exitSymbol"><a href="entries.jsp" title="Return to the list of journal entries"> X </a></td>
-                    <tr></tr>
-                    <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
-                    <tr></tr>
-                    <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                    </tr>
+                    <tr>
+                        <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
+                    </tr>
+                    <tr>
+                        <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                    </tr>
+                    <tr>
                         <td>
                             <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
                         </td>
@@ -199,9 +198,7 @@
                         </td>
                 </table>
                     
-                <%-- 
-        ENTRY HISTORY
-                --%>
+                                  <%--ENTRY HISTORY--%>
                 <!-- Journal Entry History Mode -->
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
