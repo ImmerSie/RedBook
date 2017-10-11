@@ -187,6 +187,16 @@
                             <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
                         </td>
                     </tr>
+                                        <tr>
+                        <td id="viewEntryTitle" colspan="5"> <%= entry.getTitle()%></td>
+                    </tr>
+                    <tr>
+                        <td id="viewEntryContent" colspan="5"> <md:render text="<%= entry.getContent()%>"> </md:render> </td>
+                    </tr>
+                        <td>
+                           <input type="hidden" name="id" value="<%= entry.getEntryID()%>" id="id">
+                        </td>
+
                 </table>
                     
                                   <%--ENTRY HISTORY--%>
