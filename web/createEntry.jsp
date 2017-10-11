@@ -101,13 +101,6 @@
                                       oninvalid="setCustomValidity('Please enter content for your journal entry.')" 
                                       oninput="setCustomValidity('')"></textarea></td>                         
                     </tr>
-    
-                    <tr>
-                
-                        <td colspan="1" ><textarea name="content" placeholder="Enter content here..." id="entryContent" required
-                                      oninvalid="setCustomValidity('Please enter content for your journal entry.')"
-                                      oninput="setCustomValidity('')"></textarea></td>
-                    </tr>
                     <tr>
                         <!-- Button to confirm creation of a new journal entry -->
                         <td><input type="submit" value="Save" id="saveBtn" title="Confirm this new entry"></td>
