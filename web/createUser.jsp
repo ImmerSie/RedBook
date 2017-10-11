@@ -50,7 +50,7 @@
         <p>
             <a href="index.html">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
-            <a/>        
+            </a>        
         </p>
         
         <!-- Registration form to create an account for RedBook-->
