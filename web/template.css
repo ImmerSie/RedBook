@@ -440,7 +440,7 @@ h4{
 
 /* Formatting of the input box of the entry */
 #entryContent{
-    width: 100%;
+    width: 700px;
     height: 700px;
 }
 
@@ -661,9 +661,7 @@ h4{
     text-align: left;
 }
 
-#viewEntryContent h1 {
-    color: black;
-}
+
 
 /* Formats the Visual Wrapper */
 #vis-wrapper { 
