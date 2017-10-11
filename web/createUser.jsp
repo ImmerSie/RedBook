@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<!-- Creating patterns which are used as input field formats for accepted data -->
+<!-- Creating regular expression patterns which are used as input field formats for accepted data -->
 <%!
     String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
     String passwordRegex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}";
