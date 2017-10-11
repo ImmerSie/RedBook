@@ -7,14 +7,14 @@
 /* Sets the formatting of the Icon */
 .icon{
     height: 10%;
-    weight: 10%;
+    width: 10%;
 }
 
 /* Sets the formatting of the Back Button */
 .backButton{
-    margin-align: left;
-    height: 10%;
-    weight: 10%;
+    text-align: left ;
+    height: 30px;
+    width: 30px;
     padding-left: 10%;
 }
 
