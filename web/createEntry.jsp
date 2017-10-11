@@ -70,7 +70,7 @@
         <!-- Journal Entry Creation Form -->
         <form action="entries.jsp" method="post">
             <div class="newEntry">
-                <table>
+                <table style ="width: 100%;">
                     <tr>
                         <!-- Code for date formatting, to put in an easier to understand format -->
                         <%
