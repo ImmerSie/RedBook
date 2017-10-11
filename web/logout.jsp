@@ -8,11 +8,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Logout</title>
-        <%session.invalidate();%>
+        <!-- When a user wishes to log out, they must have their web session invalidated to end it -->
+        <%
+            session.invalidate();
+        %>
     </head>
     <body>      
         <a href="index.html">
@@ -25,6 +29,7 @@
                 </tr>
                 <tr>
                     <td>Redirecting you to the home page now...</td>
+                    <!-- Redirect user to the landing page, index -->
                     <%  String redirectURL = "index.html";
                         response.sendRedirect(redirectURL);
                     %> 
@@ -32,6 +37,8 @@
                 <p></p>
             </table>
         </div>
+                
+        <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
             <img src="DBackground.png" class="stretch" alt="background" />
         </div>  
