@@ -80,10 +80,10 @@
             <% if (user.getJournals().size() > 0) {
                     for (Journal j : user.getJournals()) {
             %>
-            <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
-                <img src="journal.png" alt=""/>
-                <p class="journalTitle"> <%= j.getTitle()%> </p>
-            </div>
+        <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
+            <img src="journal.png" alt="Journal"/>
+            <p class="journalTitle"> <%= j.getTitle()%> </p>
+        </div>
             <% }
                 }
             } else { %>
