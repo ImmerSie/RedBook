@@ -177,15 +177,16 @@ nav[role="side"] li a:hover{
     font-weight: 500;
     margin-top: 5px;
     margin-right: auto;
-    font-size: 16px;
+    font-size: 12px;
     padding-bottom: 0px;
-    height: 40px;
+    padding-top: 10px;
+    height: 70px;
     padding-left: 180px;
 }
 
 /* Each item in the menu will be ahve a 5px padding to the top */
 #entriesMenu td{
-    padding-top: 5px;
+    padding-top: 0px;
 }
 
 /* The button to add the Entry */
@@ -665,7 +666,12 @@ h4{
 
 /* Formats the Visual Wrapper */
 #vis-wrapper { 
-     display: inline-block;
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: 48%;
+    right: 10%;
+    transform: translate(-50%, -50%);
 }
 
 /* Ensures the visual wrapper and the dropdown are opaque */

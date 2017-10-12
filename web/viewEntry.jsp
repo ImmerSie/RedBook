@@ -102,7 +102,6 @@
             <div class="table" id="viewEntryTable">
                 <table id="viewEntryData">
                      <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
-                    </tr>
                 </table>
                                         <%-- 
                                 ENTRY HISTORY

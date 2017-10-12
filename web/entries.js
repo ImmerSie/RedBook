@@ -34,6 +34,7 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td>';
+    html += '</tr>';
     html += '<div id="vis-wrapper">';
     html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
     html += '<div id="vis-dropdown">';
@@ -44,7 +45,7 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '</div>';
     html += '</div>';
     html += '</td>';
-    html += '</tr>';
+
     html += '</table>';
     html += '</div>';
     html += '</div>';
