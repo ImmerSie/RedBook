@@ -116,6 +116,13 @@
         <div id="entriesMenu">
             <table>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td> Show: </td>
+                    <td> Sort: </td>
+                    <td> Search: </td>
+                </tr>
+                <tr>
                     <!-- Icon button for adding an entry to the current journal -->
                     <td><a class="addEntry" href="createEntry.jsp" title="Add a new entry to this journal"> + </a></td>
                     <!-- Hide entry button based on selected entries via the checkbox at the beginning of the entry row -->
