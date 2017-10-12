@@ -22,7 +22,6 @@ import models.User;
  * 
  * <p>Held in the session data for a specific session</p>
  * 
- * @author Max
  */
 public class JournalController implements Serializable{
     private String filePath;
@@ -31,6 +30,12 @@ public class JournalController implements Serializable{
     public JournalController() {
     }
 
+    /**
+     * Constructor of the Journal Controller
+     * 
+     * @param filePath The file path of where to store the journal (journals.xml)
+     * @param user The user which has this journal
+     */
     public JournalController(String filePath, User user) {
         super();
         this.filePath = filePath;

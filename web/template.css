@@ -1,25 +1,19 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 18/09/2017, 4:43:21 PM
-    Author     : SophiePapworth
-*/
-
+/* Formatting of the logo */
 .logo{
     margin-top: 2px;
     height: 30px;
     width: 140px;
+    
 }
 
+/* Formatting of the logout Logo */
 .logoutLogo{
     margin-top: 5px;
     height: 45px;
     width: 140px;
 }
 
+/* Formatting of the icon of the Red Book */
 .icon{
     display: block;
     margin-top: 6px;
@@ -27,7 +21,17 @@ and open the template in the editor.
     width: 10px;
 }
 
-/* START TOP NAVIGATION */
+/* Formatting of the user icon in the top navigation bar */
+#userIcon{
+    height: 30px;
+    width: 40px;
+    padding-top: 5px;
+}
+
+/* START TOP NAVIGATION
+-------------------------*/
+
+/* Formatting of the main navigation bar list at the top */
 nav[role="main"] ul{
     position: fixed;
     top: 0;
@@ -40,6 +44,8 @@ nav[role="main"] ul{
     background-color: white;
 }
 
+/* Each link will be in a block format without the hyperlink formatting
+   making it look like a navigation bar */
 nav[role="main"] li a {
     display: block;
     color: #FFFFFF;
@@ -56,6 +62,7 @@ nav[role="main"] li a {
     width:100px;
 }
 
+/* Formatting of the actual list items in the Menu Bar */
 nav[role="main"] li {
     display: inline;
     float: right;
@@ -65,6 +72,7 @@ nav[role="main"] li {
     padding-right: 0px;
 }
 
+/* The user name will be in Open Sans and slightly bolded */
 #usersName{
     padding-top: 8px;
     font-family: 'Open Sans';
@@ -73,14 +81,21 @@ nav[role="main"] li {
     color: #93163A
 }
 
+/* The navigation bar will be fixed to the top of the screen and will take the 
+   full width */
 #topNav{
     width: 100%;
     position: fixed;
 }
 
-/* END TOP NAVIGATION */
+/* END TOP NAVIGATION 
+-----------------------*/
 
-/* START SIDE NAVIGATION */
+/* START SIDE NAVIGATION
+--------------------------*/
+
+/* The formatting of the side navigation bar, it will take the full height of
+   the page and will be in a fixed position */
 nav[role="side"] ul{
     list-style-type: none;
     margin:0;
@@ -91,8 +106,10 @@ nav[role="side"] ul{
     position: fixed;
     overflow: auto;
     left: 0;
+    padding-top: 20px;
 }
 
+/* Each item will be formatted to look like a menu item rather than a hyperlink */
 nav[role="side"] li a{
     display: block;
     color: white;
@@ -104,29 +121,37 @@ nav[role="side"] li a{
     text-decoration: none;
 }
 
+/* When the user hovers over the menu, it will get bolder */
 nav[role="side"] li a:hover{
     color: #93163A;
     font-weight: bold;
 }
 
-/* END SIDE NAVIGATION */
+/* END SIDE NAVIGATION
+-----------------------*/
 
+/* Formatting of the entry items in the table */
 .table {background-color: white;
+       /* Layout Formatting */
        padding-top: 10px;
        padding-right: 50px;
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
+       margin-top: 0px;
+       margin-left: 250px; 
+       margin-right: auto; 
+       
+       /* Font styling */
        font-family: 'Open Sans';
        font-style: normal;
        font-weight: normal;
        font-size: 20px;
        color: black;
-       margin-top: 0px;
-       margin-left: 250px; 
-       margin-right: auto; 
+       
 }
 
+/* Formatting of the new entry */
 .newEntry {background-color: white;
        padding-top: 10px;
        padding-right: 50px;
@@ -143,6 +168,7 @@ nav[role="side"] li a:hover{
        margin-right: 150px; 
 }
 
+/* Formatting of the entries menu */
 #entriesMenu{
     background-color: #494949;
     color: white;
@@ -157,10 +183,12 @@ nav[role="side"] li a:hover{
     padding-left: 180px;
 }
 
+/* Each item in the menu will be ahve a 5px padding to the top */
 #entriesMenu td{
     padding-top: 5px;
 }
 
+/* The button to add the Entry */
 .addEntry{
     float: right;
     margin-top: 0px;
@@ -174,10 +202,12 @@ nav[role="side"] li a:hover{
     text-decoration: none;
 }
 
+/* The Link will have no underline */
 .addEntry a:link{
     text-decoration: none;
 }
 
+/* When hovering over the button, It will get bolder */
 .addEntry a:hover{
     color: #93163A;
     font-weight: 700;
@@ -185,6 +215,7 @@ nav[role="side"] li a:hover{
 
 }
 
+/* To see the hidden button */
 #seeHiddenBtn{
     margin-top: 13px;
     float: right;
@@ -192,11 +223,13 @@ nav[role="side"] li a:hover{
 
 }
 
+/* The button to hide entries */
 .hideBtn{
     float: right;
     margin-right: 30px;
 }
 
+/* The Formatting of the journal add table */
 #journalAddTable{
     background-color: transparent;
     color: white;
@@ -212,6 +245,7 @@ nav[role="side"] li a:hover{
     font-size: 20px;
 }
 
+/* The aligning of the Buttons */
 #alignmentBtn{
     text-align: center;
     margin: 0;
@@ -219,8 +253,10 @@ nav[role="side"] li a:hover{
     top: 20%;
     left: 20%;
     transform: translate(-50%, -50%);
+    padding-bottom: 60px;
 }
 
+/* Formats the layout of how the journal will be positioned */
 #journalPosition{
     background-color: transparent;
     color: white;
@@ -233,6 +269,7 @@ nav[role="side"] li a:hover{
     font-size: 20px;
 }
 
+/* Formating of the jorunal Title */
 .journalTitle{
     width: 180px;
     position:absolute;
@@ -245,6 +282,7 @@ nav[role="side"] li a:hover{
     
 }
 
+/* Formatting of the actual Journal*/
 .journal{
     margin:auto;
     height:auto;
@@ -255,6 +293,7 @@ nav[role="side"] li a:hover{
     padding-right: 20px;
 }
 
+/* Formatting of the entry table */
 #entriesTable{
     background-color: transparent;
     color: white;
@@ -267,6 +306,7 @@ nav[role="side"] li a:hover{
     font-size: 14px;
 }
 
+/* Formatting of the Text if there are no entries */
 #noEntries{
     background-color: transparent;
     color: white;
@@ -280,6 +320,7 @@ nav[role="side"] li a:hover{
     border: none;
 }
 
+/* Formatting of the list of entries */
 .entryList{
     background-color: #93163A;
     color: white;
@@ -294,23 +335,27 @@ nav[role="side"] li a:hover{
     border-top: 1px solid black;
 }
 
+/* Formatting of each row in the entry table */
 .entryList tr{
     padding-left: 10px;
     height: 30px;
 }
 
+/* The formatting of when you hover over an entry */
 .entryList tr:hover{
     border-bottom: 3px solid white;
     border-top: 3px solid white;
     font-weight: bold;
 }
 
+/* Formatting of each entry */
 .entryList td{
     text-align: center;
     vertical-align: middle;
     padding-right: 30px;
 }
 
+/* Formatting of the Title of each entry */
 #entryTitle{
     font-family: 'Open Sans';
     font-style: normal;
@@ -320,6 +365,7 @@ nav[role="side"] li a:hover{
     padding-top: 10px;
 }
 
+/* Formatting of the content in each entry */
 #content{
     font-family: 'Open Sans';
     font-style: normal;
@@ -328,6 +374,7 @@ nav[role="side"] li a:hover{
     text-align: left;
 }
 
+/* Formatting of the body of the page */
 body{
     background-color: lightblue;
     margin: 5px;
@@ -339,12 +386,14 @@ body{
     width:100%;
 }
 
+/* Formatting of Heading 1 */
 h1{
     text-align: center;
     padding-top: 30px;
     color: white;
 }
 
+/* Formatting of Heading 2 */
 h2{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
@@ -355,6 +404,7 @@ h2{
     font-weight: 500;
 }
 
+/* Formatting of Heading 3 */
 h3{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
@@ -366,6 +416,7 @@ h3{
     color: white;
 }
 
+/*Formatting of Header 4 */
 h4{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
@@ -377,6 +428,7 @@ h4{
     color: white;
 }
 
+/* Formatting of the checkbox of each entry */
 .entryCheck{
     padding-top: 20px;
     float: left;
@@ -386,11 +438,13 @@ h4{
 }
 
 
+/* Formatting of the input box of the entry */
 #entryContent{
-    width: 700px;
+    width: 100%;
     height: 700px;
 }
 
+/* Formatting of the date of the entry */
 #date{
     text-align: left; 
     font-family: 'Open Sans';
@@ -399,7 +453,8 @@ h4{
     font-size: 12px;
 }
 
-#X{
+/* Formatting of the exti symbol to exit out of the entry */
+#exitSymbol{
     color: black;
     text-align: right; 
     font-family: 'Open Sans';
@@ -409,19 +464,23 @@ h4{
     text-decoration: none;
 }
 
-#X a:link{
+/* There is no underline of the Exit Link */
+#exitSymbol a:link{
     text-decoration: none;
 }
 
-#X a:hover{
+/* Formatting of when you hover over the exit Link */
+#exitSymbol a:hover{
     color: #93163A;
     font-weight: 300;
 }
 
-#X a:visited{
+/* Formatting if you already clicked the Exit Symbold */
+#exitSymbol a:visited{
     color: black;
 }
 
+/* Formatting of the button to add an Jorunal */
 #add{
     color: white;
     text-align: right; 
@@ -432,19 +491,23 @@ h4{
     text-decoration: none;
 }
 
+/* There is no underline in the add button */
 #add a:link{
     text-decoration: none;
 }
 
+/* Formatting of when you hover over the add button */
 #add a:hover{
     color: #93163A;
     font-weight: 300;
 }
 
+/* Formatting of when you have already clicked on the add button */
 #add a:visited{
     color: white;
 }
 
+/* Formatting of when the button when you add an entry */
 .addEntry{
     text-align: right;
     font-family: 'Open Sans';
@@ -454,10 +517,12 @@ h4{
     text-decoration: none;
 }
 
+/* Formatting to remove the underline of the add an entry button */
 .addEntry a:link{
     text-decoration: none;
 }
 
+/* Formatting of when you hover over the add button */
 .addEntry a:hover{
     color: #93163A;
     font-weight: 700;
@@ -465,12 +530,14 @@ h4{
 
 }
 
+/* Formatting of when you clicked the add button */
 #addEntry a:visited{
     color: white;
     font-weight: 700;
     text-decoration: none;
 }
 
+/* Formatting of the add Journal Button */
 #addJournal{
     text-align: right;
     padding-right: 200px;
@@ -481,20 +548,24 @@ h4{
     text-decoration: none;
 }
 
+/* Ensures the underline isn't there in the add journal button */
 #addJournal a:link{
     text-decoration: none;
 }
 
+/* Formats the add Journal button during hovering */
 #addJournal a:hover{
     color: #93163A;
     font-weight: 700;
 }
 
+/* Formats the add journal button when clicked */
 #addJournal a:visited{
     color: white;
     font-weight: 700;
 }
 
+/* Formatst the save an entry button */
 #saveBtn{
     text-align: center; 
     font-family: 'Open Sans';
@@ -504,6 +575,7 @@ h4{
     margin-align: right;
 }
 
+/* Formats the back button */
 .backButton{
     margin-align: left;
     height: 10%;
@@ -511,6 +583,7 @@ h4{
     padding-left: 17%;
 }
 
+/* Formats the background image */
 #background {
     width: 100%; 
     height: 100%; 
@@ -519,10 +592,19 @@ h4{
     top: 0px; 
     z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
 }
+
+/* Ensures the background image is stretched fully */
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+/* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
 }
 
+/* Formats the View Date Created */
 #viewDateCreated{
     text-align: left; 
     font-family: 'Open Sans';
@@ -530,7 +612,7 @@ h4{
     font-weight: 100;
     font-size: 12px;
 }
-
+/* Formatst he view Date Modified */
 #viewDateModified{
     text-align: left; 
     font-family: 'Open Sans';
@@ -539,6 +621,7 @@ h4{
     font-size: 12px;
 } 
 
+/* Formats the view Flag */
 #viewFlag{
     text-align: left; 
     font-family: 'Open Sans';
@@ -547,6 +630,7 @@ h4{
     font-size: 12px;
 }
 
+/* Formats the entry history list */
 #entryHistoryList {
     background: #C5B5B9;
     border-radius: 10px;
@@ -559,6 +643,7 @@ h4{
     font-weight: 150;
 }
 
+/* Formats the history list header */
 #historyListHeader{
     background: #93163A;
     border-radius: 10px;
@@ -571,14 +656,25 @@ h4{
     padding: 12px 20px;
 }
 
+/* Ensures the view entry content is formatted to the left */
 #viewEntryContent{
     text-align: left;
 }
 
- #vis-wrapper { display: inline-block; }
 
-#vis-wrapper:hover #vis-dropdown { opacity: 1; display: block; }
 
+/* Formats the Visual Wrapper */
+#vis-wrapper { 
+     display: inline-block;
+}
+
+/* Ensures the visual wrapper and the dropdown are opaque */
+#vis-wrapper:hover #vis-dropdown { 
+    opacity: 1; 
+    display: block; 
+}
+
+/* Formats the visual icon */
 .vis-icon {
   color: #fff;
   font-weight:700;
@@ -592,7 +688,8 @@ h4{
   left: 0; top: 0;
 }
 
- .vis-icon:before {
+/* Formats the vis icon before clicked */ 
+.vis-icon:before {
   content:'\25BE';
   width:0px;
   height:0;
@@ -601,14 +698,16 @@ h4{
   top: 0;
 }
 
+/* Formats the visual icon hover before */
 .vis-icon:hover:before { 
   color: #d13030;
   content: '\25B4';
   top: -1px;
 }
 
-/* ------------------ Visibility DROPDOWN ------------------ */
+/* ------------------ Visibility DROPDOWN Start ------------------ */
 
+/* Formats the visual dropdown */
  #vis-dropdown {
   opacity: 0;
   width: 70px;
@@ -619,6 +718,7 @@ h4{
   box-shadow: 0px 3px 3px #000000;
  }
 
+ /* Formats the visual dropdown in header 3 */
  #vis-dropdown h3 {
   color: #d13030;
   font-size: 14px;
@@ -626,29 +726,36 @@ h4{
   padding: 5px 15px 0px 15px;
  }
  
+/* Formats the paragraph section in the vis dropdown */
 #vis-dropdown p {
 
   font-size: 12px;
   padding: 0px 0px 10px 15px;
 }
 
+/* Formats the link of the visual dropdown */
 #vis-dropdown a {
   padding: 0px 0px 0px 15px;
 }
 
-
+/* Formats the links in the visual dropdown */
  .vis-links {
   font-size: 12px;
   text-decoration: none;
   color: #93163A;
  }
 
+ /* Formats the hover feature of the visual dropedown to have a underline */
  .vis-links:hover {
   text-decoration: underline;
 
  }
  
- .editJournalDetBtn {
+ /* ------------------ Visibility DROPDOWN Fin ------------------ */
+ 
+ /* ------------------ Edit Journal Fields Start -------------- */
+ 
+.editJournalDetBtn {
         float: right;
     text-align: center;
     padding-top: 30px;
@@ -660,7 +767,6 @@ h4{
  }
  
   #journalDetTitleInput {
-    float: center;
     text-align: center;
     margin-top: 50px;
     margin-left: 50px;
@@ -669,10 +775,79 @@ h4{
  }
  
  #journalDetDescInput {
-    float: center;
     text-align: center;
     margin-top: 50px;
     margin-left: 50px;
     padding-top: 30px;
     color: black;
  }
+ 
+ /* ----------------- Edit Journal Field Fin --------------- */
+ 
+ /* ------------------ Help Styling Start ------------------ */
+ 
+ /* Formatting of the Help Content table */
+ .helpTable {
+    background-color: white;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 170px;
+    margin-right: auto;
+    font-family: 'Open Sans';
+ }
+ 
+ /* The header 1 of help section */
+ #helpH1 {
+    color: #93163A;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 30px;
+ }
+ 
+ /* THe header 2 of the help section */
+ #helpH2 {
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 12px;
+    color: black;
+    padding-top: 10px;
+ }
+ 
+ /* The formatting of the help Body */
+ #helpBody{
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 12px;
+    color: black;
+    text-indent: 20px;
+ }
+ 
+ /* The formatting of the header of the help section */
+ #helpHeader{
+    text-align: center;
+    padding-top: 80px;
+    color: white;
+    font-size: 30px;
+    margin-left: 185px;
+}
+
+/* The formatting of the help menu */
+#helpMenu{
+    background-color: #494949;
+    color: white;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 60px;
+    margin-right: auto;
+    font-size: 16px;
+    padding-bottom: 0px;
+    height: 40px;
+    padding-left: 180px;
+}
+
+ /* ------------------ Help Styling Fin ------------------ */

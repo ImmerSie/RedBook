@@ -25,7 +25,7 @@ import models.Journal;
  * 
  * <p>Held in session context </p>
  * 
- * @author Max
+ * @author Sarah
  */
 public class EntryController implements Serializable{
     private String filePath;
@@ -35,6 +35,12 @@ public class EntryController implements Serializable{
     public EntryController() {
     }
 
+    /**
+     * Constructs the Entry controller with file path and the journal
+     * 
+     * @param filePath The path to where the xml is located (entries.xml)
+     * @param journal The journal, the entry will be located in
+     */
     public EntryController(String filePath, Journal journal) {
         super();
         this.filePath = filePath;
@@ -45,7 +51,7 @@ public class EntryController implements Serializable{
      * Perform initial retrieval of data from the entries.xml file
      * 
      * @param filePath The path to the entries.xml file
-     * @throws Exception 
+     * @throws Exception if file path is invalid or does not exist
      */
     public void setFilePath(String filePath) throws Exception{
         this.filePath = filePath;

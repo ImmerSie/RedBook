@@ -24,7 +24,7 @@ import models.Entry;
 /**
  * Allows the user to get a .csv file containing the data for an entry
  * 
- * @author Max
+ * @author Sarah
  */
 public class EntryServlet extends HttpServlet {
 
@@ -73,7 +73,7 @@ public class EntryServlet extends HttpServlet {
     }
 
     /**
-     * Returns an Entry objects set of values
+     * Updates the entry object
      * 
      * @param req Contains the necessary data to get the entry (entryID)
      * @param res Contains the entry data, in JSON format

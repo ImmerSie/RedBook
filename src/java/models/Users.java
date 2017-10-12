@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * <p>This object maps to the root element in the users.xml file. </p>
  * 
- * @author Max
+ * @author Sarah
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="users")
@@ -25,6 +25,10 @@ public class Users implements Serializable{
     @XmlElement(name="user")
     private ArrayList<User> userList = new ArrayList<User>();
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<User> getUsers() {
         return userList;
     }

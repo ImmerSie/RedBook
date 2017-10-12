@@ -1,11 +1,8 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Changes between the hidden and non-hidden views
  */
-
-
 function toggleJournalHistory(){
+    // Checks if the current view is "hidden"
     if($('#entryHistoryList').is(':hidden')){
         $('#entryHistoryList').show();
         getEntryHistories()
@@ -49,6 +46,9 @@ function setHistoryEntryDiv(){
     $('#historyEntryDiv').html(html);
 }
 
+/**
+ * Create the HTML to show the Hidden table
+ */
 function setViewHistoryTable(){
     var dateModified = $('#viewDateModified').attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
@@ -72,15 +72,22 @@ function setViewHistoryTable(){
     $('#historyEntryDiv').html(html);
 }
 
-function getEntryHistory(elmnt){
-    var dateModified = $(elmnt).find('input').eq(2).attr('value');
+/**
+ * Shows the entry history of a specific entry
+ * 
+ * @param {type} entry The entry to get the history for
+ */
+function getEntryHistory(entry){
+    // Gets the differeent elements of the entry
+    var dateModified = $(entry).find('input').eq(2).attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
     var title = $(elmnt).find('input').eq(0).attr('value');
     var content = $(elmnt).find('input').eq(1).attr('value');
     
     var html = '';
     
-     html += '<tr>';
+    // Set the HTML for the the entry history
+    html += '<tr>';
     html += '<td id="viewDateCreated">' + dateCreated + '</td>';
     html += '<td id="viewDateModified">Date Modified: ' + dateModified + '</td>';
     html += '<td><button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Hide History</button></td>';
@@ -154,7 +161,13 @@ function editEntry(){
     html += '<td colspan="5"><h2> Entry Title: </h2></td>';
     html += '<tr></tr>';
     html += '<td  colspan="5"><input type="text" value="' + title + '" name="entryTitle" id="viewEntryTitle"></td>';
-    html += '<tr></tr>';
+    html += '<tr>';
+    html += '<td colspan="5"><input type="button" onclick="boldFunction()" value="Bold"></button>';
+    html += '<input type="button" onclick="italiseFunction()" value="Italics"></button>';
+    html += '<input type="button" onclick="Heading1()" value="H1"></button>';
+    html += '<input type="button" onclick="Heading2()" value="H2"></button>';
+    html += '<input type="button" onclick="Heading3()" value="H3"></button></td>';
+    html += '</tr>';
     html += '<td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent">' + content + '</textarea></td>';
     html += '<tr></tr>';
     html += '<td colspan="5"><button id="saveBtn" type="submit" onclick="updateEntry()" value="Save Entry" name="Save Entry">Save Entry</button></td>';
@@ -220,4 +233,39 @@ function getEntryHistories(){
         
         $('#entryHistoryList').html(html);        
     });  
+}
+
+function boldFunction(){
+    var textToBold = document.getSelection();
+    var fullText = document.getElementById('entryContent').value;
+    fullText = fullText.replace(textToBold,'**'+textToBold+'**');
+    document.getElementById('entryContent').value = fullText;
+}
+
+ function italiseFunction(){
+    var textToItalise = document.getSelection();
+    var fullText = document.getElementById('entryContent').value;
+    fullText = fullText.replace(textToItalise,'*'+textToItalise+'*');
+    document.getElementById('entryContent').value = fullText;
+}
+
+function Heading1(){
+    var textToH1 = document.getSelection();
+    var fullText = document.getElementById('entryContent').value;
+    fullText = fullText.replace(textToH1,'#'+ textToH1);
+    document.getElementById('entryContent').value = fullText;
+}
+
+function Heading2(){
+    var textToH2 = document.getSelection();
+    var fullText = document.getElementById('entryContent').value;
+    fullText = fullText.replace(textToH2,'##'+ textToH2);
+    document.getElementById('entryContent').value = fullText;
+}
+
+ function Heading3(){
+    var textToH3 = document.getSelection();
+    var fullText = document.getElementById('entryContent').value;
+    fullText = fullText.replace(textToH3,'###'+ textToH3);
+    document.getElementById('entryContent').value = fullText;
 }
