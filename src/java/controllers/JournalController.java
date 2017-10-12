@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -102,8 +103,13 @@ public class JournalController implements Serializable{
      */
     public int getNewJournalID(){
         if(user.getJournals().size() > 0){
-            int finalID = user.getJournals().get(user.getJournals().size() - 1).getJournalID();
-            return finalID + 1;
+            int max = 0;
+            for(Journal j : user.getJournals()){
+                if(j.getJournalID() > max){
+                    max = j.getJournalID();
+                }
+            }
+            return max + 1;
         }
         else{
             return 1;
@@ -131,5 +137,23 @@ public class JournalController implements Serializable{
     
     public void setUser(User user){
         this.user = user;
+    }
+    
+    public Journal createJournal(String title, String description){
+        int userID = user.getUserID();
+        int journalID = getNewJournalID();
+        Date dateCreated = new Date();
+        Date dateModified = new Date();
+        Journal journal = new Journal(userID, journalID, dateCreated, dateModified, title, description);
+        user.addJournal(journal);
+        return journal;
+    }
+    
+    public Journal updateJournal(int journalID, String title, String description){
+        Journal journal = getJournalFromID(journalID);
+        journal.setTitle(title);
+        journal.setDescription(description);
+        journal.setLastModified(new Date());
+        return journal;
     }
 }

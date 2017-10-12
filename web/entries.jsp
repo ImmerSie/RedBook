@@ -29,7 +29,8 @@
         <script type="text/javascript" language="javascript" src="entries.js"></script>
     </head>
     <body>
-        <%  if(session.getAttribute("entryApp") == null){
+        <%  
+            if(session.getAttribute("entryApp") == null){
                 String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
                 <jsp:useBean id="entryApp" class="controllers.EntryController" scope="session">
                     <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
@@ -40,6 +41,12 @@
            LoginController userApp = (LoginController) application.getAttribute("userApp");
            JournalController journalApp = (JournalController) session.getAttribute("journalApp");
            User user = (User) session.getAttribute("user");
+           if(journalApp == null){
+                String journalFilePath = application.getRealPath("WEB-INF/journals.xml"); %>
+                journalApp = new JournalController();
+                journalApp.setFilePath(journalFilePath);
+                session.setAttribute("journalApp", journalApp);
+           <% }
            journalApp.setUser(user);
            String parameter = request.getParameter("id");
            if(parameter != null){
@@ -75,15 +82,21 @@
             </div>
         </nav>
         
-        <h1><%= journal.getTitle()%></h1>
-        <h3><%= journal.getDescription()%></h3>
-        <h4>
-            <%
-                SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
-            %>
-            <p>Created: <%=ft1.format(journal.getDateCreated())%></p>
-            <p>Last Modified: <%=ft1.format(journal.getLastModified())%></p>
-        </h4>       
+        <div id="journalDetails">
+            <h1 id="journalDetTitle"><%= journal.getTitle()%></h1>
+            <h3 id="journalDetDesc"><%= journal.getDescription()%></h3>
+            <input type="hidden" id="journalID" value="<%= journal.getJournalID() %>">
+            <input type="hidden" id="userID" value="<%= journal.getUserID()%>">
+            <h4>
+                <%
+                    SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
+                %>
+                <p>Created: <%=ft1.format(journal.getDateCreated())%></p>
+                <p>Last Modified: <%=ft1.format(journal.getLastModified())%></p>
+            </h4> 
+            <button class="editJournalDetBtn" onClick="editJournalDetails()">Edit</button>
+        </div>
+        <div id="editJournalDetails"></div>
         <div id="entriesMenu">
             <table>
                 <tr>

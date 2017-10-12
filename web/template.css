@@ -647,3 +647,32 @@ h4{
   text-decoration: underline;
 
  }
+ 
+ .editJournalDetBtn {
+        float: right;
+    text-align: center;
+    padding-top: 30px;
+ }
+ 
+ #editJournalDetails{
+     float: right;
+     display: block;
+ }
+ 
+  #journalDetTitleInput {
+    float: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 50px;
+    padding-top: 30px;
+    color: black;
+ }
+ 
+ #journalDetDescInput {
+    float: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 50px;
+    padding-top: 30px;
+    color: black;
+ }

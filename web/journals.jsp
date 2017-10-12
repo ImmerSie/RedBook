@@ -18,6 +18,9 @@
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Journals</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
     <body>
         <% 
@@ -27,20 +30,20 @@
                     <jsp:setProperty name="userApp" property="filePath" value="<%=filePath%>"/>
                 </jsp:useBean>
             <% }
-            LoginController userApp = (LoginController) application.getAttribute("userApp");
+            LoginController userApp = (LoginController) application.getAttribute("userApp"); 
             if(session.getAttribute("journalApp") == null){
-                String filePath2 = application.getRealPath("WEB-INF/journals.xml"); %>
+                String journalFilePath = application.getRealPath("WEB-INF/journals.xml"); %>
                 <jsp:useBean id="journalApp" class="controllers.JournalController" scope="session">
-                    <jsp:setProperty name="journalApp" property="filePath" value="<%=filePath2%>"/>
+                    <jsp:setProperty name="journalApp" property="filePath" value="<%=journalFilePath%>"/>
                 </jsp:useBean>
-            <% }
+                
+            <%}
             JournalController journalApp = (JournalController) session.getAttribute("journalApp");
 
             Users users = userApp.getUsers();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User user = (User) session.getAttribute("user");
-            session.setAttribute("journal", null);
             session.setAttribute("entryApp", null);
             if(user == null || (email != null && !(user.getEmail().equals(email)))){
                 user = users.login(email, password);
@@ -67,14 +70,14 @@
             </div>
             
             <div id="journalPosition">
-                <% if(user.getJournals().size() > 0){
-                    for(Journal j : user.getJournals()){
+                <% if(journalApp.getUser().getJournals().size() > 0){
+                    for(Journal j : journalApp.getUser().getJournals()){
                         %>
-                <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
-                    <img src="journal.png" alt=""/>
-                        <p class="journalTitle"> <%= j.getTitle()%> </p>
-                </div>
-            <%
+                        <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
+                            <img src="journal.png" alt=""/>
+                                <p class="journalTitle"> <%= j.getTitle()%> </p>
+                        </div>
+                    <%
                     }
                 }
             } else { %>
@@ -106,6 +109,7 @@
         elmnt.style.color = 'red';
         var currentURL = window.location.href;
         if(currentURL.indexOf('journal') > 0){
+            elmnt.style.color = 'blue';
             currentURL = currentURL.substring(0, currentURL.indexOf('journal'));
             currentURL = currentURL + "entries.jsp";
         }

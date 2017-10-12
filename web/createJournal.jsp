@@ -13,6 +13,10 @@
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link href="template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" language="javascript" src="createJournal.js"></script>
         <title>Create Journal</title>
     </head>
     <body>
@@ -53,26 +57,26 @@
             </a>        
         </p>
         
-        <form action="newJournal.jsp" method="post">
+        <!--<form action="newJournal.jsp" method="post">-->
             <div id="journalAddTable">    
                 <table>
                     <tr>
                         <td> Journal Name: </td>
-                        <td><input type="text" name="title"></td>
+                        <td><input type="text" id="createJournalTitle" name="title"></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
                         <td> Brief Description: </td>
-                        <td><input type="text" name="description"></td>
+                        <td><input type="text" id="createJournalDesc" name="description"></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td><input type="submit" value="Create"></td>
+                        <td><input type="hidden" id="createJournalUserID" value="<%= user.getUserID() %>"</td>
+                        <td><button value="Create" onclick="createJournal()">Create</button></td>
                     </tr>
                 </table>
             </div>    
-        </form>
+        <!--</form>-->
     </body>
 </html>

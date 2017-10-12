@@ -13,6 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import models.User;
 import models.Users;
 
 /**
@@ -102,12 +103,26 @@ public class LoginController implements Serializable{
      */
     public int getNewUserID(){
         if(users.getUsers().size() > 0){
-            int finalID = users.getUsers().get(users.getUsers().size() - 1).getUserID();
-            return finalID + 1;
+            int max = 0;
+            for(User u : users.getUsers()){
+                if(u.getUserID() > max){
+                    max = u.getUserID();
+                }
+            }
+            return max + 1;
         }
         else{
             return 1;
         }
+    }
+    
+    public User getUserFromID(int userID){
+        for(User u : getUsers().getUsers()){
+            if(u.getUserID() == userID){
+                return u;
+            }
+        }
+        return null;
     }
     
     public Users getUsers(){

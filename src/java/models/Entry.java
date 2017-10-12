@@ -179,8 +179,13 @@ public class Entry implements Serializable{
         // Creates an id for the entry history object
         int newID = 0;
         if(history.size() > 0){
-            int lastID = history.get(history.size() - 1).getEntryID();
-            newID = lastID + 1;
+            int max = 0;
+            for(EntryHistory e : this.getHistory()){
+                if(e.getEntryHisID() > max){
+                    max = e.getEntryHisID();
+                }
+            }
+            newID = max + 1;
         }
         
         // Creates the entry history object with the old entry's data

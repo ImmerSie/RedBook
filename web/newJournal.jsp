@@ -24,9 +24,9 @@
         </a>
         <%
             if(session.getAttribute("journalApp") == null){
-                String filePath2 = application.getRealPath("WEB-INF/journals.xml"); %>
+                String journalFilePath = application.getRealPath("WEB-INF/journals.xml"); %>
                 <jsp:useBean id="journalApp" class="controllers.JournalController" scope="session">
-                    <jsp:setProperty name="journalApp" property="filePath" value="<%=filePath2%>"/>
+                    <jsp:setProperty name="journalApp" property="filePath" value="<%=journalFilePath%>"/>
                 </jsp:useBean>
             <% }
             

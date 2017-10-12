@@ -35,4 +35,13 @@
         <servlet-name>entryHistoryServlet</servlet-name>
         <url-pattern>/entryHistoryServlet.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>journalServlet</servlet-name>
+        <servlet-class>servlet.JournalServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>journalServlet</servlet-name>
+        <url-pattern>/journalServlet.do</url-pattern>
+    </servlet-mapping>
 </web-app>

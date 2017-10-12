@@ -285,3 +285,41 @@ function searchBetweenDates(){
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
+
+function cancelJournalEdit(){
+    $('#journalDetails').show();
+    $('#editJournalDetails').hide();
+    $('#editJournalDetails').html('');
+
+}
+
+function updateJournal(){
+    var title = $('#journalDetTitleInput').val();
+    var description = $('#journalDetDescInput').val();
+    var journalID = $('#journalID').val();
+    var userID = $('#userID').val();
+    
+    $.post("journalServlet.do", {userID: userID, journalID: journalID, title: title, description: description}, function(response){
+        $('#journalDetTitle').text(response['title']);
+        $('#journalDetDesc').text(response['description']);
+        cancelJournalEdit();
+    });
+
+}
+
+function editJournalDetails(){
+    var title = $('#journalDetTitle').text();
+    var description = $('#journalDetDesc').text();
+    
+    $('#journalDetails').hide();
+    
+    var html = '';
+    html += '<h1>Title: </h1><input type="text" id="journalDetTitleInput" value="' + title + '"></br>';
+    html += '<h3>Description</h3><input id="journalDetDescInput" value="' + description + '">';
+    html += '<button class="editJournalDetBtn" onClick="updateJournal()">Save</button>';
+    html += '<button class="editJournalDetBtn" onClick="cancelJournalEdit()">Cancel</button>';
+    
+    $('#editJournalDetails').show();
+    $('#editJournalDetails').html(html);
+
+}
