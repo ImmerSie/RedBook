@@ -151,8 +151,8 @@ function editEntry(){
     
     var html = '';
     html += '<tr>';
-    html += '<td id="dateCreated" name="dateCreated">' + dateCreated + '</td>';
-    html += '<td id="dateModified" name="dateModified">' + dateModified + '</td>';
+    html += '<td id="viewDateCreated" name="dateCreated">' + dateCreated + '</td>';
+    html += '<td id="viewDateModified" name="dateModified">' + dateModified + '</td>';
     html += '<td>';
     html += '<button type="button" onClick="getEntry()">Cancel Edit</button>';
     html += '</td>';

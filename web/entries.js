@@ -29,7 +29,6 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
-    html += '<td></td><td>' + eContent + '</td>';
     html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
     html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';

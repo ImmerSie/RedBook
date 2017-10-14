@@ -603,6 +603,7 @@ h4{
 /* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
+    margin-right: 50px;
 }
 
 /* Formats the View Date Created */
@@ -669,7 +670,7 @@ h4{
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 48%;
+    top: 52%;
     right: 10%;
     transform: translate(-50%, -50%);
 }
