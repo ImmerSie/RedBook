@@ -374,8 +374,8 @@ function searchBetweenDates(){
 
 function cancelJournalEdit(){
     $('#journalDetails').show();
-    $('#editJournalDetails').hide();
-    $('#editJournalDetails').html('');
+    $('#editJournal').hide();
+    $('#editJournal').html('');
 
 }
 
@@ -393,19 +393,28 @@ function updateJournal(){
 
 }
 
-function editJournalDetails(){
+function editJournal(){
     var title = $('#journalDetTitle').text();
     var description = $('#journalDetDesc').text();
     
     $('#journalDetails').hide();
     
     var html = '';
-    html += '<h1>Title: </h1><input type="text" id="journalDetTitleInput" value="' + title + '"></br>';
-    html += '<h3>Description</h3><input id="journalDetDescInput" value="' + description + '">';
-    html += '<button class="editJournalDetBtn" onClick="updateJournal()">Save</button>';
-    html += '<button class="editJournalDetBtn" onClick="cancelJournalEdit()">Cancel</button>';
+    html += '<div class="modal-content">';
+    html += '<div class="modal-header">';
+    html += '<h2>Edit Journal Details</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<h3>Title: </h3><input type="text" id="journalDetTitleInput" value="' + title + '"></br>';
+    html += '<h3>Description: </h3><input id="journalDetDescInput" value="' + description + '">';
+    html += '</div>';
+    html += '<div class="modal-footer">';
+    html += '<button class="editJournalDetSaveBtn" onClick="updateJournal()">Save</button>';
+    html += '<button class="editJournalDetCancelBtn" onClick="cancelJournalEdit()">Cancel</button>';
+    html += '</div>';
+    html += '</div>';
     
-    $('#editJournalDetails').show();
-    $('#editJournalDetails').html(html);
+    $('#editJournal').show();
+    $('#editJournal').html(html);
 
 }
