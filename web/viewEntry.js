@@ -226,8 +226,7 @@ function getEntryHistories(){
         html += generateHistoryRow(entryID, splitDate, title, content);
         
         if(jQuery.isEmptyObject(response)){
-            html += '<p><h3>You have no entries.</h3></p>';
-            html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
+            html += '<p><h4>You have not made any modifications to this entry yet.</h4></p>';
         }
         else{
             $.each(response, function(key, e){
