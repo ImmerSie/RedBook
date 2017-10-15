@@ -105,35 +105,38 @@ function generatePage(entryID, dateCreated, dateModified, title, content){
     var html = '';
     html += '<tr>';
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
-    html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td> ';
+    html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td>';
     html += '<td>';
-    html += '<button type="button" onClick="editEntry()">Edit</button>';
+    html += '<button type="button" onClick="editEntry(\''+content+'\')">Edit</button>';
     html += '</td>';
     html += '<td>';
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
     html += '</td>';
     html += '<td>';
-    html += '<form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">';
+    html += '<form action="entryServlet.do" method="GET">';
     html += '<input type="hidden" id="entryID" name="entryID" value="' + entryID + '">';
     html += '<input type="submit" class="button" value="Download">';
     html += '</form>';
     html += '</td>';
     html += '<td id="X"><a href="entries.jsp"> X </a></td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryTitle" colspan="5"> ' + title + '</td>';
+    html += '<td id="viewEntryTitle" colspan="5">' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5"> <md:render text="' + content + '">' + content + '</md:render> </td>';
+    html += '<td id="viewEntryContent" colspan="5">'+ micromarkdown.parse(content); + '</td>';
     html += '<td>';
     html += '<input type="hidden" name="entryID" value="' + entryID + '" id="entryID">';
     html += '</td>';
     html += '</tr>';
+    
     return html;
+    
 }
 
 function updateEntry(){
     var entryID = $('#entryID').val().toString();
     var title = $('#viewEntryTitle').val().toString();
     var content = $('#entryContent').val().toString();
+    
     
     $.post("entryHistoryServlet.do", {entryID: entryID, title: title, content: content}, function(response){
         var html = '';
@@ -142,17 +145,18 @@ function updateEntry(){
     });
 }
 
-function editEntry(){
+function editEntry(content){
     var dateCreated = $('#viewDateCreated').text();
     var dateModified = $('#viewDateModified').text();
     var title = $('#viewEntryTitle').text();
-    var content = $('#viewEntryContent').text();
+    //var content = $('#viewEntryContent').text();
     var entryID = $('#entryID').val();
     
+     
     var html = '';
     html += '<tr>';
-    html += '<td id="dateCreated" name="dateCreated">' + dateCreated + '</td>';
-    html += '<td id="dateModified" name="dateModified">' + dateModified + '</td>';
+    html += '<td id="viewDateCreated" name="dateCreated">' + dateCreated + '</td>';
+    html += '<td id="viewDateModified" name="dateModified">' + dateModified + '</td>';
     html += '<td>';
     html += '<button type="button" onClick="getEntry()">Cancel Edit</button>';
     html += '</td>';

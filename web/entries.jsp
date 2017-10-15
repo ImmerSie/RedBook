@@ -94,7 +94,7 @@
                 </ul>
             </div>
         </nav>        
-        <div id="journalDetails">
+        <div class="journalDetails">
             <!-- Retrieving Journal properties -->
             <h1 id="journalDetTitle"><%= journal.getTitle()%></h1>
             <h3 id="journalDetDesc"><%= journal.getDescription()%></h3>
@@ -107,10 +107,14 @@
                 %>
                 <p>Created: <%=ft1.format(journal.getDateCreated())%></p>
                 <p>Last Modified: <%=ft1.format(journal.getLastModified())%></p>
+                <p>
+                    <!-- Journal details editing function  -->
+                    <button class="editJournalBtn" onClick="editJournal()"> Edit Description </button>
+                </p>
             </h4> 
-            <button class="editJournalDetBtn" onClick="editJournalDetails()">Edit</button>
         </div>
-        <div id="editJournalDetails"></div>
+        <div id="editJournal" class="modal"></div>  
+
         <div id="entriesMenu">
             <table>
                 <tr>
@@ -150,8 +154,8 @@
                             <option value="searchTitle">Title</option>
                             <option value="searchContent">Content</option>
                             <option value="date">Date</option>
-                            <!--<option value="searchMonth">Month</option>
-                            <option value="searchYear">Year</option>-->
+                            <option value="month">Month</option>
+                            <option value="year">Year</option>
                             <option value="searchBetween">Between</option>
                         </select>
                     </td>
@@ -194,4 +198,25 @@ Also retrieving the resulting entries from searching and filtering
     function filterEntries() {
         getEntries();
     }
+</script>
+
+
+<!-- 
+JavaScript code for viewing the journal description and title editing modal
+-->
+<script>
+// Get the modal
+var modal = document.getElementById('editJournal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("editJournalBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
 </script>

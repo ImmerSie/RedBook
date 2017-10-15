@@ -175,7 +175,7 @@ nav[role="side"] li a:hover{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 500;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-right: auto;
     font-size: 12px;
     padding-bottom: 0px;
@@ -603,6 +603,7 @@ h4{
 /* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
+    margin-right: 50px;
 }
 
 /* Formats the View Date Created */
@@ -669,7 +670,7 @@ h4{
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 48%;
+    top: 52%;
     right: 10%;
     transform: translate(-50%, -50%);
 }
@@ -759,36 +760,103 @@ h4{
  
  /* ------------------ Visibility DROPDOWN Fin ------------------ */
  
- /* ------------------ Edit Journal Fields Start -------------- */
+ /* ------------------ Edit Journal Field Alignment Start -------------- */
  
-.editJournalDetBtn {
-        float: right;
-    text-align: center;
-    padding-top: 30px;
- }
- 
- #editJournalDetails{
-     float: right;
+ .journalDetails {
      display: block;
+ } 
+ 
+   /* Edit Journal Save Button  */
+#editJournalDetSaveBtn {
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
  }
  
-  #journalDetTitleInput {
+  /* Edit Journal Cancel Button  */
+ #editJournalDetCancelBtn {
     text-align: center;
-    margin-top: 50px;
-    margin-left: 50px;
-    padding-top: 30px;
+    margin: 0;
+    position: absolute;
+    top: 90%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+ }
+ 
+  /* Edit Journal Title Text Field */
+  #journalDetTitleInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: black;
  }
  
- #journalDetDescInput {
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 50px;
-    padding-top: 30px;
+  /* Edit Journal Description Text Field */
+   #journalDetDescInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: black;
  }
  
  /* ----------------- Edit Journal Field Fin --------------- */
+ 
+ /* ----------------- Edit Journal Modal Start --------------- */
+ 
+ /* Edit Journal Details Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Edit Journal Details Modal Content */
+.modal-content {
+    text-align: center;
+    bottom: 0;
+    background-color: #93163A;
+    color: white;
+    width: 30%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+}
+
+/* Edit Journal Details Modal Title */
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #93163A;
+    color: white;
+}
+
+/* Edit Journal Details Modal Body */
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+/* Edit Journal Details Modal Footer */
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #93163A;
+    color: white;
+}
+
+ /* ----------------- Edit Journal Modal Fin --------------- */
  
  /* ------------------ Help Styling Start ------------------ */
  

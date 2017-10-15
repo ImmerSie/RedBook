@@ -15,7 +15,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md'%> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,6 +43,8 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="//simonwaldherr.github.io/micromarkdown.js/dist/micromarkdown.min.js"></script>
+        <script type="text/javascript" src="//cdn.rawgit.com/showdownjs/showdown/<version tag>/dist/showdown.min.js"></script>
         <script>
             $( function() {
                 $( document ).tooltip();
@@ -104,9 +105,13 @@
                                 VIEW ENTRY
                             --%>
             <div class="table" id="viewEntryTable">
+                
                 <table id="viewEntryData">
+                    
                      <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
                 </table>
+           
+                
                                         <%-- 
                                 ENTRY HISTORY
                             --%>
