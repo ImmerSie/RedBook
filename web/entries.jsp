@@ -41,6 +41,7 @@
         <%  
             if(session.getAttribute("entryApp") == null){
                 String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
+                
                 <!-- A JavaBean will allow access to getter/setter methods and serializable objects -->
                 <jsp:useBean id="entryApp" class="controllers.EntryController" scope="session">
                     <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
@@ -48,27 +49,28 @@
         <% }
             EntryController entryApp = (EntryController) session.getAttribute("entryApp");
         
-           LoginController userApp = (LoginController) application.getAttribute("userApp");
-           JournalController journalApp = (JournalController) session.getAttribute("journalApp");
-           User user = (User) session.getAttribute("user");
-           if(journalApp == null){
-                String journalFilePath = application.getRealPath("WEB-INF/journals.xml"); %>
+            LoginController userApp = (LoginController) application.getAttribute("userApp");
+            JournalController journalApp = (JournalController) session.getAttribute("journalApp");
+            User user = (User) session.getAttribute("user");
+            if(journalApp == null){
+                String journalFilePath = application.getRealPath("WEB-INF/journals.xml");
                 journalApp = new JournalController();
                 journalApp.setFilePath(journalFilePath);
                 session.setAttribute("journalApp", journalApp);
-           <% }
-           journalApp.setUser(user);
-           String parameter = request.getParameter("id");
+            }
 
-           //If the parameter is not null, then the JSP page loads the journal of that id parameter
-           if(parameter != null){
-               Journal journal = user.getJournal(Integer.parseInt(parameter));
-               ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
-               journal.setEntries(e);
-               session.setAttribute("journal", journal);
-               entryApp.setJournal(journal);
-           }
-           Journal journal = (Journal) session.getAttribute("journal");
+            journalApp.setUser(user);
+            String parameter = request.getParameter("id");
+
+            //If the parameter is not null, then the JSP page loads the journal of that id parameter
+            if(parameter != null){
+                Journal journal = user.getJournal(Integer.parseInt(parameter));
+                ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+                journal.setEntries(e);
+                session.setAttribute("journal", journal);
+                entryApp.setJournal(journal);
+            }
+            Journal journal = (Journal) session.getAttribute("journal");
         %>
 
         <!-- Side navigation bar -->

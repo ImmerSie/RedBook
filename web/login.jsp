@@ -24,7 +24,9 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             $( function() {
-                $( document ).tooltip();
+                $( document ).tooltip({
+                    position: { my: "left+15 center", at: "right center" }
+                });
             } );
         </script>
     </head>

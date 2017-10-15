@@ -5,7 +5,7 @@ function toggleJournalHistory(){
     // Checks if the current view is "hidden"
     if($('#entryHistoryList').is(':hidden')){
         $('#entryHistoryList').show();
-        getEntryHistories()
+        getEntryHistories();
         $('#historyEntryDiv').show();
         setHistoryEntryDiv();
         $('#viewEntryData').hide();
@@ -81,8 +81,8 @@ function getEntryHistory(entry){
     // Gets the differeent elements of the entry
     var dateModified = $(entry).find('input').eq(2).attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
-    var title = $(elmnt).find('input').eq(0).attr('value');
-    var content = $(elmnt).find('input').eq(1).attr('value');
+    var title = $(entry).find('input').eq(0).attr('value');
+    var content = $(entry).find('input').eq(1).attr('value');
     
     var html = '';
     
@@ -107,7 +107,7 @@ function generatePage(entryID, dateCreated, dateModified, title, content){
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
     html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td>';
     html += '<td>';
-    html += '<button type="button" onClick="editEntry(\''+content+'\')">Edit</button>';
+    html += '<button type="button" onClick="editEntry()">Edit</button>';
     html += '</td>';
     html += '<td>';
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
@@ -145,11 +145,11 @@ function updateEntry(){
     });
 }
 
-function editEntry(content){
+function editEntry(){
     var dateCreated = $('#viewDateCreated').text();
     var dateModified = $('#viewDateModified').text();
     var title = $('#viewEntryTitle').text();
-    //var content = $('#viewEntryContent').text();
+    var content = $('#viewEntryContent').html();
     var entryID = $('#entryID').val();
     
      
@@ -271,4 +271,52 @@ function Heading2(){
     var fullText = document.getElementById('entryContent').value;
     fullText = fullText.replace(textToH3,'###'+ textToH3);
     document.getElementById('entryContent').value = fullText;
+}
+
+function showComment(dateCreated, content){
+    var html = '';
+    
+    html += '<p>' + dateCreated + '</p>';
+    html += '<p>' + content + '</p>';
+    
+    return html;
+}
+
+function addComment(){
+    var entryID = $('#entryID').val().toString();
+    var content = $('#addCommentTxt').val().toString();
+    
+    $.post("commentServlet.do", {entryID: entryID, content: content}, function(response){
+        getComments(); 
+    });
+    
+    
+}
+
+function getComments(){
+    var entryID = $('#entryID').val().toString();
+    $.get("commentServlet.do", {entryID: entryID}, function(response){
+        
+        // Initialises the HTML string as an empty String
+        var html = '';
+        html += '<h2>Comments</h2>';
+        
+        // If there are no entries, it tells the user they have no entries
+        // and prompts the user to create the first entry
+        if(jQuery.isEmptyObject(response)){
+            html += '<p><h3>You have no comments.</h3></p>';
+        }
+        else{
+            $.each(response, function(key, c){
+                // Adds the appropriate HTML for each entry
+                html += showComment(c.dateCreated, c.content);                
+            });
+        }
+        
+        html += '<input type="text" id="addCommentTxt" placeholder="Enter comment here..."/>';
+        html += '<button id="addBtn" onClick="addComment()">+</button>';
+        // Sets the entries html to the new HTML of the entries
+        $('#commentDiv').html(html);
+
+    });
 }

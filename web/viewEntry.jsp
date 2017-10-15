@@ -42,7 +42,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="//simonwaldherr.github.io/micromarkdown.js/dist/micromarkdown.min.js"></script>
-        <script type="text/javascript" src="//cdn.rawgit.com/showdownjs/showdown/<version tag>/dist/showdown.min.js"></script>
         <script>
             $( function() {
                 $( document ).tooltip();
@@ -114,7 +113,9 @@
 
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
-
+                <div id="commentDiv">
+                    <h2>Comments</h2>
+                </div>  
             </div>
             <div id="entryHistoryList"></div>             
         </div>
@@ -137,9 +138,9 @@ Also hiding the journal entry history when user is done
         var currentURL = window.location.href;
         window.location = currentURL + "&mode=edit";
     }
-
     $('#entryHistoryList').hide();
     $('#viewHistoryTable').hide();
     
     getEntry();
+    getComments();
 </script>

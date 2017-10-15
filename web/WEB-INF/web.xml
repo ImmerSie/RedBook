@@ -44,4 +44,13 @@
         <servlet-name>journalServlet</servlet-name>
         <url-pattern>/journalServlet.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>commentServlet</servlet-name>
+        <servlet-class>servlet.CommentServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commentServlet</servlet-name>
+        <url-pattern>/commentServlet.do</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -6,15 +6,28 @@
 package models;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Data Application Object representing a comment on a journal entry.
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Comment {
+    @XmlElement
+    private int userID;
+    @XmlElement
+    private int journalID;
+    @XmlElement
+    private int entryID;
+    @XmlElement
     private int commentID;
-    private Date dateCreated;
+    @XmlElement
     private String content;
+    @XmlElement
+    private Date dateCreated;
 
     public Comment() {
     }
@@ -22,13 +35,18 @@ public class Comment {
     /**
      * Constructor for the Comment
      * 
+     * @param userID The ID of the user
+     * @param journalID The ID of the journal
+     * @param entryID The ID of the entry
      * @param commentID The ID of the comment
-     * @param dateCreated The date the comment was created
      * @param content The actual content of the comment
      */
-    public Comment(int commentID, Date dateCreated, String content) {
+    public Comment(int userID, int journalID, int entryID, int commentID, String content) {
+        this.userID = userID;
+        this.journalID = journalID;
+        this.entryID = entryID;
         this.commentID = commentID;
-        this.dateCreated = dateCreated;
+        this.dateCreated = new Date();
         this.content = content;
     }
 
@@ -71,5 +89,31 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getJournalID() {
+        return journalID;
+    }
+
+    public void setJournalID(int journalID) {
+        this.journalID = journalID;
+    }
+
+    public int getEntryID() {
+        return entryID;
+    }
+
+    public void setEntryID(int entryID) {
+        this.entryID = entryID;
+    }
+    
+    
     
 }
