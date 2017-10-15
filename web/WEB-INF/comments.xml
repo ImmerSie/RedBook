@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<comments>
+    <comment>
+        <userID>0</userID>
+        <journalID>0</journalID>
+        <entryID>0</entryID>
+        <commentID>Created a new project today!</commentID>
+        <content>This is an entry about the programming that I did today.</content>
+        <dateCreated>01/09/2017</dateCreated>
+    </comment>
+</comments>

@@ -40,7 +40,7 @@ public class Entry implements Serializable{
     private Date dateModified;
     
     @XmlElement(name="comment")
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
+    private Comments comments = new Comments();
     
     @XmlElement(name="entryHis")
     private ArrayList<EntryHistory> history = new ArrayList<EntryHistory>();
@@ -226,7 +226,7 @@ public class Entry implements Serializable{
      *
      * @return the comments relating to this entry
      */
-    public ArrayList<Comment> getComments() {
+    public Comments getComments() {
         return comments;
     }
 
@@ -234,7 +234,7 @@ public class Entry implements Serializable{
      *
      * @param comments the comments relating to this entry
      */
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(Comments comments) {
         this.comments = comments;
     }
     
@@ -295,7 +295,6 @@ public class Entry implements Serializable{
         
         // Creates the entry history object with the old entry's data
         EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, this.dateModified);
-        oldEntry.setComments(this.comments);
         
         // Sets the new data to the entry object
         history.add(oldEntry);

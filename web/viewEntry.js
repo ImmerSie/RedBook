@@ -269,3 +269,51 @@ function Heading2(){
     fullText = fullText.replace(textToH3,'###'+ textToH3);
     document.getElementById('entryContent').value = fullText;
 }
+
+function showComment(dateCreated, content){
+    var html = '';
+    
+    html += '<p>' + dateCreated + '</p>';
+    html += '<p>' + content + '</p>';
+    
+    return html;
+}
+
+function addComment(){
+    var entryID = $('#entryID').val().toString();
+    var content = $('#addCommentTxt').val().toString();
+    
+    $.post("commentServlet.do", {entryID: entryID, content: content}, function(response){
+        getComments(); 
+    });
+    
+    
+}
+
+function getComments(){
+    var entryID = $('#entryID').val().toString();
+    $.get("commentServlet.do", {entryID: entryID}, function(response){
+        
+        // Initialises the HTML string as an empty String
+        var html = '';
+        html += '<h2>Comments</h2>';
+        
+        // If there are no entries, it tells the user they have no entries
+        // and prompts the user to create the first entry
+        if(jQuery.isEmptyObject(response)){
+            html += '<p><h3>You have no comments.</h3></p>';
+        }
+        else{
+            $.each(response, function(key, c){
+                // Adds the appropriate HTML for each entry
+                html += showComment(c.dateCreated, c.content);                
+            });
+        }
+        
+        html += '<input type="text" id="addCommentTxt" placeholder="Enter comment here..."/>';
+        html += '<button id="addBtn" onClick="addComment()">+</button>';
+        // Sets the entries html to the new HTML of the entries
+        $('#commentDiv').html(html);
+
+    });
+}

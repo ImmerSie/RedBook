@@ -19,13 +19,15 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<div class="entryList">';    
     html += '<table>';
     html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-    //Checks if it is for the table, else there is different formatting
+    
+    //Checks if it is for the search results table, else there is different formatting (prevents duplication)
     if(forResultTable){
         html += '<tr onClick="entryClick(this, ' + entryID + ')">';
     }
     else{
        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
     }
+    
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
@@ -33,14 +35,23 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
     html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-    html += '<td>';
+    html += '<td></td>';
+    if(eModified == eCreated){
+        html += '<td>not modified</td>';
+    }
+    else{
+        html += '<td>is modified</td>';
+    }
     html += '</tr>';
-    html += '<div id="vis-wrapper">';
+    
+    //The dropdown list to change the visibility of an entry
+    html += '<div class="vis-wrapper">';
     html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
     html += '<div id="vis-dropdown">';
     html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
     html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+    
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
