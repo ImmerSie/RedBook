@@ -103,12 +103,11 @@ function getEntryHistory(entry){
 
 function generatePage(entryID, dateCreated, dateModified, title, content){
     var html = '';
-  
     html += '<tr>';
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
-    html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td> ';
+    html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td>';
     html += '<td>';
-    html += '<button type="button" onClick="editEntry()">Edit</button>';
+    html += '<button type="button" onClick="editEntry(\''+content+'\')">Edit</button>';
     html += '</td>';
     html += '<td>';
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
@@ -121,20 +120,23 @@ function generatePage(entryID, dateCreated, dateModified, title, content){
     html += '</td>';
     html += '<td id="X"><a href="entries.jsp"> X </a></td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryTitle" colspan="5"> ' + title + '</td>';
+    html += '<td id="viewEntryTitle" colspan="5">' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5"> '+ content + ' </td>';
+    html += '<td id="viewEntryContent" colspan="5">'+ micromarkdown.parse(content); + '</td>';
     html += '<td>';
     html += '<input type="hidden" name="entryID" value="' + entryID + '" id="entryID">';
     html += '</td>';
     html += '</tr>';
+    
     return html;
+    
 }
 
 function updateEntry(){
     var entryID = $('#entryID').val().toString();
     var title = $('#viewEntryTitle').val().toString();
     var content = $('#entryContent').val().toString();
+    
     
     $.post("entryHistoryServlet.do", {entryID: entryID, title: title, content: content}, function(response){
         var html = '';
@@ -143,13 +145,14 @@ function updateEntry(){
     });
 }
 
-function editEntry(){
+function editEntry(content){
     var dateCreated = $('#viewDateCreated').text();
     var dateModified = $('#viewDateModified').text();
     var title = $('#viewEntryTitle').text();
-    var content = $('#viewEntryContent').text();
+    //var content = $('#viewEntryContent').text();
     var entryID = $('#entryID').val();
     
+     
     var html = '';
     html += '<tr>';
     html += '<td id="viewDateCreated" name="dateCreated">' + dateCreated + '</td>';
@@ -190,7 +193,6 @@ function getEntry(){
     $.get("entryServlet.do", {entryID: entryID, noDownload: "true"}, function(response){
         var html = '';
         html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
-        html = micromarkdown.parse(html);
         $('#viewEntryData').html(html); 
     });
 }
@@ -270,10 +272,4 @@ function Heading2(){
     var fullText = document.getElementById('entryContent').value;
     fullText = fullText.replace(textToH3,'###'+ textToH3);
     document.getElementById('entryContent').value = fullText;
-}
-
-function markdown(content){
-    var boldRegex = "\*\*.*\*\*";
-    var actualContent = content.replace(content.replace)
-    return content.replace(boldRegex,'<')
 }
