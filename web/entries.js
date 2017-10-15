@@ -198,6 +198,28 @@ function searchBy(){
             
         });
     }
+    else if(searchValue === "month"){
+        var html = '';
+        html += '<input type="text" id="datepickerSearch" placeholder="Month...">';
+        html += '</td><td><button onClick="removeSearch()">X</button>'; 
+        
+        $('#searchInput').html(html);
+        $('#datepickerSearch').datepicker().on("input change", function(e){
+            searchByMonth(e.target.value);
+            
+        });
+    }
+    else if(searchValue === "year"){
+        var html = '';
+        html += '<input type="text" id="datepickerSearch" placeholder="Year...">';
+        html += '</td><td><button onClick="removeSearch()">X</button>'; 
+        
+        $('#searchInput').html(html);
+        $('#datepickerSearch').datepicker().on("input change", function(e){
+            searchByYear(e.target.value);
+            
+        });
+    }
     else if(searchValue === "searchBetween"){
         var html = '';
         
@@ -312,6 +334,86 @@ function searchByDate(selectedDate){
         
         // Sets the search Date as a Date Object
         var searchDate = new Date(selectedDate);
+        if(searchDate.getTime() === rowDate.getTime()){
+            var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eTitle = $(row.item(i)).find('td').eq(1).text();
+            var eContent = $(row.item(i)).find('td').eq(3).text();
+            var eModified = $(row.item(i)).find('p').eq(1).text();
+            var eFlag = $(row.item(i)).find('td').eq(14).text();
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+        }
+    }
+    
+    if(html.length < 1){
+        html += '<h3>You have no results<h3>';
+    }
+        
+    $('#ajaxEntries').hide();
+    $('#searchResultEntries').html(html);
+}
+
+/**
+ * Searches the for a month via calender format
+ * 
+ * @param {Date} selectedMonth the Date the user has searched for
+ */
+function searchByMonth(selectedMonth){
+    var row = document.getElementsByClassName("entryRow");
+    var html = '';
+    for(var i = 0; i < row.length; i++){
+        // Converts the date as a string to a Date Object
+        var eCreated = $(row.item(i)).find('p').eq(0).text();
+        var colonIndex = eCreated.toString().indexOf(":");
+        var dateSection = eCreated.toString().substring(colonIndex);
+        var splitDate = dateSection.split(" ");
+        var month = splitDate[0].substring(1);
+        var day = splitDate[1].substring(0, splitDate[1].length - 1);
+        var year = splitDate[2];
+        var rowDate = new Date (month + " " + day + " " + year);
+        
+        // Sets the search Date as a Date Object
+        var searchDate = new Date(selectedMonth);
+        if(searchDate.getTime() === rowDate.getTime()){
+            var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eTitle = $(row.item(i)).find('td').eq(1).text();
+            var eContent = $(row.item(i)).find('td').eq(3).text();
+            var eModified = $(row.item(i)).find('p').eq(1).text();
+            var eFlag = $(row.item(i)).find('td').eq(14).text();
+            
+            html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+        }
+    }
+    
+    if(html.length < 1){
+        html += '<h3>You have no results<h3>';
+    }
+        
+    $('#ajaxEntries').hide();
+    $('#searchResultEntries').html(html);
+}
+
+/**
+ * Searches the for via year through a calender format
+ * 
+ * @param {Date} selectedMonth the Date the user has searched for
+ */
+function searchByYear(selectedYear){
+    var row = document.getElementsByClassName("entryRow");
+    var html = '';
+    for(var i = 0; i < row.length; i++){
+        // Converts the date as a string to a Date Object
+        var eCreated = $(row.item(i)).find('p').eq(0).text();
+        var colonIndex = eCreated.toString().indexOf(":");
+        var dateSection = eCreated.toString().substring(colonIndex);
+        var splitDate = dateSection.split(" ");
+        var month = splitDate[0].substring(1);
+        var day = splitDate[1].substring(0, splitDate[1].length - 1);
+        var year = splitDate[2];
+        var rowDate = new Date (month + " " + day + " " + year);
+        
+        // Sets the search Date as a Date Object
+        var searchDate = new Date(selectedYear);
         if(searchDate.getTime() === rowDate.getTime()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();

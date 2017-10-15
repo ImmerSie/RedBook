@@ -152,8 +152,8 @@
                             <option value="searchTitle">Title</option>
                             <option value="searchContent">Content</option>
                             <option value="date">Date</option>
-                            <!--<option value="searchMonth">Month</option>
-                            <option value="searchYear">Year</option>-->
+                            <option value="month">Month</option>
+                            <option value="year">Year</option>
                             <option value="searchBetween">Between</option>
                         </select>
                     </td>
