@@ -659,7 +659,7 @@ h4{
 }
 
 /* Formats the Visual Wrapper */
-#vis-wrapper { 
+.vis-wrapper { 
     display: inline-block;
     margin: 0;
     position: absolute;
@@ -669,7 +669,7 @@ h4{
 }
 
 /* Ensures the visual wrapper and the dropdown are opaque */
-#vis-wrapper:hover #vis-dropdown { 
+.vis-wrapper:hover #vis-dropdown { 
     opacity: 1; 
     display: block; 
 }
