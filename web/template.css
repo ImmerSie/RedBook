@@ -134,12 +134,12 @@ nav[role="side"] li a:hover{
 .table {background-color: white;
        /* Layout Formatting */
        padding-top: 10px;
-       padding-right: 50px;
+       padding-right: 40px;
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
        margin-top: 0px;
-       margin-left: 250px; 
+       margin-left: 300px; 
        margin-right: auto; 
        
        /* Font styling */
@@ -154,7 +154,7 @@ nav[role="side"] li a:hover{
 /* Formatting of the new entry */
 .newEntry {background-color: white;
        padding-top: 10px;
-       padding-right: 50px;
+       padding-right: 30px;
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
@@ -166,6 +166,7 @@ nav[role="side"] li a:hover{
        margin-top: 0px;
        margin-left: 320px; 
        margin-right: 150px; 
+       margin-bottom: 50px;
 }
 
 /* Formatting of the entries menu */
@@ -568,11 +569,6 @@ h4{
 
 /* Formatst the save an entry button */
 #saveBtn{
-    text-align: center; 
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
     margin-align: right;
 }
 
@@ -603,7 +599,6 @@ h4{
 /* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
-    margin-right: 50px;
 }
 
 /* Formats the View Date Created */
@@ -663,14 +658,12 @@ h4{
     text-align: left;
 }
 
-
-
 /* Formats the Visual Wrapper */
 #vis-wrapper { 
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 330px;
+    padding-top: 40px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
