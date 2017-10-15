@@ -295,6 +295,7 @@ public class Entry implements Serializable{
         
         // Creates the entry history object with the old entry's data
         EntryHistory oldEntry = new EntryHistory(newID, this.entryID, this.journalID, this.userID, this.title, this.content, this.dateModified);
+        oldEntry.setFlag(this.flag);
         
         // Sets the new data to the entry object
         history.add(oldEntry);

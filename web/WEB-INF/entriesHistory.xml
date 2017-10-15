@@ -15,5 +15,6 @@ and open the template in the editor.
         <title>Created a new project today!</title>
         <content>This is an entry about the programming that I did today.</content>
         <dateModified>01/09/2017</dateModified>
+        <flag>visible</flag>
     </entryHis>
 </entriesHis>

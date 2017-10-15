@@ -32,6 +32,8 @@ public class EntryHistory {
     private String content;
     @XmlElement
     private Date dateModified;
+    @XmlElement
+    private String flag;
     
   
     public EntryHistory() {
@@ -169,5 +171,14 @@ public class EntryHistory {
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
     }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+ 
     
 }
