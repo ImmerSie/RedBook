@@ -670,7 +670,7 @@ h4{
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 52%;
+    top: 330px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
