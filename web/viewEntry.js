@@ -103,6 +103,7 @@ function getEntryHistory(entry){
 
 function generatePage(entryID, dateCreated, dateModified, title, content){
     var html = '';
+  
     html += '<tr>';
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
     html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td> ';
@@ -122,7 +123,7 @@ function generatePage(entryID, dateCreated, dateModified, title, content){
     html += '<tr></tr>';
     html += '<td id="viewEntryTitle" colspan="5"> ' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5"> <md:render text="' + content + '">' + content + '</md:render> </td>';
+    html += '<td id="viewEntryContent" colspan="5"> '+ content + ' </td>';
     html += '<td>';
     html += '<input type="hidden" name="entryID" value="' + entryID + '" id="entryID">';
     html += '</td>';
@@ -189,6 +190,7 @@ function getEntry(){
     $.get("entryServlet.do", {entryID: entryID, noDownload: "true"}, function(response){
         var html = '';
         html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
+        html = micromarkdown.parse(html);
         $('#viewEntryData').html(html); 
     });
 }
@@ -268,4 +270,10 @@ function Heading2(){
     var fullText = document.getElementById('entryContent').value;
     fullText = fullText.replace(textToH3,'###'+ textToH3);
     document.getElementById('entryContent').value = fullText;
+}
+
+function markdown(content){
+    var boldRegex = "\*\*.*\*\*";
+    var actualContent = content.replace(content.replace)
+    return content.replace(boldRegex,'<')
 }
