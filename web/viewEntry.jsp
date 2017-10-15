@@ -4,8 +4,6 @@
     Author     : Ramu
 --%>
 
-<%@page import="models.Comment"%>
-<%@page import="controllers.CommentController"%>
 <%@page import="models.EntryHistory"%>
 <%@page import="models.User"%>
 <%@page import="controllers.EntryController"%>
@@ -82,8 +80,6 @@
             <!-- Setting the file path for the XML file which would contain the data of journal entry's histories -->
             <%  
                 String filePath = application.getRealPath("WEB-INF/entriesHistory.xml");
-                String commentFilePath = application.getRealPath("WEB-INF/comments.xml");
-                
             %>
             <!-- A JavaBean will allow access to getter/setter methods and serializable objects -->
             <jsp:useBean id="entryHisApp" class="controllers.EntryHistoryController" scope="session">
@@ -114,7 +110,7 @@
                                         <%-- 
                                 ENTRY HISTORY
                             --%>
-                      
+
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
                 <div id="commentDiv">
@@ -142,7 +138,6 @@ Also hiding the journal entry history when user is done
         var currentURL = window.location.href;
         window.location = currentURL + "&mode=edit";
     }
-
     $('#entryHistoryList').hide();
     $('#viewHistoryTable').hide();
     

@@ -5,7 +5,7 @@ function toggleJournalHistory(){
     // Checks if the current view is "hidden"
     if($('#entryHistoryList').is(':hidden')){
         $('#entryHistoryList').show();
-        getEntryHistories()
+        getEntryHistories();
         $('#historyEntryDiv').show();
         setHistoryEntryDiv();
         $('#viewEntryData').hide();
@@ -81,8 +81,8 @@ function getEntryHistory(entry){
     // Gets the differeent elements of the entry
     var dateModified = $(entry).find('input').eq(2).attr('value');
     var dateCreated = $('#viewDateCreated').attr('value');
-    var title = $(elmnt).find('input').eq(0).attr('value');
-    var content = $(elmnt).find('input').eq(1).attr('value');
+    var title = $(entry).find('input').eq(0).attr('value');
+    var content = $(entry).find('input').eq(1).attr('value');
     
     var html = '';
     
@@ -101,14 +101,13 @@ function getEntryHistory(entry){
     $('#historyEntryDiv').html(html);
 }
 
-function generatePage(entryID, dateCreated, dateModified, flag, title, content){
+function generatePage(entryID, dateCreated, dateModified, title, content){
     var html = '';
     html += '<tr>';
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
     html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td>';
-    html += '<td>' + flag + '</flag>';
     html += '<td>';
-    html += '<button type="button" onClick="editEntry(\'' + content + '\')">Edit</button>';
+    html += '<button type="button" onClick="editEntry()">Edit</button>';
     html += '</td>';
     html += '<td>';
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
@@ -141,16 +140,16 @@ function updateEntry(){
     
     $.post("entryHistoryServlet.do", {entryID: entryID, title: title, content: content}, function(response){
         var html = '';
-        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'], 'Flag:' + response['flag'], response['title'], response['content']);
+        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
         $('#viewEntryData').html(html); 
     });
 }
 
-function editEntry(content){
+function editEntry(){
     var dateCreated = $('#viewDateCreated').text();
     var dateModified = $('#viewDateModified').text();
     var title = $('#viewEntryTitle').text();
-    //var content = $('#viewEntryContent').text();
+    var content = $('#viewEntryContent').html();
     var entryID = $('#entryID').val();
     
      
@@ -193,7 +192,7 @@ function getEntry(){
     var entryID = $('#entryID').val();
     $.get("entryServlet.do", {entryID: entryID, noDownload: "true"}, function(response){
         var html = '';
-        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'], 'Flag: ' + response['flag'], response['title'], response['content']);
+        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
         $('#viewEntryData').html(html); 
     });
 }
