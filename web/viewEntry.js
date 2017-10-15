@@ -113,7 +113,7 @@ function generatePage(entryID, dateCreated, dateModified, title, content){
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
     html += '</td>';
     html += '<td>';
-    html += '<form action="${pageContext.request.contextPath}/entryServlet.do" method="GET">';
+    html += '<form action="entryServlet.do" method="GET">';
     html += '<input type="hidden" id="entryID" name="entryID" value="' + entryID + '">';
     html += '<input type="submit" class="button" value="Download">';
     html += '</form>';
