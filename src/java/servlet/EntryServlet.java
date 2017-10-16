@@ -57,15 +57,15 @@ public class EntryServlet extends HttpServlet {
         
         // Turns the actual data in the entry into .csv
         sb.append(entry.getEntryID());
-        sb.append(',');
+        sb.append(",\"");
         sb.append(entry.getTitle());
-        sb.append(',');
+        sb.append("\",\"");
         sb.append(content);
-        sb.append(',');
+        sb.append("\",\"");
         sb.append(entry.getDateCreated());
-        sb.append(',');
+        sb.append("\",");
         sb.append(entry.getDateModified());
-        sb.append(',');
+        sb.append((','));
         sb.append(entry.getFlag());
         sb.append('\n');
 

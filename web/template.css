@@ -132,6 +132,7 @@ nav[role="side"] li a:hover{
 
 /* Formatting of the entry items in the table */
 .table {background-color: white;
+<<<<<<< HEAD
         /* Layout Formatting */
         padding-top: 10px;
         padding-right: 50px;
@@ -149,10 +150,30 @@ nav[role="side"] li a:hover{
         font-size: 20px;
         color: black;
 
+=======
+       /* Layout Formatting */
+       padding-top: 10px;
+       padding-right: 40px;
+       padding-bottom: 30px;
+       padding-left: 50px;
+       text-align: center; 
+       margin-top: 0px;
+       margin-left: 300px; 
+       margin-right: auto; 
+       
+       /* Font styling */
+       font-family: 'Open Sans';
+       font-style: normal;
+       font-weight: normal;
+       font-size: 20px;
+       color: black;
+       
+>>>>>>> origin/EntryInit
 }
 
 /* Formatting of the new entry */
 .newEntry {background-color: white;
+<<<<<<< HEAD
            padding-top: 10px;
            padding-right: 50px;
            padding-bottom: 30px;
@@ -166,6 +187,22 @@ nav[role="side"] li a:hover{
            margin-top: 0px;
            margin-left: 320px; 
            margin-right: 150px; 
+=======
+       padding-top: 10px;
+       padding-right: 30px;
+       padding-bottom: 30px;
+       padding-left: 50px;
+       text-align: center; 
+       font-family: 'Open Sans';
+       font-style: normal;
+       font-weight: normal;
+       font-size: 20px;
+       color: black;
+       margin-top: 0px;
+       margin-left: 320px; 
+       margin-right: 150px; 
+       margin-bottom: 50px;
+>>>>>>> origin/EntryInit
 }
 
 /* Formatting of the entries menu */
@@ -568,11 +605,6 @@ h4{
 
 /* Formatst the save an entry button */
 #saveBtn{
-    text-align: center; 
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
     margin-align: right;
 }
 
@@ -603,7 +635,6 @@ h4{
 /* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
-    margin-right: 50px;
 }
 
 /* Formats the View Date Created */
@@ -663,20 +694,18 @@ h4{
     text-align: left;
 }
 
-
-
 /* Formats the Visual Wrapper */
-#vis-wrapper { 
+.vis-wrapper { 
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 52%;
+    padding-top: 40px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
 
 /* Ensures the visual wrapper and the dropdown are opaque */
-#vis-wrapper:hover #vis-dropdown { 
+.vis-wrapper:hover #vis-dropdown { 
     opacity: 1; 
     display: block; 
 }
@@ -924,6 +953,7 @@ h4{
     padding-left: 180px;
 }
 
+<<<<<<< HEAD
 .current{
     background-color: #9e5a6d;
     font-weight: bold;
@@ -931,3 +961,52 @@ h4{
 }
 
 /* ------------------ Help Styling Fin ------------------ */
+=======
+ /* ------------------ Help Styling Fin ------------------ */
+
+ /* ------------------ Commenting Styling Start ------------------ */ 
+ 
+ /* The formatting of the comment header */
+ #commentHeader {
+     background: #93163A;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    padding: 12px 20px;
+ }
+ 
+  /* The formatting of the comment section itself */
+ #commentDiv {
+    margin-top: 50px;
+ }
+ 
+ /* The formatting of the comment date */
+ #commentDate {
+    font-size: 10px;
+    text-align: left;
+ }
+ 
+  /* The formatting of the comment  */
+ #commentContent {
+    font-size: 14px;
+    text-align: left;
+ }
+ 
+   /* The formatting of the comment input field  */
+ #addCommentTxt {
+     width: 80%;
+     margin-right: 10px;
+ }
+ 
+    /* The formatting of the no comment message  */
+ #noComments {
+     font-size: 15px;
+     text-align: center;
+ }
+  /* ------------------ Commenting Styling Fin ------------------ */ 
+ 
+>>>>>>> origin/EntryInit

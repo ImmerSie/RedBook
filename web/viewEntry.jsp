@@ -13,7 +13,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page errorPage = "login.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri='http://ur6lad.co.ua/markdown-taglib' prefix ='md'%> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +41,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="//simonwaldherr.github.io/micromarkdown.js/dist/micromarkdown.min.js"></script>
         <script>
             $( function() {
                 $( document ).tooltip();
@@ -100,16 +100,22 @@
                                 VIEW ENTRY
                             --%>
             <div class="table" id="viewEntryTable">
+                
                 <table id="viewEntryData">
+                    
                      <input type="hidden" id="entryID" name="entryID" value="<%=entry.getEntryID()%>">
                 </table>
+           
+                
                                         <%-- 
                                 ENTRY HISTORY
                             --%>
 
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
-
+                <div id="commentDiv">
+                    <h2>Comments</h2>
+                </div>  
             </div>
             <div id="entryHistoryList"></div>             
         </div>
@@ -132,9 +138,13 @@ Also hiding the journal entry history when user is done
         var currentURL = window.location.href;
         window.location = currentURL + "&mode=edit";
     }
+<<<<<<< HEAD
        
+=======
+>>>>>>> origin/EntryInit
     $('#entryHistoryList').hide();
     $('#viewHistoryTable').hide();
     
     getEntry();
+    getComments();
 </script>
