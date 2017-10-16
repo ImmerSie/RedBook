@@ -131,16 +131,16 @@ nav[role="side"] li a:hover{
 -----------------------*/
 
 /* Formatting of the entry items in the table */
-.table {background-color: white;
-<<<<<<< HEAD
+.table {
         /* Layout Formatting */
+        background-color: white;
         padding-top: 10px;
-        padding-right: 50px;
+        padding-right: 40px;
         padding-bottom: 30px;
         padding-left: 50px;
         text-align: center; 
         margin-top: 0px;
-        margin-left: 250px; 
+        margin-left: 300px; 
         margin-right: auto; 
 
         /* Font styling */
@@ -149,45 +149,11 @@ nav[role="side"] li a:hover{
         font-weight: normal;
         font-size: 20px;
         color: black;
-
-=======
-       /* Layout Formatting */
-       padding-top: 10px;
-       padding-right: 40px;
-       padding-bottom: 30px;
-       padding-left: 50px;
-       text-align: center; 
-       margin-top: 0px;
-       margin-left: 300px; 
-       margin-right: auto; 
-       
-       /* Font styling */
-       font-family: 'Open Sans';
-       font-style: normal;
-       font-weight: normal;
-       font-size: 20px;
-       color: black;
-       
->>>>>>> origin/EntryInit
 }
 
 /* Formatting of the new entry */
-.newEntry {background-color: white;
-<<<<<<< HEAD
-           padding-top: 10px;
-           padding-right: 50px;
-           padding-bottom: 30px;
-           padding-left: 50px;
-           text-align: center; 
-           font-family: 'Open Sans';
-           font-style: normal;
-           font-weight: normal;
-           font-size: 20px;
-           color: black;
-           margin-top: 0px;
-           margin-left: 320px; 
-           margin-right: 150px; 
-=======
+.newEntry {
+       background-color: white;
        padding-top: 10px;
        padding-right: 30px;
        padding-bottom: 30px;
@@ -202,7 +168,6 @@ nav[role="side"] li a:hover{
        margin-left: 320px; 
        margin-right: 150px; 
        margin-bottom: 50px;
->>>>>>> origin/EntryInit
 }
 
 /* Formatting of the entries menu */
@@ -953,15 +918,12 @@ h4{
     padding-left: 180px;
 }
 
-<<<<<<< HEAD
 .current{
     background-color: #9e5a6d;
     font-weight: bold;
     text-decoration: none;
 }
 
-/* ------------------ Help Styling Fin ------------------ */
-=======
  /* ------------------ Help Styling Fin ------------------ */
 
  /* ------------------ Commenting Styling Start ------------------ */ 
@@ -1008,5 +970,3 @@ h4{
      text-align: center;
  }
   /* ------------------ Commenting Styling Fin ------------------ */ 
- 
->>>>>>> origin/EntryInit
