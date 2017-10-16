@@ -160,7 +160,7 @@ function editEntry(){
     html += '<tr></tr>';
     html += '<td colspan="5"><h2> Entry Title: </h2></td>';
     html += '<tr></tr>';
-    html += '<td  colspan="5"><input type="text" value="' + title + '" name="entryTitle" id="viewEntryTitle"></td>';
+    html += '<td  colspan="5"><input onkeypress="checkChange()" type="text" value="'+ title + '" name="entryTitle" id="viewEntryTitle"></td>';
     html += '<tr>';
     html += '<td colspan="5"><input type="button" onclick="boldFunction()" value="Bold"></button>';
     html += '<input type="button" onclick="italiseFunction()" value="Italics"></button>';
@@ -168,9 +168,9 @@ function editEntry(){
     html += '<input type="button" onclick="Heading2()" value="H2"></button>';
     html += '<input type="button" onclick="Heading3()" value="H3"></button></td>';
     html += '</tr>';
-    html += '<td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent">' + content + '</textarea></td>';
+    html += '<td  colspan="5"><textarea name="entryContent" rows="6" id="entryContent" onkeypress="checkChange()">' + content + '</textarea></td>';
     html += '<tr></tr>';
-    html += '<td colspan="5"><button id="saveBtn" type="submit" onclick="updateEntry()" value="Save Entry" name="Save Entry">Save Entry</button></td>';
+    html += '<td colspan="5"><button id="saveBtn" type="submit" disabled="disabled" onclick="updateEntry()" value="Save Entry" name="Save Entry">Save Entry</button></td>';
     html += '<tr></tr>';
     html += '<td>';
     html += '<input type="hidden" name="entryID" value="' + entryID + '" id="entryID">';
@@ -233,6 +233,18 @@ function getEntryHistories(){
         
         $('#entryHistoryList').html(html);        
     });  
+}
+
+function checkChange(){
+    var content = $('#viewEntryContent').text();
+    var newcontent = document.getElementById('entryContent').value;
+    
+    if(newcontent !== content){
+        $('#saveBtn').prop('disabled',false);
+    }
+    if(newcontent === content){
+        $('#saveBtn').prop('disabled',true);
+    }
 }
 
 function boldFunction(){

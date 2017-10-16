@@ -82,8 +82,7 @@
                 <tr>
                     <!-- Submission button for creating an account -->
                     <td></td>
-                    <td><input type="submit" value="Sign Up" 
-                               title="Create your account after you have filled out the above fields"></td>
+                    <td><input type="submit" value="Sign Up"></td>
                 </tr>
                 <tr>
                     <!-- If a user already has a registered account, they can be quickly linked to the Login JSP page -->
