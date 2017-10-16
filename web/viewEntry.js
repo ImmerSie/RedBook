@@ -276,8 +276,8 @@ function Heading2(){
 function showComment(dateCreated, content){
     var html = '';
     
-    html += '<p>' + dateCreated + '</p>';
-    html += '<p>' + content + '</p>';
+    html += '<div id="commentDate"><p>' + dateCreated + '</p></div>';
+    html += '<div id="commentContent"><p>' + content + '</p></div>';
     
     return html;
 }
@@ -289,8 +289,6 @@ function addComment(){
     $.post("commentServlet.do", {entryID: entryID, content: content}, function(response){
         getComments(); 
     });
-    
-    
 }
 
 function getComments(){
@@ -299,12 +297,12 @@ function getComments(){
         
         // Initialises the HTML string as an empty String
         var html = '';
-        html += '<h2>Comments</h2>';
+        html += '<div id="commentHeader"> Comments </div>';
         
         // If there are no entries, it tells the user they have no entries
         // and prompts the user to create the first entry
         if(jQuery.isEmptyObject(response)){
-            html += '<p><h3>You have no comments.</h3></p>';
+            html += '<div id="noComments"><p> No comments have been made on this entry.</p></div>';
         }
         else{
             $.each(response, function(key, c){

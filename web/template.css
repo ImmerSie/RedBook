@@ -918,3 +918,49 @@ h4{
 }
 
  /* ------------------ Help Styling Fin ------------------ */
+
+ /* ------------------ Commenting Styling Start ------------------ */ 
+ 
+ /* The formatting of the comment header */
+ #commentHeader {
+     background: #93163A;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    padding: 12px 20px;
+ }
+ 
+  /* The formatting of the comment section itself */
+ #commentDiv {
+    margin-top: 50px;
+ }
+ 
+ /* The formatting of the comment date */
+ #commentDate {
+    font-size: 10px;
+    text-align: left;
+ }
+ 
+  /* The formatting of the comment  */
+ #commentContent {
+    font-size: 14px;
+    text-align: left;
+ }
+ 
+   /* The formatting of the comment input field  */
+ #addCommentTxt {
+     width: 80%;
+     margin-right: 10px;
+ }
+ 
+    /* The formatting of the no comment message  */
+ #noComments {
+     font-size: 15px;
+     text-align: center;
+ }
+  /* ------------------ Commenting Styling Fin ------------------ */ 
+ 

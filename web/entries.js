@@ -36,10 +36,10 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td></td>';
     if(eModified == eCreated){
-        html += '<td>not modified</td>';
+        html += '<td>Unmodified</td>';
     }
     else{
-        html += '<td>is modified</td>';
+        html += '<td>Modified</td>';
     }
     html += '</tr>';
     
