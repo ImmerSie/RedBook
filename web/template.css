@@ -294,6 +294,7 @@ nav[role="side"] li a:hover{
     position:relative;
     display: inline-block;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 /* Formatting of the entry table */
