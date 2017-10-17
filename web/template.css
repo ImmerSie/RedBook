@@ -579,6 +579,7 @@ body{
     height: 10%;
     weight: 10%;
     padding-left: 17%;
+    margin-top: 50px;
 }
 
 /* Formats the background image */
@@ -876,13 +877,19 @@ body{
     padding-top: 30px;
 }
 
-/* THe header 2 of the help section */
+/* The header 2 of the help section */
 #helpH2 {
     font-style: normal;
     font-weight: bolder;
     font-size: 12px;
     color: black;
     padding-top: 10px;
+}
+
+/* Formatting of header 2 */
+h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* The formatting of the help Body */
