@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EntryHistory {
+public class EntryHistory implements Serializable{
     @XmlElement
     private int entryHisID;
     @XmlElement

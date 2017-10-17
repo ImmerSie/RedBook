@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Container object representing the root element in comments.xml
  * @author Max
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -23,6 +23,11 @@ public class Comments implements Serializable{
     @XmlElement(name="comment")
     public ArrayList<Comment> comments = new ArrayList<Comment>();
     
+    /**
+     * Adds a comment object to the comments list
+     * 
+     * @param comment 
+     */
     public void add(Comment comment){
         comments.add(comment);
     }
@@ -34,6 +39,4 @@ public class Comments implements Serializable{
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
-    
-    
 }

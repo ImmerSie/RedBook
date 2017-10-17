@@ -138,10 +138,7 @@ Also hiding the journal entry history when user is done
         var currentURL = window.location.href;
         window.location = currentURL + "&mode=edit";
     }
-<<<<<<< HEAD
-       
-=======
->>>>>>> origin/EntryInit
+
     $('#entryHistoryList').hide();
     $('#viewHistoryTable').hide();
     
