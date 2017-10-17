@@ -73,8 +73,7 @@
                 </tr>
                 <tr>
                     <!-- Login button for submitting details and gaining access to RedBook -->
-                    <td colspan="2"><input type="submit" class="Button" value="Login" 
-                                           title="Login after you have filled out the above fields"></td>
+                    <td colspan="2"><input type="submit" class="Button" value="Login"></td>
                 </tr>
                 <tr>
                     <!-- If a user does not have an account, they can quickly be directed to the createUser JSP page -->

@@ -82,7 +82,7 @@
         <!-- Side navigation bar -->
         <nav role="side">
             <ul>
-                <li><a href="journals.jsp"> Journals </a></li>
+                <li class="current"><a href="journals.jsp"> Journals </a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
