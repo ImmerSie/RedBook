@@ -87,7 +87,7 @@
             </ul>
         </nav> 
 
-        <h1>Journals</h1>
+        <h1 class="head1">Journals</h1>
         
         <!-- Link to create a new journal under the logged in user -->
         <div id="addJournal">    
@@ -107,7 +107,7 @@
                 }
             } else { %>
             <!-- If none of the above conditions are fulfilled, then display this error message with redirection link -->
-            <p><h3>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
+            <p><h3 class="head3">Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
             <% }%>
     </div>
     

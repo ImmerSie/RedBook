@@ -52,7 +52,7 @@
             </div>
         </nav>
         <!-- NOTE: This JSP page is no longer in use. Please see entries.jsp for further operation. -->
-        <h1>View Entry</h1>
+        <h1 class="head1">View Entry</h1>
         <%
             String parameter = request.getParameter("id");
             if (parameter != null) {
@@ -61,9 +61,9 @@
             }
             Journal journal = (Journal) session.getAttribute("journal");
         %>
-        <p><h3>Title: <%= journal.getTitle()%></h3></p>
-    <p><h3>Content: <%= journal.getDescription()%></h3></p>
-<p><h4>Date Created: <%= journal.getDateCreated()%></h4></p>
-<p><h4>Date Modified: <%= journal.getLastModified()%></h4></p>
+        <p><h3 class="head3">Title: <%= journal.getTitle()%></h3></p>
+    <p><h3 class="head3">Content: <%= journal.getDescription()%></h3></p>
+<p><h4 class="head4">Date Created: <%= journal.getDateCreated()%></h4></p>
+<p><h4 class="head4">Date Modified: <%= journal.getLastModified()%></h4></p>
 </body>
 </html>

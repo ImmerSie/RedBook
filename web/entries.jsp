@@ -96,11 +96,11 @@
         </nav>        
         <div class="journalDetails">
             <!-- Retrieving Journal properties -->
-            <h1 id="journalDetTitle"><%= journal.getTitle()%></h1>
-            <h3 id="journalDetDesc"><%= journal.getDescription()%></h3>
+            <h1 class="head1" id="journalDetTitle"><%= journal.getTitle()%></h1>
+            <h3 class="head3" id="journalDetDesc"><%= journal.getDescription()%></h3>
             <input type="hidden" id="journalID" value="<%= journal.getJournalID() %>">
             <input type="hidden" id="userID" value="<%= journal.getUserID()%>">
-            <h4>
+            <h4 class="head4">
                 <!-- Code for date formatting, to put in an easier to understand format -->
                 <%
                     SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");

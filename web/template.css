@@ -389,14 +389,14 @@ body{
 }
 
 /* Formatting of Heading 1 */
-h1{
+.head1{
     text-align: center;
     padding-top: 30px;
     color: white;
 }
 
 /* Formatting of Heading 2 */
-h2{
+.head2{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 25px;
@@ -407,7 +407,7 @@ h2{
 }
 
 /* Formatting of Heading 3 */
-h3{
+.head3{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 18px;
@@ -419,7 +419,7 @@ h3{
 }
 
 /*Formatting of Header 4 */
-h4{
+.head4{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 10px;

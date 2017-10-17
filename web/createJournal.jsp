@@ -63,7 +63,7 @@
             </div>
         </nav>
 
-        <h1></h1>  
+        <h1 class="head1"></h1>  
 
         <p>
             <a href="entries.jsp" id="alignmentBtn" title="Go Back">

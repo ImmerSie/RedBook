@@ -70,7 +70,7 @@
                 </ul>
             </div>
         </nav>
-        <h1></h1>  
+        <h1 class="head1"></h1>  
         <p>
             <a href="entries.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
@@ -114,7 +114,7 @@
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
                 <div id="commentDiv">
-                    <h2>Comments</h2>
+                    <h2 class="head2">Comments</h2>
                 </div>  
             </div>
             <div id="entryHistoryList"></div>             

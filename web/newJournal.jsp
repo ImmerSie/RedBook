@@ -52,8 +52,8 @@
             user.addJournal(journal);
             journalApp.saveJournals();
         %>
-        <p><h3>New journal  <%= title%> created!</h3></p>
-        <p><h3>Redirecting you to the journals page... </h3></p>
+        <p><h3 class="head3">New journal  <%= title%> created!</h3></p>
+        <p><h3 class="head3">Redirecting you to the journals page... </h3></p>
         <!-- After creating a journal, user is redirected back to the journals JSP page -->
         <%  
             String redirectURL = "journals.jsp";
