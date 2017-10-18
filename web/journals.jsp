@@ -16,7 +16,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Journals</title>
         <!-- JQuery Tooltips Code Implementation -->
@@ -103,7 +103,7 @@
                     for (Journal j : user.getJournals()) {
                         %>
                         <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">
-                            <img src="journal.png" alt="Journal"/>
+                            <img src="assets/journal.png" alt="Journal"/>
                             <p class="journalTitle"> <%= j.getTitle()%> </p>
                         </div>
                     <% }
@@ -119,9 +119,9 @@
         <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="userIcon" alt="User Icon"></li>
+                <li><img src="assets/userIcon.png" id="userIcon" alt="User Icon"></li>
                 <li><div id="usersName"> <%= user.getName()%> </div></li>
-                <img src="RedLogo.png" class="logo" alt="Logo">
+                <img src="assets/RedLogo.png" class="logo" alt="Logo">
             </ul>
         </div>
     </nav>

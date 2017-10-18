@@ -12,12 +12,12 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="text/javascript" language="javascript" src="createJournal.js"></script>
+        <script src="scripts/createJournal.js" type="text/javascript"></script>
         <title>Create Journal</title>
         <!-- If a user is not logged in while trying to access this page, they are redirected to the login JSP page -->
         <%
@@ -38,7 +38,7 @@
     <body>
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="TEST" />
+            <img src="assets/DBackground.png" class="stretch" alt="TEST" />
         </div>  
         <%
             User user = (User) session.getAttribute("user");
@@ -57,9 +57,9 @@
             <div id= "topNav">
                 <ul>
                     <li><a href="logout.jsp"> Logout </a></li>
-                    <li><img src="userIcon.png" id="userIcon" alt="User Icon"></li>
+                    <li><img src="assets/userIcon.png" id="userIcon" alt="User Icon"></li>
                     <li><div id="usersName"><%= user.getName()%> </div></li>
-                    <img src="RedLogo.png" class="logo" alt="Logo">
+                    <img src="assets/RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
         </nav>
@@ -68,7 +68,7 @@
 
         <p>
             <a href="journals.jsp" id="alignmentBtn" title="Go Back">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
         

@@ -121,6 +121,12 @@ public class LoginController implements Serializable{
         }
     }
     
+    /**
+     * Retrieves a user object based off the given id
+     * 
+     * @param userID The unique identifier for the user
+     * @return The user object associated with the id
+     */
     public User getUserFromID(int userID){
         for(User u : getUsers().getUsers()){
             if(u.getUserID() == userID){

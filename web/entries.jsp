@@ -20,7 +20,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/template.css" rel="stylesheet" type="text/css"/>
         <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entries</title>
@@ -28,7 +28,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="text/javascript" language="javascript" src="entries.js"></script>
+        <script src="scripts/entries.js" type="text/javascript"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script>
             $( function() {
@@ -88,16 +88,16 @@
             <div id= "topNav">
                 <ul>
                     <li><a href="logout.jsp"> Logout </a></li>
-                    <li><img src="userIcon.png" id="userIcon"></li>
+                    <li><img src="assets/userIcon.png" id="userIcon"></li>
                     <li><div id="usersName"> <%= user.getName()%> </div></li>
-                    <img src="RedLogo.png" class="logo" alt="Logo">
+                    <img src="assets/RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
         </nav>
                     
         <p>
             <a href="journals.jsp" id="alignmentBtn" title="Go Back">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
         

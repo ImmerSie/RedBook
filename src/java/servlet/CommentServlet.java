@@ -24,19 +24,29 @@ import models.Journal;
 import models.User;
 
 /**
- *
+ * Servlet that handles the comments for an entry
+ * 
  * @author Max
  */
 public class CommentServlet extends HttpServlet{
     
+    /**
+     * Method that creates a new comment for an entry object
+     * 
+     * @param req The details of the new comment
+     * @param res Returns the new comment
+     * @throws java.io.IOException 
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws java.io.IOException {
         
+        // Gets required fields
         ServletContext sc = req.getServletContext();
         
         CommentController commentApp = (CommentController) req.getSession().getAttribute("commentApp");
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
         
+        // Instantiates comment application if it doesn't already exist
         if(commentApp == null){
             commentApp = new CommentController();
             sc.setAttribute("commentApp", commentApp);
@@ -49,20 +59,16 @@ public class CommentServlet extends HttpServlet{
             }
         }
         
-        /*String userIDString = req.getParameter("userID");
-        int userID = Integer.parseInt(userIDString);
-        String journalIDString = req.getParameter("journalID");
-        int journalID = Integer.parseInt(journalIDString);*/
+        // Gets the entry from the entryID
         String entryIDString = req.getParameter("entryID");
         int entryID = Integer.parseInt(entryIDString);
         String content = req.getParameter("content");
         
         Entry entry = entryApp.getEntryByID(entryID);
-        
         Comments entryComments = commentApp.getCommentsByEntry(entry.getUserID(), entry.getJournalID(), entryID);
         
+        // Creates the new comment object and saves it
         int commentID = commentApp.getNewCommentID(entryComments.getComments());
-        
         Comment newComment = new Comment(entry.getUserID(), entry.getJournalID(), entryID, commentID, content);
         
         commentApp.addComment(newComment);
@@ -75,6 +81,7 @@ public class CommentServlet extends HttpServlet{
         
         entryComments.add(newComment);
         
+        // Returns all the comments for the entry
         String json = new Gson().toJson(entryComments);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
@@ -82,24 +89,22 @@ public class CommentServlet extends HttpServlet{
     }
 
     /**
-     * Method that turns an entry into a download
-     * 
-     * <p> Method takes an entry identifier, retrieves the relevant entry, then calls the method to
-     * generate the csv as a string. This string is then output to the client browser as a downloaded
-     * attachment. </p>
+     * Method that turns gets all the comments for an entry
      * 
      * @param req Contains the entryID, used to retrieve the relevant entry object
-     * @param res Tells the browser that an attachment is being returned
+     * @param res The collection of comments for an entry
      * @throws java.io.IOException 
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws java.io.IOException {
 
+        // Gets necessary fields
         ServletContext sc = req.getServletContext();
         
         CommentController commentApp = (CommentController) req.getSession().getAttribute("commentApp");
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
         
+        // Instantiates comment app if it hasn't already been made
         if(commentApp == null){
             commentApp = new CommentController();
             sc.setAttribute("commentApp", commentApp);
@@ -112,19 +117,16 @@ public class CommentServlet extends HttpServlet{
             }
         }
 
-        /*String userIDString = req.getParameter("userID");
-        int userID = Integer.parseInt(userIDString);
-        String journalIDString = req.getParameter("journalID");
-        int journalID = Integer.parseInt(journalIDString);*/
+        // Gets entry from entryID
         String entryIDString = req.getParameter("entryID");
         int entryID = Integer.parseInt(entryIDString);
         String content = req.getParameter("content");
         
         Entry entry = entryApp.getEntryByID(entryID);
         
+        // Gets and returns all comments for that entry
         Comments entryComments = commentApp.getCommentsByEntry(entry.getUserID(), entry.getJournalID(), entryID);
         
-
         String json = new Gson().toJson(entryComments.getComments());
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");

@@ -11,7 +11,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Help </title>
         <!-- If a user is not logged in while trying to access this page, they are redirected to the login JSP page -->
@@ -24,7 +24,7 @@
     <body>
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="TEST" />
+            <img src="assets/DBackground.png" class="stretch" alt="TEST" />
         </div>  
         <% 
             User user = (User) session.getAttribute("user");
@@ -42,10 +42,10 @@
             <div id= "topNav">
             <ul>
                 <li><a href="logout.jsp"> Logout </a></li>
-                <li><img src="userIcon.png" id="userIcon"></li>
+                <li><img src="assets/userIcon.png" id="userIcon"></li>
                 <li><div id="usersName"><%= user.getName() %> </div></li>
                 <a href="journals.jsp">
-                    <img src="RedLogo.png" class="logo" alt="Logo">
+                    <img src="assets/RedLogo.png" class="logo" alt="Logo">
                 </a>
             </ul>
             </div>
@@ -56,7 +56,7 @@
         
         <p>
             <a href="journals.jsp" id="alignmentBtn">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
         

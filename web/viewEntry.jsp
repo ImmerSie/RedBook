@@ -18,7 +18,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="template.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/template.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entry</title>
         <%
@@ -26,7 +26,7 @@
         %>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script type="text/javascript" language="javascript" src="viewEntry.js"></script>
+        <script language="javascript" src="scripts/viewEntry.js" type="text/javascript"></script>
         <!-- Code for date formatting, to put in an easier to understand format -->
         <%
             SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");
@@ -64,16 +64,16 @@
             <div id= "topNav">
                 <ul>
                     <li><a href="logout.jsp"> Logout </a></li>
-                    <li><img src="userIcon.png" id="userIcon" alt="User Icon"></li>
+                    <li><img src="assets/userIcon.png" id="userIcon" alt="User Icon"></li>
                     <li><div id="usersName"> <%= user.getName()%>  </div></li>
-                    <img src="RedLogo.png" class="logo" alt="Logo">
+                    <img src="assets/RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
         </nav>
         <h1 class="head1"></h1>  
         <p>
             <a href="entries.jsp">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
         <div id="viewDialog">
@@ -122,7 +122,7 @@
 
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="background" />
+            <img src="assets/DBackground.png" class="stretch" alt="background" />
         </div> 
 
     </body>

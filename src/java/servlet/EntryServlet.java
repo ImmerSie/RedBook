@@ -22,7 +22,7 @@ import models.Entry;
 
 
 /**
- * Allows the user to get a .csv file containing the data for an entry
+ * Allows the user to get a .csv file containing the data for an entry, or perform CRUD on entries
  * 
  * @author Sarah
  */
@@ -83,6 +83,7 @@ public class EntryServlet extends HttpServlet {
             throws java.io.IOException {
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
         
+        // Gets new entry details
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         String dateModified = req.getParameter("dateModified");
@@ -94,11 +95,11 @@ public class EntryServlet extends HttpServlet {
             Logger.getLogger(EntryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // Returns newly created entry
         String json = new Gson().toJson(entry);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(json);
-        //res.sendRedirect(entries.jsp);
     }
 
     /**

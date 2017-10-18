@@ -19,7 +19,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create User Account</title>
         <!-- If a user is currently logged in, they are redirected to the journals JSP page -->
@@ -42,14 +42,14 @@
 
     <body>
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="TEST" />
+            <img src="assets/DBackground.png" class="stretch" alt="TEST" />
         </div>
         <a href="index.html">
-            <img src="WhtLogo.png" class="logo" alt="Logo">
+            <img src="assets/WhtLogo.png" class="logo" alt="Logo">
         </a>
         <p>
             <a href="index.html">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>
         
@@ -64,14 +64,14 @@
                 <table class="userTable">
                     <tr>
                         <!-- User's full name, display name or username -->
-                        <td><img src="userIcon.png" class="Icon" alt="User Icon"></td>
+                        <td><img src="assets/userIcon.png" class="Icon" alt="User Icon"></td>
                         <td><input type="text" name="name" placeholder="Full Name" required 
                                    oninvalid="setCustomValidity('Please enter your name')" oninput="setCustomValidity('')"
                                    title="Enter your full name or username"></td>
                     </tr>
                     <tr>
                         <!-- Email address required to be in correct email format -->
-                        <td><img src="emailIcon.png" class="Icon" alt="Email Icon"></td>
+                        <td><img src="assets/emailIcon.png" class="Icon" alt="Email Icon"></td>
                         <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=regex%>" autocomplete="on" 
                                    oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')" 
                                    onchange="setCustomValidity('')" title="Enter an email address to connect to your account"></td>
@@ -79,7 +79,7 @@
                     </tr>
                     <tr>
                         <!-- Password should follow a secure format including a mix of numbers, upper/lower case letters or other characters -->
-                        <td><img src="passwordIcon.png" class="Icon" alt="Password Icon"></td>
+                        <td><img src="assets/passwordIcon.png" class="Icon" alt="Password Icon"></td>
                         <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordRegex%>"
                                    oninvalid="setCustomValidity('Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 number')"
                                    oninput="setCustomValidity('')" onchange="setCustomerValidity('')"
@@ -105,12 +105,12 @@
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <style>
             body {
-                background-image: url("DBackground.png");
+                background-image: url("assets/DBackground.png");
             }
         </style>
         
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="" />
+            <img src="assets/DBackground.png" class="stretch" alt="" />
         </div>
     </body>
 </html>

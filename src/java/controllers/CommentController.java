@@ -16,10 +16,10 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import models.Comment;
 import models.Comments;
-import models.Entry;
 
 /**
- *
+ * Manages the CRUD for the comments on an Entry object
+ * 
  * @author Max
  */
 public class CommentController implements Serializable{
@@ -30,10 +30,10 @@ public class CommentController implements Serializable{
     }
 
     /**
-     * The constructor for the Login Controller
+     * The constructor for the Comment Controller
      * 
-     * @param filePath The filepath to store the login details (users.xml)
-     * @param users The user which has this login details
+     * @param filePath The filepath to store the comment details (comments.xml)
+     * @param comments The root of the xml file
      */
     public CommentController(String filePath, Comments comments) {
         super();
@@ -61,7 +61,7 @@ public class CommentController implements Serializable{
     }
     
     /**
-     * Explicit form of saving user data; used when the application hasn't been set up
+     * Explicit form of saving comment data; used when the application hasn't been set up
      * 
      * @param comments The collection of comment data to be persisted
      * @param filePath The path to the comments.xml file
@@ -76,14 +76,14 @@ public class CommentController implements Serializable{
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         
-        // Streams the user data into the xml file
+        // Streams the comment data into the xml file
         FileOutputStream fout = new FileOutputStream(filePath);
         m.marshal(comments, fout);
         fout.close();
     }
     
     /**
-     * Less explicit way of saving the user data to the users.xml file
+     * Less explicit way of saving the comment data to the comments.xml file
      * 
      * @throws JAXBException
      * @throws IOException 
@@ -94,12 +94,17 @@ public class CommentController implements Serializable{
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         
-        // Streams the user data into the xml file
+        // Streams the comment data into the xml file
         FileOutputStream fout = new FileOutputStream(filePath);
         m.marshal(comments, fout);
         fout.close();
     }
     
+    /**
+     * Adds a new comment to the collection
+     * 
+     * @param comment The new comment to be added
+     */
     public void addComment(Comment comment){
         comments.add(comment);
     }
@@ -113,7 +118,8 @@ public class CommentController implements Serializable{
     }
     
     /**
-     *
+     * Gets all the comments associated with an entry
+     * 
      * @return List of associated comments
      */
     public Comments getCommentsByEntry(int userID, int journalID, int entryID){
@@ -131,6 +137,12 @@ public class CommentController implements Serializable{
         return entriesComments;
     }
     
+    /**
+     * Generates a unique (for an entry) commentID
+     * 
+     * @param comments All the comments associated with an Entry
+     * @return The unique id
+     */
     public int getNewCommentID(ArrayList<Comment> comments){
         if(comments.size() > 0){
             int max = 0;

@@ -256,6 +256,11 @@ public class EntryController implements Serializable{
         return journalEntries;
     }
     
+    /**
+     * Gets all entries flagged as deleted
+     * 
+     * @return A collection of all the "deleted" entries 
+     */
     public ArrayList<Entry> getDeletedEntries(){
         ArrayList<Entry> journalEntries = new ArrayList<>();
         ArrayList<Entry> entriesList = getAllEntries();
@@ -270,9 +275,9 @@ public class EntryController implements Serializable{
     } 
     
     /**
-     * Gets all the entries that are not flagged hidden
+     * Gets all the entries that are flagged visible
      * 
-     * @return A list representing all the entries that are not flagged hidden
+     * @return A list representing all the entries that are flagged visible
      */
     public ArrayList<Entry> getVisibleEntries(){
         ArrayList<Entry> journalEntries = new ArrayList<>();
@@ -310,16 +315,31 @@ public class EntryController implements Serializable{
         }
     }
     
+    /**
+     * Changes an entry's state to hidden (if it's visible)
+     * 
+     * @param entry The entry which wants its state changed
+     */
     public void hideEntry(Entry entry){
         if(entry.getFlag().equals("visible")){
             entry.setFlag("hidden");
         }
     }
     
+    /**
+     * Changes an entry's state to deleted
+     * 
+     * @param entry The entry being deleted
+     */
     public void deleteEntry(Entry entry){
         entry.setFlag("deleted");
     }
     
+    /**
+     * Unhides a hidden entry
+     * 
+     * @param entry The entry that's being made visible
+     */
     public void visibleEntry(Entry entry){
         if(entry.getFlag().equals("hidden")){
             entry.setFlag("visible");
@@ -333,16 +353,6 @@ public class EntryController implements Serializable{
      * @return 
      */
     public ArrayList<Entry> sortByTitle(ArrayList<Entry> e){
-        /*ArrayList<Entry> newEntries = new ArrayList<Entry>();
-        for(int j = e.size() - 1; j > 0; j--){
-            for(int i = 0; i < j; i++){
-                int value =  e.get(i).getTitle().trim().compareToIgnoreCase(e.get(i+1).getTitle().trim());
-                if(value > 0){
-                    Collections.swap(e, i, i+1);
-                }
-            }
-        }
-        */
         e.sort(Comparator.comparing(Entry::getTitleLowercase, (s1, s2) -> {
             return s1.compareTo(s2);
         }));
@@ -362,6 +372,12 @@ public class EntryController implements Serializable{
         return e;
     }
     
+    /**
+     * Sorts a given collection of entries from most to least recently created
+     * 
+     * @param e The list of entries to be sorted
+     * @return The newly sorted list
+     */
     public ArrayList<Entry> sortByDate(ArrayList<Entry> e){
         e.sort(Comparator.comparing(Entry::getDateCreated, (s1, s2) -> {
             return s2.compareTo(s1);
@@ -369,6 +385,14 @@ public class EntryController implements Serializable{
         return e;
     }
     
+    /**
+     * Creates a new entry object, associated with the current journal
+     * 
+     * @param title The new entry's title
+     * @param content The new entry's description
+     * @param dateModified The new entry's most recent modification
+     * @return The newly created entry
+     */
     public Entry createEntry(String title, String content, Date dateModified){
         int userID = journal.getUserID();
         int journalID = journal.getJournalID();

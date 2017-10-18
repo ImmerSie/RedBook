@@ -8,12 +8,9 @@ package servlet;
 import com.google.gson.Gson;
 import controllers.EntryController;
 import controllers.EntryHistoryController;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,13 +19,23 @@ import models.Entry;
 import models.EntryHistory;
 
 /**
- *
+ * Performs update on an entry, and retrieving an entry's history
+ * 
  * @author Max
  */
 public class EntryHistoryServlet extends HttpServlet{
     
+    /**
+     * Updates an entry (generating an new entry history object)
+     * 
+     * @param req The new entry details
+     * @param res The updated entry
+     * @throws java.io.IOException 
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws java.io.IOException {
+        
+        // Gets necessary fields
         String changeTo = req.getParameter("changeTo");
         String entryID = req.getParameter("entryID");
         
@@ -36,6 +43,7 @@ public class EntryHistoryServlet extends HttpServlet{
         EntryHistoryController entryHisApp = (EntryHistoryController) req.getSession().getAttribute("entryHisApp");
         Entry entry = entryApp.getEntryByID(Integer.parseInt(entryID));
         
+        // Handles changes to entry visibility, else updates entry
         if(changeTo != null){
             if(changeTo.equals("hidden")){
                 entryApp.hideEntry(entry);
@@ -53,9 +61,11 @@ public class EntryHistoryServlet extends HttpServlet{
             }
         }
         else{
+            // Updates entry title/content
             String title = req.getParameter("title");
             String content = req.getParameter("content");
             if(title != null && content != null){
+                // Creates new history object
                 Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, entry.getFlag(), entry.getDateCreated());
                 entry.addToHistory(newEntry);
                 entry = newEntry;
@@ -68,8 +78,8 @@ public class EntryHistoryServlet extends HttpServlet{
             }
         }
         
+        // Returns updated entry object
         String json = new Gson().toJson(entry);
-
         
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
@@ -77,14 +87,10 @@ public class EntryHistoryServlet extends HttpServlet{
     }
 
     /**
-     * Method that turns an entry into a download
+     * Method that gets all relevant history for a given entry
      * 
-     * <p> Method takes an entry identifier, retrieves the relevant entry, then calls the method to
-     * generate the csv as a string. This string is then output to the client browser as a downloaded
-     * attachment. </p>
-     * 
-     * @param req Contains the entryID, used to retrieve the relevant entry object
-     * @param res Tells the browser that an attachment is being returned
+     * @param req Contains the entryID, used to retrieve the relevant history objects
+     * @param res A collection of all the history objects
      * @throws java.io.IOException 
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -96,6 +102,7 @@ public class EntryHistoryServlet extends HttpServlet{
         EntryController entryApp = (EntryController) req.getSession().getAttribute("entryApp");
         Entry entry = entryApp.getEntryByID(Integer.parseInt(entryID));
         
+        // Gets list of relevant entry history objects, and returns it
         ArrayList<EntryHistory> entryHisList = entry.getHistoryReverse();
 
         String json = new Gson().toJson(entryHisList);

@@ -144,6 +144,13 @@ public class JournalController implements Serializable{
         this.user = user;
     }
     
+    /**
+     * Creates a new journal associated with the current user
+     * 
+     * @param title The title of the new journal
+     * @param description The description of the new journal
+     * @return The new journal object
+     */
     public Journal createJournal(String title, String description){
         int userID = user.getUserID();
         int journalID = getNewJournalID();
@@ -154,6 +161,14 @@ public class JournalController implements Serializable{
         return journal;
     }
     
+    /**
+     * Updates an existing journals details
+     * 
+     * @param journalID The unique identifier for the journal
+     * @param title The new title of the journal
+     * @param description The new description of the journal
+     * @return The newly updated journal object
+     */
     public Journal updateJournal(int journalID, String title, String description){
         Journal journal = getJournalFromID(journalID);
         journal.setTitle(title);

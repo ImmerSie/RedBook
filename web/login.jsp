@@ -10,7 +10,7 @@
     <head>
         <!-- CSS Stylesheet setup -->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <link href="loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
+        <link href="stylesheets/loginAndCreateUser.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <%
@@ -40,14 +40,14 @@
         
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="TEST" />
+            <img src="assets/DBackground.png" class="stretch" alt="TEST" />
         </div>
         <a href="index.html">
-            <img src="WhtLogo.png" class="logo" alt="Logo">
+            <img src="assets/WhtLogo.png" class="logo" alt="Logo">
         </a>
         <p>
             <a href="index.html">
-                <img src="backArrow.png" class="backButton" alt="Go Back">
+                <img src="assets/backArrow.png" class="backButton" alt="Go Back">
             </a>
         </p>
 
@@ -62,14 +62,14 @@
                 <table class="userTable">
                     <tr>
                         <!-- Email address required to be in correct email format -->
-                        <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
+                        <td><img src="assets/emailIcon.png" class="Icon" alt="Icon"></td>
                         <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
                                oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
                                title="Email address you used to create an account"></td>
                     </tr>
                     <tr>
                         <!-- Password should follow a secure format including a mix of numbers, upper/lower case letters or other characters -->
-                        <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
+                        <td><img src="assets/passwordIcon.png" class="Icon" alt="Icon"></td>
                         <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
                                oninvalid="setCustomValidity('Please enter a valid Password')"
                                oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>

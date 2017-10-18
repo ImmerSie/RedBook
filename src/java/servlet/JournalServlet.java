@@ -25,14 +25,23 @@ import models.Journal;
 import models.User;
 
 /**
- *
+ * Servlet for managing users journals (CRU)
+ * 
  * @author Max
  */
 public class JournalServlet extends HttpServlet{
     
+    /**
+     * Creates or updates a journals metadata
+     * 
+     * @param req The details of the journals metadata
+     * @param res The newly modified/created journal
+     * @throws java.io.IOException 
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws java.io.IOException {
         
+        // Gets required fields
         ServletContext sc = req.getServletContext();
         
         JournalController journalApp = (JournalController) req.getSession().getAttribute("journalApp");
@@ -42,6 +51,7 @@ public class JournalServlet extends HttpServlet{
         
         User user = userApp.getUserFromID(userID);
         
+        // Instantiates journal application if required
         if(journalApp == null){
             journalApp = new JournalController();
             sc.setAttribute("journalApp", journalApp);
@@ -56,10 +66,13 @@ public class JournalServlet extends HttpServlet{
         
         journalApp.setUser(user);
 
+        // Gets new journal details
         String title = req.getParameter("title");
         String description = req.getParameter("description");
         String journalID = req.getParameter("journalID");
         Journal journal = null;
+        
+        // If journalID doesn't exist, that means it's a new journal
         if(journalID == null){
             journal = journalApp.createJournal(title, description);
         }
@@ -72,22 +85,18 @@ public class JournalServlet extends HttpServlet{
             Logger.getLogger(JournalServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // Returns new journal
         String json = new Gson().toJson(journal);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(json);
-        //res.sendRedirect(entries.jsp);
     }
 
     /**
-     * Method that turns an entry into a download
+     * Method that could be implemented to retrieve users journals
      * 
-     * <p> Method takes an entry identifier, retrieves the relevant entry, then calls the method to
-     * generate the csv as a string. This string is then output to the client browser as a downloaded
-     * attachment. </p>
-     * 
-     * @param req Contains the entryID, used to retrieve the relevant entry object
-     * @param res Tells the browser that an attachment is being returned
+     * @param req Contains the userID
+     * @param res The collection of journals for that user
      * @throws java.io.IOException 
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res)
