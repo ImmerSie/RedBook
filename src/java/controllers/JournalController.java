@@ -9,11 +9,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import models.Entry;
 import models.Journal;
 import models.User;
 
@@ -175,5 +177,15 @@ public class JournalController implements Serializable{
         journal.setDescription(description);
         journal.setLastModified(new Date());
         return journal;
+    }
+    
+    public ArrayList<Journal> getJournalsForUser(int userID){
+        ArrayList<Journal> userJournals = new ArrayList<>();
+        for(Journal j : user.getJournals()){
+            if(j.getUserID() == userID ){
+                userJournals.add(j);
+            }
+        }
+        return userJournals;
     }
 }

@@ -36,7 +36,7 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<td><p value="' + eModified + '">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td></td>';
-    if(eModified == eCreated){
+    if(eModified === eCreated){
         html += '<td>Unmodified</td>';
     }
     else{
@@ -98,7 +98,7 @@ function hide(entryID){
  */
 function del(entryID){
     var html = '<h2>Testing del</h2>';
-    $("entriesMenu").html(html);
+    $('#journalDetTitle').html(html);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
     $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){

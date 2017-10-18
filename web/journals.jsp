@@ -84,7 +84,7 @@
         <!-- Side navigation bar -->
         <nav role="side">
             <ul>
-                <li class="current"><a href="journals.jsp"> Journals </a></li>
+                <li class="current" id="check"><a href="journals.jsp"> Journals </a></li>
                 <li><a href="createJournal.jsp">Add Journal</a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
@@ -99,7 +99,9 @@
         
         <!-- Display all journals belonging to the user as an image with a link -->
         <div id="journalPosition">
-            <% if (user.getJournals().size() > 0) {
+            <% 
+                user.setJournals(journalApp.getJournalsForUser(user.getUserID()));
+                if (user.getJournals().size() > 0) {
                     for (Journal j : user.getJournals()) {
                         %>
                         <div class="journal" onClick="journalClick(this, <%= j.getJournalID()%>)">

@@ -164,4 +164,10 @@ public class User implements Serializable{
         }
         return null;
     }
+
+    public void setJournals(ArrayList<Journal> journals) {
+        this.journals = journals;
+    }
+    
+    
 }
