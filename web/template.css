@@ -359,6 +359,13 @@ nav[role="side"] li a:hover{
     padding-right: 30px;
 }
 
+.eContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  white-space: nowrap;
+}
+
 /* Formatting of the Title of each entry */
 #entryTitle{
     font-family: 'Open Sans';

@@ -10,41 +10,42 @@
  * @param {Boolean} forResultTable if this is for the entry row or not 
  * @returns {String} The HTML format of the entry row
  */
-function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, forResultTable){
+function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, forResultTable) {
     //Iniates the HTML varaible with a blank string
     var html = '';
-    
+
+
+
     //Adds the surrounding div tags for formatting
-    
-     //Checks if it is for the search results table, else there is different formatting (prevents duplication)
-    if(forResultTable){
+
+    //Checks if it is for the search results table, else there is different formatting (prevents duplication)
+    if (forResultTable) {
         html += '<tr onClick="entryClick(this, ' + entryID + ')">';
+    } else {
+        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
     }
-    else{
-       html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
-    }
-    
+
     html += '<td>';
-    
-    html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-    
-   
+
+    html += '<input type="checkbox" class="entryCheck" name="' + entryID + '" value="' + entryID + '">';
+
+
     html += '</td>';
-    
+
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
-    html += '<td>' + eTitle + '</td>';
+    html += '<td class="eTitle">' + eTitle + '</td>';
     html += '<td><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
     html += '<td><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td><p class="eContent" value="<%= e.dateModified %>">' + eContent + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td></td>';
-    if(eModified == eCreated){
+    if (eModified == eCreated) {
         html += '<td>Unmodified</td>';
-    }
-    else{
+    } else {
         html += '<td>Modified</td>';
     }
-    
+
     html += '<td>';
     //The dropdown list to change the visibility of an entry
     html += '<div class="vis-wrapper">';
@@ -54,16 +55,17 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
     html += '</td>'
-    
+
     html += '</tr>';
-    
+
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
     html += '</td>';
 
-  
-    
+
+
+
     //Returns the final HTML string
     return html;
 }
@@ -73,10 +75,10 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
  * 
  * @param {String} entryID
  */
-function visiblise(entryID){
+function visiblise(entryID) {
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "visible", entryID: entryID}, function(response){
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "visible", entryID: entryID}, function (response) {
         getEntries();
     });
 }
@@ -86,11 +88,11 @@ function visiblise(entryID){
  * 
  * @param {String} entryID
  */
-function hide(entryID){
+function hide(entryID) {
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "hidden", entryID: entryID}, function(response){
-           getEntries();
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "hidden", entryID: entryID}, function (response) {
+        getEntries();
     });
 }
 
@@ -99,12 +101,12 @@ function hide(entryID){
  * 
  * @param {String} entryID
  */
-function del(entryID){
+function del(entryID) {
     var html = '<h2>Testing del</h2>';
     $("entriesMenu").html(html);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){
+    $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function (response) {
         getEntries();
     });
 }
@@ -112,73 +114,80 @@ function del(entryID){
 /**
  * Sets All the entries of into a html format so it can be shown on screen
  */
-function getEntries(){
+function getEntries() {
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    
+
     //Sorts and filters the entries repectively
-    $.get("hideEntryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
-        
+    $.get("hideEntryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function (response) {
+
         // Initialises the HTML string as an empty String
         var html = '';
-        
+
         // If there are no entries, it tells the user they have no entries
         // and prompts the user to create the first entry
-        if(jQuery.isEmptyObject(response)){
+        if (jQuery.isEmptyObject(response)) {
             html += '<p><h3 class="head3">You have no entries.</h3></p>';
             html += '<p><h3 class="head3"> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
-        }
-        else{
+        } else {
             html += '<div style="overflow-x:auto;">';
-            html += '<div class="entryList">';    
+            html += '<div class="entryList">';
             html += '<table>';
-            $.each(response, function(key, e){
+            $.each(response, function (key, e) {
                 // Adds the appropriate HTML for each entry
-                html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);                
+                html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);
             });
-            
+
             html += '</table>';
             html += '</div>';
-            html +='</div>';
+            html += '</div>';
         }
-        
+
         // Sets the entries html to the new HTML of the entries
         $('#ajaxEntries').html(html);
-    });  
+    });
 }
 
 /**
  * Hides the entries which have the "hidden" property
  */
-function hideEntries(){
+function hideEntries() {
     //Initialises the JSON entries to an empty Array
     var jsonEntries = [];
     var checkedEntries = document.getElementsByClassName("entryCheck");
-    
+
     // Checks if the entry is checked and adds it to the Array
-    for(var i = 0; i < checkedEntries.length; i++){
-        if(checkedEntries.item(i).checked === true){
+    for (var i = 0; i < checkedEntries.length; i++) {
+        if (checkedEntries.item(i).checked === true) {
             jsonEntries.push(checkedEntries.item(i).value);
         }
     }
-    
+
     // Changes the Array into a JSON string
     var json = JSON.stringify(jsonEntries);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
-    
+
     // Hides the "checked" entries and then refreshes the table to only show the 
     // non hidden entries
-    $.post("hideEntryServlet.do", {json: json, sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
+    $.post("hideEntryServlet.do", {json: json, sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function (response) {
         var html = '';
-        if(jQuery.isEmptyObject(response)){
+        if (jQuery.isEmptyObject(response)) {
             html += '<p><h3 class="head3">You have no entries.</h3></p>';
             html += '<p><h3 class="head3"> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
-        }
-        else{
-            $.each(response, function(key, e){                
+        } else {
+            html += '<div style="overflow-x:auto;">';
+            html += '<div class="entryList">';
+            html += '<table>';
+
+            $.each(response, function (key, e) {
                 html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);
             });
+
+
+            html += '</table>';
+            html += '</div>';
+            html += '</div>';
         }
         $('#ajaxEntries').html(html);
     });
@@ -187,83 +196,87 @@ function hideEntries(){
 /**
  * Searches the Entry list on a certain criteria and displays the search results
  */
-function searchBy(){
+function searchBy() {
     var searchDrop = document.getElementById("searchBy");
     var searchValue = searchDrop.options[searchDrop.selectedIndex].value;
-    
-    if(searchValue === "searchTitle"){
+
+    if (searchValue === "searchTitle") {
         var html = '';
-        
+
         html += '<input type="text" id="titleSearch" name="titleSearch">';
         html += '<button value="goSearch" onClick="searchByTitle()">Go</button>';
         html += '</td><td><button onClick="removeSearch()">X</button>';
-        
+
         $('#searchInput').html(html);
-    }
-    else if(searchValue === "searchContent"){
+    } else if (searchValue === "searchContent") {
         var html = '';
-        
+
         html += '<input type="text" id="contentSearch" name="contentSearch">';
         html += '<button value="goSearch" onClick="searchByContent()">Go</button>';
         html += '</td><td><button onClick="removeSearch()">X</button>';
-        
+
         $('#searchInput').html(html);
-    }
-    else if(searchValue === "date"){
+    } else if (searchValue === "date") {
         var html = '';
         html += '<input type="text" id="datepickerSearch" placeholder="Date...">';
-        html += '</td><td><button onClick="removeSearch()">X</button>'; 
-        
+        html += '</td><td><button onClick="removeSearch()">X</button>';
+
         $('#searchInput').html(html);
         $('#datepickerSearch').datepicker({
             dateFormat: 'dd/mm/yy'
-        }).on("input change", function(e){
+        }).on("input change", function (e) {
             searchByDate(e.target.value);
-            
+
         });
-    }
-    else if(searchValue === "month"){
+    } else if (searchValue === "month") {
         var html = '';
         html += '<input type="text" id="datepickerSearch" placeholder="Month...">';
-        html += '</td><td><button onClick="removeSearch()">X</button>'; 
-        
-        $('#searchInput').html(html);
-        $('#datepickerSearch').datepicker().on("input change", function(e){
-            searchByMonth(e.target.value);
-            
-        });
-    }
-    else if(searchValue === "year"){
-        var html = '';
-        html += '<input type="text" id="datepickerSearch" placeholder="Year...">';
-        html += '</td><td><button onClick="removeSearch()">X</button>'; 
-        
+        html += '</td><td><button onClick="removeSearch()">X</button>';
+
         $('#searchInput').html(html);
         $('#datepickerSearch').datepicker({
-        changeYear: true,
-        showButtonPanel: true,
-        dateFormat: 'yy',
-        onClose: function(dateText, inst) { 
-            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-            $(this).datepicker('setDate', new Date(year, 1, 1));
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'mm/yy',
+            onClose: function (dateText, inst) {
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, month, 1,0,0,0,0));
+            }
         }
-    }).on("input change", function(e){
-            searchByYear(e.target.value);
-            
+                ).on("input change", function (e) {
+            searchByMonth(e.target.value);
+
         });
-    }
-    else if(searchValue === "searchBetween"){
+    } else if (searchValue === "year") {
         var html = '';
-        
+        html += '<input type="text" id="datepickerSearch" placeholder="Year...">';
+        html += '</td><td><button onClick="removeSearch()">X</button>';
+
+        $('#searchInput').html(html);
+        $('#datepickerSearch').datepicker({
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy',
+            onClose: function (dateText, inst) {
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year,1,1,0,0,0,0));
+            }
+        }).on("input change", function (e) {
+          searchByYear(e.target.value);
+
+        });
+    } else if (searchValue === "searchBetween") {
+        var html = '';
+
         html += '<input type="text" id="datepickerFrom" placeholder="Date..."> and <input type="text" id="datepickerTo" placeholder="Date...">';
         html += '<button value="goSearch" onClick="searchBetweenDates()">Go</button>';
         html += '</td><td><button onClick="removeSearch()">X</button>';
-        
+
         $('#searchInput').html(html);
         $('#datepickerFrom').datepicker();
         $('#datepickerTo').datepicker();
-    }
-    else{
+    } else {
         // If nothing is selected, remove the search query
         removeSearch();
     }
@@ -272,9 +285,9 @@ function searchBy(){
 /**
  * Removes the search query
  */
-function removeSearch(){
+function removeSearch() {
     $('#ajaxEntries').show();
-    
+
     // Sets the search results and Input to empty strings
     $('#searchResultEntries').html('');
     $('#searchInput').html('');
@@ -284,33 +297,42 @@ function removeSearch(){
 /**
  * Searches the entries by title and displays the serach results
  */
-function searchByTitle(){
+function searchByTitle() {
     // Set the keyword to lower case to make the search case insensitive
     var keyword = $('#titleSearch').val().toString().toLowerCase();
     var row = document.getElementsByClassName("entryRow");
     var html = '';
-    
+    var content = false;
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+
     // Searches every entry in the table
-    for(var i = 0; i < row.length; i++){
-        var eTitle = $(row.item(i)).find('td').eq(1).text();
-        
+    for (var i = 0; i < row.length; i++) {
+        var eTitle = $(row.item(i)).find('.eTitle').text();
+
         // If the search matches, add the entry to the search table
-        if(eTitle.toLowerCase().indexOf(keyword) >= 0){
+        if (eTitle.toLowerCase().indexOf(keyword) >= 0) {
             var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eContent = $(row.item(i)).find('td').eq(3).text();
+            var eContent = $(row.item(i)).find('p.eContent').text();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+            content = true;
         }
+
     }
-    
+    html += '</table>';
+    html += '</div>';
+    html += '</div>';
+
     // If no results have come, display message "You have no results"
-    if(html.length < 1){
-        html += '<h3 class="head3">You have no results<h3>';
+    if (!content) {
+        html = '<h3 class="head3">You have no results<h3>';
     }
-    
+
     // Hide the current table and show the search result table
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
@@ -319,26 +341,42 @@ function searchByTitle(){
 /**
  * Searches the table by content and displays the results
  */
-function searchByContent(){
+function searchByContent() {
     // Content search is case insensitive
     var keyword = $('#contentSearch').val().toString().toLowerCase();
     var row = document.getElementsByClassName("entryRow");
     var html = '';
-    for(var i = 0; i < row.length; i++){
-        var eContent = $(row.item(i)).find('td').eq(3).text();
-        if(eContent.toLowerCase().indexOf(keyword) >= 0){
-            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eTitle = $(row.item(i)).find('td').eq(1).text();
+    var content = false;
+
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+    for (var i = 0; i < row.length; i++) {
+        var eContent = $(row.item(i)).find('.eContent').text();
+        if (eContent.toLowerCase().indexOf(keyword) >= 0) {
+           var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eContent = $(row.item(i)).find('p.eContent').text();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
+
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+            content = true;
+           
+
+            
+
+
         }
     }
-    
-    if(html.length < 1){
-        html += '<h3 class="head3">You have no results<h3>';
+
+    html += '</table>';
+    html += '</div>';
+    html += '</div>';
+    if (!content) {
+        html = '<h3 class="head3">You have no results<h3>';
     }
 
     $('#ajaxEntries').hide();
@@ -350,37 +388,52 @@ function searchByContent(){
  * 
  * @param {Date} selectedDate the Date the user has searched for
  */
-function searchByDate(selectedDate){
+function searchByDate(selectedDate) {
     var row = document.getElementsByClassName("entryRow");
     var html = '';
-    for(var i = 0; i < row.length; i++){
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+    var content = false;
+
+    for (var i = 0; i < row.length; i++) {
         // Converts the date as a string to a Date Object
         var eCreated = $(row.item(i)).find('.eCreated').text();
         var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
+        var dateSection = eCreated.toString().substring(0, colonIndex);
         var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
+        var month = splitDate[0].substring(0, 3);
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
-        var rowDate = new Date (year, month,day);
-        
+        var rowDate = new Date(Date.parse(day + " " + month + " " + year));
+
         // Sets the search Date as a Date Object
-        var searchDate = new Date(selectedDate);
-        if(searchDate.getTime() === rowDate.getTime()){
-            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('td').eq(3).text();
+        var dateParts = selectedDate.split("/");
+        var searchDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+        if (searchDate.getTime() === rowDate.getTime()) {
+           var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+            content = true;
+
+
+
         }
+       
     }
-    
-    if(html.length < 1){
+     html += '</table>';
+        html += '</div>';
+        html += '</div>';
+
+    if (!content) {
         html += '<h3 class="head3">You have no results<h3>';
     }
-        
+
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
@@ -390,37 +443,54 @@ function searchByDate(selectedDate){
  * 
  * @param {Date} selectedMonth the Date the user has searched for
  */
-function searchByMonth(selectedMonth){
+function searchByMonth(selectedMonth) {
     var row = document.getElementsByClassName("entryRow");
     var html = '';
-    for(var i = 0; i < row.length; i++){
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+    var content = false;
+    
+    //
+
+    for (var i = 0; i < row.length; i++) {
         // Converts the date as a string to a Date Object
-        var eCreated = $(row.item(i)).find('p').eq(0).text();
+        var eCreated = $(row.item(i)).find('.eCreated').text();
         var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
+        var dateSection = eCreated.toString().substring(0, colonIndex);
         var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
+        var month = splitDate[0].substring(0, 3);
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
-        var rowDate = new Date (month + " " + day + " " + year);
-        
+        var rowDate = new Date(Date.parse(day + " " + month + " " + year));
+
         // Sets the search Date as a Date Object
-        var searchDate = new Date(selectedMonth);
-        if(searchDate.getTime() === rowDate.getTime()){
-            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('td').eq(3).text();
+        var dateParts = selectedMonth.split("/");
+        var searchDate = new Date(dateParts[1],dateParts[0] - 1,1);
+        if (searchDate.getMonth() === rowDate.getMonth()) {
+           var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+            content = true;
+
+
+
         }
+       
     }
-    
-    if(html.length < 1){
+     html += '</table>';
+        html += '</div>';
+        html += '</div>';
+
+    if (!content) {
         html += '<h3 class="head3">You have no results<h3>';
     }
-        
+
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
@@ -430,37 +500,54 @@ function searchByMonth(selectedMonth){
  * 
  * @param {Date} selectedMonth the Date the user has searched for
  */
-function searchByYear(selectedYear){
+function searchByYear(selectedYear) {
     var row = document.getElementsByClassName("entryRow");
     var html = '';
-    for(var i = 0; i < row.length; i++){
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+    var content = false;
+    
+    //
+
+    for (var i = 0; i < row.length; i++) {
         // Converts the date as a string to a Date Object
-        var eCreated = $(row.item(i)).find('p').eq(0).text();
+        var eCreated = $(row.item(i)).find('.eCreated').text();
         var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
+        var dateSection = eCreated.toString().substring(0, colonIndex);
         var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
+        var month = splitDate[0].substring(0, 3);
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
-        var rowDate = new Date (month + " " + day + " " + year);
-        
+        var rowDate = new Date(Date.parse(day + " " + month + " " + year));
+
         // Sets the search Date as a Date Object
-        var searchDate = new Date(selectedYear);
-        if(searchDate.getFullYear() === rowDate.getFullYear()){
-            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('td').eq(3).text();
+        var dateParts = selectedYear.split("/");
+        var searchDate = new Date(dateParts[0],0,1);
+        if (searchDate.getYear() === rowDate.getYear()) {
+           var entryID = $(row.item(i)).find('input').eq(0).val();
+            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
+            content = true;
+
+
+
         }
+       
     }
-    
-    if(html.length < 1){
+     html += '</table>';
+        html += '</div>';
+        html += '</div>';
+
+    if (!content) {
         html += '<h3 class="head3">You have no results<h3>';
     }
-        
+
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
@@ -468,57 +555,65 @@ function searchByYear(selectedYear){
 /**
  * Searches the entries between 2 dates and displays the results
  */
-function searchBetweenDates(){
+function searchBetweenDates() {
     var row = document.getElementsByClassName("entryRow");
-    
+
     // Gets the dates from the datepicker
     var fromDate = $('#datepickerFrom').datepicker("getDate");
     var toDate = $('#datepickerTo').datepicker("getDate");
     var html = '';
-    for(var i = 0; i < row.length; i++){
-        var eCreated = $(row.item(i)).find('p').eq(0).text();
+    html += '<div style="overflow-x:auto;">';
+    html += '<div class="entryList">';
+    html += '<table>';
+    var content = false;
+    for (var i = 0; i < row.length; i++) {
+         var eCreated = $(row.item(i)).find('.eCreated').text();
         var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
+        var dateSection = eCreated.toString().substring(0, colonIndex);
         var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
+        var month = splitDate[0].substring(0, 3);
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
-        var rowDate = new Date (month + " " + day + " " + year);
-        
+        var rowDate = new Date(Date.parse(day + " " + month + " " + year));
+
         // Checks if the entry date is in between the 2 dates of the search criteria
-        if(fromDate.getTime() < rowDate.getTime() && toDate.getTime() > rowDate.getTime()){
+        if (fromDate.getTime() < rowDate.getTime() && toDate.getTime() > rowDate.getTime()) {
             var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('td').eq(3).text();
+            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
-            
+
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
         }
     }
-    
-    if(html.length < 1){
+
+     html += '</table>';
+        html += '</div>';
+        html += '</div>';
+
+    if (!content) {
         html += '<h3 class="head3">You have no results<h3>';
     }
-        
+
     $('#ajaxEntries').hide();
     $('#searchResultEntries').html(html);
 }
 
-function cancelJournalEdit(){
+function cancelJournalEdit() {
     $('#journalDetails').show();
     $('#editJournal').hide();
     $('#editJournal').html('');
 
 }
 
-function updateJournal(){
+function updateJournal() {
     var title = $('#journalDetTitleInput').val();
     var description = $('#journalDetDescInput').val();
     var journalID = $('#journalID').val();
     var userID = $('#userID').val();
-    
-    $.post("journalServlet.do", {userID: userID, journalID: journalID, title: title, description: description}, function(response){
+
+    $.post("journalServlet.do", {userID: userID, journalID: journalID, title: title, description: description}, function (response) {
         $('#journalDetTitle').text(response['title']);
         $('#journalDetDesc').text(response['description']);
         cancelJournalEdit();
@@ -526,12 +621,12 @@ function updateJournal(){
 
 }
 
-function editJournal(){
+function editJournal() {
     var title = $('#journalDetTitle').text();
     var description = $('#journalDetDesc').text();
-    
+
     $('#journalDetails').hide();
-    
+
     var html = '';
     html += '<div class="modal-content">';
     html += '<div class="modal-header">';
@@ -546,7 +641,7 @@ function editJournal(){
     html += '<button class="editJournalDetCancelBtn" onClick="cancelJournalEdit()">Cancel</button>';
     html += '</div>';
     html += '</div>';
-    
+
     $('#editJournal').show();
     $('#editJournal').html(html);
 
