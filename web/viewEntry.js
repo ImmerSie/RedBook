@@ -38,7 +38,7 @@ function setHistoryEntryDiv(){
     html += '<tr></tr>';
     html += '<td id="viewEntryTitle" colspan="5">' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5">' + content + '</td>';
+    html += '<td id="viewEntryContent" colspan="5">' + micromarkdown.parse(content); + '</td>';
     html += '</tr>';
     
     //html += generatePage(entryID, dateCreated, dateModified, title, content);
@@ -66,7 +66,7 @@ function setViewHistoryTable(){
     html += '<tr></tr>';
     html += '<td id="viewEntryTitle" colspan="5">' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5">' + content + '</td>';
+    html += '<td id="viewEntryContent" colspan="5">' + micromarkdown.parse(content); + '</td>';
     html += '</tr>';
     
     $('#historyEntryDiv').html(html);
@@ -95,7 +95,7 @@ function getEntryHistory(entry){
     html += '<tr></tr>';
     html += '<td id="viewEntryTitle" colspan="5">' + title + '</td>';
     html += '<tr></tr>';
-    html += '<td id="viewEntryContent" colspan="5">' + content + '</td>';
+    html += '<td id="viewEntryContent" colspan="5">' + micromarkdown.parse(content); + '</td>';
     html += '</tr>';
 
     $('#historyEntryDiv').html(html);
@@ -203,7 +203,7 @@ function generateHistoryRow(entryHisID, dateModified, title, content){
     html += '<tr id="' + entryHisID + '" onClick="getEntryHistory(this)">';
     html += '<td >' + dateModified + '</td>';
     html += '<input type="hidden" value="' + title + '">';
-    html += '<input type="hidden" value="' + content + '">';
+    html += '<input type="hidden" value="' + micromarkdown.parse(content); + '">';
     html += '<input type="hidden" value="' + dateModified + '">';
     html += '</tr>';
     html += '</table>';
@@ -253,7 +253,7 @@ function checkChange(){
 function boldFunction(){
     var textToBold = document.getSelection();
     var fullText = document.getElementById('entryContent').value;
-    fullText = fullText.replace(textToBold,'**'+textToBold+'**');
+    fullText = fullText.replace(textToBold,'<b>'+textToBold+'</b>');
     document.getElementById('entryContent').value = fullText;
 }
 

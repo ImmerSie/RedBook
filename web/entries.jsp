@@ -175,7 +175,7 @@
 
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">
-            <img src="DBackground.png" class="stretch" alt="background" />
+            <img src="assets/DBackground.png" class="stretch" alt="background" />
         </div>        
 
     </body>
