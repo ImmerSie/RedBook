@@ -15,12 +15,8 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     var html = '';
     
     //Adds the surrounding div tags for formatting
-    html += '<div style="overflow-x:auto;">';
-    html += '<div class="entryList">';    
-    html += '<table>';
-    html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
     
-    //Checks if it is for the search results table, else there is different formatting (prevents duplication)
+     //Checks if it is for the search results table, else there is different formatting (prevents duplication)
     if(forResultTable){
         html += '<tr onClick="entryClick(this, ' + entryID + ')">';
     }
@@ -28,11 +24,18 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
     }
     
+    html += '<td>';
+    
+    html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
+    
+   
+    html += '</td>';
+    
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
-    html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-    html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
+    html += '<td><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td></td>';
     if(eModified == eCreated){
@@ -41,8 +44,8 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     else{
         html += '<td>Modified</td>';
     }
-    html += '</tr>';
     
+    html += '<td>';
     //The dropdown list to change the visibility of an entry
     html += '<div class="vis-wrapper">';
     html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
@@ -50,15 +53,16 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
     html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+    html += '</td>'
+    
+    html += '</tr>';
     
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
     html += '</td>';
 
-    html += '</table>';
-    html += '</div>';
-    html += '</div>';
+  
     
     //Returns the final HTML string
     return html;
@@ -125,10 +129,17 @@ function getEntries(){
             html += '<p><h3 class="head3"> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
         else{
+            html += '<div style="overflow-x:auto;">';
+            html += '<div class="entryList">';    
+            html += '<table>';
             $.each(response, function(key, e){
                 // Adds the appropriate HTML for each entry
                 html += createEntryRowHTML(e.entryID, e.title, e.content, e.dateCreated, e.dateModified, e.flag, false);                
             });
+            
+            html += '</table>';
+            html += '</div>';
+            html +='</div>';
         }
         
         // Sets the entries html to the new HTML of the entries
@@ -204,7 +215,9 @@ function searchBy(){
         html += '</td><td><button onClick="removeSearch()">X</button>'; 
         
         $('#searchInput').html(html);
-        $('#datepickerSearch').datepicker().on("input change", function(e){
+        $('#datepickerSearch').datepicker({
+            dateFormat: 'dd/mm/yy'
+        }).on("input change", function(e){
             searchByDate(e.target.value);
             
         });
@@ -226,7 +239,15 @@ function searchBy(){
         html += '</td><td><button onClick="removeSearch()">X</button>'; 
         
         $('#searchInput').html(html);
-        $('#datepickerSearch').datepicker().on("input change", function(e){
+        $('#datepickerSearch').datepicker({
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy',
+        onClose: function(dateText, inst) { 
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, 1, 1));
+        }
+    }).on("input change", function(e){
             searchByYear(e.target.value);
             
         });
@@ -334,14 +355,14 @@ function searchByDate(selectedDate){
     var html = '';
     for(var i = 0; i < row.length; i++){
         // Converts the date as a string to a Date Object
-        var eCreated = $(row.item(i)).find('p').eq(0).text();
+        var eCreated = $(row.item(i)).find('.eCreated').text();
         var colonIndex = eCreated.toString().indexOf(":");
         var dateSection = eCreated.toString().substring(colonIndex);
         var splitDate = dateSection.split(" ");
         var month = splitDate[0].substring(1);
         var day = splitDate[1].substring(0, splitDate[1].length - 1);
         var year = splitDate[2];
-        var rowDate = new Date (month + " " + day + " " + year);
+        var rowDate = new Date (year, month,day);
         
         // Sets the search Date as a Date Object
         var searchDate = new Date(selectedDate);
@@ -425,7 +446,7 @@ function searchByYear(selectedYear){
         
         // Sets the search Date as a Date Object
         var searchDate = new Date(selectedYear);
-        if(searchDate.getTime() === rowDate.getTime()){
+        if(searchDate.getFullYear() === rowDate.getFullYear()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
             var eContent = $(row.item(i)).find('td').eq(3).text();

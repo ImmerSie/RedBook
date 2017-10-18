@@ -438,7 +438,6 @@ body{
     float: left;
     text-align: center;
     vertical-align: middle;
-    margin-top: 18px;
 }
 
 
@@ -666,7 +665,6 @@ body{
     display: inline-block;
     margin: 0;
     position: absolute;
-    padding-top: 40px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
