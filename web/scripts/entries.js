@@ -98,7 +98,6 @@ function hide(entryID){
  */
 function del(entryID){
     var html = '<h2>Testing del</h2>';
-    $('#journalDetTitle').html(html);
     var sortingDrop = document.getElementById("sorting");
     var filterDrop = document.getElementById("filter");
     $.post("entryHistoryServlet.do", {sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value, changeTo: "deleted", entryID: entryID}, function(response){

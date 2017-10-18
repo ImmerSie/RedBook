@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import controllers.EntryController;
 import controllers.EntryHistoryController;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServlet;
@@ -69,6 +70,7 @@ public class EntryHistoryServlet extends HttpServlet{
                 Entry newEntry = new Entry(entry.getUserID(), entry.getJournalID(), entry.getEntryID(), title, content, entry.getFlag(), entry.getDateCreated());
                 entry.addToHistory(newEntry);
                 entry = newEntry;
+                entryApp.getJournal().setLastModified(new Date());
                 try {  
                     entryApp.saveEntries();
                     entryHisApp.saveEntryHistory();
@@ -77,7 +79,7 @@ public class EntryHistoryServlet extends HttpServlet{
                 }
             }
         }
-        
+                
         // Returns updated entry object
         String json = new Gson().toJson(entry);
         
