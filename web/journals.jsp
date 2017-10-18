@@ -70,10 +70,12 @@
             }
             //If the retrieved user session is null but did not pass the login verification, then redirect to the Login JSP page
             if (session.getAttribute("user") == null) {
+                session.setAttribute("error", "invalidLogin");
                 response.sendRedirect("login.jsp");
             }
             //Setup a session with the user data that matches
             if (user != null) {
+                session.setAttribute("error", null);
                 String name = request.getParameter("name");
                 int userID = userApp.getNewUserID();
                 session.setAttribute("user", user);
@@ -82,12 +84,13 @@
         <!-- Side navigation bar -->
         <nav role="side">
             <ul>
-                <li><a href="journals.jsp"> Journals </a></li>
+                <li class="current"><a href="journals.jsp"> Journals </a></li>
+                <li><a href="createJournal.jsp">Add Journal</a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
 
-        <h1>Journals</h1>
+        <h1 class="head1">Journals</h1>
         
         <!-- Link to create a new journal under the logged in user -->
         <div id="addJournal">    
@@ -107,7 +110,7 @@
                 }
             } else { %>
             <!-- If none of the above conditions are fulfilled, then display this error message with redirection link -->
-            <p><h3>Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
+            <p><h3 class="head3">Incorrect login details. Click <a href="login.jsp">here</a> to return to the login page.</h3></p>
             <% }%>
     </div>
     

@@ -41,6 +41,7 @@
         <%  
             if(session.getAttribute("entryApp") == null){
                 String filePath = application.getRealPath("WEB-INF/entries.xml"); %>
+                
                 <!-- A JavaBean will allow access to getter/setter methods and serializable objects -->
                 <jsp:useBean id="entryApp" class="controllers.EntryController" scope="session">
                     <jsp:setProperty name="entryApp" property="filePath" value="<%=filePath%>"/>
@@ -48,34 +49,35 @@
         <% }
             EntryController entryApp = (EntryController) session.getAttribute("entryApp");
         
-           LoginController userApp = (LoginController) application.getAttribute("userApp");
-           JournalController journalApp = (JournalController) session.getAttribute("journalApp");
-           User user = (User) session.getAttribute("user");
-           if(journalApp == null){
-                String journalFilePath = application.getRealPath("WEB-INF/journals.xml"); %>
+            LoginController userApp = (LoginController) application.getAttribute("userApp");
+            JournalController journalApp = (JournalController) session.getAttribute("journalApp");
+            User user = (User) session.getAttribute("user");
+            if(journalApp == null){
+                String journalFilePath = application.getRealPath("WEB-INF/journals.xml");
                 journalApp = new JournalController();
                 journalApp.setFilePath(journalFilePath);
                 session.setAttribute("journalApp", journalApp);
-           <% }
-           journalApp.setUser(user);
-           String parameter = request.getParameter("id");
+            }
 
-           //If the parameter is not null, then the JSP page loads the journal of that id parameter
-           if(parameter != null){
-               Journal journal = user.getJournal(Integer.parseInt(parameter));
-               ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
-               journal.setEntries(e);
-               session.setAttribute("journal", journal);
-               entryApp.setJournal(journal);
-           }
-           Journal journal = (Journal) session.getAttribute("journal");
+            journalApp.setUser(user);
+            String parameter = request.getParameter("id");
+
+            //If the parameter is not null, then the JSP page loads the journal of that id parameter
+            if(parameter != null){
+                Journal journal = user.getJournal(Integer.parseInt(parameter));
+                ArrayList<Entry> e = entryApp.getEntriesForJournal(journal.getUserID(), journal.getJournalID());
+                journal.setEntries(e);
+                session.setAttribute("journal", journal);
+                entryApp.setJournal(journal);
+            }
+            Journal journal = (Journal) session.getAttribute("journal");
         %>
 
         <!-- Side navigation bar -->
         <nav role="side">
             <ul>
                 <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="entries.jsp"> Entries </a></li>
+                <li class="current"><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
@@ -91,14 +93,21 @@
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
-        </nav>        
+        </nav>
+                    
+        <p>
+            <a href="journals.jsp" id="alignmentBtn" title="Go Back">
+                <img src="backArrow.png" class="backButton" alt="Go Back">
+            </a>        
+        </p>
+        
         <div class="journalDetails">
             <!-- Retrieving Journal properties -->
-            <h1 id="journalDetTitle"><%= journal.getTitle()%></h1>
-            <h3 id="journalDetDesc"><%= journal.getDescription()%></h3>
+            <h1 class="head1" id="journalDetTitle"><%= journal.getTitle()%></h1>
+            <h3 class="head3" id="journalDetDesc"><%= journal.getDescription()%></h3>
             <input type="hidden" id="journalID" value="<%= journal.getJournalID() %>">
             <input type="hidden" id="userID" value="<%= journal.getUserID()%>">
-            <h4>
+            <h4 class="head4">
                 <!-- Code for date formatting, to put in an easier to understand format -->
                 <%
                     SimpleDateFormat ft1 = new SimpleDateFormat("dd/MM/yyyy - E - hh:mm aa");

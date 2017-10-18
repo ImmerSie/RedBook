@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EntryHistory {
+public class EntryHistory implements Serializable{
     @XmlElement
     private int entryHisID;
     @XmlElement
@@ -32,9 +33,8 @@ public class EntryHistory {
     private String content;
     @XmlElement
     private Date dateModified;
-
-    @XmlElement(name="comment")
-    private ArrayList<Comment> comments = new ArrayList<Comment>();
+    @XmlElement
+    private String flag;
     
   
     public EntryHistory() {
@@ -173,20 +173,13 @@ public class EntryHistory {
         this.dateModified = dateModified;
     }
 
-    /**
-     *
-     * @return All the comments relating to this entry history
-     */
-    public ArrayList<Comment> getComments() {
-        return comments;
+    public String getFlag() {
+        return flag;
     }
 
-    /**
-     *
-     * @param comments the comments relating to this entry history
-     */
-    public void setComments(ArrayList<Comment> comments) {
-        this.comments = comments;
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
+ 
     
 }

@@ -42,7 +42,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="//simonwaldherr.github.io/micromarkdown.js/dist/micromarkdown.min.js"></script>
-        <script type="text/javascript" src="//cdn.rawgit.com/showdownjs/showdown/<version tag>/dist/showdown.min.js"></script>
         <script>
             $( function() {
                 $( document ).tooltip();
@@ -54,7 +53,7 @@
         <nav role="side">
             <ul>
                 <li><a href="journals.jsp"> Journals </a></li>
-                <li><a href="entries.jsp"> Entries </a></li>
+                <li class="current"><a href="entries.jsp"> Entries </a></li>
                 <li><a href="createEntry.jsp"> Add Journal Entry </a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
@@ -71,7 +70,7 @@
                 </ul>
             </div>
         </nav>
-        <h1></h1>  
+        <h1 class="head1"></h1>  
         <p>
             <a href="entries.jsp">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
@@ -114,7 +113,9 @@
 
                 <table id="viewHistoryTable"></table>
                 <table id="historyEntryDiv"></table>
-
+                <div id="commentDiv">
+                    <h2 class="head2">Comments</h2>
+                </div>  
             </div>
             <div id="entryHistoryList"></div>             
         </div>
@@ -142,4 +143,5 @@ Also hiding the journal entry history when user is done
     $('#viewHistoryTable').hide();
     
     getEntry();
+    getComments();
 </script>

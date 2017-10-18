@@ -24,7 +24,9 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             $( function() {
-                $( document ).tooltip();
+                $( document ).tooltip({
+                    position: { my: "left+15 center", at: "right center" }
+                });
             } );
         </script>
     </head>
@@ -51,34 +53,50 @@
 
         <!-- Login form for RedBook -->
         <form action="journals.jsp" method="post">
-            <table>
-                <tr>
-                    <!-- Email address required to be in correct email format -->
-                    <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
-                    <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
-                               oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
-                               title="Email address you used to create an account"></td>
-                </tr>
-                <tr>
-                    <!-- Password should follow a secure format including a mix of numbers, upper/lower case letters or other characters -->
-                    <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
-                    <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
-                               oninvalid="setCustomValidity('Please enter a valid Password')"
-                               oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-                <tr>
-                    <!-- Login button for submitting details and gaining access to RedBook -->
-                    <td colspan="2"><input type="submit" class="Button" value="Login" 
-                                           title="Login after you have filled out the above fields"></td>
-                </tr>
-                <tr>
-                    <!-- If a user does not have an account, they can quickly be directed to the createUser JSP page -->
-                    <td colspan="2"><a href="createUser.jsp"> Not a user yet? Click here.</a></td>
-                </tr>
-            </table>
+            <div id="loginTableDiv">
+            <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
+                    <tr id="loginDetailErr"><td colspan="1"><p>Invalid login details!</p></td></tr>
+                <% } %>
+                <table id="loginTable">
+                    <tr>
+                        <!-- Email address required to be in correct email format -->
+                        <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
+                        <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
+                            <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
+                                   oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
+                                   title="Email address you used to create an account"></td>
+                        <% } else { %>
+                            <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
+                                   oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
+                                   title="Email address you used to create an account"></td>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <!-- Password should follow a secure format including a mix of numbers, upper/lower case letters or other characters -->
+                        <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
+                        <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
+                            <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
+                                   oninvalid="setCustomValidity('Please enter a valid Password')"
+                                   oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
+                        <% } else { %>
+                            <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
+                                   oninvalid="setCustomValidity('Please enter a valid Password')"
+                                   oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <!-- Login button for submitting details and gaining access to RedBook -->
+                        <td colspan="2"><input type="submit" class="Button" value="Login"></td>
+                    </tr>
+                    <tr>
+                        <!-- If a user does not have an account, they can quickly be directed to the createUser JSP page -->
+                        <td colspan="2"><a href="createUser.jsp"> Not a user yet? Click here.</a></td>
+                    </tr>
+                </table>
+            </div>
         </form>
     </body>
 </html>
@@ -86,7 +104,7 @@
 <!-- Checks for an invalid login attempt and displays alert message -->
 <script type="text/javascript">
     var example = document.referrer;
-    if (example === "http://localhost:8080/RedBook/login.jsp") {
+    if (example === "http://localhost:8080/redBook/login.jsp") {
         alert("Invalid Login Attempt");
     }
 </script>

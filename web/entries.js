@@ -19,27 +19,38 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<div class="entryList">';    
     html += '<table>';
     html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-    //Checks if it is for the table, else there is different formatting
+    
+    //Checks if it is for the search results table, else there is different formatting (prevents duplication)
     if(forResultTable){
         html += '<tr onClick="entryClick(this, ' + entryID + ')">';
     }
     else{
        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
     }
+    
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
     html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
     html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-    html += '<td>';
+    html += '<td></td>';
+    if(eModified == eCreated){
+        html += '<td>Unmodified</td>';
+    }
+    else{
+        html += '<td>Modified</td>';
+    }
     html += '</tr>';
-    html += '<div id="vis-wrapper">';
+    
+    //The dropdown list to change the visibility of an entry
+    html += '<div class="vis-wrapper">';
     html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
     html += '<div id="vis-dropdown">';
     html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
     html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+    
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
@@ -110,8 +121,8 @@ function getEntries(){
         // If there are no entries, it tells the user they have no entries
         // and prompts the user to create the first entry
         if(jQuery.isEmptyObject(response)){
-            html += '<p><h3>You have no entries.</h3></p>';
-            html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
+            html += '<p><h3 class="head3">You have no entries.</h3></p>';
+            html += '<p><h3 class="head3"> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
         else{
             $.each(response, function(key, e){
@@ -150,8 +161,8 @@ function hideEntries(){
     $.post("hideEntryServlet.do", {json: json, sorting: sortingDrop.options[sortingDrop.selectedIndex].value, filter: filterDrop.options[filterDrop.selectedIndex].value}, function(response){
         var html = '';
         if(jQuery.isEmptyObject(response)){
-            html += '<p><h3>You have no entries.</h3></p>';
-            html += '<p><h3> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
+            html += '<p><h3 class="head3">You have no entries.</h3></p>';
+            html += '<p><h3 class="head3"> Click <a href="createEntry.jsp">here</a> to create your first!</h3></p>';
         }
         else{
             $.each(response, function(key, e){                
@@ -276,7 +287,7 @@ function searchByTitle(){
     
     // If no results have come, display message "You have no results"
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
     
     // Hide the current table and show the search result table
@@ -306,7 +317,7 @@ function searchByContent(){
     }
     
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
 
     $('#ajaxEntries').hide();
@@ -346,7 +357,7 @@ function searchByDate(selectedDate){
     }
     
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
         
     $('#ajaxEntries').hide();
@@ -386,7 +397,7 @@ function searchByMonth(selectedMonth){
     }
     
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
         
     $('#ajaxEntries').hide();
@@ -426,7 +437,7 @@ function searchByYear(selectedYear){
     }
     
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
         
     $('#ajaxEntries').hide();
@@ -466,7 +477,7 @@ function searchBetweenDates(){
     }
     
     if(html.length < 1){
-        html += '<h3>You have no results<h3>';
+        html += '<h3 class="head3">You have no results<h3>';
     }
         
     $('#ajaxEntries').hide();
@@ -503,11 +514,11 @@ function editJournal(){
     var html = '';
     html += '<div class="modal-content">';
     html += '<div class="modal-header">';
-    html += '<h2>Edit Journal Details</h2>';
+    html += '<h2 class="head2">Edit Journal Details</h2>';
     html += '</div>';
     html += '<div class="modal-body">';
-    html += '<h3>Title: </h3><input type="text" id="journalDetTitleInput" value="' + title + '"></br>';
-    html += '<h3>Description: </h3><input id="journalDetDescInput" value="' + description + '">';
+    html += '<h3 class="head3">Title: </h3><input type="text" id="journalDetTitleInput" value="' + title + '"></br>';
+    html += '<h3 class="head3">Description: </h3><input id="journalDetDescInput" value="' + description + '">';
     html += '</div>';
     html += '<div class="modal-footer">';
     html += '<button class="editJournalDetSaveBtn" onClick="updateJournal()">Save</button>';

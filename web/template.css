@@ -3,7 +3,7 @@
     margin-top: 2px;
     height: 30px;
     width: 140px;
-    
+
 }
 
 /* Formatting of the logout Logo */
@@ -131,30 +131,31 @@ nav[role="side"] li a:hover{
 -----------------------*/
 
 /* Formatting of the entry items in the table */
-.table {background-color: white;
-       /* Layout Formatting */
-       padding-top: 10px;
-       padding-right: 50px;
-       padding-bottom: 30px;
-       padding-left: 50px;
-       text-align: center; 
-       margin-top: 0px;
-       margin-left: 250px; 
-       margin-right: auto; 
-       
-       /* Font styling */
-       font-family: 'Open Sans';
-       font-style: normal;
-       font-weight: normal;
-       font-size: 20px;
-       color: black;
-       
+.table {
+        /* Layout Formatting */
+        background-color: white;
+        padding-top: 10px;
+        padding-right: 40px;
+        padding-bottom: 30px;
+        padding-left: 50px;
+        text-align: center; 
+        margin-top: 0px;
+        margin-left: 300px; 
+        margin-right: auto; 
+
+        /* Font styling */
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        color: black;
 }
 
 /* Formatting of the new entry */
-.newEntry {background-color: white;
+.newEntry {
+       background-color: white;
        padding-top: 10px;
-       padding-right: 50px;
+       padding-right: 30px;
        padding-bottom: 30px;
        padding-left: 50px;
        text-align: center; 
@@ -166,6 +167,7 @@ nav[role="side"] li a:hover{
        margin-top: 0px;
        margin-left: 320px; 
        margin-right: 150px; 
+       margin-bottom: 50px;
 }
 
 /* Formatting of the entries menu */
@@ -280,7 +282,7 @@ nav[role="side"] li a:hover{
     font-weight: bold;
     text-align:center;
     strong {display:block;}
-    
+
 }
 
 /* Formatting of the actual Journal*/
@@ -292,6 +294,7 @@ nav[role="side"] li a:hover{
     position:relative;
     display: inline-block;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 /* Formatting of the entry table */
@@ -388,14 +391,14 @@ body{
 }
 
 /* Formatting of Heading 1 */
-h1{
+.head1{
     text-align: center;
     padding-top: 30px;
     color: white;
 }
 
 /* Formatting of Heading 2 */
-h2{
+.head2{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 25px;
@@ -406,7 +409,7 @@ h2{
 }
 
 /* Formatting of Heading 3 */
-h3{
+.head3{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 18px;
@@ -418,7 +421,7 @@ h3{
 }
 
 /*Formatting of Header 4 */
-h4{
+.head4{
     text-align: center;
     padding-top: 0px 0px 0px 0px;
     font-size: 10px;
@@ -568,11 +571,6 @@ h4{
 
 /* Formatst the save an entry button */
 #saveBtn{
-    text-align: center; 
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
     margin-align: right;
 }
 
@@ -582,6 +580,7 @@ h4{
     height: 10%;
     weight: 10%;
     padding-left: 17%;
+    margin-top: 50px;
 }
 
 /* Formats the background image */
@@ -603,7 +602,6 @@ h4{
 /* Ensures the View Entry table is floated to the left */
 #viewEntryTable{
     float: left;
-    margin-right: 50px;
 }
 
 /* Formats the View Date Created */
@@ -663,110 +661,108 @@ h4{
     text-align: left;
 }
 
-
-
 /* Formats the Visual Wrapper */
-#vis-wrapper { 
+.vis-wrapper { 
     display: inline-block;
     margin: 0;
     position: absolute;
-    top: 52%;
+    padding-top: 40px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
 
 /* Ensures the visual wrapper and the dropdown are opaque */
-#vis-wrapper:hover #vis-dropdown { 
+.vis-wrapper:hover #vis-dropdown { 
     opacity: 1; 
     display: block; 
 }
 
 /* Formats the visual icon */
 .vis-icon {
-  color: #fff;
-  font-weight:700;
-  padding-right:20px;
-  padding-left:30px;
-  display:inline-block;
-  font-size:11px;
-  text-align:right;
-  text-decoration:none;
-  position:relative;
-  left: 0; top: 0;
+    color: #fff;
+    font-weight:700;
+    padding-right:20px;
+    padding-left:30px;
+    display:inline-block;
+    font-size:11px;
+    text-align:right;
+    text-decoration:none;
+    position:relative;
+    left: 0; top: 0;
 }
 
 /* Formats the vis icon before clicked */ 
 .vis-icon:before {
-  content:'\25BE';
-  width:0px;
-  height:0;
-  position:absolute;
-  right:16px;
-  top: 0;
+    content:'\25BE';
+    width:0px;
+    height:0;
+    position:absolute;
+    right:16px;
+    top: 0;
 }
 
 /* Formats the visual icon hover before */
 .vis-icon:hover:before { 
-  color: #d13030;
-  content: '\25B4';
-  top: -1px;
+    color: #d13030;
+    content: '\25B4';
+    top: -1px;
 }
 
 /* ------------------ Visibility DROPDOWN Start ------------------ */
 
 /* Formats the visual dropdown */
- #vis-dropdown {
-  opacity: 0;
-  width: 70px;
-  display: none;
-  position: absolute;
-  border: 1px solid #ddd;
-  background: #fff;
-  box-shadow: 0px 3px 3px #000000;
- }
+#vis-dropdown {
+    opacity: 0;
+    width: 70px;
+    display: none;
+    position: absolute;
+    border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: 0px 3px 3px #000000;
+}
 
- /* Formats the visual dropdown in header 3 */
- #vis-dropdown h3 {
-  color: #d13030;
-  font-size: 14px;
-  font-weight: normal;
-  padding: 5px 15px 0px 15px;
- }
- 
+/* Formats the visual dropdown in header 3 */
+#vis-dropdown h3 {
+    color: #d13030;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px 15px 0px 15px;
+}
+
 /* Formats the paragraph section in the vis dropdown */
 #vis-dropdown p {
 
-  font-size: 12px;
-  padding: 0px 0px 10px 15px;
+    font-size: 12px;
+    padding: 0px 0px 10px 15px;
 }
 
 /* Formats the link of the visual dropdown */
 #vis-dropdown a {
-  padding: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 15px;
 }
 
 /* Formats the links in the visual dropdown */
- .vis-links {
-  font-size: 12px;
-  text-decoration: none;
-  color: #93163A;
- }
+.vis-links {
+    font-size: 12px;
+    text-decoration: none;
+    color: #93163A;
+}
 
- /* Formats the hover feature of the visual dropedown to have a underline */
- .vis-links:hover {
-  text-decoration: underline;
+/* Formats the hover feature of the visual dropedown to have a underline */
+.vis-links:hover {
+    text-decoration: underline;
 
- }
- 
- /* ------------------ Visibility DROPDOWN Fin ------------------ */
- 
- /* ------------------ Edit Journal Field Alignment Start -------------- */
- 
- .journalDetails {
-     display: block;
- } 
- 
-   /* Edit Journal Save Button  */
+}
+
+/* ------------------ Visibility DROPDOWN Fin ------------------ */
+
+/* ------------------ Edit Journal Field Alignment Start -------------- */
+
+.journalDetails {
+    display: block;
+} 
+
+/* Edit Journal Save Button  */
 #editJournalDetSaveBtn {
     text-align: center;
     margin: 0;
@@ -774,37 +770,37 @@ h4{
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
- }
- 
-  /* Edit Journal Cancel Button  */
- #editJournalDetCancelBtn {
+}
+
+/* Edit Journal Cancel Button  */
+#editJournalDetCancelBtn {
     text-align: center;
     margin: 0;
     position: absolute;
     top: 90%;
     left: 40%;
     transform: translate(-50%, -50%);
- }
- 
-  /* Edit Journal Title Text Field */
-  #journalDetTitleInput {
+}
+
+/* Edit Journal Title Text Field */
+#journalDetTitleInput {
     margin-top: 20px;
     margin-bottom: 20px;
     color: black;
- }
- 
-  /* Edit Journal Description Text Field */
-   #journalDetDescInput {
+}
+
+/* Edit Journal Description Text Field */
+#journalDetDescInput {
     margin-top: 20px;
     margin-bottom: 20px;
     color: black;
- }
- 
- /* ----------------- Edit Journal Field Fin --------------- */
- 
- /* ----------------- Edit Journal Modal Start --------------- */
- 
- /* Edit Journal Details Modal */
+}
+
+/* ----------------- Edit Journal Field Fin --------------- */
+
+/* ----------------- Edit Journal Modal Start --------------- */
+
+/* Edit Journal Details Modal */
 .modal {
     display: none;
     position: fixed;
@@ -856,12 +852,12 @@ h4{
     color: white;
 }
 
- /* ----------------- Edit Journal Modal Fin --------------- */
- 
- /* ------------------ Help Styling Start ------------------ */
- 
- /* Formatting of the Help Content table */
- .helpTable {
+/* ----------------- Edit Journal Modal Fin --------------- */
+
+/* ------------------ Help Styling Start ------------------ */
+
+/* Formatting of the Help Content table */
+.helpTable {
     background-color: white;
     padding-right: 50px;
     padding-bottom: 30px;
@@ -871,37 +867,43 @@ h4{
     margin-left: 170px;
     margin-right: auto;
     font-family: 'Open Sans';
- }
- 
- /* The header 1 of help section */
- #helpH1 {
+}
+
+/* The header 1 of help section */
+#helpH1 {
     color: #93163A;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
     padding-top: 30px;
- }
- 
- /* THe header 2 of the help section */
- #helpH2 {
+}
+
+/* The header 2 of the help section */
+#helpH2 {
     font-style: normal;
     font-weight: bolder;
     font-size: 12px;
     color: black;
     padding-top: 10px;
- }
- 
- /* The formatting of the help Body */
- #helpBody{
+}
+
+/* Formatting of header 2 */
+h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* The formatting of the help Body */
+#helpBody{
     font-style: normal;
     font-weight: lighter;
     font-size: 12px;
     color: black;
     text-indent: 20px;
- }
- 
- /* The formatting of the header of the help section */
- #helpHeader{
+}
+
+/* The formatting of the header of the help section */
+#helpHeader{
     text-align: center;
     padding-top: 80px;
     color: white;
@@ -924,4 +926,60 @@ h4{
     padding-left: 180px;
 }
 
+.current{
+    background-color: #9e5a6d;
+    font-weight: bold;
+    text-decoration: none;
+}
+
  /* ------------------ Help Styling Fin ------------------ */
+
+ /* ------------------ Commenting Styling Start ------------------ */ 
+ 
+ /* The formatting of the comment header */
+ #commentHeader {
+     background: #93163A;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    padding: 12px 20px;
+ }
+ 
+  /* The formatting of the comment section itself */
+ #commentDiv {
+    margin-top: 50px;
+ }
+ 
+ /* The formatting of the comment date */
+ #commentDate {
+    font-size: 10px;
+    text-align: left;
+ }
+ 
+  /* The formatting of the comment  */
+ #commentContent {
+    font-size: 14px;
+    text-align: left;
+ }
+ 
+   /* The formatting of the comment input field  */
+ #addCommentTxt {
+     width: 80%;
+     margin-right: 10px;
+ }
+ 
+    /* The formatting of the no comment message  */
+ #noComments {
+     font-size: 15px;
+     text-align: center;
+ }
+  /* ------------------ Commenting Styling Fin ------------------ */ 
+
+  #loginDetailErr{
+      font-size: 30px;
+      text-color: red;
+  }

@@ -45,8 +45,8 @@
             journal.addEntry(entry);
             entryApp.saveEntries();
         %>
-        <p><h3>New entry  <%= title%> successfully created.</h3></p>
-        <p><h3>Click <a href="entries.jsp">here</a> to return to the journals page.</h3></p>
+        <p><h3 class="head3">New entry  <%= title%> successfully created.</h3></p>
+        <p><h3 class="head3">Click <a href="entries.jsp">here</a> to return to the journals page.</h3></p>
 
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->
         <div id="background">

@@ -31,7 +31,7 @@ body{
 }
 
 /* Sets the formatting of the table */
-table {
+#loginTableDiv {
    /* Formatting of the layout */
    background-color: white;
    padding-top: 100px;
@@ -42,15 +42,24 @@ table {
    
    /* Formatting of the Text in the table */
    text-align:center; 
+   
+   margin-left:auto; 
+   margin-right:auto; 
+   border-radius: 20px;
+
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+#loginTable{
    font-family: 'Open Sans';
    font-style: normal;
    font-weight: normal;
    font-size: 10px;
    text-decoration: underline;
    color: #93163A;
-   margin-left:auto; 
-   margin-right:auto; 
-   border-radius: 20px;
 }
 
 /* Sets the formatting of the background */
@@ -68,3 +77,13 @@ table {
     width:100%;
     height:100%;
 }
+
+#loginDetailErr{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    text-color: red;
+    text-decoration: none;
+    text-align: right;
+  }
