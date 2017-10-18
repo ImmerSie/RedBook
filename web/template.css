@@ -978,3 +978,8 @@ h2 {
      text-align: center;
  }
   /* ------------------ Commenting Styling Fin ------------------ */ 
+
+  #loginDetailErr{
+      font-size: 30px;
+      text-color: red;
+  }

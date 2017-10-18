@@ -46,7 +46,8 @@
         <!-- Side navigation bar -->
         <nav role="side">
             <ul>
-                <li class="current"><a href="journals.jsp"> Journals </a></li>
+                <li><a href="journals.jsp"> Journals </a></li>
+                <li class="current"><a href="createJournal.jsp">Add Journal</a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 
@@ -66,7 +67,7 @@
         <h1 class="head1"></h1>  
 
         <p>
-            <a href="entries.jsp" id="alignmentBtn" title="Go Back">
+            <a href="journals.jsp" id="alignmentBtn" title="Go Back">
                 <img src="backArrow.png" class="backButton" alt="Go Back">
             </a>        
         </p>

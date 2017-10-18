@@ -70,10 +70,12 @@
             }
             //If the retrieved user session is null but did not pass the login verification, then redirect to the Login JSP page
             if (session.getAttribute("user") == null) {
+                session.setAttribute("error", "invalidLogin");
                 response.sendRedirect("login.jsp");
             }
             //Setup a session with the user data that matches
             if (user != null) {
+                session.setAttribute("error", null);
                 String name = request.getParameter("name");
                 int userID = userApp.getNewUserID();
                 session.setAttribute("user", user);
@@ -83,6 +85,7 @@
         <nav role="side">
             <ul>
                 <li class="current"><a href="journals.jsp"> Journals </a></li>
+                <li><a href="createJournal.jsp">Add Journal</a></li>
                 <li><a href="help.jsp"> Help </a></li>
             </ul>
         </nav> 

@@ -93,7 +93,14 @@
                     <img src="RedLogo.png" class="logo" alt="Logo">
                 </ul>
             </div>
-        </nav>        
+        </nav>
+                    
+        <p>
+            <a href="journals.jsp" id="alignmentBtn" title="Go Back">
+                <img src="backArrow.png" class="backButton" alt="Go Back">
+            </a>        
+        </p>
+        
         <div class="journalDetails">
             <!-- Retrieving Journal properties -->
             <h1 class="head1" id="journalDetTitle"><%= journal.getTitle()%></h1>
