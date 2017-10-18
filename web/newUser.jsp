@@ -57,7 +57,9 @@
             String redirectURL = "journals.jsp";
             response.sendRedirect(redirectURL);
         %> 
-        <% } else { %>
+        <% } else { 
+                    session.setAttribute("error", "userExists");
+                    response.sendRedirect("createUser.jsp"); %>
         <p><h3 class="head3">A user with that email address has already been registered. Click <a href="createUser.jsp">here</a> to return to the account registration page.</h3></p>
         <% } %>
         <!-- Setting the background image to fit different web browser and screen sizes by stretching -->

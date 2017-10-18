@@ -53,36 +53,26 @@
 
         <!-- Login form for RedBook -->
         <form action="journals.jsp" method="post">
-            <div id="loginTableDiv">
+            <div class="userTableDiv">
             <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
                     <tr id="loginDetailErr"><td colspan="1"><p>Invalid login details!</p></td></tr>
-                <% } %>
-                <table id="loginTable">
+            <% } else {
+                session.setAttribute("error", null);
+            }%>
+                <table class="userTable">
                     <tr>
                         <!-- Email address required to be in correct email format -->
                         <td><img src="emailIcon.png" class="Icon" alt="Icon"></td>
-                        <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
-                            <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
-                                   oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
-                                   title="Email address you used to create an account"></td>
-                        <% } else { %>
-                            <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
-                                   oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
-                                   title="Email address you used to create an account"></td>
-                        <% } %>
+                        <td><input type="email" name="email" placeholder="Email Address" required pattern="<%=logex%>"
+                               oninvalid="setCustomValidity('Please enter a valid Email Address')" oninput="setCustomValidity('')"
+                               title="Email address you used to create an account"></td>
                     </tr>
                     <tr>
                         <!-- Password should follow a secure format including a mix of numbers, upper/lower case letters or other characters -->
                         <td><img src="passwordIcon.png" class="Icon" alt="Icon"></td>
-                        <% if(session.getAttribute("error") != null && session.getAttribute("error").equals("invalidLogin")){ %>
-                            <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
-                                   oninvalid="setCustomValidity('Please enter a valid Password')"
-                                   oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
-                        <% } else { %>
-                            <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
-                                   oninvalid="setCustomValidity('Please enter a valid Password')"
-                                   oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
-                        <% } %>
+                        <td><input type="password" name="password" placeholder="Password" required pattern="<%=passwordLogex%>"
+                               oninvalid="setCustomValidity('Please enter a valid Password')"
+                               oninput="setCustomValidity('')" title="Your chosen password when you created an account"/></td>
                     </tr>
                     <tr>
                         <td></td>

@@ -31,8 +31,9 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
     html += '<td>' + eTitle + '</td>';
-    html += '<td><p value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-    html += '<td><p value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td><input type="hidden" value="' + eContent + '"/></td>';
+    html += '<td><p value="' + eCreated + '">' + eCreated + '</p></td>';
+    html += '<td><p value="' + eModified + '">' + eModified + '</p></td>';
     html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td></td>';
     if(eModified == eCreated){
@@ -215,7 +216,12 @@ function searchBy(){
         html += '</td><td><button onClick="removeSearch()">X</button>'; 
         
         $('#searchInput').html(html);
-        $('#datepickerSearch').datepicker().on("input change", function(e){
+        $('#datepickerSearch').datepicker({
+            dateFormat: 'MM yy',
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+        }).on("input change", function(e){
             searchByMonth(e.target.value);
             
         });
@@ -226,7 +232,9 @@ function searchBy(){
         html += '</td><td><button onClick="removeSearch()">X</button>'; 
         
         $('#searchInput').html(html);
-        $('#datepickerSearch').datepicker().on("input change", function(e){
+        $('#datepickerSearch').datepicker({
+            
+        }).on("input change", function(e){
             searchByYear(e.target.value);
             
         });
@@ -304,9 +312,10 @@ function searchByContent(){
     var row = document.getElementsByClassName("entryRow");
     var html = '';
     for(var i = 0; i < row.length; i++){
-        var eContent = $(row.item(i)).find('td').eq(3).text();
+        var eContent = $(row.item(i)).find('input').eq(0).val();
+        
         if(eContent.toLowerCase().indexOf(keyword) >= 0){
-            var entryID = $(row.item(i)).find('input').eq(0).val();
+            var entryID = $(row.item(i)).find('input').eq(1).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
@@ -335,12 +344,12 @@ function searchByDate(selectedDate){
     for(var i = 0; i < row.length; i++){
         // Converts the date as a string to a Date Object
         var eCreated = $(row.item(i)).find('p').eq(0).text();
-        var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
-        var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
-        var day = splitDate[1].substring(0, splitDate[1].length - 1);
-        var year = splitDate[2];
+        var commaIndex = eCreated.toString().indexOf(",");
+        var dateMonth = eCreated.toString().substring(0, commaIndex);
+        var year = eCreated.toString().substring(commaIndex + 2, commaIndex + 6);
+        var splitDate = dateMonth.split(" ");
+        var month = splitDate[0];
+        var day = splitDate[1];
         var rowDate = new Date (month + " " + day + " " + year);
         
         // Sets the search Date as a Date Object
@@ -375,17 +384,17 @@ function searchByMonth(selectedMonth){
     for(var i = 0; i < row.length; i++){
         // Converts the date as a string to a Date Object
         var eCreated = $(row.item(i)).find('p').eq(0).text();
-        var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
-        var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
-        var day = splitDate[1].substring(0, splitDate[1].length - 1);
-        var year = splitDate[2];
+        var commaIndex = eCreated.toString().indexOf(",");
+        var dateMonth = eCreated.toString().substring(0, commaIndex);
+        var year = eCreated.toString().substring(commaIndex + 2, commaIndex + 6);
+        var splitDate = dateMonth.split(" ");
+        var month = splitDate[0];
+        var day = splitDate[1];
         var rowDate = new Date (month + " " + day + " " + year);
         
         // Sets the search Date as a Date Object
         var searchDate = new Date(selectedMonth);
-        if(searchDate.getTime() === rowDate.getTime()){
+        if(searchDate.getYear() === rowDate.getYear() && searchDate.getMonth() === rowDate.getMonth()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
             var eContent = $(row.item(i)).find('td').eq(3).text();
@@ -415,17 +424,17 @@ function searchByYear(selectedYear){
     for(var i = 0; i < row.length; i++){
         // Converts the date as a string to a Date Object
         var eCreated = $(row.item(i)).find('p').eq(0).text();
-        var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
-        var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
-        var day = splitDate[1].substring(0, splitDate[1].length - 1);
-        var year = splitDate[2];
+        var commaIndex = eCreated.toString().indexOf(",");
+        var dateMonth = eCreated.toString().substring(0, commaIndex);
+        var year = eCreated.toString().substring(commaIndex + 2, commaIndex + 6);
+        var splitDate = dateMonth.split(" ");
+        var month = splitDate[0];
+        var day = splitDate[1];
         var rowDate = new Date (month + " " + day + " " + year);
         
         // Sets the search Date as a Date Object
         var searchDate = new Date(selectedYear);
-        if(searchDate.getTime() === rowDate.getTime()){
+        if(searchDate.getYear() === rowDate.getYear()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
             var eContent = $(row.item(i)).find('td').eq(3).text();
@@ -456,12 +465,12 @@ function searchBetweenDates(){
     var html = '';
     for(var i = 0; i < row.length; i++){
         var eCreated = $(row.item(i)).find('p').eq(0).text();
-        var colonIndex = eCreated.toString().indexOf(":");
-        var dateSection = eCreated.toString().substring(colonIndex);
-        var splitDate = dateSection.split(" ");
-        var month = splitDate[0].substring(1);
-        var day = splitDate[1].substring(0, splitDate[1].length - 1);
-        var year = splitDate[2];
+        var commaIndex = eCreated.toString().indexOf(",");
+        var dateMonth = eCreated.toString().substring(0, commaIndex);
+        var year = eCreated.toString().substring(commaIndex + 2, commaIndex + 6);
+        var splitDate = dateMonth.split(" ");
+        var month = splitDate[0];
+        var day = splitDate[1];
         var rowDate = new Date (month + " " + day + " " + year);
         
         // Checks if the entry date is in between the 2 dates of the search criteria

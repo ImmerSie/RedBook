@@ -135,7 +135,7 @@
                     <!-- Icon button for adding an entry to the current journal -->
                     <td><a class="addEntry" href="createEntry.jsp" title="Add a new entry to this journal"> + </a></td>
                     <!-- Hide entry button based on selected entries via the checkbox at the beginning of the entry row -->
-                    <td><button type="button" onClick="hideEntries()"> Hide </button></td>
+                    <td><button type="button" onClick="hideEntries()"> Hide/Unhide </button></td>
                     <td>
                         <!-- Filter which entries are displayed based on the status of the entries -->
                         <select id="filter" onChange="filterEntries()">

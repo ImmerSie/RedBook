@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -330,7 +333,19 @@ public class EntryController implements Serializable{
      * @return 
      */
     public ArrayList<Entry> sortByTitle(ArrayList<Entry> e){
-        e.sort(Comparator.comparing(Entry::getTitleLowercase));
+        /*ArrayList<Entry> newEntries = new ArrayList<Entry>();
+        for(int j = e.size() - 1; j > 0; j--){
+            for(int i = 0; i < j; i++){
+                int value =  e.get(i).getTitle().trim().compareToIgnoreCase(e.get(i+1).getTitle().trim());
+                if(value > 0){
+                    Collections.swap(e, i, i+1);
+                }
+            }
+        }
+        */
+        e.sort(Comparator.comparing(Entry::getTitleLowercase, (s1, s2) -> {
+            return s1.compareTo(s2);
+        }));
         return e;
     }
     

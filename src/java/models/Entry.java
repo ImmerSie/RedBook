@@ -163,7 +163,7 @@ public class Entry implements Serializable{
      * @return The title in lower case format
      */
     public String getTitleLowercase(){
-        return title.toLowerCase();
+        return title.toLowerCase().trim();
     }
 
     /**
