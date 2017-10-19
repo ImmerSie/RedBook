@@ -13,28 +13,29 @@
 function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, forResultTable) {
     ///Iniates the HTML varaible with a blank string
     var html = '';
-    
-    //Adds the surrounding div tags for formatting
-
-    html += '<input type="checkbox" class="entryCheck" name="' +  entryID + '" value="' + entryID + '">';
-    
+        
     //Checks if it is for the search results table, else there is different formatting (prevents duplication)
-    if(forResultTable){
-        html += '<tr onClick="entryClick(this, ' + entryID + ')">';
+    if (forResultTable) {
+        html += '<tr >';
+    } else {
+        html += '<tr class="entryRow">';
     }
-    else{
-       html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
+
+    html += '<td>';
+    if(eFlag !== 'deleted'){
+        html += '<input type="checkbox" class="entryCheck" name="' + entryID + '" value="' + entryID + '">';
     }
-    
+    html += '</td>';
+
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
-    html += '<td class="eTitle">' + eTitle + '</td>';
-    html += '<td><input type="hidden" value="' + eContent + '"/></td>';
-    html += '<td><p value="' + eCreated + '">' + eCreated + '</p></td>';
-    html += '<td><p value="' + eModified + '">' + eModified + '</p></td>';
-    html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-    html += '<td></td>';
-    if(eModified === eCreated){
+    html += '<td onClick="entryClick(this, ' + entryID + ')" class="eTitle">' + eTitle + '</td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eContent" value="<%= e.dateModified %>">' + eContent + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"></td>';
+    if (eModified == eCreated) {
         html += '<td>Unmodified</td>';
     } else {
         html += '<td>Modified</td>';
@@ -52,13 +53,12 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
         html += '</td>'
     }
 
-    html += '</tr>';
 
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
     html += '</td>';
-
+    html += '</tr>';
 
 
 
@@ -230,19 +230,19 @@ function searchBy() {
 
         $('#searchInput').html(html);
         $('#datepickerSearch').datepicker({
-            changeMonth: true,
+            /*changeMonth: true,
             changeYear: true,
             showButtonPanel: true,
-            dateFormat: 'mm/yy',
+            dateFormat: 'mm/yy'
             onClose: function (dateText, inst) {
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 $(this).datepicker('setDate', new Date(year, month, 1,0,0,0,0));
                 }
-            }
-                ).on("input change", function (e) {
-            searchByMonth(e.target.value);
-
-        });
+            }*/
+            }).on("input change", function (e) {
+                searchByMonth(e.target.value);
+            });
     } else if (searchValue === "year") {
         var html = '';
         html += '<input type="text" id="datepickerSearch" placeholder="Year...">';
@@ -250,13 +250,13 @@ function searchBy() {
 
         $('#searchInput').html(html);
         $('#datepickerSearch').datepicker({
-            changeYear: true,
+            /*changeYear: true,
             showButtonPanel: true,
             dateFormat: 'yy',
             onClose: function (dateText, inst) {
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
                 $(this).datepicker('setDate', new Date(year,1,1,0,0,0,0));
-            }
+            }*/
         }).on("input change", function (e) {
           searchByYear(e.target.value);
 
@@ -352,6 +352,7 @@ function searchByContent() {
            var entryID = $(row.item(i)).find('input').eq(0).val();
             var eContent = $(row.item(i)).find('p.eContent').text();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
+            var eTitle = $(row.item(i)).find('.eTitle').text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
 
@@ -405,6 +406,7 @@ function searchByDate(selectedDate) {
            var entryID = $(row.item(i)).find('input').eq(0).val();
             var eContent = $(row.item(i)).find('p.eContent').text();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
+            var eTitle = $(row.item(i)).find('.eTitle').text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
 

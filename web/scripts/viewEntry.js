@@ -101,13 +101,16 @@ function getEntryHistory(entry){
     $('#historyEntryDiv').html(html);
 }
 
-function generatePage(entryID, dateCreated, dateModified, title, content){
+function generatePage(entryID, dateCreated, dateModified, title, content, flag){
     var html = '';
     html += '<tr>';
     html += '<td id="viewDateCreated" value="' + dateCreated + '">' + dateCreated + '</td>';
     html += '<td id="viewDateModified" value="' + dateModified + '">' + dateModified + '</td>';
     html += '<td>';
-    html += '<button type="button" onClick="editEntry()">Edit</button>';
+    if(flag !== 'deleted'){
+        html += '<button type="button" onClick="editEntry()">Edit</button>';
+    }
+        //html += '<p>' + flag + '</p>';
     html += '</td>';
     html += '<td>';
     html += '<button type="button" id="toggleHistoryBtn" onClick="toggleJournalHistory()">Show History</button>';
@@ -140,7 +143,7 @@ function updateEntry(){
     
     $.post("entryHistoryServlet.do", {entryID: entryID, title: title, content: content}, function(response){
         var html = '';
-        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
+        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content'], response['flag']);
         $('#viewEntryData').html(html); 
     });
 }
@@ -192,7 +195,7 @@ function getEntry(){
     var entryID = $('#entryID').val();
     $.get("entryServlet.do", {entryID: entryID, noDownload: "true"}, function(response){
         var html = '';
-        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content']);
+        html += generatePage(response['entryID'], 'Date Created: ' + response['dateCreated'], 'Date Modified: ' + response['dateModified'],  response['title'], response['content'], response['flag']);
         $('#viewEntryData').html(html); 
     });
 }
