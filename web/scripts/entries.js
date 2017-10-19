@@ -28,7 +28,7 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
-    html += '<td>' + eTitle + '</td>';
+    html += '<td class="eTitle">' + eTitle + '</td>';
     html += '<td><input type="hidden" value="' + eContent + '"/></td>';
     html += '<td><p value="' + eCreated + '">' + eCreated + '</p></td>';
     html += '<td><p value="' + eModified + '">' + eModified + '</p></td>';
@@ -39,16 +39,18 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     } else {
         html += '<td>Modified</td>';
     }
-
-    html += '<td>';
-    //The dropdown list to change the visibility of an entry
-    html += '<div class="vis-wrapper">';
-    html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
-    html += '<div id="vis-dropdown">';
-    html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
-    html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
-    html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
-    html += '</td>'
+    
+    if(eFlag !== 'deleted'){
+        html += '<td>';
+        //The dropdown list to change the visibility of an entry
+        html += '<div class="vis-wrapper">';
+        html += '<a class="vis-icon fr" href="#" alt="select visibility" onclick="toggle("vis-dropdown")">...</a>';
+        html += '<div id="vis-dropdown">';
+        html += '<text class="vis-links" onClick="visiblise(' + entryID + ')">Visible</text></br>';
+        html += '<text class="vis-links" onClick="hide(' + entryID + ')">Hidden</text></br>';
+        html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
+        html += '</td>'
+    }
 
     html += '</tr>';
 
