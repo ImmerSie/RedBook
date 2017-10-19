@@ -20,32 +20,29 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
 
     //Checks if it is for the search results table, else there is different formatting (prevents duplication)
     if (forResultTable) {
-        html += '<tr onClick="entryClick(this, ' + entryID + ')">';
+        html += '<tr >';
     } else {
-        html += '<tr class="entryRow" onClick="entryClick(this, ' + entryID + ')">';
+        html += '<tr class="entryRow">';
     }
 
     html += '<td>';
-
     html += '<input type="checkbox" class="entryCheck" name="' + entryID + '" value="' + entryID + '">';
-
-
     html += '</td>';
 
     //Adds the actual content of each column as well as the buttons for Visible/hide/Delete
     html += '<td></td>';
-    html += '<td class="eTitle">' + eTitle + '</td>';
-    html += '<td><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
-    html += '<td><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
-    html += '<td><p class="eContent" value="<%= e.dateModified %>">' + eContent + '</p></td>';
-    html += '<td><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
-    html += '<td></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')" class="eTitle">' + eTitle + '</td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eContent" value="<%= e.dateModified %>">' + eContent + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"></td>';
     if (eModified == eCreated) {
         html += '<td>Unmodified</td>';
     } else {
         html += '<td>Modified</td>';
     }
-
+    
     html += '<td>';
     //The dropdown list to change the visibility of an entry
     html += '<div class="vis-wrapper">';
@@ -56,13 +53,11 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<text class="vis-links" onClick="del(' + entryID + ')">Deleted</text>';
     html += '</td>'
 
-    html += '</tr>';
-
     //Closes the tags of the table
     html += '</div>';
     html += '</div>';
     html += '</td>';
-
+    html += '</tr>';
 
 
 
