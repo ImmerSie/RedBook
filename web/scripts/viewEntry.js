@@ -206,7 +206,7 @@ function generateHistoryRow(entryHisID, dateModified, title, content){
     html += '<tr id="' + entryHisID + '" onClick="getEntryHistory(this)">';
     html += '<td >' + dateModified + '</td>';
     html += '<input type="hidden" value="' + title + '">';
-    html += '<input type="hidden" value="' + micromarkdown.parse(content); + '">';
+    html += '<input type="hidden" value="' + content + '">';
     html += '<input type="hidden" value="' + dateModified + '">';
     html += '</tr>';
     html += '</table>';

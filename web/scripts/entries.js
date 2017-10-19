@@ -32,10 +32,10 @@ function createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFla
     html += '<td onClick="entryClick(this, ' + entryID + ')" class="eTitle">' + eTitle + '</td>';
     html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eCreated" value="<%= e.dateCreated %>">' + eCreated + '</p></td>';
     html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eModified" value="<%= e.dateModified %>">' + eModified + '</p></td>';
-    html += '<td onClick="entryClick(this, ' + entryID + ')"><p class="eContent" value="<%= e.dateModified %>">' + eContent + '</p></td>';
+    html += '<td onClick="entryClick(this, ' + entryID + ')"><input type="hidden" class="eContent" value="' + eContent + '"/></td>';
     html += '<td onClick="entryClick(this, ' + entryID + ')"><input type="hidden" value="' + entryID + '" name="entryID" id="entryID"></td>';
     html += '<td onClick="entryClick(this, ' + entryID + ')"></td>';
-    if (eModified == eCreated) {
+    if (eModified === eCreated) {
         html += '<td>Unmodified</td>';
     } else {
         html += '<td>Modified</td>';
@@ -309,7 +309,7 @@ function searchByTitle() {
         // If the search matches, add the entry to the search table
         if (eTitle.toLowerCase().indexOf(keyword) >= 0) {
             var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
@@ -347,10 +347,10 @@ function searchByContent() {
     html += '<div class="entryList">';
     html += '<table>';
     for (var i = 0; i < row.length; i++) {
-        var eContent = $(row.item(i)).find('.eContent').text();
+        var eContent = $(row.item(i)).find('input.eContent').val();
         if (eContent.toLowerCase().indexOf(keyword) >= 0) {
            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eTitle = $(row.item(i)).find('.eTitle').text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
@@ -404,7 +404,7 @@ function searchByDate(selectedDate) {
         var searchDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
         if (searchDate.getTime() === rowDate.getTime()) {
            var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eTitle = $(row.item(i)).find('.eTitle').text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
@@ -457,7 +457,7 @@ function searchByMonth(selectedMonth) {
         if(searchDate.getYear() === rowDate.getYear() && searchDate.getMonth() === rowDate.getMonth()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
 
@@ -508,16 +508,13 @@ function searchByYear(selectedYear) {
         if(searchDate.getYear() === rowDate.getYear()){
             var entryID = $(row.item(i)).find('input').eq(0).val();
             var eTitle = $(row.item(i)).find('td').eq(1).text();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
 
 
             html += createEntryRowHTML(entryID, eTitle, eContent, eCreated, eModified, eFlag, true);
             content = true;
-
-
-
         }
        
     }
@@ -560,7 +557,7 @@ function searchBetweenDates() {
         // Checks if the entry date is in between the 2 dates of the search criteria
         if (fromDate.getTime() < rowDate.getTime() && toDate.getTime() > rowDate.getTime()) {
             var entryID = $(row.item(i)).find('input').eq(0).val();
-            var eContent = $(row.item(i)).find('p.eContent').text();
+            var eContent = $(row.item(i)).find('input.eContent').val();
             var eCreated = $(row.item(i)).find('p').eq(0).text();
             var eModified = $(row.item(i)).find('p').eq(1).text();
             var eFlag = $(row.item(i)).find('td').eq(14).text();
