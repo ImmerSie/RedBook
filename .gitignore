@@ -1,2 +1,11 @@
 /build/
 /dist/
+nbproject/genfiles\.properties
+
+nbproject/private/private\.properties
+
+nbproject/private/private\.xml
+
+nbproject/project\.properties
+
+nbproject/project\.xml

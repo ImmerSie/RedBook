@@ -359,6 +359,13 @@ nav[role="side"] li a:hover{
     padding-right: 30px;
 }
 
+.eContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  white-space: nowrap;
+}
+
 /* Formatting of the Title of each entry */
 #entryTitle{
     font-family: 'Open Sans';
@@ -434,11 +441,11 @@ body{
 
 /* Formatting of the checkbox of each entry */
 .entryCheck{
+    margin-top: 20px;
     padding-top: 20px;
     float: left;
     text-align: center;
     vertical-align: middle;
-    margin-top: 18px;
 }
 
 
@@ -666,7 +673,6 @@ body{
     display: inline-block;
     margin: 0;
     position: absolute;
-    padding-top: 40px;
     right: 10%;
     transform: translate(-50%, -50%);
 }
